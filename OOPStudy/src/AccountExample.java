@@ -1,0 +1,57 @@
+/** 
+ * 프로그램 실행을 위한 애플리케이션 클래스 정의
+ */
+
+class AccountExample {
+	public static void main(String[] args) {
+		System.out.println("은행 계좌 애플리케이션 시작됨...");
+
+		
+/*
+		// 클래스로부터 객체(인스턴스) 생성
+		Accounts account = new Accounts();		// new연산자로 Account()를 메모리에 생성. = 연산자로 account 변수에 메모리의 주소값 할당(4바이트). => 레퍼런스 타입 변수
+
+		// 인스턴스의 속성과 기능
+		account.accountNum = "1111-2222-3333";
+		account.accountOwner = "유예겸";
+		account.restMoney = 1000000000;
+		account.passwd = 1234;
+*/
+
+		Accounts account = new Accounts("111-22-333", "유예겸", 1234, 100000000);
+		/*
+		int passwd = 1234;
+		boolean result = account.checkPasswd(passwd);
+		long money;
+
+		if(result) {	
+			money = account.deposit(50000000);
+			System.out.println("입금 후 잔액 : " + money);
+
+			money = account.withdraw(10000);
+			System.out.println("출금 후 잔액 : " + money);
+		}else {
+			System.out.println("비밀번호를 확인하세요.");
+		}
+		System.out.println(account.accountNum);
+*/
+
+
+		Accounts account2 = new Accounts();
+
+		account2.setAccountNum("1234-567-89");
+
+		// 인스턴스 변수의 경우 JVM에 의해 자동 초기화됨.
+		System.out.println(account2.getAccountNum());
+		System.out.println(account2.getAccountOwner());
+		System.out.println(account2.getRestMoney());
+		System.out.println(account2.getPasswd());
+
+		Accounts account3 = new Accounts("2248-677-666", "홍길동");
+
+		System.out.println(Accounts.bankName);
+		System.out.println(account2);
+		
+		System.out.println("은행 계좌 애플리케이션 종료됨...");
+	}
+}

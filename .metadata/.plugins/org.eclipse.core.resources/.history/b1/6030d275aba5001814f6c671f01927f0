@@ -1,0 +1,24 @@
+/**
+ * 다차원 배열 테스트
+ * @author 유예겸
+ *
+ */
+public class ArrayExample2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		
+		char[][] array;
+		array = new char[10][10];
+		array[0][0] = 'A';
+		array[9][9] = 'Z';
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array[i].length; j++) {
+				System.out.print(array[i][j] + "\t");
+			}
+			System.out.println();
+		}
+	}
+
+}

@@ -1,0 +1,13 @@
+package kr.or.kosta;
+
+public class HelloEclipse {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String message = "이클립스 좋아요";
+		System.out.println(message);
+		System.out.println(message);
+		System.out.println("HelloEclipse.main()");
+	}
+
+}

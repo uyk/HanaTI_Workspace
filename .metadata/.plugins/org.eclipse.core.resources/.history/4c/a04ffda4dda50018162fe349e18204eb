@@ -1,0 +1,15 @@
+/**
+ * 명령어 인수 처리 예제
+ * java FileReader [읽고자 하는 파일명1] [읽고자 하는 파일명1]
+ * 
+ * @author 유예겸
+ *
+ */
+public class FileReader {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(args[0]);
+	}
+
+}

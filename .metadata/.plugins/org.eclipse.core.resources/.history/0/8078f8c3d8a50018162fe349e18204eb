@@ -1,0 +1,110 @@
+import java.util.Arrays;
+
+/**
+ * 
+ * @author 유예겸
+ *
+ */
+public class AccountManager {
+	/**
+	 * 
+	 */
+	private Accounts[] accounts;
+	private int count;
+	
+	/**
+	 * 생성자
+	 */
+	public AccountManager() {
+		this(10);
+	}
+	
+	/**
+	 * @param size
+	 */
+	public AccountManager(int size) {
+		accounts = new Accounts[size];
+		count = 0;
+	}
+	
+	//Getter와 Setter		밖에서 count는 바꿀 수 없다.
+	
+	/**
+	 * @param accounts
+	 */
+	public void setAccounts(Accounts[] accounts) {
+		this.accounts = accounts;
+	}
+	/**
+	 * @return
+	 */
+	public Accounts[] getAccounts() {
+		return accounts;
+	}
+	/**
+	 * @return
+	 */
+	public int getCount() {
+		return count;
+	}
+	
+	/**
+	 * @param account
+	 */
+	public void add(Accounts account) {
+		accounts[count++] = account;
+	}
+	/**
+	 * @return
+	 */
+	public Accounts[] list() {
+		if(count == 0) return null;
+		Accounts[] tempAccounts = new Accounts[count];
+		for(int i = 0; i < count; i++) 
+			tempAccounts[i] = accounts[i];
+		return tempAccounts;
+	}
+	/**
+	 * @param accountNumber
+	 * @return
+	 */
+	public Accounts searchByNumber(String accountNumber) {
+		for(int i = 0; i < count; i++) {
+			if(accounts[i].getAccountNum().equals(accountNumber))
+				return accounts[i];
+		}
+		return null;
+	}
+	/**
+	 * @param accountOwner
+	 * @return
+	 */
+	public Accounts[] serachByOwner(String accountOwner) {
+		int numOfAccounts = 0;
+		int[] indexOfAccounts = new int[count];
+		
+		for(int i = 0; i < count; i++)
+			if(accounts[i].getAccountOwner().equals(accountOwner))
+				indexOfAccounts[numOfAccounts++] = i;
+		
+		if(numOfAccounts == 0) return null;		// 일치하는 결과 없음
+		
+		Accounts[] tempAccounts = new Accounts[numOfAccounts];
+		
+		for (int i = 0; i < numOfAccounts; i++) {
+			tempAccounts[i] = accounts[indexOfAccounts[i]];
+		}
+
+		return tempAccounts;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "AccountManager [accounts=" + Arrays.toString(accounts) + ", count=" + count + "]";
+	}
+	
+	
+}

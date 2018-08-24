@@ -1,0 +1,9 @@
+
+public class Bycle {
+	int id;
+	String brand;
+	public Bycle(int id, String brand) {
+		this.id = id;
+		this.brand = brand;
+	}
+}

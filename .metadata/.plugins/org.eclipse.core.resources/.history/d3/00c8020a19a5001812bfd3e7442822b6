@@ -1,0 +1,46 @@
+ /**
+  * 1차원 배열 선언, 생성, 초기화
+  * @author 유예겸
+  *
+  */
+public class ArrayExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array;
+		array = new int[10];
+
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i]+"\t");
+		}
+		System.out.println();
+//		int[] array2 = new int[] {1,2,3,4,5};
+		int[] array2 = {1,2,3,4,5};
+		
+		for (int i = 0; i < array2.length; i++) {
+			System.out.println(array2[i]);
+		}
+		
+		for( int value : array2) {
+			System.out.println(value);
+		}
+		
+		//////////미션 1 : 배열 복사
+		int[] array3 = {3, 1, 9, 2, 5};
+		int[] array4 = new int[7];
+		for (int i = 0; i < array3.length; i++) {
+			array4[i] = array3[i];
+		}
+		for (int i : array4) {
+			System.out.println(i);
+		}
+		
+		//////////미션 2 : 오름차순 정렬
+		int[] lottos = {34, 12, 3, 9, 25, 2};
+		
+		// 앞에서부터 작은거 비교, 첫 자리에 제일 작은 수 넣는 것부터 다음 자리 두번째로 작은 수
+		for (int i : lottos) {
+			System.out.println(i + "\t");
+		}
+	}
+}

@@ -1,0 +1,59 @@
+/**
+ * 모든 도형의 공통적인 속상과 기능 정의
+ * 
+ * @author 유예겸
+ *
+ */
+public abstract class Shape {
+	private double x, y;
+
+	// 생성자
+	public Shape() {
+		//super();
+		// TODO Auto-generated constructor stub
+		this(0, 0);
+	}
+	public Shape(double x, double y) {
+		//super();
+		this.x = x;
+		this.y = y;
+	}
+	// getter, setter
+	/**
+	 * @return the x
+	 */
+	public double getX() {
+		return x;
+	}
+	/**
+	 * @param x the x to set
+	 */
+	public void setX(double x) {
+		this.x = x;
+	}
+	/**
+	 * @return the y
+	 */
+	public double getY() {
+		return y;
+	}
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(double y) {
+		this.y = y;
+	}
+	
+	// 인스턴스 메소드
+	// 추상 메소드 : 서브클래스가 반드시 재정의해야 할 수직적 규약
+	public abstract void draw();
+	public abstract double getLength();
+	public abstract double getArea();
+	
+	@Override
+	public String toString() {
+		return x + ", " + y +"의 도형입니다.";
+	}
+	
+	
+}

@@ -1,0 +1,44 @@
+import java.util.Scanner;
+
+/**
+ * 레퍼런스 타입 배열 선언, 생성, 초기화
+ * @author 유예겸
+ *
+ */
+
+public class ArrayExample3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+//		Accounts account = new Accounts("1111-2222-3333", "유예겸", 1111, 10000000);
+		Accounts[] accounts = new Accounts[100];
+		int index = 0;
+		
+		//은행계좌 개설
+		accounts[index++] = new Accounts("1111-2222-3333", "유예겸", 1111, 10000000);
+		accounts[index++] = new Accounts("1431-3322-4444", "ㅇㅇㅇ", 1111, 600000);
+		accounts[index++] = new Accounts("4422-2422-4234", "ㄱㄱㄱ", 1111, 600000);
+		
+		//전체 계좌 목록 출력
+		for(int i = 0; i < index; i++) {
+			System.out.println(accounts[i].toString());
+		}
+		
+		//계좌번호로 계좌조회
+		String num = null;
+		String a = "123";
+		String b = "123";
+		System.out.println(a == b);
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("검색 계좌번호 : ");
+		num = scanner.nextLine();
+		for(int i = 0; i < index; i++) {
+			if(accounts[i].getAccountNum() == num) {
+				System.out.println(accounts[i].toString());
+				break;
+			}
+			if(i == index - 1) System.out.println("검색된 계좌가 없습니다.");
+		}
+	}
+
+}

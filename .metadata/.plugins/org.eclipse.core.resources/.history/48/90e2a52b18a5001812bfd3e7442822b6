@@ -1,0 +1,28 @@
+ /**
+  * 1차원 배열 선언, 생성, 초기화
+  * @author 유예겸
+  *
+  */
+public class ArrayExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array;
+		array = new int[10];
+
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i]+"\t");
+		}
+		System.out.println();
+//		int[] array2 = new int[] {1,2,3,4,5};
+		int[] array2 = {1,2,3,4,5};
+		
+		for (int i = 0; i < array2.length; i++) {
+			System.out.println(array2[i]);
+		}
+		
+		for( int value : array2) {
+			System.out.println(value);
+		}
+	}
+}

@@ -1,0 +1,19 @@
+ /**
+  * 1차원 배열 선언, 생성, 초기화
+  * @author 유예겸
+  *
+  */
+public class ArrayExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array;
+		array = new int[10];
+		
+		System.out.println(array[0]);
+		System.out.println(array[9]);
+		System.out.println(array);
+		
+	}
+
+}

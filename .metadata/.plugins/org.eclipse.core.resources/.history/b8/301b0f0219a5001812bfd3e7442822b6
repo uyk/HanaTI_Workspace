@@ -1,0 +1,37 @@
+ /**
+  * 1차원 배열 선언, 생성, 초기화
+  * @author 유예겸
+  *
+  */
+public class ArrayExample {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] array;
+		array = new int[10];
+
+		for (int i = 0; i < array.length; i++) {
+			System.out.print(array[i]+"\t");
+		}
+		System.out.println();
+//		int[] array2 = new int[] {1,2,3,4,5};
+		int[] array2 = {1,2,3,4,5};
+		
+		for (int i = 0; i < array2.length; i++) {
+			System.out.println(array2[i]);
+		}
+		
+		for( int value : array2) {
+			System.out.println(value);
+		}
+		
+		//////////미션 1 : 배열 복사
+		int[] array3 = {3, 1, 9, 2, 5};
+		int[] array4 = {array3[0]};
+
+		
+		//////////미션 2 : 오름차순 정렬
+		int[] lottos = {34, 12, 3, 9, 25, 2};
+		
+	}
+}

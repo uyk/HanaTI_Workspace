@@ -1,0 +1,16 @@
+
+public class MountainBycle extends Bycle{
+	//추가속성
+	String frame;
+	boolean suspension;
+
+	public MountainBycle() {
+		this(null, false);
+	}
+	public MountainBycle(String frame, boolean suspension) {
+		super();
+		this.frame = frame;
+		this.suspension = suspension;
+	}
+
+}
