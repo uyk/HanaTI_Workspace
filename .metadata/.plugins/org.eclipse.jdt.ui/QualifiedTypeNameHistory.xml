@@ -12,5 +12,23 @@
 <fullyQualifiedTypeName name="java.lang.System"/>
 <fullyQualifiedTypeName name="Bycle"/>
 <fullyQualifiedTypeName name="MountainBycle"/>
+<fullyQualifiedTypeName name="Circle"/>
+<fullyQualifiedTypeName name="Rectangle"/>
 <fullyQualifiedTypeName name="MinusAccount"/>
+<fullyQualifiedTypeName name="Sword"/>
+<fullyQualifiedTypeName name="CInterface"/>
+<fullyQualifiedTypeName name="SamsongTV"/>
+<fullyQualifiedTypeName name="RemoteControl"/>
+<fullyQualifiedTypeName name="Directions"/>
+<fullyQualifiedTypeName name="java.lang.Deprecated"/>
+<fullyQualifiedTypeName name="Bar"/>
+<fullyQualifiedTypeName name="java.lang.Override"/>
+<fullyQualifiedTypeName name="java.util.Formatter"/>
+<fullyQualifiedTypeName name="java.util.GregorianCalendar"/>
+<fullyQualifiedTypeName name="java.util.Calendar"/>
+<fullyQualifiedTypeName name="java.lang.ArrayStoreException"/>
+<fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+<fullyQualifiedTypeName name="java.lang.ArithmeticException"/>
+<fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
 </qualifiedTypeNameHistroy>

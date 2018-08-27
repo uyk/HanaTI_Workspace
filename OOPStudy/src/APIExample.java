@@ -3,8 +3,9 @@
  * 
  */
 
-public class APIExample {
+public class APIExample implements CInterface{
 
+	
 	public static void main(String[] args) {
 		String str;
 		str = new String("자바가 싫어요...");		// 명시적 생성
@@ -17,5 +18,19 @@ public class APIExample {
 		System.out.println(c);
 
 		System.out.println(Math.abs(-100));
+		
+		
+	}
+
+	@Override
+	public void a() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void c() {
+		// TODO Auto-generated method stub
+		
 	}
 }

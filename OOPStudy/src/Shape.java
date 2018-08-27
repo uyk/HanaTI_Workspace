@@ -9,7 +9,11 @@ public abstract class Shape {
 
 	// 생성자
 	
+	
 	// 인스턴스 메소드
+	
+	
+	
 	// 추상 메소드 : 서브클래스가 반드시 재정의해야 할 수직적 규약
 	public abstract void draw();
 	public abstract double getLength();
