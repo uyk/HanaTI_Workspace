@@ -68,11 +68,20 @@ public class Accounts {
 	}
 
 	// 인스턴스 메소드 선언
-	long deposit(long money) {
+	long deposit(long money) throws AccountException{
+		if (money <= 0) {
+			throw new AccountException("출금 금액은 음수일 수 없습니다.", -1);
+		}
 		restMoney += money;
 		return restMoney;
 	}
-	long withdraw(long money) {
+	long withdraw(long money) throws AccountException{
+		if (money <= 0) {
+			throw new AccountException("출금 금액은 음수일 수 없습니다.", -1);
+		}
+		if(money > restMoney) {
+			throw new AccountException("잔액이 부족합니다.", -2);
+		}
 		restMoney -= money;		// 정상적인 데이터가 들어왔다고 가정
 		return restMoney;
 	}

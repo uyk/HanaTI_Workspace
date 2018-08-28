@@ -1,3 +1,4 @@
+import java.io.IOException;
 
 public class Foo {
 	public static void someMethod() {
@@ -37,7 +38,7 @@ public class Foo {
 			System.out.println("예외발생 여부와 상관없이 항상 실행되는 코드");
 		}
 	}
-	public void someMethod3() throws NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException, Exception{
+	public void someMethod3() throws NullPointerException, ArithmeticException, ArrayIndexOutOfBoundsException{
 		String message = null;
 		System.out.println(message.length());
 		System.out.println(10/0);
@@ -47,18 +48,19 @@ public class Foo {
 	public static void main(String[] args) {
 		System.out.println("JVM에 의해 프로그램 시작됨");
 		Foo foo = new Foo();
+//		try {
+			foo.someMethod3();
+//		} catch (Exception e){
+			
+//		}
+
 		
 		try {
-			foo.someMethod3();
-		} catch (Exception e){
-			
+			int value = System.in.read();
+			System.out.println(value);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		int i = 1, j = 2;
-		System.out.println(i++ + " " + j + " " + i);
-		System.out.println("JVM에 의해 프로그램 종료됨");
-		byte b = 11;
-		char c;
-		c = (char)b;
-		System.out.println(c);
 	}
 }

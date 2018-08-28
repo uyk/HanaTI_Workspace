@@ -19,22 +19,27 @@ class AccountExample {
 */
 
 		Accounts account = new Accounts("111-22-333", "유예겸", 1234, 100000000);
-		/*
+
 		int passwd = 1234;
 		boolean result = account.checkPasswd(passwd);
 		long money;
 
 		if(result) {	
-			money = account.deposit(50000000);
-			System.out.println("입금 후 잔액 : " + money);
-
-			money = account.withdraw(10000);
-			System.out.println("출금 후 잔액 : " + money);
+			try {
+				money = account.deposit(50000000);
+				System.out.println("입금 후 잔액 : " + money);
+				//money = account.deposit(-50000);
+				//System.out.println("입금 후 잔액 : " + money);
+				money = account.withdraw(5000000);
+				System.out.println("출금 후 잔액 : " + money);
+			} catch (AccountException e) {
+				e.printStackTrace();
+			}
 		}else {
 			System.out.println("비밀번호를 확인하세요.");
 		}
-		System.out.println(account.accountNum);
-*/
+		System.out.println(account.getAccountNum());
+
 
 
 		Accounts account2 = new Accounts();
