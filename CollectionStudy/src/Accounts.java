@@ -1,4 +1,3 @@
-import java.util.StringTokenizer;
 
 /**
  * 일상생활의 객체를 추상화하기 위한 모델링 클래스 정의

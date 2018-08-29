@@ -3,7 +3,6 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Vector;
 
 /**
  * 배열을 이용한 은행 계좌 관리
@@ -87,6 +86,7 @@ public class AccountManager3 {
 	public List<Accounts> serachByOwner(String accountOwner) {
 		List<Accounts> list = new ArrayList<Accounts>();
 		Enumeration<Accounts> e = accounts.elements();
+		
 		while (e.hasMoreElements()) {
 			Accounts account = (Accounts)(e.nextElement());
 			if(( account.getAccountOwner() ).equals(accountOwner))
@@ -102,7 +102,7 @@ public class AccountManager3 {
 	 * @return 제거에 성공하면 true, 제거할 계좌가 없으면 false
 	 */
 	public boolean remove(String accountNumber) {
-		accounts.remove(accountNumber);
+		if(accounts.remove(accountNumber) != null) return true;
 		return false;
 
 	}
