@@ -84,31 +84,25 @@ public class AccountManager3 {
 	 * @param accountOwner	검색할 계좌 주인의 이름
 	 * @return 찾아낸 계좌의 List
 	 */
-	public List serachByOwner(String accountOwner) {
-		ArrayList tempList = new ArrayList();
-
-		Enumeration e = accounts.elements();
+	public List<Accounts> serachByOwner(String accountOwner) {
+		List<Accounts> list = new ArrayList<Accounts>();
+		Enumeration<Accounts> e = accounts.elements();
 		while (e.hasMoreElements()) {
 			Accounts account = (Accounts)(e.nextElement());
 			if(( account.getAccountOwner() ).equals(accountOwner))
-				tempList.add(account);
+				list.add(account);
 		}
-		return tempList;
+		return list;
 	}
 
 	/**
-	 * accounts 배열에서 계좌 번호로 검색하여 일치하는 계좌의 정보를 제거
+	 * accounts에서 계좌 번호로 검색하여 일치하는 계좌의 정보를 제거
 	 * 
 	 * @param accountNumber 제거할 계좌의 계좌번호
-	 * @return 제거에 성공하면 true, 제거할 계좌가 없으면 flase
+	 * @return 제거에 성공하면 true, 제거할 계좌가 없으면 false
 	 */
 	public boolean remove(String accountNumber) {
-		Enumeration e = accounts.elements();
-		while (e.hasMoreElements()) {
-			Accounts account = (Accounts)(e.nextElement());
-			if(( account.getAccountNum() ).equals(accountNumber))
-				return accounts.removeElement(account);
-		}
+		accounts.remove(accountNumber);
 		return false;
 
 	}
