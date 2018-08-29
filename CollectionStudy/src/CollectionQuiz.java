@@ -1,4 +1,5 @@
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -29,6 +30,14 @@ public class CollectionQuiz {
 		
 		System.out.println(s1);
 		System.out.println(s2);
+		
+		Map<String, String> map = System.getenv();
+
+		Set<String> keySet = map.keySet();
+		for(String name : keySet) {
+			String value = System.getenv(name);
+			System.out.println(name + " = " + value);
+		}
 		
 	}
 
