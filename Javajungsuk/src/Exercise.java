@@ -44,5 +44,10 @@ class Exercise7_11 {
 		System.out.println("CH:"+t.getChannel());
 		t.gotoPrevChannel();
 		System.out.println("CH:"+t.getChannel());
+		
+		int x = 5;
+		boolean b1 = true;
+		boolean b2 = false;
+		
 	}
 }
