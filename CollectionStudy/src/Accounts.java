@@ -1,3 +1,5 @@
+import java.util.StringTokenizer;
+
 /**
  * 일상생활의 객체를 추상화하기 위한 모델링 클래스 정의
  * 은행 계좌 객체
@@ -5,19 +7,17 @@
 
 
 public class Accounts {
-
+/*
 	static int a,b,c;
 	
 	// static 초기화 블록 : 특수한 목적의 명령어 실행(주로 초기화)
 	static {
-		System.out.println("초기화 블럭 실행입니다.");
+		System.out.println("Accounts 클래스의 static 블럭입니다");
 		a = 10;
 		b = 20;
 		c = 30;
 	}
-
-
-
+*/
 	// 클래스(static)변수
 	public static String bankName = "하나은행";
 
@@ -37,6 +37,8 @@ public class Accounts {
 		this(accountNum, accountOwner, 0, 0);
 	}
 	public Accounts(String accountNum, String accountOwner, int passwd, long restMoney) {
+		this.accountNum = accountNum;
+		this.accountOwner = accountOwner;
 		this.passwd = passwd;
 		this.restMoney = restMoney;
 	}
@@ -68,20 +70,49 @@ public class Accounts {
 	}
 
 	// 인스턴스 메소드 선언
-	long deposit(long money) {
+	long deposit(long money) throws AccountException{
+		if (money <= 0) {
+			throw new AccountException("출금 금액은 음수일 수 없습니다.", -1);
+		}
 		restMoney += money;
 		return restMoney;
 	}
-	long withdraw(long money) {
+	long withdraw(long money) throws AccountException{
+		if (money <= 0) {
+			throw new AccountException("출금 금액은 음수일 수 없습니다.", -1);
+		}
+		if(money > restMoney) {
+			throw new AccountException("잔액이 부족합니다.", -2);
+		}
 		restMoney -= money;		// 정상적인 데이터가 들어왔다고 가정
 		return restMoney;
 	}
 	boolean checkPasswd(int pw) {
 		return passwd == pw;
 	}
-
+	
+	public String toString() {
+		return accountNum + "\t" + accountOwner + "\t" + " ****" + "\t" + restMoney;
+	}
 	//클래스 메소드
 	public static int sum(int a, int b) {
 		return a + b;
 	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		
+		return  toString().hashCode();
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// 위임형 비교
+		boolean eq = false;
+		if(obj instanceof Accounts)  
+			eq = obj.toString().equals(this.toString());
+		return eq;
+	}
+	
 }
