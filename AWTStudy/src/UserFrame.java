@@ -6,9 +6,11 @@ import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.Random;
 
-public class UserFrame extends Frame implements MouseListener {
+public class UserFrame extends Frame implements MouseListener, WindowListener{
 	Button nButton, eButton, wButton, sButton, cButton;
 
 	public UserFrame() {
@@ -37,6 +39,11 @@ public class UserFrame extends Frame implements MouseListener {
 	
 	public void eventRegist() {
 		eButton.addMouseListener(this);
+		wButton.addMouseListener(this);
+		sButton.addMouseListener(this);
+		nButton.addMouseListener(this);
+		cButton.addMouseListener(this);
+		addWindowListener(this);
 	}
 
 	
@@ -56,29 +63,81 @@ public class UserFrame extends Frame implements MouseListener {
 			System.out.println("r : " + r + ", g : "+ g + ", b : "+ b);
 		
 		}
+		if(eventSource == eButton) {
+			System.out.println("eButton 클릭");
+		}
+		else if(eventSource == wButton) {
+			System.out.println("wButton 클릭");
+		}
 		
 	}
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
+//		System.out.println("mouseEntered Called");
 		
 	}
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+//		System.out.println("mouseExited Called");
 	}
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+//		System.out.println("mousePressed Called");
 	}
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+//		System.out.println("mouseReleased Called");
 	}
 	
+	// WindowListener 인터페이스의 추상메소드 구현
+
+	@Override
+	public void windowActivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("활성화");
+	}
+
+	@Override
+	public void windowClosed(WindowEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void windowClosing(WindowEvent e) {
+		// TODO Auto-generated method stub
+		setVisible(false);
+		dispose();			// os에 그래픽 리소스 반납
+		System.exit(0);
+	}
+
+	@Override
+	public void windowDeactivated(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("비활성화");
+	}
+
+	@Override
+	public void windowDeiconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("최소화 해제");
+	}
+
+	@Override
+	public void windowIconified(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("최소화");
+	}
+
+	@Override
+	public void windowOpened(WindowEvent e) {
+		// TODO Auto-generated method stub
+		System.out.println("창 열림");
+	}
 
 	public static void main(String[] args) {
 		UserFrame frame = new UserFrame("User Frame Title");
