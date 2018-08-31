@@ -20,8 +20,8 @@ public class AWTMission2 extends Panel implements WindowListener{
 	TextArea contentsTextArea;
 	Panel topPanel, centerPanel, bottomPanel;
 
-	GridBagLayout gridBagLayoutTop = new GridBagLayout();
-	GridBagConstraints gridBagConstraintsTop = new GridBagConstraints();
+	GridBagLayout gridBagLayoutTop;
+	GridBagConstraints gridBagConstraintsTop;
 
 	
 	public AWTMission2() {
@@ -47,8 +47,9 @@ public class AWTMission2 extends Panel implements WindowListener{
 		bottomPanel = new Panel();
 		
 		gridBagLayoutTop = new GridBagLayout();
-		gridBagConstraintsTop = new GridBagConstraints();;
+		gridBagConstraintsTop = new GridBagConstraints();
 	}
+	
 	public void setContents() {
 		setLayout(new BorderLayout());
 		topPanel.setLayout(gridBagLayoutTop);
@@ -180,7 +181,6 @@ public class AWTMission2 extends Panel implements WindowListener{
 		AWTMission2 panel = new AWTMission2();
 		
 		panel.setContents();
-		
 		frame.add(panel);
 		frame.setSize(800,500);
 //		frame.pack();
