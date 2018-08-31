@@ -1,6 +1,6 @@
 package ko.or.kosta.entity;
 /**
- * 계좌 관리 애플리케이션
+ * 계좌 관리 프로그램
  * 
  * AccountManager : 전체 계좌를 관리하는 클래스
  * 
