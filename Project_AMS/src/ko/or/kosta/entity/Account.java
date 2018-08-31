@@ -22,24 +22,14 @@ public class Account {
 
 // 생성자
 	/**
-	 * 디폴트 생성자 계좌번호 null, 계좌주인 null, 패스워드 0, 잔액 0 으로 초기화한다.
+	 * 디폴트 생성자. 계좌번호 null, 계좌주인 null, 패스워드 0, 잔액 0 으로 초기화한다.
 	 */
 	public Account() {
 		this(null, null, 0, 0);
 	}
 
 	/**
-	 * 계좌번호와 계좌주인을 String타입 인자로 받아 초기화하는 생성자
-	 * 
-	 * @param accountNum   계좌번호
-	 * @param accountOwner 계좌주인
-	 */
-	public Account(String accountNum, String accountOwner) {
-		this(accountNum, accountOwner, 0, 0);
-	}
-
-	/**
-	 * 계좌번호, 계좌주인, 패스워드, 잔액을 인자로 받는 생성자
+	 * 계좌번호, 계좌주인, 패스워드, 잔액을 인자로 받아 초기화하는 생성자
 	 * 
 	 * @param accountNum   계좌번호
 	 * @param accountOwner 계좌주인
