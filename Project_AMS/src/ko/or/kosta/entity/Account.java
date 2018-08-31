@@ -12,7 +12,7 @@ public class Account {
 
 //변수 선언부
 	// 클래스(static)변수
-	public static String bankName = "하나은행";
+	public static String bankName = "KOSTA 은행";
 
 	// 인스턴스 변수 선언
 	private String accountNum;

@@ -53,7 +53,7 @@ public class MinusAccount extends Account {
 	 */
 	@Override
 	public long getRestMoney() {
-		return super.getRestMoney();
+		return super.getRestMoney() -getBorrowMoney();
 	}
 
 	/**
