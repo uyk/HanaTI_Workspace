@@ -1,9 +1,0 @@
-
-public class MountainBycle extends Bycle{
-	public MountainBycle() {
-		//super();
-	}
-	public MountainBycle(int id, String brand) {
-		
-	}
-}

@@ -5,12 +5,25 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.List;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.JOptionPane;
 
 public class ChatFrame extends Frame {
 	Label serverL;
@@ -27,10 +40,20 @@ public class ChatFrame extends Frame {
 		serverL = new Label("서버");
 		serverTF = new TextField();
 		inputTF = new TextField();
-		connectB = new Button("연결...");
+		connectB = new Button("연결...") {
+			@Override
+			public void paint(Graphics g) {
+				g.drawLine(10, 10, 50, 50);
+			}
+		};
 		sendB = new Button("전송");
 		messageTA = new TextArea();
 		userList = new List();
+		
+		userList.add("말미잘");
+		userList.add("꼴뚜기");
+		userList.add("머저리");
+		userList.add("날라리");
 	}
 	// 화면 배치
 	public void setContents() {
@@ -87,12 +110,107 @@ public class ChatFrame extends Frame {
 			component.setBackground(bg);
 		}
 	}
+	
+	public void finish() {
+		setVisible(false);
+		dispose();
+		System.exit(1);
+	}
+	
+	public void appendMessage() {
+		String message = inputTF.getText();
+		messageTA.append("\n" + message);
+		inputTF.setText("");
+	}
+	public void eventRegist() {
+		/* 이름있는 지역 내부 클래스*/
+		/*
+		class Exiter extends WindowAdapter{
+			@Override
+			public void windowClosing(WindowEvent e) {
+				finish();
+			}
+		}
+		addWindowListener(new Exiter());
+		*/
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
+				finish();
+			}
+		});
+		inputTF.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				appendMessage();
+			}
+		});
+		serverTF.addKeyListener(new KeyListener() {
+			
+			@Override
+			public void keyTyped(KeyEvent e) {
+				System.out.println(KeyEvent.VK_K);
+				System.out.println(KeyEvent.VK_ENTER);
+				
+				
+			}
+			
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void keyPressed(KeyEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		inputTF.addTextListener(new TextListener() {
+			
+			@Override
+			public void textValueChanged(TextEvent e) {
+				// TODO Auto-generated method stub
+				System.out.println(inputTF.getText());
+			}
+		});
+		userList.addItemListener(new ItemListener() {
+			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if(e.getStateChange() == ItemEvent.SELECTED) {
+					String name = userList.getSelectedItem();
+//					JOptionPane.showMessageDialog(null, name + "님 선택", "알림", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, name + "님 선택", "알림", JOptionPane.ERROR_MESSAGE);
+				}
+				
+			}
+		});
+		
+	}
+	
+	
+	/** 멤버 내부 클래스를 이용한 이벤트 처리
+	 * 
+	 * @param args
+	 */
+	/*
+	class Exiter extends WindowAdapter{
+		@Override
+		public void windowClosing(WindowEvent e) {
+			finish();
+		}
+	}
+	*/
 	 
 	public static void main(String[] args) {
 		ChatFrame frame = new ChatFrame("KoTalk");
 		frame.setContents();
 		frame.setSize(400, 500);
 		frame.setCenter();
+		frame.eventRegist();
 		frame.setVisible(true);
 	}
 }
