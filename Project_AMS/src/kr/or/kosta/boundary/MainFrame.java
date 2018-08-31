@@ -13,6 +13,7 @@ import java.util.List;
 import ko.or.kosta.entity.Account;
 import ko.or.kosta.entity.AccountException;
 import ko.or.kosta.entity.AccountManager;
+import ko.or.kosta.entity.MinusAccount;
 
 /**
  * 계좌 관리 프로그램
@@ -35,9 +36,7 @@ public class MainFrame extends Frame {
 	 * inputPanel초기화, frame에 대한 기본적인 설정
 	 */
 	public MainFrame() {
-		inputPanel = new InputPanel();
-		accountManager = new AccountManager();
-
+		inputPanel = new InputPanel(this);
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -79,7 +78,6 @@ public class MainFrame extends Frame {
 // 테스트를 위한 메인	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MainFrame frame = new MainFrame();
 		AccountManager accountManager = new AccountManager();
 		
 		try {
@@ -88,16 +86,19 @@ public class MainFrame extends Frame {
 			accountManager.add(new Account("9999-2222-3333", "ㄷㄷㄷ", 1234, 1000000));
 			accountManager.add(new Account("1351-2222-3333", "ㄷㄷㄷ", 1234, 1000000));
 			accountManager.add(new Account("2661-2222-3333", "ㅅㅅㅅ", 1234, 1000000));
+			accountManager.add(new MinusAccount("1111-0000-0000", "ㅅㅅㅅ", 1234, 1000000, 1000));
 		} catch (AccountException e){
 			System.out.println(e.getMessage());
 		}
 
+		System.out.println(accountManager);
+		MainFrame frame = new MainFrame();
+		frame.setAccountManager(accountManager);
 		frame.setContents();
 		frame.setSize(800,450);
 		frame.setVisible(true);
 		frame.setCenter();
 		
-		frame.setAccountManager(accountManager);
 		/*
 		// AccountManager의 list메소드로 존재하는 계좌 정보만 list 배열에 복사
 		
