@@ -11,8 +11,22 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+
+import javax.swing.JOptionPane;
+
+import ko.or.kosta.entity.Account;
+import ko.or.kosta.entity.AccountException;
+import ko.or.kosta.entity.AccountManager;
 
 /**
  * 계좌 관리 프로그램
@@ -23,25 +37,32 @@ import java.awt.event.WindowEvent;
  * @author 유예겸
  *
  */
-public class InputPanel extends Panel {
+public class InputPanel extends Panel implements ActionListener{
 	
 // 인스턴스 변수
 	Label accountTypeL, accountNumL, accountOwnerL, passwdL, depositL, borrowL, accountsListL, moneyWonL;
 	Choice accountTypeCh;
 	TextField accountNumTF, accountOwnerTF, passwdTF, depositTF, borrowTF;
 	Button numSearchB, numDeleteB, ownerSearchB, newAccountB, allAccountB;
+	TextArea accountsList;
 
 	GridBagLayout gridBagLayout;
 	GridBagConstraints gridBagConstraints;
 	
-	TextArea accountsList;
+	AccountManager accountManager;
 
-//생성자
+
+// 생성자
 	/**
 	 * 디폴트 생성자. 각 컴포넌트와 레이아웃 변수 초기화.
 	 */
 	public InputPanel() {
+		this(new AccountManager());
+	}
+	public InputPanel(AccountManager accountManager) {
 		super();
+		this.accountManager = accountManager;
+		
 		accountTypeL = new Label("계좌종류");
 		accountNumL = new Label("계좌번호");
 		accountOwnerL = new Label("예금주명");
@@ -67,18 +88,22 @@ public class InputPanel extends Panel {
 		ownerSearchB = new Button("검색");
 		newAccountB = new Button("신규등록");
 		allAccountB = new Button("전체조회");
-		
-		gridBagLayout = new GridBagLayout();
-		gridBagConstraints = new GridBagConstraints();
-		
+
 		accountsList = new TextArea(
 				"--------------------------------------------------------------------"
 				+ "\n계좌종류\t 계좌번호\t 예금주명\t 현재잔액\t 대출금액"
 				+ "\n====================================================================");
 		
+		gridBagLayout = new GridBagLayout();
+		gridBagConstraints = new GridBagConstraints();
+		
+		
 		setContents();
+		eventRegist();
 	}
 	
+// 인스턴스 메소드
+// 배치 관련
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
 	 * 
@@ -151,7 +176,74 @@ public class InputPanel extends Panel {
 		
 		addToGridBag(accountsList, 0, 7, 5, 5, 0, 0);
 	}
+
+// 이벤트 관련
+	/**
+	 * 컴포넌트에 이벤트를 등록하는 메소드
+	 */
+	public void eventRegist() {
+		newAccountB.addActionListener(this);
+		// 신규등록	
+		/*
+		newAccountB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("action");
+				if ( accountNumTF.getText() == null || accountOwnerTF.getText() == null
+						|| passwdTF.getText() == null || depositTF.getText() == null) {
+					try {
+						throw new AccountException("텍스트 필드를 모두 채우세요", -5);
+					} catch (AccountException e1) {
+						System.out.println(e);
+					}
+				}
+				else {
+					String accountNum = accountNumTF.getText();
+					String accountOwner = accountOwnerTF.getText();
+					int passwd = Integer.parseInt(passwdTF.getText());
+					long restMoney = Long.parseLong(depositTF.getText());
+		
+					Account account = new Account(accountNum, accountOwner, passwd, restMoney);
+						try {
+							accountManager.add(account);
+						} catch (AccountException e2) {
+							System.out.println(e);
+						}
+				}
+			}
+		});
+		*/
+
+	}
 	
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getSource() == newAccountB) {
+			System.out.println("action");
+			if ( accountNumTF.getText() == null || accountOwnerTF.getText() == null
+					|| passwdTF.getText() == null || depositTF.getText() == null) {
+				try {
+					throw new AccountException("텍스트 필드를 모두 채우세요", -5);
+				} catch (AccountException e1) {
+					System.out.println(e);
+				}
+			}
+			else {
+				String accountNum = accountNumTF.getText();
+				String accountOwner = accountOwnerTF.getText();
+				int passwd = Integer.parseInt(passwdTF.getText());
+				long restMoney = Long.parseLong(depositTF.getText());
+	
+				Account account = new Account(accountNum, accountOwner, passwd, restMoney);
+					try {
+						accountManager.add(account);
+					} catch (AccountException e2) {
+						System.out.println(e);
+					}
+			}
+		}
+		
+	}
 // 테스트를 위한 메인	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -173,6 +265,7 @@ public class InputPanel extends Panel {
 			}
 		});
 	}
+
 	
 	
 

@@ -6,6 +6,13 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.List;
+
+import ko.or.kosta.entity.Account;
+import ko.or.kosta.entity.AccountException;
+import ko.or.kosta.entity.AccountManager;
 
 /**
  * 계좌 관리 프로그램
@@ -20,7 +27,7 @@ import java.awt.event.WindowEvent;
 public class MainFrame extends Frame {
 // 인스턴스 메소드
 	InputPanel inputPanel;
-	//PrintPanel printPanel;
+	AccountManager accountManager;
 	
 // 생성자
 	/**
@@ -29,6 +36,7 @@ public class MainFrame extends Frame {
 	 */
 	public MainFrame() {
 		inputPanel = new InputPanel();
+		accountManager = new AccountManager();
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -39,15 +47,13 @@ public class MainFrame extends Frame {
 				System.exit(1);
 			}
 		});
-
-		setContents();
-		setSize(800,450);
-		setVisible(true);
-		setCenter();
-		//printPanel = new PrintPanel();
 	}
-	
-// 인스턴스 메소드
+
+	public void setAccountManager(AccountManager accountManager) {
+		this.accountManager = accountManager;
+	}
+
+	// 인스턴스 메소드
 	/** 
 	 * 프레임에 컴포넌트를 배치하는 메소드
 	 */
@@ -74,5 +80,54 @@ public class MainFrame extends Frame {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		MainFrame frame = new MainFrame();
+		AccountManager accountManager = new AccountManager();
+		
+		try {
+			accountManager.add(new Account("1111-2222-3333", "유예겸", 1234, 1000000));
+			accountManager.add(new Account("1342-2222-3333", "ㅁㅁㅁ", 1234, 1000000));
+			accountManager.add(new Account("9999-2222-3333", "ㄷㄷㄷ", 1234, 1000000));
+			accountManager.add(new Account("1351-2222-3333", "ㄷㄷㄷ", 1234, 1000000));
+			accountManager.add(new Account("2661-2222-3333", "ㅅㅅㅅ", 1234, 1000000));
+		} catch (AccountException e){
+			System.out.println(e.getMessage());
+		}
+
+		frame.setContents();
+		frame.setSize(800,450);
+		frame.setVisible(true);
+		frame.setCenter();
+		
+		frame.setAccountManager(accountManager);
+		/*
+		// AccountManager의 list메소드로 존재하는 계좌 정보만 list 배열에 복사
+		
+		List<Account> list = frame.accountManager.list();
+
+		System.out.println("\n************* list 출력 *************");
+		for (Object object : list) {
+			System.out.println(((Account)object).toString());
+		}
+		
+		// AccountManager의 seachByNumber 메소드로 계좌 정보 탐색 및 출력
+		System.out.println("\n************* 계좌번호로 탐색 *************");
+		System.out.println("1351-2222-3333 탐색 : " + frame.accountManager.searchByNumber("1351-2222-3333"));
+		System.out.println("0000-2222-3333 탐색 : " + frame.accountManager.searchByNumber("0000-2222-3333"));		//없음
+		
+		
+		// AccountManager의 seachByOwner 메소드로 계좌 정보 탐색 및 출력
+		System.out.println("\n************* ㄷㄷㄷ 탐색 *************");
+		ArrayList<Account> accountsOfowner = (ArrayList<Account>)(frame.accountManager.serachByOwner("ㄷㄷㄷ"));
+		for (Object object : accountsOfowner) {
+			System.out.println(((Account)object).toString());
+		}
+
+		// AccountManager의 remove 메소드로 계좌 정보 제거
+		System.out.println("\n********* 1111-2222-3333 제거 *********");
+		frame.accountManager.remove("1111-2222-3333");
+		Enumeration<Account> e = frame.accountManager.getAccounts().elements();
+		while(e.hasMoreElements()) {
+			System.out.println(e.nextElement());
+		}
+		*/
 	}
 }

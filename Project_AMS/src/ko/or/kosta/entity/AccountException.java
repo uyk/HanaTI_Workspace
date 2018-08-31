@@ -15,7 +15,6 @@ public class AccountException extends Exception {
 	
 	public AccountException() {
 		this("계좌처리중 예기치 않은 에러가 발생하였습니다.", -9);
-		// TODO Auto-generated constructor stub
 	}
 
 	public AccountException(String arg0, int errorCode) {
