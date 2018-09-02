@@ -13,6 +13,8 @@ import java.awt.TextArea;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -39,14 +41,14 @@ public class InputPanel extends Panel implements ActionListener{
 	Choice accountTypeCh;
 	TextField accountNumTF, accountOwnerTF, passwdTF, depositTF, borrowTF;
 	Button numSearchB, numDeleteB, ownerSearchB, newAccountB, allAccountB;
-	TextArea accountsList;
+	TextArea accountsListTA;
 
 	GridBagLayout gridBagLayout;
 	GridBagConstraints gridBagConstraints;
 	
 	MainFrame mainFrame;
 	final String header = "--------------------------------------------------------------------"
-			+ "\n계좌종류\t 계좌번호\t 예금주명\t 현재잔액\t 대출금액"
+			+ String.format("\n %-10s %-10s %-10s %-10s %s", "계좌종류", "계좌번호", "예금주명","현재잔액", "대출금액")
 			+ "\n====================================================================\n";
 
 // 생성자
@@ -78,7 +80,7 @@ public class InputPanel extends Panel implements ActionListener{
 		accountTypeCh = new Choice();
 		accountTypeCh.add("전체");
 		accountTypeCh.add("입출금계좌");
-		accountTypeCh.add("마이너스 계좌");
+		accountTypeCh.add("마이너스계좌");
 		
 		accountNumTF = new TextField(15);
 		accountOwnerTF = new TextField(15);
@@ -92,7 +94,8 @@ public class InputPanel extends Panel implements ActionListener{
 		newAccountB = new Button("신규등록");
 		allAccountB = new Button("전체조회");
 
-		accountsList = new TextArea(header);
+		accountsListTA = new TextArea(header);
+		borrowTF.setEnabled(false);
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
@@ -104,6 +107,29 @@ public class InputPanel extends Panel implements ActionListener{
 	
 // 인스턴스 메소드
 // 배치 관련
+	/**
+	 * account 계좌의 정보를 출력 포맷에 맞추어 문자열로 반환하는 메소드
+	 * 
+	 * @param account	문자열로 출력하고자 하는 계좌 정보
+	 * @return	계좌 타입에 따라 계좌의 정보를 문자열로 반환
+	 */
+	private String accountFormat(Account account) {
+		if(account instanceof MinusAccount) 
+			return String.format("%-14s %14s %14s %14s %14s\n", 
+					"마이너스" , account.getAccountNum(), account.getAccountOwner(), account.getRestMoney(),
+					((MinusAccount)account).getBorrowMoney());
+		else 
+			return String.format("%-14s %14s %14s %14s\n", 
+					"입출금" , account.getAccountNum(), account.getAccountOwner(), account.getRestMoney());
+	}
+	
+	/**
+	 * 계좌정보 텍스트 영역을 초기화하는 메소드
+	 */
+	private void setTextArea() {
+		accountsListTA.setText(header);
+	}
+	
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
 	 * 
@@ -174,7 +200,7 @@ public class InputPanel extends Panel implements ActionListener{
 		addToGridBag(accountsListL,		0, 6, 1, 1, 0, 0);
 		addToGridBag(moneyWonL,			4, 6, 1, 1, 0, 0);
 		
-		addToGridBag(accountsList, 0, 7, 5, 5, 0, 0);
+		addToGridBag(accountsListTA, 0, 7, 5, 5, 0, 0);
 	}
 
 // 이벤트 관련
@@ -182,11 +208,24 @@ public class InputPanel extends Panel implements ActionListener{
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
 	public void eventRegist() {
-		
+		// 계좌종류 선택 이벤트
+		accountTypeCh.addItemListener(new ItemListener() {			
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// 마이너스 계좌를 선택했을 때만 대출금엑 필드 활성화
+				if (e.getItem().equals("마이너스계좌"))
+					borrowTF.setEnabled(true);
+				else 
+					borrowTF.setEnabled(false);
+			}
+		});
 		// 신규등록	
 		newAccountB.addActionListener(this);
+		// 계좌번호로 조회
 		numSearchB.addActionListener(this);
+		// 계좌번호로 조회하여 삭제
 		numDeleteB.addActionListener(this);
+		// 예금주명으로 조회
 		ownerSearchB.addActionListener(this);
 
 	}
@@ -195,21 +234,46 @@ public class InputPanel extends Panel implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		// 계좌정보 텍스트영역 초기화
+		setTextArea();
+		
 		// 등록 버튼 눌림
 		if(e.getSource() == newAccountB) {
 			System.out.println("Adding New Account");
-			if ( accountNumTF.getText().toString().equals("") || accountOwnerTF.getText().toString().equals("")
-					|| passwdTF.getText().toString().equals("") || depositTF.getText().toString().equals("")) {
+			// 계좌번호, 예금주, 비밀번호, 입금금액 중 한 칸이라도 빈 칸이 있을 경우
+			if ( accountNumTF.getText().equals("") || accountOwnerTF.getText().equals("")
+					|| passwdTF.getText().equals("") || depositTF.getText().equals("")) {
 				JOptionPane.showMessageDialog(null,"빈칸을 모두 채워주세요", "알림", JOptionPane.ERROR_MESSAGE);
 			}
+			// 모든 필드가 채워져 있는 경우
 			else {
 				String accountNum = accountNumTF.getText();
 				String accountOwner = accountOwnerTF.getText();
 				int passwd = Integer.parseInt(passwdTF.getText());
 				long restMoney = Long.parseLong(depositTF.getText());
-	
-				Account account = new Account(accountNum, accountOwner, passwd, restMoney);
+
+				// account에 입력한 정보 저장
+				Account account;
+				
+				// 마이너스 계좌인 경우
+				if(borrowTF.isEnabled()) {
+					long borrowMoney;
+					// 대출금 필드가 빈칸이면 0원으로 설정
+					if (borrowTF.getText().equals("")) {
+						System.out.println("enter");
+						borrowMoney = 0L;
+					}
+					else borrowMoney = Long.parseLong(borrowTF.getText());
+					account = new MinusAccount(accountNum, accountOwner, passwd, restMoney, borrowMoney);
+				}
+				// 입출금계좌인 경우
+				else {
+					account = new Account(accountNum, accountOwner, passwd, restMoney);
+				}
+				
 				System.out.println(account);
+				
+				// accountManager의 계좌정보 테이블에 계좌정보 추가
 				try {
 					mainFrame.accountManager.add(account);
 					JOptionPane.showMessageDialog(null,"계좌를 등록했습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -218,9 +282,10 @@ public class InputPanel extends Panel implements ActionListener{
 					JOptionPane.showMessageDialog(null,"이미 존재하는 계좌번호 입니다", "알림", JOptionPane.ERROR_MESSAGE);
 				}
 			}
-			System.out.println("액션 수행 후 : " + mainFrame.accountManager.toString());
+			System.out.println("After Adding : " + mainFrame.accountManager.toString());
 		}
-		// 계좌번호로 검색
+		
+		// 조회버튼 눌림
 		else if(e.getSource() == numSearchB) {
 			String accountNum = accountNumTF.getText();
 			System.out.println("Searching By Number");
@@ -229,21 +294,14 @@ public class InputPanel extends Panel implements ActionListener{
 			if (accountNum.equals("")) {
 				JOptionPane.showMessageDialog(null,"계좌번호를 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
 			}
-			// 검색하여 list에 출력
+			// 검색하여 계좌정보 텍스트영역에 출력
 			else {
 				Account account = mainFrame.accountManager.searchByNumber(accountNum);
-				// 마이너스 계좌
-				if(account instanceof MinusAccount) {
-					accountsList.append("마이너스\t "+ account.getAccountNum() + "\t" + account.getAccountOwner() 
-					+ "\t" + account.getRestMoney() + "\t" + ((MinusAccount)account).getBorrowMoney());
-				}
-				// 입출금 계좌
-				else
-					accountsList.append("입출금\t " + account.getAccountNum() + "\t" + account.getAccountOwner() + "\t" + account.getRestMoney());
+				accountsListTA.append(accountFormat(account));
 			}
 		}
 		
-		// 계좌번호로 검색
+		// 삭제버튼 눌림
 		else if(e.getSource() == numDeleteB) {
 			String accountNum = accountNumTF.getText();
 			System.out.println("Delete By Number");
@@ -253,7 +311,7 @@ public class InputPanel extends Panel implements ActionListener{
 				JOptionPane.showMessageDialog(null,"계좌번호를 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			// 검색하여 list에 출력
+			// 빈칸이 아닐 경우 accountManager의 remove를 호출하여 accountNum 계좌번호의 계좌 제거
 			else {
 				if( mainFrame.accountManager.remove(accountNum))
 					JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거했습니다", "알림", JOptionPane.INFORMATION_MESSAGE);
@@ -272,17 +330,15 @@ public class InputPanel extends Panel implements ActionListener{
 				JOptionPane.showMessageDialog(null,"예금주명을 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			// 검색하여 list에 출력
+			// 검색하여 계좌정보 텍스트영역에 출력
 			else {
 				ArrayList<Account> accountsOfowner = (ArrayList<Account>)(mainFrame.accountManager.serachByOwner(accountOwner));
 				for (Object object : accountsOfowner) {
 					System.out.println(((Account)object).toString());
-					accountsList.append(accountsOfowner.toString() + "\n");
+					accountsListTA.append(accountFormat((Account)object));
 				}
 			}
-		}
-
-				
+		}		
 	}
 	
 // 테스트를 위한 메인	

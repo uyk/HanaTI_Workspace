@@ -33,7 +33,8 @@ public class MinusAccount extends Account {
 	 * @param borrowMoney	대출금
 	 */
 	public MinusAccount(String accountNum, String accountOwner, int passwd, long restMoney, long borrowMoney) {
-		super("마이너스", accountNum, accountOwner, passwd, restMoney);
+		//super("마이너스", accountNum, accountOwner, passwd, restMoney);
+		super(accountNum, accountOwner, passwd, restMoney);
 		this.borrowMoney = borrowMoney;
 		super.setRestMoney(super.getRestMoney() - getBorrowMoney());
 	}
@@ -51,11 +52,12 @@ public class MinusAccount extends Account {
 	/**
 	 * 잔액을 반환하는 메소드
 	 */
+	/*
 	@Override
 	public long getRestMoney() {
-		return super.getRestMoney() -getBorrowMoney();
+		return super.getRestMoney() - getBorrowMoney();
 	}
-
+	*/
 	/**
 	 * 계좌의 내용을 출력하는 메소드
 	 */

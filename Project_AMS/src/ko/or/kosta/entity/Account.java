@@ -15,7 +15,7 @@ public class Account {
 	public static String bankName = "KOSTA 은행";
 
 	// 인스턴스 변수 선언
-	private String accountType;
+	//private String accountType;
 	private String accountNum;
 	private String accountOwner;
 	private int passwd;
@@ -26,7 +26,8 @@ public class Account {
 	 * 디폴트 생성자. 계좌번호 null, 계좌주인 null, 패스워드 0, 잔액 0 으로 초기화한다.
 	 */
 	public Account() {
-		this(null, null, null, 0, 0);
+		//this(null, null, null, 0, 0);
+		this(null, null, 0, 0);
 	}
 
 	/**
@@ -38,7 +39,7 @@ public class Account {
 	 * @param restMoney    잔액
 	 */
 	public Account(String accountNum, String accountOwner, int passwd, long restMoney) {
-		this.accountType = "입출금";
+		//this.accountType = "입출금";
 		this.accountNum = accountNum;
 		this.accountOwner = accountOwner;
 		this.passwd = passwd;
@@ -53,6 +54,7 @@ public class Account {
 	 * @param passwd		패스워드
 	 * @param restMoney		잔액
 	 */
+	/*
 	public Account(String accountType, String accountNum, String accountOwner, int passwd, long restMoney) {
 		this.accountType = accountType;
 		this.accountNum = accountNum;
@@ -60,6 +62,7 @@ public class Account {
 		this.passwd = passwd;
 		this.restMoney = restMoney;
 	}
+	*/
 
 // setter, getter 메소드
 	public void setAccountNum(String accountNum) {
@@ -93,7 +96,7 @@ public class Account {
 	public long getRestMoney() {
 		return this.restMoney;
 	}
-	
+	/*
 	public void setAccountType(String accountType) {
 		this.accountType = accountType;
 	}
@@ -101,7 +104,8 @@ public class Account {
 	public String getAccountType() {
 		return this.accountType;
 	}
-
+	*/
+	
 // 인스턴스 메소드 선언
 	/**
 	 * 계좌에서 money만큼을 출금하는 메소드.
@@ -183,7 +187,7 @@ public class Account {
 	public static void main(String[] args) {
 		Account account1 = new Account();
 		System.out.println(account1);
-		
+		/*
 		Account account2 = new Account("입출금","1111-2222-3333", "홍길동", 1234, 10000);
 		System.out.println(account2);
 		
@@ -191,6 +195,15 @@ public class Account {
 		System.out.println(account3);
 		
 		Account account4 = new Account("입출금","3333-2222-3333", "ㄴㅇㄹ", 1234, 10000);
+		System.out.println(account4);
+		*/
+		Account account2 = new Account("1111-2222-3333", "홍길동", 1234, 10000);
+		System.out.println(account2);
+		
+		Account account3 = new Account("1111-9999-3333", "ㅇㄴㄹ", 1234, 10000);
+		System.out.println(account3);
+		
+		Account account4 = new Account("3333-2222-3333", "ㄴㅇㄹ", 1234, 10000);
 		System.out.println(account4);
 		
 		System.out.println(account4.checkPasswd(1111));
