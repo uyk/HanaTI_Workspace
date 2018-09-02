@@ -56,6 +56,7 @@ public class InputPanel extends Panel implements ActionListener{
 	public InputPanel() {
 		this(new MainFrame());
 	}
+	
 	/**
 	 * 프레임을 매개변수로 받는 생성자.
 	 * 인스턴스 변수 초기화

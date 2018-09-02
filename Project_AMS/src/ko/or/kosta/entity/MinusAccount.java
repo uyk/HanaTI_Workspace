@@ -33,7 +33,7 @@ public class MinusAccount extends Account {
 	 * @param borrowMoney	대출금
 	 */
 	public MinusAccount(String accountNum, String accountOwner, int passwd, long restMoney, long borrowMoney) {
-		super(accountNum, accountOwner, passwd, restMoney);
+		super("마이너스", accountNum, accountOwner, passwd, restMoney);
 		this.borrowMoney = borrowMoney;
 		super.setRestMoney(super.getRestMoney() - getBorrowMoney());
 	}
