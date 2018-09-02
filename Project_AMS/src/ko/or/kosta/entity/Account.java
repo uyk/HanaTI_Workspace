@@ -78,8 +78,7 @@ public class Account {
 
 // 인스턴스 메소드 선언
 	/**
-	 * 계좌에서 money만큼을 출금하는 메소드.
-	 * 출금할 금액이 음수면 예외 발생.
+	 * 계좌에서 money만큼을 출금하는 메소드. 출금할 금액이 음수면 예외 발생.
 	 * 
 	 * @param money 출금금액
 	 * @return restMoney 잔액. 예외발생 안했을 경우에만 리턴
@@ -92,12 +91,11 @@ public class Account {
 		restMoney += money;
 		return restMoney;
 	}
-	
+
 	/**
-	 * 계좌에 money만큼을 입금하는 메소드.
-	 * 입금할 금액이 음수이거나 잔액이 부족할 경우 예외 발생.
+	 * 계좌에 money만큼을 입금하는 메소드. 입금할 금액이 음수이거나 잔액이 부족할 경우 예외 발생.
 	 * 
-	 * @param money	입금금액
+	 * @param money 입금금액
 	 * @return restMoney 잔액. 예외발생 안했을 경우에만 리턴
 	 * @throws AccountException 예외. 입금 금액이 음수 또는 잔액 부족
 	 */
@@ -132,7 +130,7 @@ public class Account {
 	}
 
 	/**
-	 * 계좌정보의 문자열의 해시코드를  반환하는 메소드.
+	 * 계좌정보의 문자열의 해시코드를 반환하는 메소드.
 	 */
 	@Override
 	public int hashCode() {
@@ -152,28 +150,28 @@ public class Account {
 			eq = obj.toString().equals(this.toString());
 		return eq;
 	}
-	
+
 // 테스트를 위한 메인 메소드
 	public static void main(String[] args) {
 		Account account1 = new Account();
 		System.out.println(account1);
-		
+
 		Account account2 = new Account("1111-2222-3333", "홍길동", 1234, 10000);
 		System.out.println(account2);
-		
+
 		Account account3 = new Account("1111-9999-3333", "ㅇㄴㄹ", 1234, 10000);
 		System.out.println(account3);
-		
+
 		Account account4 = new Account("3333-2222-3333", "ㄴㅇㄹ", 1234, 10000);
 		System.out.println(account4);
-		
+
 		System.out.println(account4.checkPasswd(1111));
-		
+
 		try {
 			System.out.println(account4.deposit(1000000));
 			System.out.println(account4.withdraw(500));
 			System.out.println(account4.withdraw(9999999));
-		}catch(AccountException e) {
+		} catch (AccountException e) {
 			System.out.println(e);
 		}
 	}
