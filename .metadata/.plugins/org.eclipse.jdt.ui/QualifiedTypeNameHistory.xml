@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.util.Set"/>
-<fullyQualifiedTypeName name="java.lang.StringBuffer"/>
-<fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.util.HashSet"/>
 <fullyQualifiedTypeName name="Student"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="java.util.Collections"/>
 <fullyQualifiedTypeName name="NumberCompare"/>
@@ -38,9 +34,7 @@
 <fullyQualifiedTypeName name="MyMainPanel"/>
 <fullyQualifiedTypeName name="ExitHandler"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
-<fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
 <fullyQualifiedTypeName name="java.awt.event.TextListener"/>
-<fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemEvent"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="OuterClass.InnerClass"/>
@@ -48,16 +42,22 @@
 <fullyQualifiedTypeName name="OuterClass.SInnerClass"/>
 <fullyQualifiedTypeName name="java.awt.Choice"/>
 <fullyQualifiedTypeName name="java.awt.Button"/>
-<fullyQualifiedTypeName name="java.awt.TextField"/>
 <fullyQualifiedTypeName name="kr.or.kosta.boundary.PrintPanel"/>
 <fullyQualifiedTypeName name="java.awt.BorderLayout"/>
 <fullyQualifiedTypeName name="java.awt.Label"/>
 <fullyQualifiedTypeName name="java.awt.List"/>
 <fullyQualifiedTypeName name="java.awt.TextArea"/>
 <fullyQualifiedTypeName name="ko.or.kosta.entity.Account"/>
-<fullyQualifiedTypeName name="kr.or.kosta.boundary.InputPanel"/>
 <fullyQualifiedTypeName name="ko.or.kosta.entity.AccountException"/>
 <fullyQualifiedTypeName name="ko.or.kosta.entity.AccountManager"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
+<fullyQualifiedTypeName name="kr.or.kosta.boundary.InputPanel"/>
+<fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
 <fullyQualifiedTypeName name="ko.or.kosta.entity.MinusAccount"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
+<fullyQualifiedTypeName name="java.lang.Character"/>
+<fullyQualifiedTypeName name="kr.or.kosta.boundary.InputPanel.KeyEventClass"/>
+<fullyQualifiedTypeName name="java.awt.TextField"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyAdapter"/>
 </qualifiedTypeNameHistroy>
