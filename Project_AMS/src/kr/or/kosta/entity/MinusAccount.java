@@ -1,4 +1,4 @@
-package ko.or.kosta.entity;
+package kr.or.kosta.entity;
 
 /**
  * 계좌 관리 프로그램
@@ -31,7 +31,6 @@ public class MinusAccount extends Account {
 	 * @param borrowMoney  대출금
 	 */
 	public MinusAccount(String accountNum, String accountOwner, int passwd, long restMoney, long borrowMoney) {
-		// super("마이너스", accountNum, accountOwner, passwd, restMoney);
 		super(accountNum, accountOwner, passwd, restMoney);
 		this.borrowMoney = borrowMoney;
 		super.setRestMoney(super.getRestMoney() - getBorrowMoney());
@@ -55,14 +54,4 @@ public class MinusAccount extends Account {
 		return super.toString() + "\t" + getBorrowMoney();
 	}
 
-// 테스트를 위한 메인메소드
-	public static void main(String[] args) {
-		MinusAccount minusAccount = new MinusAccount();
-		System.out.println(minusAccount.getBorrowMoney());
-
-		MinusAccount minusAccount2 = new MinusAccount("9999-1111-2222", "유예겸", 1234, 0, 1000000);
-		System.out.println(minusAccount2.getRestMoney());
-		System.out.println(minusAccount2);
-
-	}
 }

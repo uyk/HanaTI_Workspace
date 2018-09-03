@@ -3,7 +3,6 @@ package kr.or.kosta.boundary;
 import java.awt.Button;
 import java.awt.Choice;
 import java.awt.Component;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -11,22 +10,9 @@ import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.swing.JOptionPane;
-
-import ko.or.kosta.entity.Account;
-import ko.or.kosta.entity.AccountException;
-import ko.or.kosta.entity.MinusAccount;
+import kr.or.kosta.entity.Account;
+import kr.or.kosta.entity.MinusAccount;
 
 /**
  * 계좌 관리 프로그램
@@ -36,7 +22,7 @@ import ko.or.kosta.entity.MinusAccount;
  * @author 유예겸
  *
  */
-public class InputPanel extends Panel implements ActionListener {
+public class InputPanel extends Panel {
 
 // 인스턴스 변수
 	Label accountTypeL, accountNumL, accountOwnerL, passwdL, depositL, borrowL, accountsListL, moneyWonL;
@@ -115,7 +101,7 @@ public class InputPanel extends Panel implements ActionListener {
 	 * @param account 문자열로 출력하고자 하는 계좌 정보
 	 * @return 계좌 타입에 따라 계좌의 정보를 문자열로 반환
 	 */
-	private String accountFormat(Account account) {
+	public String accountFormat(Account account) {
 		// 예금주의 기본 포맷 크기
 		int formatSize = 20;
 		
@@ -123,7 +109,6 @@ public class InputPanel extends Panel implements ActionListener {
 		// 아스키문자가 아닌경우
 		if (Character.getType(account.getAccountOwner().charAt(0)) == Character.OTHER_LETTER) {
 			formatSize -= account.getAccountOwner().length() * 2;
-			System.out.println("Not ASCII " + Character.getType(account.getAccountOwner().charAt(0)));
 		}
 		
 		if (account instanceof MinusAccount)
@@ -139,7 +124,7 @@ public class InputPanel extends Panel implements ActionListener {
 	/**
 	 * 계좌정보 텍스트 영역을 초기화하는 메소드
 	 */
-	private void setTextArea() {
+	public void setTextArea() {
 		accountsListTA.setText(header);
 	}
 
@@ -154,8 +139,8 @@ public class InputPanel extends Panel implements ActionListener {
 	 * @param weightx    x축 여백에 대한 가중치
 	 * @param weighty    y축 여백에 대한 가중치
 	 */
-	public void addToGridBag(Component component, int gridx, int gridy, int gridwidth, int gridheight, double weightx,
-			double weighty) {
+	public void addToGridBag(Component component, int gridx, int gridy, int gridwidth, int gridheight, 
+			double weightx,	double weighty) {
 		gridBagConstraints.gridx = gridx;
 		gridBagConstraints.gridy = gridy;
 
@@ -215,221 +200,34 @@ public class InputPanel extends Panel implements ActionListener {
 		addToGridBag(accountsListTA, 0, 7, 5, 5, 0, 0);
 	}
 
+	
 // 이벤트 관련
 	/**
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
 	public void eventRegist() {
-		// 계좌종류 선택 이벤트
-		accountTypeCh.addItemListener(new ItemListener() {
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// 마이너스 계좌를 선택했을 때만 대출금엑 필드 활성화
-				if (e.getItem().equals("마이너스계좌"))
-					borrowTF.setEnabled(true);
-				else
-					borrowTF.setEnabled(false);
-			}
-		});
+		
+		// 계좌 타입 선택
+		accountTypeCh.addItemListener(new AMSEventHandler(this));
+		
 		// 신규등록
-		newAccountB.addActionListener(this);
+		newAccountB.addActionListener(new AMSEventHandler(this));
 		// 계좌번호로 조회
-		numSearchB.addActionListener(this);
+		numSearchB.addActionListener(new AMSEventHandler(this));
 		// 계좌번호로 조회하여 삭제
-		numDeleteB.addActionListener(this);
+		numDeleteB.addActionListener(new AMSEventHandler(this));
 		// 예금주명으로 조회
-		ownerSearchB.addActionListener(this);
+		ownerSearchB.addActionListener(new AMSEventHandler(this));
 		// 전체 계좌 조회
-		allAccountB.addActionListener(this);
+		allAccountB.addActionListener(new AMSEventHandler(this));
 		
 		// 텍스트필드에 입력되는 문자의 유효성을 검증하는 이벤트 리스너 추가
-		accountNumTF.addKeyListener(new KeyEventClass());
-		accountOwnerTF.addKeyListener(new KeyEventClass());
-		passwdTF.addKeyListener(new KeyEventClass());
-		depositTF.addKeyListener(new KeyEventClass());
-		borrowTF.addKeyListener(new KeyEventClass());
+		accountNumTF.addKeyListener(new AMSEventHandler(this));
+		accountOwnerTF.addKeyListener(new AMSEventHandler(this));
+		passwdTF.addKeyListener(new AMSEventHandler(this));
+		depositTF.addKeyListener(new AMSEventHandler(this));
+		borrowTF.addKeyListener(new AMSEventHandler(this));
 
-	}
-
-	/**
-	 * ActionEvent가 발생했을 때 처리하는 메소드
-	 */
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// 계좌정보 텍스트영역 초기화
-		setTextArea();
-
-		// 등록 버튼 눌림
-		if (e.getSource() == newAccountB) {
-			System.out.println("Adding New Account");
-			// 계좌번호, 예금주, 비밀번호, 입금금액 중 한 칸이라도 빈 칸이 있을 경우
-			if (accountNumTF.getText().equals("") || accountOwnerTF.getText().equals("")
-					|| passwdTF.getText().equals("") || depositTF.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "빈칸을 모두 채워주세요", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-			else if(accountNumTF.getText().length() != 12) {
-				JOptionPane.showMessageDialog(null, "계좌번호는 12자리 숫자만 가능합니다", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-			// 모든 필드가 채워져 있는 경우
-			else {
-				String accountNum = accountNumTF.getText();
-				String accountOwner = accountOwnerTF.getText();
-				int passwd = Integer.parseInt(passwdTF.getText());
-				long restMoney = Long.parseLong(depositTF.getText());
-
-				accountNum = accountNum.substring(0, 4) + "-" + accountNum.substring(4, 8) + "-"
-						+ accountNum.substring(8, 12);
-
-				// account에 입력한 정보 저장
-				Account account;
-
-				// 마이너스 계좌인 경우
-				if (borrowTF.isEnabled()) {
-					long borrowMoney;
-					// 대출금 필드가 빈칸이면 0원으로 설정
-					if (borrowTF.getText().equals("")) {
-						System.out.println("enter");
-						borrowMoney = 0L;
-					} else
-						borrowMoney = Long.parseLong(borrowTF.getText());
-					account = new MinusAccount(accountNum, accountOwner, passwd, restMoney, borrowMoney);
-				}
-				// 입출금계좌인 경우
-				else {
-					account = new Account(accountNum, accountOwner, passwd, restMoney);
-				}
-
-				System.out.println(account);
-
-				// accountManager의 계좌정보 테이블에 계좌정보 추가
-				try {
-					mainFrame.accountManager.add(account);
-					JOptionPane.showMessageDialog(null, "계좌를 등록했습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
-				} catch (AccountException e2) {
-					System.out.println(e2);
-					JOptionPane.showMessageDialog(null, "이미 존재하는 계좌번호 입니다", "알림", JOptionPane.ERROR_MESSAGE);
-				}
-			}
-			System.out.println("After Adding : " + mainFrame.accountManager.toString());
-		}
-
-		// 조회버튼 눌림
-		else if (e.getSource() == numSearchB) {
-			String accountNum = accountNumTF.getText();
-			System.out.println("Searching By Number");
-
-			// 계좌번호 텍스트필드가 빈칸
-			if (accountNum.equals("")) {
-				JOptionPane.showMessageDialog(null, "계좌번호를 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-			// 검색하여 계좌정보 텍스트영역에 출력
-			else {
-				Account account = mainFrame.accountManager.searchByNumber(accountNum);
-				accountsListTA.append(accountFormat(account));
-			}
-		}
-
-		// 삭제버튼 눌림
-		else if (e.getSource() == numDeleteB) {
-			String accountNum = accountNumTF.getText();
-			System.out.println("Delete By Number");
-
-			// 계좌번호 텍스트필드가 빈칸
-			if (accountNum.equals("")) {
-				JOptionPane.showMessageDialog(null, "계좌번호를 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-
-			// 빈칸이 아닐 경우 accountManager의 remove를 호출하여 accountNum 계좌번호의 계좌 제거
-			else {
-				if (mainFrame.accountManager.remove(accountNum))
-					JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거했습니다", "알림",
-							JOptionPane.INFORMATION_MESSAGE);
-				else
-					JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거하지 못했습니다.", "알림",
-							JOptionPane.ERROR_MESSAGE);
-			}
-		}
-
-		// 예금주명으로 검색
-		else if (e.getSource() == ownerSearchB) {
-			String accountOwner = accountOwnerTF.getText();
-			System.out.println("Search By Owner");
-
-			// 예금주명 텍스트필드가 빈칸
-			if (accountOwner.equals("")) {
-				JOptionPane.showMessageDialog(null, "예금주명을 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-
-			// 검색하여 계좌정보 텍스트영역에 출력
-			else {
-				ArrayList<Account> accountsOfowner = (ArrayList<Account>) (mainFrame.accountManager
-						.serachByOwner(accountOwner));
-				for (Object object : accountsOfowner) {
-					System.out.println(((Account) object).toString());
-					accountsListTA.append(accountFormat((Account) object));
-				}
-			}
-		}
-
-		// 전체 조회
-		else if (e.getSource() == allAccountB) {
-			List<Account> list = mainFrame.accountManager.list();
-			for (Object object : list) {
-				accountsListTA.append(accountFormat((Account) object));
-			}
-		}
-	}
-	
-// 내부 클래스
-	/**
-	 * KeyEvent를 처리하는 내부 클래스. 텍스트필드에 입력된 key의 유효성을 검사.
-	 * 
-	 * @author 유예겸
-	 */
-	class KeyEventClass extends KeyAdapter {
-		@Override
-		public void keyTyped(KeyEvent e) {
-			char inputC = e.getKeyChar();
-			// 예금주명 필드에 키 입력됨
-			if(e.getSource() == accountOwnerTF) {
-				// 문자 입력이 아닐 경우
-				if( !(Character.isLetter(inputC) && inputC != '\b') ){
-					JOptionPane.showMessageDialog(null, "잘못된 입력입니다", "알림", JOptionPane.ERROR_MESSAGE);
-					e.consume();
-				}
-			}
-			// 그 외의 필드에 키 입력됨
-			else {
-				// 숫자 입력이 아닐 경우
-				if( !(Character.isDigit(inputC)) && inputC != '\b') {
-					JOptionPane.showMessageDialog(null, "숫자를 입력해주세요", "알림", JOptionPane.ERROR_MESSAGE);
-					e.consume();
-				}
-				
-			}
-		}
-	}
-
-// 테스트를 위한 메인	
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Frame frame = new Frame("GridBagLayout Mission");
-		InputPanel panel = new InputPanel();
-
-		frame.add(panel);
-		frame.setSize(800, 500);
-//		frame.pack();
-		frame.setVisible(true);
-
-		frame.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				// finish();
-				frame.setVisible(false);
-				frame.dispose();
-				System.exit(1);
-			}
-		});
 	}
 
 }

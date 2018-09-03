@@ -1,4 +1,4 @@
-package ko.or.kosta.entity;
+package kr.or.kosta.entity;
 
 import java.util.Comparator;
 
@@ -20,7 +20,6 @@ public class NumberCompare implements Comparator<Account> {
 	 */
 	@Override
 	public int compare(Account account1, Account account2) {
-		// TODO Auto-generated method stub
 		return account1.getAccountNum().compareTo(account2.getAccountNum());
 	}
 

@@ -8,6 +8,10 @@ import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.List;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.MenuItem;
+import java.awt.MenuShortcut;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
@@ -31,6 +35,10 @@ public class ChatFrame extends Frame {
 	Button connectB, sendB;
 	TextArea messageTA;
 	List userList;
+	
+	MenuBar menuBar;
+	Menu menu;
+	MenuItem newMI, exitMI;
 
 	public ChatFrame() {
 		this("이름없음");
@@ -54,6 +62,13 @@ public class ChatFrame extends Frame {
 		userList.add("꼴뚜기");
 		userList.add("머저리");
 		userList.add("날라리");
+		
+		menuBar = new MenuBar();
+		menu = new Menu("File");
+		newMI = new MenuItem("New");
+		newMI.setShortcut(new MenuShortcut(KeyEvent.VK_1));;
+		exitMI = new MenuItem("Exit");
+		exitMI.setShortcut(new MenuShortcut(KeyEvent.VK_2));
 	}
 	// 화면 배치
 	public void setContents() {
@@ -84,6 +99,11 @@ public class ChatFrame extends Frame {
 //		setColorAll(Color.BLUE);
 		
 		setLocation(100, 100);
+		setMenuBar(menuBar);
+		menuBar.add(menu);
+		menu.add(newMI);
+		menu.addSeparator();
+		menu.add(exitMI);
 		
 	}
 	public void setCenter() {
@@ -151,9 +171,7 @@ public class ChatFrame extends Frame {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				System.out.println(KeyEvent.VK_K);
-				System.out.println(KeyEvent.VK_ENTER);
-				
-				
+				System.out.println(KeyEvent.VK_ENTER);				
 			}
 			
 			@Override
@@ -185,6 +203,15 @@ public class ChatFrame extends Frame {
 //					JOptionPane.showMessageDialog(null, name + "님 선택", "알림", JOptionPane.INFORMATION_MESSAGE);
 					JOptionPane.showMessageDialog(null, name + "님 선택", "알림", JOptionPane.ERROR_MESSAGE);
 				}
+				
+			}
+		});
+		
+		exitMI.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				finish();
 				
 			}
 		});

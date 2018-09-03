@@ -1,4 +1,4 @@
-package ko.or.kosta.entity;
+package kr.or.kosta.entity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -9,8 +9,7 @@ import java.util.List;
 /**
  * 계좌 관리 프로그램.
  * 
- * AccountManager : 전체 계좌를 관리하는 클래스. 계좌번호를 key, 계좌 정보를 value로 가지는 MAP 형태로 데이터를
- * 관리한다.
+ * AccountManager : 전체 계좌를 관리하는 클래스. 계좌번호를 key, 계좌 정보를 value로 가지는 MAP 형태로 데이터를 관리한다.
  * 
  * 
  * @author 유예겸

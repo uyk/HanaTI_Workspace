@@ -1,10 +1,10 @@
 package kr.or.kosta.bin;
 
-import ko.or.kosta.entity.Account;
-import ko.or.kosta.entity.AccountException;
-import ko.or.kosta.entity.AccountManager;
-import ko.or.kosta.entity.MinusAccount;
 import kr.or.kosta.boundary.MainFrame;
+import kr.or.kosta.entity.Account;
+import kr.or.kosta.entity.AccountException;
+import kr.or.kosta.entity.AccountManager;
+import kr.or.kosta.entity.MinusAccount;
 
 /**
  * 계좌 관리 프로그램
@@ -30,8 +30,7 @@ public class AMS {
 			System.out.println(e.getMessage());
 		}
 
-		System.out.println(accountManager);
-		MainFrame frame = new MainFrame();
+		MainFrame frame = new MainFrame("AMS - Main");
 		frame.setAccountManager(accountManager);
 		frame.setContents();
 		frame.setSize(700, 450);

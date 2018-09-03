@@ -1,4 +1,4 @@
-package ko.or.kosta.entity;
+package kr.or.kosta.entity;
 
 /**
  * 계좌 관리 프로그램
@@ -134,8 +134,6 @@ public class Account {
 	 */
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-
 		return toString().hashCode();
 	}
 
@@ -151,28 +149,4 @@ public class Account {
 		return eq;
 	}
 
-// 테스트를 위한 메인 메소드
-	public static void main(String[] args) {
-		Account account1 = new Account();
-		System.out.println(account1);
-
-		Account account2 = new Account("1111-2222-3333", "홍길동", 1234, 10000);
-		System.out.println(account2);
-
-		Account account3 = new Account("1111-9999-3333", "ㅇㄴㄹ", 1234, 10000);
-		System.out.println(account3);
-
-		Account account4 = new Account("3333-2222-3333", "ㄴㅇㄹ", 1234, 10000);
-		System.out.println(account4);
-
-		System.out.println(account4.checkPasswd(1111));
-
-		try {
-			System.out.println(account4.deposit(1000000));
-			System.out.println(account4.withdraw(500));
-			System.out.println(account4.withdraw(9999999));
-		} catch (AccountException e) {
-			System.out.println(e);
-		}
-	}
 }
