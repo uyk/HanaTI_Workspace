@@ -41,8 +41,7 @@ public class AccountManager {
 	 */
 	public void add(Account account) throws AccountException {
 		if (accounts.containsKey(account.getAccountNum())) {
-			throw new AccountException("이미 등록되어있는 계좌번호입니다", -200);
-
+			throw new AccountException(AccountException.EXIST_NUM);
 		}
 		accounts.put(account.getAccountNum(), account);
 	}

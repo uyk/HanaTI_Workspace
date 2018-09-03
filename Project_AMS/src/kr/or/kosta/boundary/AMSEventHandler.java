@@ -65,17 +65,15 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	 * @param accountNum 계좌번호
 	 * @return 유효하면 true, 그렇지 않으면 false
 	 */
-	public boolean isValidNum(String accountNum) {
+	public boolean isValidNum(String accountNum) throws AccountException{
 		// 계좌번호 텍스트필드가 빈칸
-		if (accountNum.equals("")) {
-			JOptionPane.showMessageDialog(null, "계좌번호를 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+		if (accountNum.equals("")) 
+			throw new AccountException(AccountException.EMPTY_NUM);
+		
 		// 계좌번호 길이가 12자 아님
-		else if(inputPanel.accountNumTF.getText().length() != 12) {
-			JOptionPane.showMessageDialog(null, "계좌번호는 12자리 숫자만 가능합니다", "알림", JOptionPane.ERROR_MESSAGE);
-			return false;
-		}
+		else if(inputPanel.accountNumTF.getText().length() != 12) 
+			throw new AccountException(AccountException.INVALID_NUM);
+
 		return true;
 		
 	}
@@ -87,22 +85,28 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	@Override
 	public void keyTyped(KeyEvent e) {
 		char inputC = e.getKeyChar();
-		// 예금주명 필드에 키 입력됨
-		if(e.getSource() == inputPanel.accountOwnerTF) {
-			// 문자 입력이 아닐 경우
-			if( inputC != '\b' && !(Character.isLetter(inputC) ) ){
-				JOptionPane.showMessageDialog(null, "잘못된 입력입니다", "알림", JOptionPane.ERROR_MESSAGE);
-				e.consume();
-			}
-		}
-		// 그 외의 필드에 키 입력됨
-		else {
-			// 숫자 입력이 아닐 경우
-			if( !(Character.isDigit(inputC)) && inputC != '\b') {
-				JOptionPane.showMessageDialog(null, "숫자를 입력해주세요", "알림", JOptionPane.ERROR_MESSAGE);
-				e.consume();
+		try {
+			// 예금주명 필드에 키 입력됨
+			if(e.getSource() == inputPanel.accountOwnerTF) {
+				// 문자 입력이 아닐 경우
+				if( inputC != '\b' && !(Character.isLetter(inputC) ) ) {
+					e.consume();
+					throw new AccountException(AccountException.ONLY_CHAR);	
+				}
 			}
 			
+			// 그 외의 필드에 키 입력됨
+			else {
+				// 숫자 입력이 아닐 경우
+				if( !(Character.isDigit(inputC)) && inputC != '\b') {
+					e.consume();
+					throw new AccountException(AccountException.ONLY_DIGIT);
+				}
+				
+			}
+		}
+		catch (AccountException ae){
+			JOptionPane.showMessageDialog(null, ae.getDiscription(), "알림", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -111,107 +115,111 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// 계좌정보 텍스트영역 초기화
-		inputPanel.setTextArea();
+		try {
+			// 계좌정보 텍스트영역 초기화
+			inputPanel.setTextArea();
+	
+			// 등록 버튼 눌림
+			if (e.getSource() == inputPanel.newAccountB) {
+				// 계좌번호, 예금주, 비밀번호, 입금금액 중 한 칸이라도 빈 칸이 있을 경우
+				if (inputPanel.accountNumTF.getText().equals("") || inputPanel.accountOwnerTF.getText().equals("")
+						|| inputPanel.passwdTF.getText().equals("") || inputPanel.depositTF.getText().equals("")) 
+					throw new AccountException(AccountException.NO_FULLFILL);
 
-		// 등록 버튼 눌림
-		if (e.getSource() == inputPanel.newAccountB) {
-			// 계좌번호, 예금주, 비밀번호, 입금금액 중 한 칸이라도 빈 칸이 있을 경우
-			if (inputPanel.accountNumTF.getText().equals("") || inputPanel.accountOwnerTF.getText().equals("")
-					|| inputPanel.passwdTF.getText().equals("") || inputPanel.depositTF.getText().equals("")) {
-				JOptionPane.showMessageDialog(null, "빈칸을 모두 채워주세요", "알림", JOptionPane.ERROR_MESSAGE);
+				
+				// 계좌번호 유효성 검사
+				else if( isValidNum(inputPanel.accountNumTF.getText()) ) {
+					String accountNum = inputPanel.accountNumTF.getText();
+					String accountOwner = inputPanel.accountOwnerTF.getText();
+					int passwd = Integer.parseInt(inputPanel.passwdTF.getText());
+					long restMoney = Long.parseLong(inputPanel.depositTF.getText());
+	
+					accountNum = accountNumFormat(accountNum);
+	
+					// account에 입력한 정보 저장
+					Account account;
+	
+					// 마이너스 계좌인 경우
+					if (inputPanel.borrowTF.isEnabled()) {
+						long borrowMoney;
+						// 대출금 필드가 빈칸이면 0원으로 설정
+						if (inputPanel.borrowTF.getText().equals(""))
+							borrowMoney = 0L;
+						else
+							borrowMoney = Long.parseLong(inputPanel.borrowTF.getText());
+						account = new MinusAccount(accountNum, accountOwner, passwd, restMoney, borrowMoney);
+					}
+					// 입출금계좌인 경우
+					else 
+						account = new Account(accountNum, accountOwner, passwd, restMoney);
+
+	
+					// accountManager의 계좌정보 테이블에 계좌정보 추가
+					try {
+						mainFrame.accountManager.add(account);
+						JOptionPane.showMessageDialog(null, "계좌를 등록했습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
+					} catch (AccountException e2) {
+						throw new AccountException(AccountException.EXIST_NUM);
+					}
+				}
 			}
-			
-			// 계좌번호 유효성 검사
-			else if( isValidNum(inputPanel.accountNumTF.getText()) ) {
+	
+			// 조회버튼 눌림
+			else if (e.getSource() == inputPanel.numSearchB) {
 				String accountNum = inputPanel.accountNumTF.getText();
+				
+				// 유효 검사 후 accountManager의 searchByNumber를 호출하여 accountNum 계좌번호의 계좌 출력
+				if(isValidNum(accountNum)) {
+					accountNum = accountNumFormat(accountNum);
+					Account account = mainFrame.accountManager.searchByNumber(accountNum);
+					inputPanel.accountsListTA.append(inputPanel.accountFormat(account));
+				}
+			}
+	
+			// 삭제버튼 눌림
+			else if (e.getSource() == inputPanel.numDeleteB) {
+				String accountNum = inputPanel.accountNumTF.getText();
+	
+				// 유효 검사 후 accountManager의 remove를 호출하여 accountNum 계좌번호의 계좌 제거
+				if(isValidNum(accountNum)) {
+					accountNum = accountNumFormat(accountNum);
+					if (mainFrame.accountManager.remove(accountNum))
+						JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거했습니다", "알림",
+								JOptionPane.INFORMATION_MESSAGE);
+					else
+						throw new AccountException(AccountException.CANT_DELETE);
+				}
+			}
+	
+			// 예금주명으로 검색
+			else if (e.getSource() == inputPanel.ownerSearchB) {
 				String accountOwner = inputPanel.accountOwnerTF.getText();
-				int passwd = Integer.parseInt(inputPanel.passwdTF.getText());
-				long restMoney = Long.parseLong(inputPanel.depositTF.getText());
+	
+				// 예금주명 텍스트필드가 빈칸
+				if (accountOwner.equals("")) 
+					throw new AccountException(AccountException.EMPTY_NAME);
 
-				accountNum = accountNumFormat(accountNum);
-
-				// account에 입력한 정보 저장
-				Account account;
-
-				// 마이너스 계좌인 경우
-				if (inputPanel.borrowTF.isEnabled()) {
-					long borrowMoney;
-					// 대출금 필드가 빈칸이면 0원으로 설정
-					if (inputPanel.borrowTF.getText().equals("")) {
-						borrowMoney = 0L;
-					} else
-						borrowMoney = Long.parseLong(inputPanel.borrowTF.getText());
-					account = new MinusAccount(accountNum, accountOwner, passwd, restMoney, borrowMoney);
-				}
-				// 입출금계좌인 경우
+	
+				// 검색하여 계좌정보 텍스트영역에 출력
 				else {
-					account = new Account(accountNum, accountOwner, passwd, restMoney);
-				}
-
-				// accountManager의 계좌정보 테이블에 계좌정보 추가
-				try {
-					mainFrame.accountManager.add(account);
-					JOptionPane.showMessageDialog(null, "계좌를 등록했습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
-				} catch (AccountException e2) {
-					JOptionPane.showMessageDialog(null, "이미 존재하는 계좌번호 입니다", "알림", JOptionPane.ERROR_MESSAGE);
+					ArrayList<Account> accountsOfowner = (ArrayList<Account>) (mainFrame.accountManager
+							.serachByOwner(accountOwner));
+					if(accountsOfowner.isEmpty()) System.out.println("aa");
+					for (Object object : accountsOfowner) {
+						inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
+					}
 				}
 			}
-		}
-
-		// 조회버튼 눌림
-		else if (e.getSource() == inputPanel.numSearchB) {
-			String accountNum = inputPanel.accountNumTF.getText();
-			
-			// 유효 검사 후 accountManager의 searchByNumber를 호출하여 accountNum 계좌번호의 계좌 출력
-			if(isValidNum(accountNum)) {
-				accountNum = accountNumFormat(accountNum);
-				Account account = mainFrame.accountManager.searchByNumber(accountNum);
-				inputPanel.accountsListTA.append(inputPanel.accountFormat(account));
-			}
-		}
-
-		// 삭제버튼 눌림
-		else if (e.getSource() == inputPanel.numDeleteB) {
-			String accountNum = inputPanel.accountNumTF.getText();
-
-			// 유효 검사 후 accountManager의 remove를 호출하여 accountNum 계좌번호의 계좌 제거
-			if(isValidNum(accountNum)) {
-				accountNum = accountNumFormat(accountNum);
-				if (mainFrame.accountManager.remove(accountNum))
-					JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거했습니다", "알림",
-							JOptionPane.INFORMATION_MESSAGE);
-				else
-					JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거하지 못했습니다.", "알림",
-							JOptionPane.ERROR_MESSAGE);
-			}
-		}
-
-		// 예금주명으로 검색
-		else if (e.getSource() == inputPanel.ownerSearchB) {
-			String accountOwner = inputPanel.accountOwnerTF.getText();
-
-			// 예금주명 텍스트필드가 빈칸
-			if (accountOwner.equals("")) {
-				JOptionPane.showMessageDialog(null, "예금주명을 입력하세요", "알림", JOptionPane.ERROR_MESSAGE);
-			}
-
-			// 검색하여 계좌정보 텍스트영역에 출력
-			else {
-				ArrayList<Account> accountsOfowner = (ArrayList<Account>) (mainFrame.accountManager
-						.serachByOwner(accountOwner));
-				for (Object object : accountsOfowner) {
+	
+			// 전체 조회
+			else if (e.getSource() == inputPanel.allAccountB) {
+				List<Account> list = mainFrame.accountManager.list();
+				for (Object object : list) {
 					inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
 				}
 			}
-		}
-
-		// 전체 조회
-		else if (e.getSource() == inputPanel.allAccountB) {
-			List<Account> list = mainFrame.accountManager.list();
-			for (Object object : list) {
-				inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
-			}
+		} catch(AccountException ae) {
+			JOptionPane.showMessageDialog(null, ae.getDiscription(), "알림", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
