@@ -1,5 +1,6 @@
 package kr.or.kosta.entity;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -69,6 +70,7 @@ public class AccountDao {
 		String owner = account.getAccountOwner();
 		int passwd = account.getPasswd();
 		long restMoney = account.getRestMoney();
+		
 		// account가 MinusAccount의 인스턴스가 아니면 0을 기본값으로
 		long borrowMoney = (account instanceof MinusAccount) ? ((MinusAccount)account).getBorrowMoney() : -1L;
 		
@@ -253,13 +255,11 @@ public class AccountDao {
 		
 		if(borrowMoney == -1L)
 			account = new Account(num, owner, passwd, restMoney);
-		else 
+		else  
 			account = new MinusAccount(num, owner, passwd, restMoney, borrowMoney);
-		
+
 		return account;
 	}
-	
-
 	
 	// 스트림 닫기
 	public void close(){
@@ -269,5 +269,4 @@ public class AccountDao {
 			ex.printStackTrace();
 		}
 	}
-
 }

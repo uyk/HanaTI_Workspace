@@ -121,8 +121,8 @@ public class InputPanel extends Panel {
 		
 		if (account instanceof MinusAccount)
 			return String.format("%-12s %s %" + formatSize + "s %,15d %,15d\n",
-					"마이너스", account.getAccountNum(), account.getAccountOwner(), account.getRestMoney(),
-					((MinusAccount) account).getBorrowMoney());
+					"마이너스", account.getAccountNum(), account.getAccountOwner(), 
+					account.getRestMoney() - ((MinusAccount) account).getBorrowMoney(),	((MinusAccount) account).getBorrowMoney());
 		else
 			return String.format("%-14s %s %" + formatSize + "s %,15d\n",
 					"입출금", account.getAccountNum(), account.getAccountOwner(),

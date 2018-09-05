@@ -142,6 +142,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	
 					accountNum = accountNumFormat(accountNum);
 	
+					
 					// account에 입력한 정보 저장
 					Account account;
 	
@@ -158,7 +159,15 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 					// 입출금계좌인 경우
 					else 
 						account = new Account(accountNum, accountOwner, passwd, restMoney);
-						accountDao.create(account);
+					
+					
+					if( accountDao.create(account)) {
+						JOptionPane.showMessageDialog(null, accountNum + "계좌를 추가했습니다.", "알림",
+								JOptionPane.INFORMATION_MESSAGE);
+					}
+					else {
+						throw new AccountException(AccountException.EXIST_NUM);
+					}
 				}
 			}
 	

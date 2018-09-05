@@ -19,7 +19,7 @@ public class AccountException extends Exception {
 	public static final int CANT_DELETE = 	7;
 	public static final int EMPTY_NAME = 	8;
 	public static final int NO_SUCH_NAME = 	9;
-	public static final int NO_SUCH_NUM = 10;
+	public static final int NO_SUCH_NUM = 	10;
 	
 	private int errorCode;
 	private String discription;

@@ -33,7 +33,6 @@ public class MinusAccount extends Account {
 	public MinusAccount(String accountNum, String accountOwner, int passwd, long restMoney, long borrowMoney) {
 		super(accountNum, accountOwner, passwd, restMoney);
 		this.borrowMoney = borrowMoney;
-		super.setRestMoney(super.getRestMoney() - getBorrowMoney());
 	}
 
 // getter와 setter
@@ -44,6 +43,7 @@ public class MinusAccount extends Account {
 	public void setBorrowMoney(long borrowMoney) {
 		this.borrowMoney = borrowMoney;
 	}
+	
 
 // 오버라이딩
 	/**
