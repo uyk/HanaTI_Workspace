@@ -18,10 +18,11 @@ import kr.or.kosta.entity.MinusAccount;
 public class AMS {
 
 	public static void main(String[] args) {
-
+		// 계좌 정보를 저장하고 관리하는 AccountManager의 인스턴스 선언 및 생성
 		AccountManager accountManager = new AccountManager();
 
 		try {
+			// 임시 계좌 추가
 			accountManager.add(new Account("1111-2222-3333", "유예겸", 1234, 1000000));
 			accountManager.add(new Account("1342-2222-3333", "가나다라", 1234, 1000000));
 			accountManager.add(new Account("9999-2222-3333", "사람", 1234, 10000));

@@ -110,13 +110,16 @@ public class InputPanel extends Panel {
 		if (Character.getType(account.getAccountOwner().charAt(0)) == Character.OTHER_LETTER) {
 			formatSize -= account.getAccountOwner().length() * 2;
 		}
+		else {
+			formatSize -= account.getAccountOwner().length() ;
+		}
 		
 		if (account instanceof MinusAccount)
-			return String.format("%-12s %s %" + formatSize + "s %15s %15s\n",
+			return String.format("%-12s %s %" + formatSize + "s %,15d %,15d\n",
 					"마이너스", account.getAccountNum(), account.getAccountOwner(), account.getRestMoney(),
 					((MinusAccount) account).getBorrowMoney());
 		else
-			return String.format("%-14s %s %" + formatSize + "s %15s\n",
+			return String.format("%-14s %s %" + formatSize + "s %,15d\n",
 					"입출금", account.getAccountNum(), account.getAccountOwner(),
 					account.getRestMoney());
 	}

@@ -173,6 +173,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 					accountNum = accountNumFormat(accountNum);
 					Account account = mainFrame.accountManager.searchByNumber(accountNum);
 					inputPanel.accountsListTA.append(inputPanel.accountFormat(account));
+					inputPanel.accountsListTA.append("--------------------------------------------------------------------");
 				}
 			}
 	
@@ -204,10 +205,10 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 				else {
 					ArrayList<Account> accountsOfowner = (ArrayList<Account>) (mainFrame.accountManager
 							.serachByOwner(accountOwner));
-					if(accountsOfowner.isEmpty()) System.out.println("aa");
 					for (Object object : accountsOfowner) {
 						inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
 					}
+					inputPanel.accountsListTA.append("--------------------------------------------------------------------");
 				}
 			}
 	
@@ -217,6 +218,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 				for (Object object : list) {
 					inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
 				}
+				inputPanel.accountsListTA.append("--------------------------------------------------------------------");
 			}
 		} catch(AccountException ae) {
 			JOptionPane.showMessageDialog(null, ae.getDiscription(), "알림", JOptionPane.ERROR_MESSAGE);
