@@ -19,6 +19,7 @@ public class AccountException extends Exception {
 	public static final int CANT_DELETE = 	7;
 	public static final int EMPTY_NAME = 	8;
 	public static final int NO_SUCH_NAME = 	9;
+	public static final int NO_SUCH_NUM = 10;
 	
 	private int errorCode;
 	private String discription;
@@ -56,7 +57,10 @@ public class AccountException extends Exception {
 			discription = "예금주를 입력하세요.";
 			break;
 		case NO_SUCH_NAME :
-			discription = "찾을 수 없습니다.";
+			discription = "해당 이름의 계좌를 찾을 수 없습니다.";
+			break;
+		case NO_SUCH_NUM :
+			discription = "해당 계좌번호의 계좌를 찾을 수 없습니다.";
 			break;
 		}
 	}

@@ -6,15 +6,8 @@ import java.awt.Frame;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.List;
 
-import kr.or.kosta.entity.Account;
 import kr.or.kosta.entity.AccountDao;
-import kr.or.kosta.entity.AccountException;
-import kr.or.kosta.entity.AccountManager;
-import kr.or.kosta.entity.MinusAccount;
 
 /**
  * 계좌 관리 프로그램
@@ -28,8 +21,6 @@ import kr.or.kosta.entity.MinusAccount;
 public class MainFrame extends Frame {
 // 인스턴스 메소드
 	InputPanel inputPanel;
-	
-	AccountManager accountManager;
 	AccountDao accountDao;
 
 // 생성자
@@ -52,16 +43,12 @@ public class MainFrame extends Frame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
+				accountDao.close();
 				setVisible(false);
 				dispose();
 				System.exit(1);
 			}
 		});
-	}
-
-// setter, getter
-	public void setAccountManager(AccountManager accountManager) {
-		this.accountManager = accountManager;
 	}
 	
 	public void setAccountDao(AccountDao accountDao) {

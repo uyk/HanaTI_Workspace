@@ -23,6 +23,7 @@ import kr.or.kosta.entity.MinusAccount;
  * @author 유예겸
  *
  */
+
 public class InputPanel extends Panel {
 
 // 인스턴스 변수
@@ -212,9 +213,7 @@ public class InputPanel extends Panel {
 	/**
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
-	public void eventRegist() {
-		System.out.println(accountDao);
-		
+	public void eventRegist() {		
 		// 계좌 타입 선택
 		accountTypeCh.addItemListener(new AMSEventHandler(this, accountDao));
 		// 신규등록

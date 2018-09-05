@@ -1,6 +1,5 @@
 package kr.or.kosta.entity;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
@@ -42,9 +41,6 @@ public class AccountDao {
 		// 저장된 파일이 있는 경우..
 		if(file.length() != 0){
 			recordCount = file.readInt();
-		}else{
-			// 임시 디버깅용
-			System.out.println("처음 프로그램을 실행하여 파일에 정보 없음");
 		}
 	}	
 
@@ -58,7 +54,7 @@ public class AccountDao {
 	public boolean create(Account account) throws IOException {
 		// 파일의 마지막 레코드끝으로 파일 포인터 이동.
 		file.seek((recordCount * RECORD_LENGTH) + RECORD_COUNT_LENGTH);
-		
+		// 이미 있는 계좌면 추가 안함
 		// 0번째부터 (recordCount-1)번째의 계좌의 정보를 읽기
 		for(int i=0; i<recordCount; i++){
 			Account tempAccount = read(i);	
@@ -273,86 +269,5 @@ public class AccountDao {
 			ex.printStackTrace();
 		}
 	}
-	
-	
-	// 테스트를 위한 메인
-	
-	public static void main(String[] args) {
-		try {
-			// 테스트를 위해 파일 초기화
-			File tempFile = new File(FILE_PATH);
-			tempFile.delete();
-			
-			AccountDao accountDao = new AccountDao();
-			
-			// 계좌 추가
-			accountDao.create(new Account("0000-2222-3333", "유예겸", 1234, 1000));
-			accountDao.create(new Account("4444-2222-3333", "사람", 1234, 100000));
-			accountDao.create(new MinusAccount("6666-2222-3333", "가나다라", 1234, 190000, 6000));
-			accountDao.create(new Account("7777-2222-3333", "고고", 1234, 10000550));
-			accountDao.create(new Account("7777-2222-3367", "ㅂㅂㅂ", 1234, 10000550));
-			accountDao.create(new Account("5777-2222-3335", "고고", 1234, 10000550));
-			
-			// 테스트용 출력/////////////////////////////////////////////
-			// 개수
-			System.out.println("계좌 개수 : " + accountDao.getRecordCount());
-			
-			// 전체 리스트 출력	
-			System.out.println("---------계좌 출력---------");
-			List<Account> list = accountDao.listAll();
-			for (Account account : list) {
-				System.out.println(account);
-			}
-			// 계좌번호로 조회
-			System.out.println("---------계좌 번호 조회---------");
-			System.out.println(accountDao.searchByNum("7777-2222-3333"));
-			
-			// 예금주명로 조회
-			System.out.println("---------예금주 조회---------");
-			System.out.println(accountDao.searchByOwner("고고"));
-			
-			// 계좌번호로 제거
-			System.out.println("---------제거---------");
-			System.out.println(accountDao.remove("6666-2222-3333"));
-			
-			System.out.println("---------계좌 출력---------");
-			list = accountDao.listAll();
-			for (Account account : list) {
-				System.out.println(account);
-			}
-			System.out.println(accountDao.getRecordCount());
-			// 계좌 추가
-			System.out.println("계좌 두개 추가");
-			accountDao.create(new Account("0033-2222-3333", "ㅂㅂ", 1234, 1000));
-			accountDao.create(new Account("4214-2222-3333", "사람", 1234, 100000));
-			
-			// 테스트용 출력/////////////////////////////////////////////
-			// 개수
-			System.out.println("계좌 개수 : " + accountDao.getRecordCount());
-			
-			// 전체 리스트 출력	
-			System.out.println("---------계좌 출력---------");
-			list = accountDao.listAll();
-			for (Account account : list) {
-				System.out.println(account);
-			}
-			// 계좌번호로 조회
-			System.out.println("---------계좌 번호 조회---------");
-			System.out.println(accountDao.searchByNum("7777-2222-3333"));
-			
-			// 예금주명로 조회
-			System.out.println("---------예금주 조회---------");
-			System.out.println(accountDao.searchByOwner("고고"));
-			
-			// 존재하는 계좌 추가
-			System.out.println("---------중복계좌 추가---------");
-			System.out.println(accountDao.create(new Account("4214-2222-3333", "사람", 1234, 100000)));
-			
-			accountDao.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
+
 }

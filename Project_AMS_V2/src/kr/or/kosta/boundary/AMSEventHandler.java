@@ -29,7 +29,6 @@ import kr.or.kosta.entity.MinusAccount;
 public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemListener {
 // 인스턴스 메소드
 	InputPanel inputPanel;
-	MainFrame mainFrame;
 	AccountDao accountDao;
 	
 // 생성자
@@ -37,7 +36,6 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	 * 디폴트 생성자
 	 */
 	public AMSEventHandler() {
-		//this(new InputPanel());
 		System.out.println("No Argu // EventHandler");
 	}
 	/**
@@ -47,8 +45,8 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	 */
 	public AMSEventHandler(InputPanel inputPanel, AccountDao accountDao) {
 		this.inputPanel = inputPanel;
-		this.mainFrame = inputPanel.mainFrame;
-		this.accountDao = accountDao;
+		//this.mainFrame = inputPanel.mainFrame;
+		this.accountDao = inputPanel.accountDao;
 	}
 
 	
@@ -160,22 +158,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 					// 입출금계좌인 경우
 					else 
 						account = new Account(accountNum, accountOwner, passwd, restMoney);
-					try {
-						System.out.println(accountDao.getRecordCount());
 						accountDao.create(account);
-					} catch(IOException e11) {
-						e11.printStackTrace();
-					}
-					
-					/*
-					// accountManager의 계좌정보 테이블에 계좌정보 추가
-					try {
-						mainFrame.accountManager.add(account);
-						JOptionPane.showMessageDialog(null, "계좌를 등록했습니다.", "알림", JOptionPane.INFORMATION_MESSAGE);
-					} catch (AccountException e2) {
-						throw new AccountException(AccountException.EXIST_NUM);
-					}
-					*/
 				}
 			}
 	
@@ -186,7 +169,10 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 				// 유효 검사 후 accountManager의 searchByNumber를 호출하여 accountNum 계좌번호의 계좌 출력
 				if(isValidNum(accountNum)) {
 					accountNum = accountNumFormat(accountNum);
-					Account account = mainFrame.accountManager.searchByNumber(accountNum);
+					Account account = accountDao.searchByNum(accountNum);
+					// 계좌를 찾지 못함
+					if(account == null) 
+						throw new AccountException(AccountException.NO_SUCH_NUM);
 					inputPanel.accountsListTA.append(inputPanel.accountFormat(account));
 					inputPanel.accountsListTA.append("--------------------------------------------------------------------");
 				}
@@ -199,7 +185,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 				// 유효 검사 후 accountManager의 remove를 호출하여 accountNum 계좌번호의 계좌 제거
 				if(isValidNum(accountNum)) {
 					accountNum = accountNumFormat(accountNum);
-					if (mainFrame.accountManager.remove(accountNum))
+					if (accountDao.remove(accountNum))
 						JOptionPane.showMessageDialog(null, accountNum + "계좌를 제거했습니다", "알림",
 								JOptionPane.INFORMATION_MESSAGE);
 					else
@@ -218,8 +204,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	
 				// 검색하여 계좌정보 텍스트영역에 출력
 				else {
-					ArrayList<Account> accountsOfowner = (ArrayList<Account>) (mainFrame.accountManager
-							.serachByOwner(accountOwner));
+					ArrayList<Account> accountsOfowner = (ArrayList<Account>) (accountDao.searchByOwner(accountOwner));
 					for (Object object : accountsOfowner) {
 						inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
 					}
@@ -229,7 +214,7 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 	
 			// 전체 조회
 			else if (e.getSource() == inputPanel.allAccountB) {
-				List<Account> list = mainFrame.accountManager.list();
+				List<Account> list = accountDao.listAll();
 				for (Object object : list) {
 					inputPanel.accountsListTA.append(inputPanel.accountFormat((Account) object));
 				}
@@ -237,6 +222,9 @@ public class AMSEventHandler extends KeyAdapter implements ActionListener, ItemL
 			}
 		} catch(AccountException ae) {
 			JOptionPane.showMessageDialog(null, ae.getDiscription(), "알림", JOptionPane.ERROR_MESSAGE);
+		} catch(IOException ie) {
+			ie.printStackTrace();
+			JOptionPane.showMessageDialog(null, "파일 처리 에러", "알림", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
