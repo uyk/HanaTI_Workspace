@@ -1,70 +1,70 @@
 package synchronize;
 
-/**
- * ÀºÇà º»Á¡ ¼­¹ö¿ÍÀÇ ³×Æ®¿öÅ© Åë½ÅÀ» ÅëÇØ °èÁÂ °ü·Ã Ã³¸® ´ã´ç
- * @author ±è±âÁ¤
+/** 
+ * ì€í–‰ ë³¸ì  ì„œë²„ì™€ì˜ ë„¤íŠ¸ì›Œí¬ í†µì‹ ì„ í†µí•´ ê³„ì¢Œ ê´€ë ¨ ì²˜ë¦¬ ë‹´ë‹¹
+ * @author ê¹€ê¸°ì •
  *
  */
 public class ATM {
-	/** Å×½ºÆ®¸¦ À§ÇÑ °øÀ¯ °èÁÂ */
+	/** í…ŒìŠ¤íŠ¸ë¥¼ ìœ„í•œ ê³µìœ  ê³„ì¢Œ */
 	Account account;
 	
 	public ATM(){
-		account = new Account("1111-2222", "¹æ±×¸®°¡Á·ÅëÀå", 1111, 100000);
+		account = new Account("1111-2222", "ë°©ê·¸ë¦¬ê°€ì¡±í†µì¥", 1111, 100000);
 	}
 	
-	/** ÀÔ±İ */
+	/** ì…ê¸ˆ */
 	public void depositMoney(String accountNum, int passwd, long money, String user) throws Exception{
-		System.out.println("***** " + user + " ÀÔ±İ ½ÃÀÛ *****");
+		System.out.println("***** " + user + " ì…ê¸ˆ ì‹œì‘ *****");
 		if(!checkAccountNum(accountNum)){
-			throw new Exception("Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂÀÔ´Ï´Ù.");
+			throw new Exception("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œì…ë‹ˆë‹¤.");
 		}
 		if(!checkPasswd(passwd)){
-			throw new Exception("ºñ¹Ğ¹øÈ£ ¿À·ùÀÔ´Ï´Ù.");
+			throw new Exception("ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜ì…ë‹ˆë‹¤.");
 		}
 		
-		// º»Á¡ ¼­¹ö¿ÍÀÇ Åë½Å¿¡ ¾à°£ÀÇ ½Ã°£ÀÌ ¼Ò¿äµÈ´Ù °¡Á¤..
+		// ë³¸ì  ì„œë²„ì™€ì˜ í†µì‹ ì— ì•½ê°„ì˜ ì‹œê°„ì´ ì†Œìš”ëœë‹¤ ê°€ì •..
 		Thread.sleep(300);
 		account.deposit(money);
 		Thread.sleep(300);
-		System.out.println(user+" ÀÔ±İ ÈÄ ÀÜ¾× : " + account.getRestMoney());
-		System.out.println("***** " + user + " ÀÔ±İ ¿Ï·á *****");
+		System.out.println(user+" ì…ê¸ˆ í›„ ì”ì•¡ : " + account.getRestMoney());
+		System.out.println("***** " + user + " ì…ê¸ˆ ì™„ë£Œ *****");
 	}
 	
-	/** Ãâ±İ */
+	/** ì¶œê¸ˆ */
 	public  /*synchronized*/ void withdrawMoney(String accountNum, int passwd, long money, String user) throws Exception{
 		
 //		synchronized (Account.class) {
-			System.out.println("***** " + user + " Ãâ±İ ½ÃÀÛ *****");
+			System.out.println("***** " + user + " ì¶œê¸ˆ ì‹œì‘ *****");
 			
 			if(!checkAccountNum(accountNum)){
-				throw new Exception("Á¸ÀçÇÏÁö ¾Ê´Â °èÁÂÀÔ´Ï´Ù.");
+				throw new Exception("ì¡´ì¬í•˜ì§€ ì•ŠëŠ” ê³„ì¢Œì…ë‹ˆë‹¤.");
 			}
 			if(!checkPasswd(passwd)){
-				throw new Exception("ºñ¹Ğ¹øÈ£ ¿À·ùÀÔ´Ï´Ù.");
+				throw new Exception("ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜ì…ë‹ˆë‹¤.");
 			}
 			if(money > account.getRestMoney()){
-				throw new Exception("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
+				throw new Exception("ì”ì•¡ì´ ë¶€ì¡±í•©ë‹ˆë‹¤.");
 			}
 			
-			// º»Á¡ ¼­¹ö¿ÍÀÇ Åë½Å¿¡ ¾à°£ÀÇ ½Ã°£ÀÌ ¼Ò¿äµÈ´Ù °¡Á¤..
+			// ë³¸ì  ì„œë²„ì™€ì˜ í†µì‹ ì— ì•½ê°„ì˜ ì‹œê°„ì´ ì†Œìš”ëœë‹¤ ê°€ì •..
 			Thread.sleep(300);
 			account.withdraw(money);
 			
 			Thread.sleep(300);
-			System.out.println(user+" Ãâ±İ ÈÄ ÀÜ¾× : " + account.getRestMoney());
-			System.out.println("***** " + user + " Ãâ±İ ¿Ï·á *****");
+			System.out.println(user+" ì¶œê¸ˆ í›„ ì”ì•¡ : " + account.getRestMoney());
+			System.out.println("***** " + user + " ì¶œê¸ˆ ì™„ë£Œ *****");
 //		}
 	}
 
 	private boolean checkAccountNum(String accountNum) throws Exception{
-		// º»Á¡ ¼­¹ö¿ÍÀÇ Åë½Å¿¡ ¾à°£ÀÇ ½Ã°£ÀÌ ¼Ò¿äµÈ´Ù °¡Á¤..
+		// ë³¸ì  ì„œë²„ì™€ì˜ í†µì‹ ì— ì•½ê°„ì˜ ì‹œê°„ì´ ì†Œìš”ëœë‹¤ ê°€ì •..
 		Thread.sleep(300);
 		return accountNum.equals(account.getAccountNum());
 	}
 	
 	private boolean checkPasswd(int passwd) throws Exception{
-		// º»Á¡ ¼­¹ö¿ÍÀÇ Åë½Å¿¡ ¾à°£ÀÇ ½Ã°£ÀÌ ¼Ò¿äµÈ´Ù °¡Á¤..
+		// ë³¸ì  ì„œë²„ì™€ì˜ í†µì‹ ì— ì•½ê°„ì˜ ì‹œê°„ì´ ì†Œìš”ëœë‹¤ ê°€ì •..
 		Thread.sleep(300);
 		return passwd == account.getPasswd();
 	}

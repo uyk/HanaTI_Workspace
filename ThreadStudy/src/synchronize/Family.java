@@ -45,7 +45,7 @@ public class Family extends Thread{
 	
 	
 	/** 동기화 처리 시 발생할 수 있는 스레드 기아 및 데드락 문제가 발생할 수 있다 */
-	/*
+	
 	public void run() {
 		// 스레드에서 공유계좌의 금액 출금
 		try {
@@ -58,9 +58,10 @@ public class Family extends Thread{
 			System.out.println(e.getMessage());
 		}
 	}
-	*/
+	
 	
 	/** wait(), notify()/notifyAll() 메소드를 이용한 기아 및 데드락 문제 해결*/
+	/*
 	public void run() {
 		
 		// 스레드에서 공유계좌의 금액 출금
@@ -78,4 +79,5 @@ public class Family extends Thread{
 			System.out.println(e.getMessage());
 		}
 	}
+	*/
 }

@@ -1,20 +1,20 @@
 package synchronize;
 
 /**
- * ½º·¹µå µ¿±âÈ­ ¿¹Á¦
- * @author ±è±âÁ¤
+ * ìŠ¤ë ˆë“œ ë™ê¸°í™” ì˜ˆì œ
+ * @author ê¹€ê¸°ì •
  *
  */
 public class ATMExample {
 	
 	public static void main(String[] args) {
 		
-		// ½º·¹µå¿¡ ÀÇÇØ °øÀ¯µÇ´Â ATM »ı¼º
+		// ìŠ¤ë ˆë“œì— ì˜í•´ ê³µìœ ë˜ëŠ” ATM ìƒì„±
 		ATM atm = new ATM();
 		
-		Family mom = new Family("¾ö¸¶");
+		Family mom = new Family("ì—„ë§ˆ");
 		mom.setAtm(atm);
-		Family son = new Family("¾Æµé");
+		Family son = new Family("ì•„ë“¤");
 		son.setAtm(atm);
 		
 		mom.start();
