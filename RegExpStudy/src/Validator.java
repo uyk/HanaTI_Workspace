@@ -24,7 +24,7 @@ public class Validator {
 	 * @return
 	 */
 	public static boolean isValidId(String id){
-		if ( id.length() >= 8 && id.length() <= 10  ) {
+		if ( id.length() >= 8 && id.length() <= 10 && id.matches("[a-zA-Z0-9]") ) {
 			return true;
 		}
 		return false;
