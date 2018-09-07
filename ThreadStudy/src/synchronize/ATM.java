@@ -9,6 +9,7 @@ public class ATM {
 	/** 테스트를 위한 공유 계좌 */
 	Account account;
 	
+	
 	public ATM(){
 		account = new Account("1111-2222", "방그리가족통장", 1111, 100000);
 	}
