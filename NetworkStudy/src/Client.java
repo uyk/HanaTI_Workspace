@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.SocketException;
 
 /**
  * 클라이언트의 데이터 수신 및 처리
@@ -30,7 +29,7 @@ public class Client extends Thread {
 				clientMessage = in.readLine();
 				System.out.println("클라이언트로부터 수신 : " + clientMessage);
 				if(clientMessage.equalsIgnoreCase("quit")) {
-					break;
+					break;                                                                                                                                                           
 				}
 				out.println(clientMessage);
 			} catch (IOException e) {
