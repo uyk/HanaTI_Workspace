@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="close" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="close"/>
 			<item value="exi"/>
+			<item value="disco"/>
+			<item value="ena"/>
+			<item value="enab"/>
+			<item value="enable"/>
+			<item value="connec"/>
+			<item value="send"/>
+			<item value="stop"/>
+			<item value="sendM"/>
+			<item value="rec"/>
+			<item value="from"/>
+			<item value="quit"/>
 			<item value="creat"/>
 			<item value="NO_SUCH_NUM"/>
-			<item value="dial"/>
-			<item value="borrow"/>
-			<item value="getrest"/>
-			<item value="getr"/>
-			<item value="borro"/>
-			<item value="minus"/>
-			<item value="minu"/>
-			<item value="ioe"/>
-			<item value="io"/>
-			<item value="system"/>
-			<item value="sysout"/>
-			<item value="mana"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1540" key="DIALOG_X_ORIGIN"/>
-		<item value="173" key="DIALOG_Y_ORIGIN"/>
+		<item value="1809" key="DIALOG_X_ORIGIN"/>
+		<item value="154" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

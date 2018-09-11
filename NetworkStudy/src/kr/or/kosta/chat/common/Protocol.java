@@ -6,4 +6,5 @@ public interface Protocol {
 	public static final int CONNECT_RESULT	= 1001;
 	public static final int MULTI_CHAT 		= 2000;
 	public static final int DISCONNECT 		= 3000;
+	public static final int NEW_MEMBER 		= 4000;
 }

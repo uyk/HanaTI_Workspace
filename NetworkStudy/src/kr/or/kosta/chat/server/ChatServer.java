@@ -3,17 +3,17 @@ package kr.or.kosta.chat.server;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
-
-import kr.or.kosta.chat.common.Protocol;
+import java.util.List;
 
 /**
  * Chatting Server
  * @author 김기정
  */
 public class ChatServer {
-	public static final int PORT = 7777;
+	public static final int PORT = 8888;
 	private boolean running;
 	private ServerSocket serverSocket;
 	private Hashtable<String, Client> clients;
@@ -62,7 +62,10 @@ public class ChatServer {
 		return clients.containsKey(nickName);
 	}
 	
-	public void removeClient(Client client) {}
+	public void removeClient(Client client) {
+		clients.remove(client.getNickName());
+
+	}
 	
 	public void sendAllMessage(String message) {
 		Enumeration<Client> e = clients.elements();
@@ -70,6 +73,16 @@ public class ChatServer {
 			Client client = e.nextElement();
 			client.sendMessage(message);
 		}
+	}
+	
+	public List<String> getAllNickName() {
+		List<String> list = new ArrayList<String>(); 
+		Enumeration<Client> e = clients.elements();
+		while (e.hasMoreElements()) {
+			Client client = e.nextElement();
+			list.add(client.getNickName());
+		}
+		return list;
 	}
 	
 }

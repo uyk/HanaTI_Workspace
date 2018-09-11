@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.List;
 
 import kr.or.kosta.chat.common.Protocol;
 
@@ -88,13 +89,35 @@ public class Client extends Thread {
 				sendMessage(Protocol.CONNECT_RESULT + Protocol.DELEMETER + nickName + Protocol.DELEMETER +  "FAIL");
 				
 			}else {
+				List<String> list = chatServer.getAllNickName();
 				chatServer.addClient(this);
+				
 				System.out.println("[Debug] : 접속 클라이언트 수 : " + chatServer.getClientCount());
-				sendMessage(Protocol.CONNECT_RESULT + Protocol.DELEMETER + nickName + Protocol.DELEMETER +  "SUCCESS");
+				
+				String nickNames = "";
+				for (String name : list) {
+					nickNames += name + Protocol.DELEMETER;
+				}
+				
+				sendMessage(Protocol.CONNECT_RESULT + Protocol.DELEMETER + nickName + Protocol.DELEMETER +  "SUCCESS"
+								+ Protocol.DELEMETER + nickNames);
+				chatServer.sendAllMessage(Protocol.NEW_MEMBER + Protocol.DELEMETER + nickName);
 			}
 			break;
 		case Protocol.MULTI_CHAT :
 			chatServer.sendAllMessage(message);
+			break;
+		case Protocol.DISCONNECT :
+			running = false;
+			chatServer.removeClient(this);
+			chatServer.sendAllMessage(message);
+			try {
+				getSocket().close();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println("[debug] : socket close error in ChatServer 72");
+			}
+			System.out.println("[Debug] : 접속 클라이언트 수 : " + chatServer.getClientCount());
 			break;
 		default:
 			break;

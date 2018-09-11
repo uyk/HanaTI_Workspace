@@ -16,7 +16,7 @@ import kr.or.kosta.chat.common.Protocol;
  */
 public class ChatClient {
 	public static final String SERVER = "127.0.0.1";
-	public static final int PORT = 7777;
+	public static final int PORT = 8888;
 	
 	private Socket socket;
 	private BufferedReader in;
@@ -63,6 +63,12 @@ public class ChatClient {
 					try {
 						serverMessage = in.readLine();
 						System.out.println("[Debug] : Server Receive Message: " + serverMessage);
+						
+						// 종료
+						if(serverMessage == null) {
+							running = false;
+							break;
+						}
 						process(serverMessage);
 						
 					} catch (IOException e) {
@@ -88,11 +94,17 @@ public class ChatClient {
 		String nickName = tokens[1];
 
 		switch (protocol) {
+
 		case Protocol.CONNECT_RESULT :
 			String result = tokens[2];
+			// 대화명 생성 성공
 			if(result.equalsIgnoreCase("SUCCESS")) {
-				chatFrame.appendMessage("###"+nickName+"님이 연결하였습니다. ###");
+				// 대화명 필드 비활성화
 				chatFrame.connectEnable(false);
+				
+				for (int i = 3; i < tokens.length; i++) {
+					chatFrame.appendMember(tokens[i]);
+				}
 			}else {
 				JOptionPane.showMessageDialog(null, "이미 사용중인 대화명입니다.\n다른 대화명을 사용하세요.", "경고", JOptionPane.ERROR_MESSAGE);
 			}
@@ -101,6 +113,16 @@ public class ChatClient {
 			String chatMessage = tokens[2];
 			chatFrame.appendMessage("[" + nickName + "] : " + chatMessage);
 			break;
+		case Protocol.DISCONNECT :
+			chatFrame.appendMessage("[" + nickName + "] 님이 나갔습니다.");
+			chatFrame.removeMember(nickName);
+			break;
+		case Protocol.NEW_MEMBER :
+
+			chatFrame.appendMessage("###"+nickName+"님이 연결하였습니다. ###");
+			chatFrame.appendMember(nickName);
+			break;			
+			
 		default:
 			break;
 		}

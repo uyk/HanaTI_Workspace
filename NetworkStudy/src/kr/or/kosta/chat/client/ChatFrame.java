@@ -1,13 +1,9 @@
 package kr.or.kosta.chat.client;
+
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.List;
 import java.awt.Menu;
@@ -22,11 +18,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -50,6 +42,9 @@ public class ChatFrame extends Frame {
 	Menu menu;
 	MenuItem newMI, exitMI;
 	
+	public static final String CONNECT = "연결";
+	public static final String DISCONNECT = "연결 해제";
+	
 	
 	public ChatFrame() {
 		this("이름없음");
@@ -60,13 +55,10 @@ public class ChatFrame extends Frame {
 		nickNameL = new Label("대화명");
 		nickNameTF = new TextField();
 		inputTF = new TextField();
-		connectB = new Button("연결");
+		connectB = new Button(CONNECT);
 		sendB = new Button("전송");
 		messageTA = new TextArea();
 		userList = new List();
-		userList.add("말미잘");
-		userList.add("꼴뚜기");
-		userList.add("머저리");
 		
 		menuBar = new MenuBar();
 		menu = new Menu("File");
@@ -126,17 +118,34 @@ public class ChatFrame extends Frame {
 			
 			// 최초 연결 메시지 전송
 			chatClient.sendMessage(Protocol.CONNECT + Protocol.DELEMETER + nickName);
-//			appendMessage("@@@ ChatServer와 연결되었습니다 @@@@");
+
 			chatClient.receiveMessage();
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null, e.getMessage(), "연결 실패", JOptionPane.ERROR_MESSAGE);
 		}
-		
+	}
+				
+	public void disconnect() {
+		chatClient.sendMessage(Protocol.DISCONNECT + Protocol.DELEMETER + nickName);
+		chatClient.stopClient();
+		connectEnable(true);
+	
 	}
 	
 	public void connectEnable(boolean flag) {
 		nickNameTF.setEnabled(flag);
-		connectB.setEnabled(flag);
+		
+		if(flag) {
+			connectB.setLabel(CONNECT);
+			messageTA.setText("");
+			nickNameTF.setText("");
+			userList.removeAll();
+		}
+		
+		else {
+			connectB.setLabel(DISCONNECT);
+			
+		}
 	}
 	
 	public void sendMessage() {
@@ -153,8 +162,16 @@ public class ChatFrame extends Frame {
 		messageTA.append(message + "\n");
 	}
 	
+	public void appendMember(String member) {
+		userList.add(member);
+	}
+	
+	public void removeMember(String member) {
+		userList.remove(member);
+	}
 	
 	public void finish() {
+		disconnect();
 		setVisible(false);
 		dispose();
 		System.exit(0);
@@ -172,16 +189,9 @@ public class ChatFrame extends Frame {
 		connectB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				connect();
+				if(connectB.getLabel().equals(CONNECT)) connect();
+				else disconnect();
 				
-			}
-		});
-		
-		
-		addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				finish();
 			}
 		});
 		
@@ -214,6 +224,13 @@ public class ChatFrame extends Frame {
 		exitMI.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				finish();
+			}
+		});
+				
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowClosing(WindowEvent e) {
 				finish();
 			}
 		});
