@@ -1,17 +1,21 @@
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Frame;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class MainPanel extends Panel implements ActionListener{
+public class RoomPanel extends Panel implements ActionListener{
 	
 	TalkFrame frame;
 	Label tempL;
 	Button logoutB;
 	
-	public MainPanel(TalkFrame frame) {
+	public RoomPanel() {
+		this(new TalkFrame());
+	}
+	public RoomPanel(TalkFrame frame) {
 		this.frame = frame;
 		tempL = new Label("This is Test Panel", Label.CENTER);
 		logoutB = new Button("LOGOUT");
@@ -35,13 +39,13 @@ public class MainPanel extends Panel implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-//		Frame frame = new Frame("메인화면");
-//		MainPanel mainPanel = new MainPanel();
-//		
-//		frame.add(mainPanel);
-//		frame.setSize(300, 500);
-////		frame.pack();
-//		frame.setVisible(true);
+		Frame frame = new Frame("메인화면");
+		RoomPanel mainPanel = new RoomPanel();
+		
+		frame.add(mainPanel);
+		frame.setSize(300, 500);
+		frame.pack();
+		frame.setVisible(true);
 	}
 
 

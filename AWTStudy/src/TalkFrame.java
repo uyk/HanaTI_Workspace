@@ -25,7 +25,7 @@ import java.awt.event.WindowListener;
 public class TalkFrame extends Frame implements WindowListener{
 	
 	LoginPanel loginPanel;
-	MainPanel mainPanel;
+	RoomPanel mainPanel;
 	
 	Panel cardPanel;
 	CardLayout cardLayout;
@@ -38,7 +38,7 @@ public class TalkFrame extends Frame implements WindowListener{
 	public TalkFrame(String title) {
 		super(title);
 		loginPanel = new LoginPanel(this);
-		mainPanel = new MainPanel(this);
+		mainPanel = new RoomPanel(this);
 		
 		cardPanel = new Panel();		
 		cardLayout = new CardLayout();
