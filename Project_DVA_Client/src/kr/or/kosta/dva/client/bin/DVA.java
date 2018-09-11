@@ -9,9 +9,10 @@ public class DVA {
 		frame.eventRegist();
 		frame.setContents();
 		frame.setSize(300, 500);
+		frame.setResizable(false);
 		frame.setCenter();
 		
-
+ 
 		frame.setVisible(true);
 		
 		//ChatClient chatClient = new ChatClient(frame);

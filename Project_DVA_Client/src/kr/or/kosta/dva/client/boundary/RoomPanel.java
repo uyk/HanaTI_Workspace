@@ -31,7 +31,7 @@ public class RoomPanel extends Panel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(frame.LOGIN);
+				frame.changeCard(MainFrame.LOGIN);
 				
 			}
 		});

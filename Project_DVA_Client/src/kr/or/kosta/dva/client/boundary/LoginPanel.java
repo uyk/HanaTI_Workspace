@@ -1,11 +1,9 @@
 package kr.or.kosta.dva.client.boundary;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Insets;
 import java.awt.Label;
 import java.awt.Panel;
 import java.awt.TextField;
@@ -24,38 +22,40 @@ public class LoginPanel extends Panel {
 	GridBagLayout gridBagLayout;
 	GridBagConstraints gridBagConstraints;
 	
-	Label nickNameL, passwdL;
-	TextField emailTF, passwdTF;
-	Button loginB, registB;
+	Label nickNameL;
+	TextField nickNameTF;
+	Button loginB;
 	
+	// 생성자
+	/**
+	 * 
+	 */
+	/**
+	 * 패널이 부착되는 프레임을 인자로 받는 생성자.
+	 * 인스턴스 변수들을 초기화하고 패널에 컨텐츠를 부착하는 setContents 메소드와
+	 * 이벤트를 컴포넌트에 등록하는 eventRegist 메소드를 호출한다.
+	 * @param frame	패널이 부착된 프레임
+	 */
 	public LoginPanel(MainFrame frame) {
 		this.frame = frame;
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
 		
-		nickNameL = new Label("EMAIL");
-		passwdL = new Label("PASSWD");
-		emailTF = new TextField();
-		passwdTF = new TextField();
-		passwdTF.setEchoChar('*');
+		nickNameL = new Label("Nick Name");
+		nickNameTF = new TextField(20);
 		loginB = new Button("LOGIN");
-		registB = new Button("REGIST");
 		
 		setContents();
 		eventRegist();
 		
 	}
 	
-	private void add(Component component, int gridx, int gridy, int gridwidth, int gridheight, double weightx, double weighty) {
+	private void add(Component component, int gridx, int gridy, int gridwidth, int gridheight) {
 		gridBagConstraints.gridx = gridx;
 		gridBagConstraints.gridy = gridy;
 		gridBagConstraints.gridwidth = gridwidth;
 		gridBagConstraints.gridheight = gridheight;
-		gridBagConstraints.weightx = weightx;
-		gridBagConstraints.weighty = weighty;
-		gridBagConstraints.fill = gridBagConstraints.HORIZONTAL;
-		gridBagConstraints.insets = new Insets(4, 1, 4, 1);
 		
 		gridBagLayout.setConstraints(component, gridBagConstraints);		
 		add(component);
@@ -63,21 +63,13 @@ public class LoginPanel extends Panel {
 	
 	public void setContents() {
 		setLayout(gridBagLayout);
-		add(new Label(" "),   	0, 0, 1, 1, 0, 0);
-		add(nickNameL,   			1, 0, 1, 1, 0, 0);
-		add(emailTF,  			2, 0, 1, 1, 1, 0);
-		add(new Label(" "), 	3, 0, 1, 1, 0, 0);
-		
-		add(new Label(" "),		0, 1, 1, 1, 0, 0);
-		add(passwdL,			1, 1, 1, 1, 0, 0);
-		add(passwdTF,			2, 1, 1, 1, 1, 0);
-		add(new Label(" "),		3, 1, 1, 1, 0, 0);
+		add(nickNameL,   		1, 0, 1, 1);
+		add(nickNameTF,  		2, 0, 1, 1);
 		
 		Panel buttonPanel = new Panel();
 		buttonPanel.add(loginB);
-		buttonPanel.add(registB);
 		
-		add(buttonPanel, 		0, 2, 3, 1, 0, 0);
+		add(buttonPanel, 		0, 1, 3, 1);
 		
 	}
 
@@ -86,8 +78,7 @@ public class LoginPanel extends Panel {
 		loginB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("TT");
-				frame.changeCard(frame.ROOM);
+				frame.changeCard(MainFrame.WAIT);
 				
 			}
 		});

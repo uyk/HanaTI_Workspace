@@ -17,8 +17,9 @@ import java.awt.event.WindowEvent;
  */
 public class MainFrame extends Frame{
 	// 패널 이름 상수
-	static final String LOGIN = "LOGIN";
-	static final String ROOM = "ROOM";
+	static final String LOGIN = "LOGIN";	// 로그인 화면
+	static final String WAIT = "WAIT";		// 대기실 화면
+	static final String ROOM = "ROOM";		// 채팅방 화면
 	
 	LoginPanel loginPanel;
 	WaitingPanel waitingPanel;
@@ -41,6 +42,7 @@ public class MainFrame extends Frame{
 	public MainFrame(String title) {
 		super(title);
 		loginPanel = new LoginPanel(this);
+		waitingPanel = new WaitingPanel(this);
 		roomPanel = new RoomPanel(this);
 		
 		cardPanel = new Panel();		
@@ -51,10 +53,9 @@ public class MainFrame extends Frame{
 	// 인스턴스 메소드
 	/** 카드패널에 패널들을 추가하고 카드패널을 프레임에 추가*/
 	public void setContents() {
-		
-
 		cardPanel.setLayout(cardLayout);
 		cardPanel.add(LOGIN, loginPanel);
+		cardPanel.add(WAIT, waitingPanel);
 		cardPanel.add(ROOM, roomPanel);
 		
 		add(cardPanel, BorderLayout.CENTER);
@@ -75,13 +76,15 @@ public class MainFrame extends Frame{
 	 * @param name 보여줄 패널의 이름
 	 */
 	public void changeCard(String name) {
-		switch(name) {
-		case LOGIN :
+		// 화면 크기 조정
+		// 로그인 화면은 크기 조절 불가
+		if(name.equals(LOGIN)) {
 			setSize(300,500);
-			break;
-		case ROOM :
+			setResizable(false);
+		}
+		else {
 			setSize(800,500);
-			break;
+			setResizable(true);
 		}
 		setCenter();
 		cardLayout.show(cardPanel, name);

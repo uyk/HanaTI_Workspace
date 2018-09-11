@@ -17,9 +17,9 @@ public abstract class Client extends Thread{
 		this.location = location;
 	}
 	
-	abstract void recieveMessage();
-	abstract void sendMessage(String message);
-	abstract void process(String message);
+	protected abstract void recieveMessage();
+	protected abstract void sendMessage(String message);
+	protected abstract void process(String message);
 	
 	@Override
 	public void run() {
