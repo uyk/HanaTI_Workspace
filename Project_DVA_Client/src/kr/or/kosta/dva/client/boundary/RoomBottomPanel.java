@@ -6,17 +6,17 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WaitingBottomPanel extends Panel{
+public class RoomBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
 	MainFrame frame;
-	Button logoutB, enterB, newRoomB, exitB;
+	Button logoutB, waitB, inviteB, exitB;
 	
-	public WaitingBottomPanel(MainFrame frame) {
+	public RoomBottomPanel(MainFrame frame) {
 		this.frame = frame;
 		
 		logoutB = new Button("로그아웃");
-		enterB = new Button("입장");
-		newRoomB = new Button("신규");
+		waitB = new Button("대기실");
+		inviteB = new Button("초대");
 		exitB = new Button("종료");
 		
 		setContents();
@@ -26,8 +26,8 @@ public class WaitingBottomPanel extends Panel{
 	public void setContents() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(logoutB);
-		add(enterB);
-		add(newRoomB);
+		add(waitB);
+		add(inviteB);
 		add(exitB);
 	}
 	
@@ -39,18 +39,18 @@ public class WaitingBottomPanel extends Panel{
 				
 			}
 		});
-		enterB.addActionListener(new ActionListener() {
+		waitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.ROOM);
+				frame.changeCard(MainFrame.WAIT);
 				
 			}
 		});
-		newRoomB.addActionListener(new ActionListener() {
+		inviteB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//frame.changeCard(MainFrame.ROOM);
-				System.out.println("debug : new Room");
+				System.out.println("debug : invite");
 			}
 		});
 		exitB.addActionListener(new ActionListener() {

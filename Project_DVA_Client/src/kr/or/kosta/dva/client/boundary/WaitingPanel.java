@@ -10,9 +10,14 @@ import java.awt.Label;
 import java.awt.List;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import kr.or.kosta.boundary.AMSEventHandler;
-
+/**
+ * 대기실 화면을 구현하는 패널
+ * @author 유예겸
+ *
+ */
 public class WaitingPanel extends Panel {
 	MainFrame frame;
 	
@@ -20,7 +25,7 @@ public class WaitingPanel extends Panel {
 	Choice searchType;
 	TextField searchTF;
 	Button searchB;
-	Label roomLabel, waitLabel;
+	Label roomL, waitL;
 	List roomList, waitList;
 	
 	WaitingBottomPanel bottomPanel;
@@ -47,13 +52,13 @@ public class WaitingPanel extends Panel {
 		
 		searchB = new Button("검색");	
 		
-		roomLabel = new Label("번호");
-		waitLabel = new Label("대기실 명단");
+		roomL = new Label("번호");
+		waitL = new Label("대기실 명단", Label.CENTER);
 		
 		roomList = new List();
 		waitList = new List();
 		
-		bottomPanel = new WaitingBottomPanel();
+		bottomPanel = new WaitingBottomPanel(frame);
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
@@ -104,18 +109,17 @@ public class WaitingPanel extends Panel {
 		addToGridBag(new Label(""), 3, 0, 3, 1, 0, 0);
 
 		// 메인 화면 영역
-		addToGridBag(roomLabel, 		0, 1, 1, 1, 0, 0);
+		addToGridBag(roomL, 		0, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("제목"), 1, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("방장"), 2, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("인원"), 3, 1, 1, 1, 0, 0);
-		addToGridBag(waitLabel, 		4, 1, 2, 1, 0, 0);
+		addToGridBag(waitL, 		4, 1, 2, 1, 0, 0);
 		
 		addToGridBag(roomList, 		0, 2, 4, 1, 1, 1);
 		addToGridBag(waitList, 		4, 2, 2, 1, 1, 1);
 		
 		// 버튼 영역
-		addToGridBag(new Label(""), 0, 3, 2, 1, 0, 0);
-		addToGridBag(bottomPanel, 	2, 3, 4, 1, 0, 0);
+		addToGridBag(bottomPanel, 	0, 3, 6, 1, 0, 0);
 	}
 	
 	/**
