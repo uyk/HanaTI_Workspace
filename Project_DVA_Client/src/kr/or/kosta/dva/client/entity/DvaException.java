@@ -1,24 +1,24 @@
 package kr.or.kosta.dva.client.entity;
 
-public class DVA_Exception extends Exception{
+public class DvaException extends Exception{
 	static final int DEFAULT = 100;
 	
 	private int errorCode;
 	private String error = "";
 	
-	public DVA_Exception() {
+	public DvaException() {
 		this(0,"");
 	}
 	
-	public DVA_Exception(int errorCode) {
+	public DvaException(int errorCode) {
 		this(errorCode, "");
 	}
 	
-	public DVA_Exception(String error) {
+	public DvaException(String error) {
 		this(0, "");
 	}
 	
-	public DVA_Exception(int errorCode, String error) {
+	public DvaException(int errorCode, String error) {
 		this.errorCode = errorCode;
 		this.error = error;
 		

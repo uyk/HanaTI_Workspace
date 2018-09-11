@@ -9,13 +9,12 @@ import java.awt.event.ActionListener;
 public class WaitingBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
 	MainFrame frame;
-	Button logoutB, enterB, newRoomB, exitB;
+	Button logoutB, newRoomB, exitB;
 	
 	public WaitingBottomPanel(MainFrame frame) {
 		this.frame = frame;
 		
 		logoutB = new Button("로그아웃");
-		enterB = new Button("입장");
 		newRoomB = new Button("신규");
 		exitB = new Button("종료");
 		
@@ -26,7 +25,6 @@ public class WaitingBottomPanel extends Panel{
 	public void setContents() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(logoutB);
-		add(enterB);
 		add(newRoomB);
 		add(exitB);
 	}
@@ -36,13 +34,6 @@ public class WaitingBottomPanel extends Panel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.changeCard(MainFrame.LOGIN);
-				
-			}
-		});
-		enterB.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.ROOM);
 				
 			}
 		});

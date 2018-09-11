@@ -75,6 +75,7 @@ public class LoginPanel extends Panel {
 		loginB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.client.setNickName(nickNameL.getText());
 				frame.changeCard(MainFrame.WAIT);
 				
 			}

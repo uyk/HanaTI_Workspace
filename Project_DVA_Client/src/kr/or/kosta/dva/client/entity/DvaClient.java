@@ -3,7 +3,7 @@ package kr.or.kosta.dva.client.entity;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class DVA_Client extends Client {
+public class DvaClient extends Client {
 
 	private String currentTime() {
 		LocalDateTime DateTime = LocalDateTime.now();

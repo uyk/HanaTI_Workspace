@@ -12,8 +12,7 @@ public class DVA {
 		frame.setResizable(false);
 		frame.setCenter();
 		
- 
-		frame.setVisible(true);
+		frame.setVisible(true);	
 		
 		//ChatClient chatClient = new ChatClient(frame);
 		

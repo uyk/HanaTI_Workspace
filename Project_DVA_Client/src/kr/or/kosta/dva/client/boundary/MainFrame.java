@@ -9,6 +9,8 @@ import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+import kr.or.kosta.dva.client.entity.DvaClient;
+
 /**
  * 카드레이아웃으로 패널을 패치하는 cardPanel을 가진 메인 프레임.
  * 
@@ -28,6 +30,8 @@ public class MainFrame extends Frame{
 	Panel cardPanel;
 	CardLayout cardLayout;
 	
+	DvaClient client;
+	
 	// 생성자
 	/** 디폴트 생성자 */
 	public MainFrame() {
@@ -44,6 +48,8 @@ public class MainFrame extends Frame{
 		loginPanel = new LoginPanel(this);
 		waitingPanel = new WaitingPanel(this);
 		roomPanel = new RoomPanel(this);
+		
+		client = new DvaClient();
 		
 		cardPanel = new Panel();		
 		cardLayout = new CardLayout();
@@ -107,6 +113,11 @@ public class MainFrame extends Frame{
 				finish();
 			}
 		});
+	}
+	
+	// 기타 메소드(나중에 위치 옮기는 것 고려)
+	public void sendPrivate(String from, String to) {
+		
 	}
 	
 }
