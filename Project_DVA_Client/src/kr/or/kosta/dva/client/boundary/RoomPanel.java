@@ -2,11 +2,23 @@ package kr.or.kosta.dva.client.boundary;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.Choice;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import java.awt.Label;
+import java.awt.List;
 import java.awt.Panel;
+import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 채팅방 화면
+ * @author 유예겸
+ *
+ */
 public class RoomPanel extends Panel {
 	MainFrame frame;
 	Label loginL;

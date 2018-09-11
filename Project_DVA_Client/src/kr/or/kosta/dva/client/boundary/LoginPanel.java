@@ -28,9 +28,6 @@ public class LoginPanel extends Panel {
 	
 	// 생성자
 	/**
-	 * 
-	 */
-	/**
 	 * 패널이 부착되는 프레임을 인자로 받는 생성자.
 	 * 인스턴스 변수들을 초기화하고 패널에 컨텐츠를 부착하는 setContents 메소드와
 	 * 이벤트를 컴포넌트에 등록하는 eventRegist 메소드를 호출한다.

@@ -30,8 +30,8 @@ public interface Protocol {
 	public static final int SC_ROOMLIST = 2001;
 	public static final int SC_ROOMUSERLIST = 2002;
 	public static final int SC_USERLIST = 2003;
-	public static final int CS_ROOM_ADD_SUCCESS = 3001;
-	public static final int CS_ROOM_ADD_FAIL = 3002;
+	public static final int SC_ROOM_ADD_SUCCESS = 3001;
+	public static final int SC_ROOM_ADD_FAIL = 3002;
 	public static final int SC_ENTRANCE_SUCCESS = 3101;
 	public static final int SC_ENTRANCE_FAIL = 3102;
 	public static final int SC_CHAT_MESSAGE = 4001;
