@@ -108,6 +108,32 @@ public class DvaClient extends Client{
 		System.out.println("[debug] sendMessage message: " + message);
 		if(out != null) out.println(message);
 	}
+
+	// 테스트를 위해 서버에서 보낸 메시지 설정
+	public void testSendMessage(String message) {
+		System.out.println("[debug] testSendMessage message: " + message);
+		// 서버로 부터 받은 메시지를 외부토큰으로 분해
+		String[] tokens = message.split(Protocol.DELEMETER);
+		int protocol = Integer.parseInt(tokens[0]);
+		String time = tokens[1];
+		String nickName = tokens[2];
+		
+		String SCMessage = null;
+		// 프로토콜에 따라 메시지 분석
+		switch (protocol) {
+		case Protocol.CS_GET_LIST :
+			SCMessage = Protocol.SC_ROOMUSERLIST+ Protocol.DELEMETER +
+						currentTime() + Protocol.DELEMETER + 
+						getNickName() + Protocol.DELEMETER + 
+						"테스트방" + Protocol.INNER_DELEMETER +
+						"이름1" + Protocol.INNER_DELEMETER +
+						"이름2" + Protocol.INNER_DELEMETER +
+						"이름3" + Protocol.INNER_DELEMETER;
+						
+			process(SCMessage);
+			break;
+		}
+	}
 	
 	/**
 	 * 서버로부터 메시지를 수신하는 스레드 발생.

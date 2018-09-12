@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Room {
 	private String RoomOwner;
-	protected List<DvaClient> clients;
+	protected List<String> clients;
 	private int Capacity;
 
 	public String getRoomOwner() {
@@ -13,10 +13,10 @@ public class Room {
 	public void setRoomOwner(String roomOwner) {
 		RoomOwner = roomOwner;
 	}
-	public List<DvaClient> getClients() {
+	public List<String> getClients() {
 		return clients;
 	}
-	public void setClients(List<DvaClient> clients) {
+	public void setClients(List<String> clients) {
 		this.clients = clients;
 	}
 	public int getCapacity() {

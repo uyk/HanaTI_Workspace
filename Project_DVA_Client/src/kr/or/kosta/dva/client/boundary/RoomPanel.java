@@ -69,6 +69,12 @@ public class RoomPanel extends Panel {
 		this.room = room;
 		roomNameL.setText(room.getRoomName());
 	}
+	public void setRoomUserList() {
+		userList.removeAll();
+		for(int i = 1; i < room.getClients().size(); i++)
+			userList.add(room.getClients().get(i));
+		
+	}
 
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드

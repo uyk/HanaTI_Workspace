@@ -108,8 +108,9 @@ public class MainFrame extends Frame{
 			break;
 		case ROOM :						// 채팅방 패널
 			roomPanel.setRoom(room);
+			roomPanel.setRoomUserList();
 		case WAIT :						// 대기실&채팅방
-			setTitle(getTitle() + "\t\t < User : " + client.getNickName() + ">");
+			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
 			setSize(800,500);
 			setResizable(true);
 			break;

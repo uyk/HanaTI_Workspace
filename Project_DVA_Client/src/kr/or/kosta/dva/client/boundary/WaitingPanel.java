@@ -36,7 +36,7 @@ public class WaitingPanel extends Panel {
 	TextField searchTF;
 	Button searchB;
 	Label roomL, waitL, roomUserL;
-	List roomList, waitList, roonUserList;
+	List roomList, waitList, roomUserList;
 	
 	WaitingBottomPanel bottomPanel;
 	
@@ -71,7 +71,7 @@ public class WaitingPanel extends Panel {
 		
 		roomList = new List();
 		waitList = new List();
-		roonUserList = new List();
+		roomUserList = new List();
 		
 		bottomPanel = new WaitingBottomPanel(frame);
 		
@@ -120,23 +120,30 @@ public class WaitingPanel extends Panel {
 		setLayout(gridBagLayout);
 
 		// 검색 영역
-		addToGridBag(searchType,	0, 0, 1, 1, 0, 0);
-		addToGridBag(searchTF, 		1, 0, 1, 1, 1, 0);
-		addToGridBag(searchB,		2, 0, 1, 1, 0, 0);
-		addToGridBag(new Label(""), 3, 0, 3, 1, 0, 0);
+		addToGridBag(searchType,		0, 0, 1, 1, 0, 0);
+		addToGridBag(searchTF, 			1, 0, 1, 1, 1, 0);
+		addToGridBag(searchB,			2, 0, 1, 1, 0, 0);
+		addToGridBag(new Label(""), 	3, 0, 2, 1, 0, 0);
 
-		// 메인 화면 영역
-		addToGridBag(roomL, 		0, 1, 1, 1, 0, 0);
+		// 방 정보, 대기실 유저 라벨
+		addToGridBag(roomL, 			0, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("제목"), 1, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("방장"), 2, 1, 1, 1, 0, 0);
 		addToGridBag(new Label("인원"), 3, 1, 1, 1, 0, 0);
-		addToGridBag(waitL, 		4, 1, 2, 1, 0, 0);
+		addToGridBag(waitL, 			4, 1, 1, 1, 0, 0);
 		
-		addToGridBag(roomList, 		0, 2, 4, 1, 1, 1);
-		addToGridBag(waitList, 		4, 2, 2, 1, 1, 1);
+		// 방 정보, 대기실 유저 리스트
+		addToGridBag(roomList, 			0, 2, 4, 3, 1, 1);
+		addToGridBag(waitList, 			4, 2, 1, 1, 1, 1);
 		
+		// 방 유저 이름
+		addToGridBag(roomUserL, 		4, 3, 2, 1, 0, 0);
+		
+		// 방 유저 리스트
+		addToGridBag(roomUserList, 		4, 4, 2, 1, 1, 1);
+
 		// 버튼 영역
-		addToGridBag(bottomPanel, 	0, 3, 6, 1, 0, 0);
+		addToGridBag(bottomPanel, 		0, 5, 5, 1, 0, 0);
 	}
 
 	/**
@@ -149,7 +156,6 @@ public class WaitingPanel extends Panel {
 			public void itemStateChanged(ItemEvent e) {
 				DvaRoom room = rooms.get(roomList.getSelectedIndex());				
 				String roomName = room.getRoomName();
-				List roomUsersList = new List();
 				
 				// 방 정보 요청 메시지를 보냄			
 				clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
@@ -157,35 +163,10 @@ public class WaitingPanel extends Panel {
 						frame.client.getNickName() + Protocol.DELEMETER +
 						Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER +
 						roomName;
-				frame.client.sendMessage(clientMessage);
-				
-				// 리스트에 방에 있는 유저 이름 추가.
-				for (String string : roomUsers) {
-					roomUsersList.add(string);
-				}
-				
-				// 다이얼로그로 유저 리스트와 버튼 표시
-				Panel panel = new Panel();
-				panel.add(roomUsersList);
-				String[] buttons = {"방 입장", "쪽지", "취소"};
-				int result = JOptionPane.showOptionDialog(null, panel, roomName, 
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, 
-						null, buttons, null);
-				
-				// 선택한 버튼 분석
-				switch(result) {
-				case 0:
-					frame.changeCard(MainFrame.ROOM, room);
-					break;
-				case 1:
-					//frame.sendPrivate(frame.client.getName(),  to);
-					break;
-				case 2:
-					break;
-				}
-//				Panel panel = new Panel();
-//				JOptionPane.showConfirmDialog(
-//					    null, panel, "CPM Program", JOptionPane.OK_CANCEL_OPTION);
+				//frame.client.sendMessage(clientMessage);
+				frame.client.testSendMessage(clientMessage);
+				bottomPanel.enterB.setEnabled(true);
+
 			}
 		});
 	}
@@ -197,6 +178,8 @@ public class WaitingPanel extends Panel {
 	public void setRoomList(java.util.List<DvaRoom> rooms) {
 		this.rooms = rooms;
 		roomList.removeAll();					// awt 리스트 초기화
+		//테스트를 위해 가짜 방 하나 추가		// debug
+		rooms.add(new DvaRoom("테스트 방", "가짜방장", 5, 10));
 		for (int i = 0; i < rooms.size(); i++) {
 			DvaRoom room = rooms.get(i);
 			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
@@ -204,6 +187,7 @@ public class WaitingPanel extends Panel {
 					room.getRoomOwner(), 
 					room.getUserCount(), room.getCapacity()));
 		}
+		
 	}
 	/** 대기실 유저 목록 설정 */
 	public void setWaitUsers(java.util.List<String> users) {
@@ -216,6 +200,16 @@ public class WaitingPanel extends Panel {
 	/** 특정 방 유저 목록 설정 */
 	public void setRoomUsers(java.util.List<String> users) {
 		this.roomUsers = users;
+		roomUserList.removeAll();
+		for (int i = 1; i < users.size(); i++) {
+			roomUserList.add(users.get(i));
+		}
+	}
+	/** 선택한 방에 입장하는 메소드 */
+	public void enterRoom() {
+		DvaRoom room = rooms.get(roomList.getSelectedIndex());
+		room.setClients(roomUsers);
+		frame.changeCard(MainFrame.ROOM, room);
 	}
 
 }
