@@ -1,8 +1,6 @@
 package kr.or.kosta.dva.client.boundary;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Choice;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,8 +10,8 @@ import java.awt.List;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+import kr.or.kosta.dva.client.entity.DvaRoom;
 
 /**
  * 채팅방 화면을 구현하는 패널
@@ -23,6 +21,7 @@ import java.awt.event.ActionListener;
  */
 public class RoomPanel extends Panel {
 	MainFrame frame;
+	DvaRoom room;
 	
 	// 화면구성 인스턴스 변수
 	Label roomNameL, userListL;
@@ -46,7 +45,7 @@ public class RoomPanel extends Panel {
 	public RoomPanel(MainFrame frame) {
 		this.frame = frame;
 		
-		roomNameL = new Label("새로운 대화방!!!2323");
+		roomNameL = new Label("새로운 대화방");
 		userListL = new Label("유저 목록", Label.CENTER);
 		chatTA = new TextArea();
 		userList = new List();
@@ -62,6 +61,15 @@ public class RoomPanel extends Panel {
 		eventRegist();
 	}
 	
+	public DvaRoom getRoom() {
+		return room;
+	}
+
+	public void setRoom(DvaRoom room) {
+		this.room = room;
+		roomNameL.setText(room.getRoomName());
+	}
+
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
 	 * 
@@ -110,7 +118,6 @@ public class RoomPanel extends Panel {
 		addToGridBag(sendB, 		1, 2, 1, 1, 0, 0);
 		
 		// 버튼 영역
-		//addToGridBag(new Label(""), 0, 3, 1, 1, 0, 0);
 		addToGridBag(bottomPanel, 	0, 3, 3, 1, 0, 0);
 	}
 	

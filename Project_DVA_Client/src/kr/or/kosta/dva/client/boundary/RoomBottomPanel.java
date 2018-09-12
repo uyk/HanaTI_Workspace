@@ -6,6 +6,8 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 public class RoomBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
 	MainFrame frame;
@@ -35,22 +37,28 @@ public class RoomBottomPanel extends Panel{
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.LOGIN);
+				frame.changeCard(MainFrame.LOGIN, null);
 				
 			}
 		});
 		waitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.WAIT);
+				frame.changeCard(MainFrame.WAIT, null);
 				
 			}
 		});
+		
 		inviteB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//frame.changeCard(MainFrame.ROOM);
-				System.out.println("debug : invite");
+				Panel panel = new Panel();
+				//panel.add(roomUsersList);
+				String[] buttons = {"방 입장", "쪽지", "취소"};
+				int result = JOptionPane.showOptionDialog(null, panel, "초대", 
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, 
+						null, buttons, null);
+				System.out.println("debug roomBottomPanel actionListener: invite");
 			}
 		});
 		exitB.addActionListener(new ActionListener() {

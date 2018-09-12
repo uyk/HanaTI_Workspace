@@ -16,7 +16,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import kr.or.kosta.dva.client.entity.DvaClient;
 import kr.or.kosta.dva.client.entity.DvaRoom;
 import kr.or.kosta.dva.client.entity.Protocol;
 
@@ -27,17 +26,17 @@ import kr.or.kosta.dva.client.entity.Protocol;
  */
 public class WaitingPanel extends Panel {
 	MainFrame frame;
-	//Hashtable<String, Room> rooms;
-	java.util.List<DvaRoom> rooms;
-	java.util.List<DvaClient> waitUsers;
-	java.util.List<DvaClient> roomUsers;
+	java.util.List<DvaRoom> rooms;			// 방목록
+	java.util.List<String> waitUsers;		// 대기실 유저 목록
+	java.util.List<String> roomUsers;		// 특정 방 유저 목록 
+	String clientMessage;
 	
 	// 화면구성 인스턴스 변수
 	Choice searchType;
 	TextField searchTF;
 	Button searchB;
-	Label roomL, waitL;
-	List roomList, waitList;
+	Label roomL, waitL, roomUserL;
+	List roomList, waitList, roonUserList;
 	
 	WaitingBottomPanel bottomPanel;
 	
@@ -53,8 +52,9 @@ public class WaitingPanel extends Panel {
 	 */
 	public WaitingPanel(MainFrame frame) {
 		this.frame = frame;
-		//rooms = new Hashtable<String, Room>();
-		rooms = new ArrayList<DvaRoom>();
+		rooms = new ArrayList<DvaRoom>(); 
+		waitUsers = new ArrayList<String>();
+		roomUsers = new ArrayList<String>();
 		
 		searchType = new Choice();
 		searchType.add("대화방 제목");
@@ -67,16 +67,18 @@ public class WaitingPanel extends Panel {
 		
 		roomL = new Label("번호");
 		waitL = new Label("대기실 명단", Label.CENTER);
+		roomUserL = new Label("채팅방 명단", Label.CENTER);
 		
 		roomList = new List();
-		process();
 		waitList = new List();
+		roonUserList = new List();
 		
 		bottomPanel = new WaitingBottomPanel(frame);
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
 		
+		//setRoomList();
 		setContents();
 		eventRegist();
 	}
@@ -136,22 +138,44 @@ public class WaitingPanel extends Panel {
 		// 버튼 영역
 		addToGridBag(bottomPanel, 	0, 3, 6, 1, 0, 0);
 	}
-	
+
 	/**
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
-	public void eventRegist() {		
-		roomList.addItemListener(new ItemListener() {		
+	public void eventRegist() {	
+		/** 방 목록에서 방을 클릭했을 때 발생하는 이벤트*/
+		roomList.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				DvaRoom room = rooms.get(roomList.getSelectedIndex());
-				Panel panel = new Panel();
+				DvaRoom room = rooms.get(roomList.getSelectedIndex());				
+				String roomName = room.getRoomName();
+				List roomUsersList = new List();
 				
+				// 방 정보 요청 메시지를 보냄			
+				clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
+						frame.client.currentTime() + Protocol.DELEMETER + 
+						frame.client.getNickName() + Protocol.DELEMETER +
+						Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER +
+						roomName;
+				frame.client.sendMessage(clientMessage);
+				
+				// 리스트에 방에 있는 유저 이름 추가.
+				for (String string : roomUsers) {
+					roomUsersList.add(string);
+				}
+				
+				// 다이얼로그로 유저 리스트와 버튼 표시
+				Panel panel = new Panel();
+				panel.add(roomUsersList);
 				String[] buttons = {"방 입장", "쪽지", "취소"};
-				int result = JOptionPane.showOptionDialog(null, panel, room.getRoomName(), JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, buttons, null);
+				int result = JOptionPane.showOptionDialog(null, panel, roomName, 
+						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, 
+						null, buttons, null);
+				
+				// 선택한 버튼 분석
 				switch(result) {
 				case 0:
-					frame.changeCard(MainFrame.ROOM);
+					frame.changeCard(MainFrame.ROOM, room);
 					break;
 				case 1:
 					//frame.sendPrivate(frame.client.getName(),  to);
@@ -165,54 +189,33 @@ public class WaitingPanel extends Panel {
 			}
 		});
 	}
-
+	
 	/**
-	 *  서버로부터 받은 메시지를 처리하는 메소드
+	 * 방 목록을 받아와 list 영역에 표시하는 메소드
+	 * @param rooms
 	 */
-	public void process() {
-		// 서버로 부터 받은 방리스트 메시지 샘플
-//		String message = "2001☆☆2018-09-11 오후 05:43:06☆☆나"
-//				+ "☆☆방제목 샘플1★★유예겸★★5★★15"
-//				+ "☆☆방제목 샘플2★★김예겸★★5★★15"
-//				+ "☆☆방제목 샘플3★★이예겸★★5★★15"
-//				+ "☆☆방제목 샘플4★★최예겸★★5★★15";
-		
-		String message = "2001☆☆2018-09-11 오후 05:43:06☆☆나"
-		+ "☆☆방제목 샘플1★★유예겸★★5★★15"
-		+ "★★방제목 샘플2★★김예겸★★5★★15"
-		+ "★★방제목 샘플3★★이예겸★★5★★15"
-		+ "★★방제목 샘플4★★최예겸★★5★★15";
-		                                     
-		String[] tokens = message.split(Protocol.DELEMETER);
-		int protocol = Integer.parseInt(tokens[0]);
-		String time = tokens[1];
-		String nickName = tokens[2];
-
-		switch (protocol) { 
-		case Protocol.SC_ROOMLIST :
-			
-			rooms.clear();
-			roomList.removeAll();
-
-		 	// tokens[3] : 방제목 샘플1★★유예겸★★5★★15.....
-			String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			
-			for (int i = 0; i < roomTokens.length; i += 4) {
-				DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
-						Integer.parseInt(roomTokens[i+2]), 
-						Integer.parseInt(roomTokens[i+3]));
-				rooms.add(room);
-				roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
-						(i / 4) + 1, room.getRoomName(),
-						room.getRoomOwner(), 
-						room.getUserCount(), room.getCapacity()));
-			}
-			break;
-
-		case Protocol.SC_ROOMUSERLIST :
-			// 유저 목록 받음
-			//user
-			break;
+	public void setRoomList(java.util.List<DvaRoom> rooms) {
+		this.rooms = rooms;
+		roomList.removeAll();					// awt 리스트 초기화
+		for (int i = 0; i < rooms.size(); i++) {
+			DvaRoom room = rooms.get(i);
+			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
+					i , room.getRoomName(),
+					room.getRoomOwner(), 
+					room.getUserCount(), room.getCapacity()));
 		}
 	}
+	/** 대기실 유저 목록 설정 */
+	public void setWaitUsers(java.util.List<String> users) {
+		this.waitUsers = users;
+		waitList.removeAll();
+		for (int i = 1; i < users.size(); i++) {
+			waitList.add(users.get(i));
+		}
+	}
+	/** 특정 방 유저 목록 설정 */
+	public void setRoomUsers(java.util.List<String> users) {
+		this.roomUsers = users;
+	}
+
 }

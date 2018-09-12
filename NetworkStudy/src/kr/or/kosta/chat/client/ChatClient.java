@@ -14,7 +14,7 @@ import kr.or.kosta.chat.common.Protocol;
  * 서버와의 통신 대행자
  * @author 김기정
  */
-public class ChatClient {
+public class ChatClient extends Thread{
 	public static final String SERVER = "127.0.0.1";
 	public static final int PORT = 8888;
 	
@@ -28,8 +28,8 @@ public class ChatClient {
 	
 	public ChatClient(ChatFrame chatFrame) {
 		this.chatFrame = chatFrame;
+		this.start();
 	}
-	
 	
 	public void connectServer() throws Exception {
 		try {
@@ -42,6 +42,7 @@ public class ChatClient {
 		}
 		
 	}
+	
 	public void stopClient() {
 		if(socket != null) {
 			try {
@@ -55,38 +56,25 @@ public class ChatClient {
 	}
 	
 	public void receiveMessage() {
-		new Thread() {
-			@Override
-			public void run() {
-				while(running) {
-					String serverMessage = null;
-					try {
-						serverMessage = in.readLine();
-						System.out.println("[Debug] : Server Receive Message: " + serverMessage);
-						
-						// 종료
-						if(serverMessage == null) {
-							running = false;
-							break;
-						}
-						process(serverMessage);
-						
-					} catch (IOException e) {
-						System.out.println("네트워크가 단절되었습니다..");
-						break;
-					}
-				}
+		while(running) {
+			String serverMessage = null;
+			try {
+				serverMessage = in.readLine();
+				System.out.println("[Debug] : Server Receive Message: " + serverMessage);
 				
-				if(socket != null) {
-					try {
-						socket.close();
-					} catch (IOException e) {}
+				// 종료
+				if(serverMessage == null) {
+					running = false;
 				}
+				process(serverMessage);
+				
+			} catch (IOException e) {
+				System.out.println("네트워크가 단절되었습니다..");
+				break;
 			}
-			
-		}.start();
-	}
-	
+		}
+		stopClient();
+	}	
 	
 	public void process(String message) {
 		String[] tokens = message.split(Protocol.DELEMETER);
@@ -126,6 +114,11 @@ public class ChatClient {
 		default:
 			break;
 		}
+	}
+
+	@Override
+	public void run() {
+		receiveMessage();
 	}
 
 }

@@ -1,6 +1,6 @@
 package kr.or.kosta.dva.client.entity;
 
-public abstract class Client extends Thread{
+public abstract class Client{
 	private String nickName;
 	private String location;
 
@@ -17,13 +17,8 @@ public abstract class Client extends Thread{
 		this.location = location;
 	}
 	
-	protected abstract void recieveMessage();
-	protected abstract void sendMessage(String message);
+	public abstract void recieveMessage();
+	public abstract void sendMessage(String message);
 	protected abstract void process(String message);
-	
-	@Override
-	public void run() {
-		recieveMessage();
-	}
 	
 }

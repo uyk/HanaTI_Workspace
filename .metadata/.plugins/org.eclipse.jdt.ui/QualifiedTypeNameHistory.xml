@@ -25,7 +25,6 @@
 <fullyQualifiedTypeName name="kr.or.kosta.chat.server.Client"/>
 <fullyQualifiedTypeName name="kr.or.kosta.chat.common.Protocol"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.ChatingRoomPanel"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Client"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.RoomPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
 <fullyQualifiedTypeName name="TalkFrame"/>
@@ -43,7 +42,6 @@
 <fullyQualifiedTypeName name="java.awt.TextField"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.RoomBottomPanel"/>
 <fullyQualifiedTypeName name="java.awt.Label"/>
-<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
 <fullyQualifiedTypeName name="java.awt.event.ItemListener"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.UserListDiagram"/>
 <fullyQualifiedTypeName name="java.lang.System"/>
@@ -52,12 +50,14 @@
 <fullyQualifiedTypeName name="java.awt.Frame"/>
 <fullyQualifiedTypeName name="java.awt.Panel"/>
 <fullyQualifiedTypeName name="java.awt.event.MouseAdapter"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Protocol"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.DVA_Client"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Room"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.DvaRoom"/>
+<fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Client"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
+<fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Protocol"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.DvaClient"/>
 </qualifiedTypeNameHistroy>

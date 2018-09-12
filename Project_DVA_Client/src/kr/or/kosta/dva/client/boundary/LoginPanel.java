@@ -10,6 +10,10 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
+import kr.or.kosta.dva.client.entity.Protocol;
+
 /**
  * 프로그램 실행시 처음 표시되는 로그인 패널
  * 
@@ -48,6 +52,15 @@ public class LoginPanel extends Panel {
 		
 	}
 	
+	/**
+	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
+	 * 
+	 * @param component  추가할 컴포넌트
+	 * @param gridx      컴포넌트가 추가될 위치의 x좌표
+	 * @param gridy      컴포넌트가 추가될 위치의 y좌표
+	 * @param gridwidth  컴포넌트가 차지할 x축 면적
+	 * @param gridheight 컴포넌트가 차지할 y축 면적
+	 */
 	private void add(Component component, int gridx, int gridy, int gridwidth, int gridheight) {
 		gridBagConstraints.gridx = gridx;
 		gridBagConstraints.gridy = gridy;
@@ -58,6 +71,9 @@ public class LoginPanel extends Panel {
 		add(component);
 	}
 	
+	/**
+	 * 패널에 컴포넌트를 배치하는 메소드
+	 */
 	public void setContents() {
 		setLayout(gridBagLayout);
 		add(nickNameL,   		1, 0, 1, 1);
@@ -70,15 +86,35 @@ public class LoginPanel extends Panel {
 		
 	}
 
+	/**
+	 * 컴포넌트에 이벤트를 등록하는 메소드
+	 */
 	public void eventRegist() {
-		
+		nickNameTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				loginEvent();
+			}
+		});
 		loginB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.client.setNickName(nickNameL.getText());
-				frame.changeCard(MainFrame.WAIT);
-				
+				loginEvent();
 			}
 		});
+	}
+	
+	public void loginEvent() {
+		if(nickNameTF.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "닉네임을 입력하세요", "경고", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		else {
+			String clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER
+					+ frame.client.currentTime() + Protocol.DELEMETER +
+					nickNameTF.getText();
+//			frame.client.testSendMessage(clientMessage);
+			frame.client.sendMessage(clientMessage);
+		}
 	}
 }

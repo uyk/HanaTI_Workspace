@@ -33,7 +33,7 @@ public class WaitingBottomPanel extends Panel{
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.LOGIN);
+				frame.changeCard(MainFrame.LOGIN, null);
 				
 			}
 		});
@@ -41,7 +41,7 @@ public class WaitingBottomPanel extends Panel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//frame.changeCard(MainFrame.ROOM);
-				System.out.println("debug : new Room");
+				System.out.println("[debug] waitingBottomPanel new room");
 			}
 		});
 		exitB.addActionListener(new ActionListener() {

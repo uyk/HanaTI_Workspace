@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="input" key="selection"/>
+		<item value="connec" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="input"/>
-			<item value="roo"/>
-			<item value="frame"/>
-			<item value="close"/>
-			<item value="exi"/>
-			<item value="disco"/>
-			<item value="ena"/>
-			<item value="enab"/>
-			<item value="enable"/>
 			<item value="connec"/>
-			<item value="send"/>
-			<item value="stop"/>
-			<item value="sendM"/>
+			<item value="connect&apos;"/>
+			<item value="connect"/>
+			<item value="clien"/>
+			<item value="clein"/>
+			<item value="cleint"/>
+			<item value="tring clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER"/>
+			<item value="wait"/>
+			<item value="testSendMessage"/>
+			<item value="2000"/>
+			<item value="1000"/>
+			<item value="cli"/>
 			<item value="rec"/>
-			<item value="from"/>
+			<item value="reci"/>
+			<item value="waitU"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1589" key="DIALOG_X_ORIGIN"/>
-		<item value="154" key="DIALOG_Y_ORIGIN"/>
+		<item value="870" key="DIALOG_X_ORIGIN"/>
+		<item value="215" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
