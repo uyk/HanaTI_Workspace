@@ -79,10 +79,7 @@ public class WaitingBottomPanel extends Panel{
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.client.stopClient();
-				frame.setClient(null);
-				frame.changeCard(MainFrame.LOGIN, null);
-				
+				frame.logoutEvent();				
 			}
 		});
 		

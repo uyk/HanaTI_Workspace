@@ -16,9 +16,9 @@ public class RoomBottomPanel extends Panel{
 	public RoomBottomPanel(MainFrame frame) {
 		this.frame = frame;
 		
-		logoutB = new Button("로그아웃");
 		waitB = new Button("대기실");
 		inviteB = new Button("초대");
+		logoutB = new Button("로그아웃");
 		exitB = new Button("종료");
 		
 		setContents();
@@ -27,20 +27,13 @@ public class RoomBottomPanel extends Panel{
 	
 	public void setContents() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
-		add(logoutB);
 		add(waitB);
 		add(inviteB);
+		add(logoutB);
 		add(exitB);
 	}
 	
 	public void eventRegist() {
-		logoutB.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.LOGIN, null);
-				
-			}
-		});
 		waitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -59,6 +52,13 @@ public class RoomBottomPanel extends Panel{
 						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, 
 						null, buttons, null);
 				System.out.println("debug roomBottomPanel actionListener: invite");
+			}
+		});
+		
+		logoutB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				frame.logoutEvent();
 			}
 		});
 		exitB.addActionListener(new ActionListener() {

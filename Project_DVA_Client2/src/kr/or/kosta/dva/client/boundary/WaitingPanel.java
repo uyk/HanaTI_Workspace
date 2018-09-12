@@ -168,8 +168,8 @@ public class WaitingPanel extends Panel {
 						frame.client.getNickName() + Protocol.DELEMETER +
 						Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER +
 						selectedRoom;
-				//frame.client.sendMessage(clientMessage);
-				frame.client.testSendMessage(clientMessage);
+				frame.client.sendMessage(clientMessage);
+				//frame.client.testSendMessage(clientMessage);
 				bottomPanel.enterB.setEnabled(true);
 
 			}
@@ -263,5 +263,13 @@ public class WaitingPanel extends Panel {
 		}
 
 	}
-
+	/** 패널을 초기화 하는 메소드 */
+	public void resetPanel() {
+		rooms = new ArrayList<DvaRoom>(); 
+		waitUsers = new ArrayList<String>();
+		roomUsers = new ArrayList<String>();
+		
+		selectedRoom = null;
+		clientMessage = null;
+	}
 }

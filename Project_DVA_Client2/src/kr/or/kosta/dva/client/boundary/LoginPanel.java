@@ -94,29 +94,24 @@ public class LoginPanel extends Panel {
 		nickNameTF.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loginEvent();
+				if(nickNotEmpty()) frame.loginEvent(nickNameTF.getText());
 			}
 		});
+		
 		loginB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				loginEvent();
+				if(nickNotEmpty()) frame.loginEvent(nickNameTF.getText());
 			}
 		});
 	}
 	
-	public void loginEvent() {
+	public boolean nickNotEmpty() {
 		if(nickNameTF.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "닉네임을 입력하세요", "경고", JOptionPane.ERROR_MESSAGE);
-			return;
+			return false;
 		}
-		else {
-			frame.setClient(new DvaClient(frame));
-			String clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER
-					+ frame.client.currentTime() + Protocol.DELEMETER +
-					nickNameTF.getText();
-//			frame.client.testSendMessage(clientMessage);
-			frame.client.sendMessage(clientMessage);
-		}
+		return true;
 	}
+
 }

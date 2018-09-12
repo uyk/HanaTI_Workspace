@@ -91,6 +91,7 @@ public class DvaClient extends Client{
 						
 					} catch(SocketException e) {
 						System.out.println("[Debug] thread Socket Exception :" + e.getLocalizedMessage());
+						running = false;
 					} catch(Exception e) {
 						e.printStackTrace();
 						System.out.println("[Debug] thread exception :" + e.getLocalizedMessage());
