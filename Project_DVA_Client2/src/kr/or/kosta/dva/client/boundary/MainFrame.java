@@ -103,14 +103,21 @@ public class MainFrame extends Frame{
 		// 화면 크기 조정
 		// 로그인 화면은 크기 조절 불가
 		switch(name) {
-		case LOGIN :					// 로그인패널
+		case LOGIN :					// 로그인창으로 이동
+			loginPanel.nickNameTF.setText("");
 			setSize(300,500);
 			setResizable(false);
 			break;
-		case ROOM :						// 채팅방 패널
+		case ROOM :						// 채팅방으로 이동
+			client.setLocation(room.getRoomName());
 			roomPanel.setRoom(room);
 			roomPanel.setRoomUserList();
-		case WAIT :						// 대기실&채팅방
+			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
+			setSize(800,500);
+			setResizable(true);
+			break;
+		case WAIT :						// 대기실로 이동
+			client.setLocation(Protocol.ANTEROOM);
 			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
 			setSize(800,500);
 			setResizable(true);
@@ -188,11 +195,16 @@ public class MainFrame extends Frame{
 	public void WaitPanelRoomUsers(List<String> users) {
 		waitingPanel.setRoomUsers(users);
 	}
+	public void WaitPanelTryEnterSelectRoom() {
+		waitingPanel.tryEnterSelectRoom();
+	}
 	public void WaitPanelEnterSelectRoom() {
 		waitingPanel.enterSelectRoom();
 	}
 	public void WaitPanelEnterNewRoom(DvaRoom room) {
 		waitingPanel.enterNewRoom(room);
 	}
-	
+	public void RoomPanelRoomUsers(List<String> users) {
+		roomPanel.setRoomUsers(users);
+	}
 }

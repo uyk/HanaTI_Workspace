@@ -55,7 +55,7 @@ public class WaitingBottomPanel extends Panel{
 		enterB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.waitingPanel.enterSelectRoom();
+				frame.waitingPanel.tryEnterSelectRoom();
 				System.out.println("[debug] waitingBottomPanel new room");
 			}
 		});
