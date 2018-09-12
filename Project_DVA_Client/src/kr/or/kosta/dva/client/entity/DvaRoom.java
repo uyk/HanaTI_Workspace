@@ -1,5 +1,7 @@
 package kr.or.kosta.dva.client.entity;
 
+import java.util.ArrayList;
+
 public class DvaRoom extends Room{
 	private String roomName;
 	private int userCount;
@@ -9,6 +11,7 @@ public class DvaRoom extends Room{
 		this.userCount = userCount;
 		setRoomOwner(roomOwner);
 		setCapacity(capacity);
+		setClients(new ArrayList<>());
 	}
 	
 	public int getUserCount() {

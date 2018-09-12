@@ -12,6 +12,10 @@ import java.awt.Panel;
 import java.awt.TextField;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.TextEvent;
+import java.awt.event.TextListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -29,6 +33,7 @@ public class WaitingPanel extends Panel {
 	java.util.List<DvaRoom> rooms;			// 방목록
 	java.util.List<String> waitUsers;		// 대기실 유저 목록
 	java.util.List<String> roomUsers;		// 특정 방 유저 목록 
+	String selectedRoom;
 	String clientMessage;
 	
 	// 화면구성 인스턴스 변수
@@ -155,14 +160,14 @@ public class WaitingPanel extends Panel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				DvaRoom room = rooms.get(roomList.getSelectedIndex());				
-				String roomName = room.getRoomName();
+				selectedRoom = room.getRoomName();
 				
 				// 방 정보 요청 메시지를 보냄			
 				clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
 						frame.client.currentTime() + Protocol.DELEMETER + 
 						frame.client.getNickName() + Protocol.DELEMETER +
 						Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER +
-						roomName;
+						selectedRoom;
 				//frame.client.sendMessage(clientMessage);
 				frame.client.testSendMessage(clientMessage);
 				bottomPanel.enterB.setEnabled(true);
@@ -206,10 +211,57 @@ public class WaitingPanel extends Panel {
 		}
 	}
 	/** 선택한 방에 입장하는 메소드 */
-	public void enterRoom() {
+	public void enterSelectRoom() {
 		DvaRoom room = rooms.get(roomList.getSelectedIndex());
 		room.setClients(roomUsers);
 		frame.changeCard(MainFrame.ROOM, room);
+	}
+	
+	/** 새로운 방에 입장하는 메소드 */
+	public void enterNewRoom(DvaRoom room) {
+		room.getClients().add(frame.client.getNickName());
+		frame.changeCard(MainFrame.ROOM, room);
+	}
+	
+	/** 방을 생성하는 메소드 */
+	public void createRoom() {
+		// 다이얼로그로 방 이름과 인원을 입력받는다.
+		Panel panel = new Panel();
+		Label enterNameL = new Label("방 이름 : ");
+		Label capacityL = new Label("최대 인원 : ");
+		TextField enterNameTF = new TextField(20);
+		TextField capacityTF = new TextField(20);
+		
+		// 인원 필드에는 숫자만 입력 가능
+		capacityTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(e.getKeyChar() < '0' || e.getKeyChar() > '9') {
+					JOptionPane.showMessageDialog(panel, "숫자만 입력하세요", "경고", JOptionPane.ERROR_MESSAGE);
+					e.consume();
+				}
+			}
+		});
+		
+		panel.add(enterNameL);
+		panel.add(enterNameTF);
+		panel.add(capacityL);
+		panel.add(capacityTF);
+		
+		// 다이어그램 표시
+		int result = JOptionPane.showConfirmDialog(this, panel, "방 생성", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
+		
+		// 방 생성 요청
+		if(result == 0) {
+			clientMessage = Protocol.CS_ROOM_ADD + Protocol.DELEMETER +
+					frame.client.currentTime() + Protocol.DELEMETER +
+					frame.client.getNickName() + Protocol.DELEMETER + 
+					enterNameTF.getText() + Protocol.INNER_DELEMETER + 
+					capacityTF.getText();
+			frame.client.sendMessage(clientMessage);
+		}
+
 	}
 
 }

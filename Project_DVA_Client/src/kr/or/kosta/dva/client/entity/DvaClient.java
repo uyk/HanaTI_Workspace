@@ -199,8 +199,19 @@ public class DvaClient extends Client{
 				
 			}
 			break;
+		// 방 생성 성공
+		case Protocol.SC_ROOM_ADD_SUCCESS :
+			String[] roomInfo = tokens[3].split(Protocol.INNER_DELEMETER);
+			DvaRoom room = new DvaRoom(roomInfo[0], roomInfo[1], 
+					Integer.parseInt(roomInfo[2]), Integer.parseInt(roomInfo[3]));
+			frame.WaitPanelEnterNewRoom(room);
+			break;
+		case Protocol.SC_ROOM_ADD_FAIL :
+			JOptionPane.showMessageDialog(frame, "방 생성 실패", "경고", JOptionPane.ERROR_MESSAGE);
+			break;
 			
-		
+			
+			
 		}
 		
 	}
