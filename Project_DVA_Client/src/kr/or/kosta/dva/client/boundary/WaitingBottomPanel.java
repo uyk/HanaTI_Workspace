@@ -18,6 +18,10 @@ public class WaitingBottomPanel extends Panel{
 	MainFrame frame;
 	Button enterB, newRoomB, whisperB, logoutB, exitB;
 	
+	/**
+	 * 생성자. 인스턴스 초기화, 컨텐츠 세팅, 이벤트 등록.
+	 * @param frame
+	 */
 	public WaitingBottomPanel(MainFrame frame) {
 		this.frame = frame;
 		
@@ -32,6 +36,9 @@ public class WaitingBottomPanel extends Panel{
 		eventRegist();
 	}
 	
+	/**
+	 * 컴포넌트를 패널에 추가하는 메소드.
+	 */
 	public void setContents() {
 		setLayout(new FlowLayout(FlowLayout.RIGHT));
 		add(enterB);
@@ -40,8 +47,11 @@ public class WaitingBottomPanel extends Panel{
 		add(logoutB);
 		add(exitB);
 	}
-	
+	/**
+	 * 컴포넌트에 이벤트를 등록하는 메소드
+	 */
 	public void eventRegist() {
+		// 선택한 방에 입장하는 메소드
 		enterB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -49,7 +59,7 @@ public class WaitingBottomPanel extends Panel{
 				System.out.println("[debug] waitingBottomPanel new room");
 			}
 		});
-		
+		// 새로운 방을 생성하는 메소드
 		newRoomB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,6 +67,7 @@ public class WaitingBottomPanel extends Panel{
 			}
 		});
 		
+		// 쪽지를 보내는 메소드
 		whisperB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -64,9 +75,12 @@ public class WaitingBottomPanel extends Panel{
 			}
 		});
 		
+		// 로그아웃 메소드
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				frame.client.stopClient();
+				frame.setClient(null);
 				frame.changeCard(MainFrame.LOGIN, null);
 				
 			}

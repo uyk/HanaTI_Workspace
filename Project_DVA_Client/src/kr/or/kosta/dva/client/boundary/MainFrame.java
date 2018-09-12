@@ -70,7 +70,7 @@ public class MainFrame extends Frame{
 	 */
 	public void setClient(DvaClient client) {
 		this.client = client;
-		connect();
+		if(client != null) 		connect();
 	}
 	
 // 화면 배치 메소드
