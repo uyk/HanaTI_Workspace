@@ -258,6 +258,10 @@ public class MainFrame extends Frame{
 		
 		// 선택한 버튼 분석
 		if(result == 0) {
+			if(whisperTA.getText().equals("")) {
+				JOptionPane.showMessageDialog(this, "메시지가 빈칸입니다.", "경고", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			String clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
 					client.currentTime() + Protocol.DELEMETER + 
 					client.getNickName() + Protocol.DELEMETER +
@@ -289,9 +293,13 @@ public class MainFrame extends Frame{
 		int result = JOptionPane.showOptionDialog(this, panel,"쪽지 수신", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
 				null, buttons, null);
-		
+
 		// 선택한 버튼 분석
 		if(result == 0) {
+			if(replyTA.getText().equals("")) {
+				JOptionPane.showMessageDialog(this, "메시지가 빈칸입니다.", "경고", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			String clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
 					client.currentTime() + Protocol.DELEMETER + 
 					client.getNickName() + Protocol.DELEMETER +
