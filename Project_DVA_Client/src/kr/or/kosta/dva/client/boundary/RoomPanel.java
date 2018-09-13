@@ -133,4 +133,16 @@ public class RoomPanel extends Panel {
 	public void eventRegist() {		
 		
 	}
+	
+// 
+	/**
+	 * 서버로부터 유저 목록을 받아 설정하는 메소드
+	 * @param users 서버에서 받아온 유저 목록
+	 */
+	public void setRoomUsers(java.util.List<String> users) {
+		userList.removeAll();
+		for (String string : users) {
+			userList.add(string);
+		}
+	}
 }

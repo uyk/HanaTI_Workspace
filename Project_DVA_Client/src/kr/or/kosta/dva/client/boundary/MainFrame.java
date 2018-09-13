@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import kr.or.kosta.dva.client.entity.DvaClient;
 import kr.or.kosta.dva.client.entity.DvaRoom;
+import kr.or.kosta.dva.client.entity.Protocol;
 
 /**
  * 카드레이아웃으로 패널을 패치하는 cardPanel을 가진 메인 프레임.
@@ -102,14 +103,21 @@ public class MainFrame extends Frame{
 		// 화면 크기 조정
 		// 로그인 화면은 크기 조절 불가
 		switch(name) {
-		case LOGIN :					// 로그인패널
+		case LOGIN :					// 로그인창으로 이동
+			loginPanel.nickNameTF.setText("");
 			setSize(300,500);
 			setResizable(false);
 			break;
-		case ROOM :						// 채팅방 패널
+		case ROOM :						// 채팅방으로 이동
+			client.setLocation(room.getRoomName());
 			roomPanel.setRoom(room);
 			roomPanel.setRoomUserList();
-		case WAIT :						// 대기실&채팅방
+			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
+			setSize(800,500);
+			setResizable(true);
+			break;
+		case WAIT :						// 대기실로 이동
+			client.setLocation(Protocol.ANTEROOM);
 			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
 			setSize(800,500);
 			setResizable(true);
@@ -118,14 +126,6 @@ public class MainFrame extends Frame{
 		// 세 경우 모두
 		setCenter();
 		cardLayout.show(cardPanel, name);
-	}
-	
-	/** 프로그램 종료 메소드 */
-	public void finish() {
-		client.stopClient();
-		setVisible(false);
-		dispose();
-		System.exit(0);
 	}
 	
 	/** 프레임에 이벤트를 등록하는 메소드*/
@@ -138,8 +138,22 @@ public class MainFrame extends Frame{
 			}
 		});
 	}
+
+	/** 프로그램 종료 메소드 */
+	public void finish() {
+		if(client != null) { 
+			client.stopClient();
+			logoutEvent();
+		}
+		setVisible(false);
+		dispose();
+		System.exit(0);
+	}
 	
 // 통신 메소드
+	/**
+	 * client의 서버와 연결하는 메소드 호출
+	 */
 	public void connect() {
 		try {
 			client.connectServer();
@@ -148,6 +162,29 @@ public class MainFrame extends Frame{
 			JOptionPane.showMessageDialog(null, e.getMessage(), "연결 실패", JOptionPane.ERROR_MESSAGE);
 		}
 	}
+	
+	/** 로그아웃 메소드 */
+	public void logoutEvent() {
+		String CSMessage = Protocol.CS_LOGOUT + Protocol.DELEMETER + 
+				client.currentTime() + Protocol.DELEMETER + 
+				client.getNickName();
+		client.sendMessage(CSMessage);
+		client.stopClient();
+		waitingPanel.resetPanel();
+		setClient(null);
+		changeCard(MainFrame.LOGIN, null);
+	}
+	
+	/** 로그인 메소드 */
+	public void loginEvent(String nickName) {
+		setClient(new DvaClient(this));
+		String clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER
+				+ client.currentTime() + Protocol.DELEMETER +
+				nickName;
+//		client.testSendMessage(clientMessage);
+		client.sendMessage(clientMessage);
+	}
+	
 	// roomList() 
 	public void WaitPanelRoomList(List<DvaRoom> rooms) {
 		waitingPanel.setRoomList(rooms);
@@ -158,11 +195,16 @@ public class MainFrame extends Frame{
 	public void WaitPanelRoomUsers(List<String> users) {
 		waitingPanel.setRoomUsers(users);
 	}
+	public void WaitPanelTryEnterSelectRoom() {
+		waitingPanel.tryEnterSelectRoom();
+	}
 	public void WaitPanelEnterSelectRoom() {
 		waitingPanel.enterSelectRoom();
 	}
 	public void WaitPanelEnterNewRoom(DvaRoom room) {
 		waitingPanel.enterNewRoom(room);
 	}
-	
+	public void RoomPanelRoomUsers(List<String> users) {
+		roomPanel.setRoomUsers(users);
+	}
 }

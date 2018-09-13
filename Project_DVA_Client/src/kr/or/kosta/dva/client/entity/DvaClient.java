@@ -31,19 +31,29 @@ public class DvaClient extends Client{
 	
 	private MainFrame frame;
 	
+	private List<DvaRoom> roomList;
+	
 // 생성자
 	public DvaClient(MainFrame frame) {
 		this.frame = frame;
+		roomList = new ArrayList<>();
 	}
 
 // Getter, Setter
-	
 	public String currentTime() {
 		LocalDateTime DateTime = LocalDateTime.now();
 		DateTimeFormatter formmat = DateTimeFormatter.ofPattern("yyyy-MM-dd a hh:mm:ss");
 		return (formmat.format(DateTime));
 	}
 	
+	public List<DvaRoom> getRoomList() {
+		return roomList;
+	}
+
+	public void setRoomList(List<DvaRoom> roomList) {
+		this.roomList = roomList;
+	}
+
 	/**
 	 * 서버와 연결하는 메소드
 	 * @throws Exception
@@ -91,6 +101,7 @@ public class DvaClient extends Client{
 						
 					} catch(SocketException e) {
 						System.out.println("[Debug] thread Socket Exception :" + e.getLocalizedMessage());
+						running = false;
 					} catch(Exception e) {
 						e.printStackTrace();
 						System.out.println("[Debug] thread exception :" + e.getLocalizedMessage());
@@ -102,7 +113,10 @@ public class DvaClient extends Client{
 		}.start();
 		
 	}
-
+	/**
+	 * 서버에 message를 전송하는 메소드
+	 * @param message 서버에 전달할 메시지
+	 */
 	@Override
 	public void sendMessage(String message) {
 		System.out.println("[debug] sendMessage message: " + message);
@@ -150,31 +164,32 @@ public class DvaClient extends Client{
 		
 		// 프로토콜에 따라 메시지 분석
 		switch (protocol) {
-		// 로그인 성공
+		// 1001 로그인 성공
 		case Protocol.SC_LOGIN_SUCCESS :
 			setNickName(nickName);
-			setLocation(Protocol.ANTEROOM);
 			frame.changeCard(MainFrame.WAIT, null);
 			break;
-		// 로그인 실패
+		// 1002 로그인 실패 
 		case Protocol.SC_LOGIN_FAIL :
 			JOptionPane.showMessageDialog(frame, "로그인 실패", "경고", JOptionPane.ERROR_MESSAGE);
 			break;
-		// 방목록 받아옴
+		// 2001 방목록 받아옴
 		case Protocol.SC_ROOMLIST :
 			// 방 정보들을 담는 리스트
 			List<DvaRoom> rooms = new ArrayList<>();
-			// tokens[3] : 방제목 샘플1★★유예겸★★5★★15.....
-			String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			for (int i = 0; i < roomTokens.length; i += 4) {
-				DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
-						Integer.parseInt(roomTokens[i+2]), 
-						Integer.parseInt(roomTokens[i+3]));
-				rooms.add(room);
+			if(tokens.length > 3) {
+				// tokens[3] : 방제목 샘플1★★유예겸★★5★★15.....
+				String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
+				for (int i = 0; i < roomTokens.length; i += 4) {
+					DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
+							Integer.parseInt(roomTokens[i+2]), 
+							Integer.parseInt(roomTokens[i+3]));
+					rooms.add(room);
+				}
+				frame.WaitPanelRoomList(rooms);
 			}
-			frame.WaitPanelRoomList(rooms);
 			break;
-		// 특정방에 있는 유저 목록 불러옴
+		// 2002 특정방에 있는 유저 목록 불러옴	
 		case Protocol.SC_ROOMUSERLIST :
 			List<String> users = new ArrayList<>();
 			// tokens[3] : 방이름샘플★★유예겸★★김예겸★★가나다...
@@ -199,17 +214,22 @@ public class DvaClient extends Client{
 				
 			}
 			break;
-		// 방 생성 성공
+		// 3001 방 생성 성공
 		case Protocol.SC_ROOM_ADD_SUCCESS :
 			String[] roomInfo = tokens[3].split(Protocol.INNER_DELEMETER);
 			DvaRoom room = new DvaRoom(roomInfo[0], roomInfo[1], 
 					Integer.parseInt(roomInfo[2]), Integer.parseInt(roomInfo[3]));
 			frame.WaitPanelEnterNewRoom(room);
 			break;
+		// 3002 방 생성 실패
 		case Protocol.SC_ROOM_ADD_FAIL :
 			JOptionPane.showMessageDialog(frame, "방 생성 실패", "경고", JOptionPane.ERROR_MESSAGE);
 			break;
-			
+		// 3101 방 입장 성공
+		case Protocol.SC_ENTRANCE_SUCCESS :
+			if(tokens)
+			frame.WaitPanelEnterSelectRoom();
+			break;
 			
 			
 		}
