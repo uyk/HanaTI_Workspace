@@ -10,6 +10,8 @@ import java.awt.Label;
 import java.awt.List;
 import java.awt.Panel;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
@@ -158,12 +160,25 @@ public class WaitingPanel extends Panel {
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
 	public void eventRegist() {	
+		/** 검색창에서 엔터를 입력하면 발생하는 이벤트 */
+		searchTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchRoom();
+				
+			}
+		});
+		/** 검색 버튼을 눌렀을 때 발생하는 이벤트 */
+		searchB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				searchRoom();
+			}
+		});
 		/** 방 목록에서 방을 클릭했을 때 발생하는 이벤트*/
 		roomList.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				//DvaRoom room = rooms.get(roomList.getSelectedIndex());				
-				//selectedRoom = room.getRoomName();
 				enterRoom = rooms.get(roomList.getSelectedIndex());
 				
 				// 방 정보 요청 메시지를 보냄			
@@ -204,20 +219,26 @@ public class WaitingPanel extends Panel {
 	}
 	
 // 데이터 관련 메소드
-	/**
-	 * 방 목록을 받아와 list 영역에 표시하는 메소드
-	 * @param rooms
+	/** 
+	 * 방 정보 목록을 포매팅하여 리스트에 출력하는 메소드
 	 */
-	public void setRoomList(java.util.List<DvaRoom> rooms) {
-		this.rooms = rooms;
+	public void formatRoomList(java.util.List<DvaRoom> rooms) {
 		roomList.removeAll();					// awt 리스트 초기화
 		for (int i = 0; i < rooms.size(); i++) {
 			DvaRoom room = rooms.get(i);
 			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
-					i , room.getRoomName(),
+					i + 1, room.getRoomName(),
 					room.getRoomOwner(), 
 					room.getUserCount(), room.getCapacity()));
 		}
+	}
+	/**
+	 * 방 목록을 받아와 저장하고 리스트에 출력
+	 * @param rooms	방 정보 목록
+	 */
+	public void setRoomList(java.util.List<DvaRoom> rooms) {
+		this.rooms = rooms;
+		formatRoomList(rooms);
 		
 	}
 	/** 대기실 유저 목록 설정 */
@@ -325,6 +346,13 @@ public class WaitingPanel extends Panel {
 			frame.client.sendMessage(clientMessage);
 		}
 
+	}
+	
+	/** 방 이름으로 검색하는 메소드 */
+	public void searchRoom() {
+		if(searchTF.getText().equals("")) {
+			
+		}
 	}
 	
 	/** 패널을 초기화 하는 메소드 */
