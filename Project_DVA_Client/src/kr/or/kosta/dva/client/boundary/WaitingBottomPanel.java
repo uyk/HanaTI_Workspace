@@ -26,12 +26,13 @@ public class WaitingBottomPanel extends Panel{
 		this.frame = frame;
 		
 		enterB = new Button("입장");
-		enterB.setEnabled(false);
 		newRoomB = new Button("신규");
 		whisperB = new Button("쪽지");
 		logoutB = new Button("로그아웃");
 		exitB = new Button("종료");
-		
+
+		enterB.setEnabled(false);
+		whisperB.setEnabled(false);
 		setContents();
 		eventRegist();
 	}
@@ -71,7 +72,12 @@ public class WaitingBottomPanel extends Panel{
 		whisperB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				String reciever = null;
+				if(frame.waitingPanel.waitList.getSelectedIndex() != -1)
+					reciever = frame.waitingPanel.waitList.getSelectedItem();
+				else
+					reciever = frame.waitingPanel.roomUserList.getSelectedItem();
+				frame.sendWhisper(reciever);
 			}
 		});
 		

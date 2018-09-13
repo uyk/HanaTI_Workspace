@@ -188,11 +188,6 @@ public class DvaClient extends Client{
 							Integer.parseInt(roomTokens[i+2]), 
 							Integer.parseInt(roomTokens[i+3]));
 					rooms.add(room);
-					System.out.println("[debug] 받아온 방 정보: " +
-							room.getRoomName() +"  " +
-							room.getRoomOwner() +"  " +
-							room.getUserCount() +"  " +
-							room.getCapacity());
 				}
 			}
 			frame.WaitPanelRoomList(rooms);
@@ -206,7 +201,7 @@ public class DvaClient extends Client{
 			if(tokens.length <= 3 ) return;
 			// 첫번째 토큰은 방 이름
 			String[] roomUserTokens = tokens[3].split(Protocol.INNER_DELEMETER);		
-			// 방 이름 제외 유저 이름을 roomUsers 리스트에 추가
+			// 방 이름을 제외한 유저 이름을 roomUsers 리스트에 추가
 			for (int i = 1; i < roomUserTokens.length; i++)
 				users.add(roomUserTokens[i]);
 			
@@ -223,13 +218,22 @@ public class DvaClient extends Client{
 			}
 			// 대기실이 아닌 경우
 			else{
-				// RoomPanel의 유저 목록 변경
-				frame.RoomPanelRoomUsers(users);
+				// 대기실이 아니면서 대기실 유저 목록 요청한 경우
+				// 초대 메소드 호출
+				if(roomUserTokens[0].equals(Protocol.ANTEROOM)) {
+					frame.RoomPanelInvite(users);
+				}
+				// 대기실이 아니면서 특정방 유저 목록 요청한 경우
+				// 방의 유저 목록 변경
+				else {
+					frame.RoomPanelRoomUsers(users);
+				}
 			}
 			break;
 		// 3001 방 생성 성공
 		case Protocol.SC_ROOM_ADD_SUCCESS :
-			frame.WaitPanelEnterRoom();
+			String[] newRoomTokens= tokens[3].split(Protocol.INNER_DELEMETER);		
+			frame.WaitPanelEnterRoom(newRoomTokens[0]);
 			break;
 		// 3002 방 생성 실패
 		case Protocol.SC_ROOM_ADD_FAIL :
@@ -237,8 +241,9 @@ public class DvaClient extends Client{
 			break;
 		// 3101 방 입장 성공
 		case Protocol.SC_ENTRANCE_SUCCESS :
+			String[] enterRoomTokens= tokens[3].split(Protocol.INNER_DELEMETER);		
 			if(!(tokens[3].equals(Protocol.ANTEROOM))) 
-				frame.WaitPanelEnterRoom();
+				frame.WaitPanelEnterRoom(enterRoomTokens[0]);
 			break;
 		// 3102 방 입장 실패
 		case Protocol.SC_ENTRANCE_FAIL :
@@ -270,12 +275,48 @@ public class DvaClient extends Client{
 		// 3201 내가 방에서 나감
 		case Protocol.SC_ROOM_OUT_SUCCESS:
 			// 대기실에서 나가는 것은 로그아웃 또는 finish로 했기 때문에 안건드림
-			// 대기실로 나감
+			break;
+		// 4001 채팅메시지 받음
+		case Protocol.SC_CHAT_MESSAGE :
+			String[] chatTokens = tokens[3].split(Protocol.INNER_DELEMETER);
+			String chat = "[" + chatTokens[0] + "] \t :" + chatTokens[1] + "\n";
+
+			System.out.println("[debug] process chat : " + chat);
+			frame.RoomPanelNewChat(chat);
+			break;
+		// 4101 쪽지 메시지 성공
+		case Protocol.SC_WHISPER_SUCCESS :
 			
-			break;	
-		}
-		
-		//  방 정보 변경
+			break;
+		// 4102 쪽지 메시지 성공
+		case Protocol.SC_WHISPER_FAIL :
+			JOptionPane.showMessageDialog(frame, "쪽지 전송에 실패했습니다.", "실패", JOptionPane.ERROR_MESSAGE);
+			break;
+		// 4103 쪽지 수신
+		case Protocol.SC_WHISPER_MESSAGE :
+			String[] whisperTokens = tokens[3].split(Protocol.INNER_DELEMETER);
+			frame.recieveWhisper(whisperTokens[0], whisperTokens[1]);
+			break;
+		// 5001 초대메시지 전송
+		case Protocol.SC_INVITE_SUCCESS :
+			JOptionPane.showMessageDialog(frame, "초대메시지를 보냈습니다.", "초대", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		// 5002 초대메시지 전송 실패
+		case Protocol.SC_INVITE_FAIL:
+			JOptionPane.showMessageDialog(frame, "초대메시지를 전송에 실패했습니다.", "초대", JOptionPane.ERROR_MESSAGE);
+			break;
+		// 5003 상대방의 초대 거절
+		case Protocol.SC_INVITE_REJECT:
+			JOptionPane.showMessageDialog(frame, "상대방이 초대를 거절했습니다.", "초대", JOptionPane.INFORMATION_MESSAGE);
+			break;
+		// 5101 초대메시지 수신
+		case Protocol.SC_INVITE_MESSAGE:
+			String[] inviteTokens = tokens[3].split(Protocol.INNER_DELEMETER);
+			System.out.println("[debug] process 초대 수신 : " + inviteTokens);
+			frame.recieveInvite(inviteTokens[0], inviteTokens[1]);
+			break;
+
+		}// switch 끝
 	}
 
 }

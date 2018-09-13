@@ -1,5 +1,6 @@
 package kr.or.kosta.dva.client.boundary;
 
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -10,6 +11,12 @@ import java.awt.List;
 import java.awt.Panel;
 import java.awt.TextArea;
 import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+
+import javax.swing.JOptionPane;
 
 import kr.or.kosta.dva.client.entity.DvaRoom;
 import kr.or.kosta.dva.client.entity.Protocol;
@@ -49,6 +56,7 @@ public class RoomPanel extends Panel {
 		roomNameL = new Label("새로운 대화방");
 		userListL = new Label("유저 목록", Label.CENTER);
 		chatTA = new TextArea();
+		chatTA.setEditable(false);
 		userList = new List();
 		newChatTF = new TextField();
 		sendB = new Button("전송");
@@ -61,13 +69,15 @@ public class RoomPanel extends Panel {
 		setContents();
 		eventRegist();
 	}
-	
+
+// getter, setter
 	public DvaRoom getRoom() {
 		return room;
 	}
 
 	public void setRoom(DvaRoom room) {
 		this.room = room;
+		chatTA.setText("");
 		setHeader();
 
 	}
@@ -77,11 +87,13 @@ public class RoomPanel extends Panel {
 			userList.add(room.getClients().get(i));
 		
 	}
+	/** 채팅방 정보 출력 */
 	public void setHeader() {
 		roomNameL.setText( String.format("방제 : %-60s 방장 : %-15s [ %d / %d ]", room.getRoomName(), room.getRoomOwner() 
 				, room.getUserCount(), room.getCapacity()));
 	}
-
+	
+// 배치관련 메소드
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
 	 * 
@@ -132,15 +144,55 @@ public class RoomPanel extends Panel {
 		// 버튼 영역
 		addToGridBag(bottomPanel, 	0, 3, 3, 1, 0, 0);
 	}
-	
+
+// 이벤트관련 메소드
 	/**
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
-	public void eventRegist() {		
-		
+	public void eventRegist() {
+		// 유저를 선택하면 쪽지보내기 버튼 활성화
+		userList.addItemListener(new ItemListener() {	
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				bottomPanel.whisperB.setEnabled(true);
+			}
+		});
+		// 채팅창에 메시지 입력하고 엔터
+		newChatTF.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sendChat();
+			}
+		});
+		// 전송버튼
+		sendB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				sendChat();
+			}
+		});
 	}
-	
-// 
+	/**
+	 * 서버에 메시지를 보내는 메소드
+	 */
+	public void sendChat() {
+		if(newChatTF.getText().equals("")) return;
+		
+		String clientMessage = Protocol.CS_CHAT_MESSAGE + Protocol.DELEMETER
+				+ frame.client.currentTime() + Protocol.DELEMETER +
+				frame.client.getNickName() + Protocol.DELEMETER +
+				newChatTF.getText();
+		frame.client.sendMessage(clientMessage);
+	}
+
+	/**
+	 * 서버로부터 채팅 메시지를 수신하여 출력하는 메소드
+	 * @param chat
+	 */
+	public void newChat(String chat) {
+		chatTA.append(chat);
+		newChatTF.setText("");
+	}
 	/**
 	 * 서버로부터 유저 목록을 받아 설정하는 메소드
 	 * @param users 서버에서 받아온 유저 목록
@@ -182,5 +234,42 @@ public class RoomPanel extends Panel {
 		frame.client.sendMessage(clientMessage);
 		frame.changeCard(MainFrame.WAIT, null);
 		
+	}
+	/** 유저를 초대하기 위해 대기실 유저 목록을 요청하는 메소드 */
+	public void sendInviteRequest() {
+		String clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
+				frame.client.currentTime() + Protocol.DELEMETER + 
+				frame.client.getNickName() + Protocol.DELEMETER +
+				Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER + 
+				Protocol.ANTEROOM;
+		frame.client.sendMessage(clientMessage);
+	}
+	/** 유저를 방에 초대하는 메소드 */
+	public void invite(java.util.List<String> users) {
+		// 다이얼로그로 유저 리스트와 버튼 표시
+		Panel panel = new Panel();
+		List waitUsers = new List();
+		
+		for (String string : users) {
+			waitUsers.add(string);
+		}
+		panel.add(waitUsers);
+		
+		String[] buttons = {"초대", "취소"};
+		int result = JOptionPane.showOptionDialog(this, panel, "대기실 유저 초대", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
+				null, buttons, null);
+		
+		// 유저 선택 후 초대 클릭
+		if((result == 0) && (waitUsers.getSelectedIndex() != -1)) {
+			String clientMessage = Protocol.CS_INVITE + Protocol.DELEMETER + 
+					frame.client.currentTime() + Protocol.DELEMETER + 
+					frame.client.getNickName() + Protocol.DELEMETER +
+					waitUsers.getSelectedItem();
+			frame.client.sendMessage(clientMessage);
+		}
+		else {
+			System.out.println("[debug] 쪽지 보내기 취소");
+		}
 	}
 }

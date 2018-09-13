@@ -33,7 +33,7 @@ public class WaitingPanel extends Panel {
 	java.util.List<DvaRoom> rooms;				// 방목록
 	java.util.List<String> waitUsers;			// 대기실 유저 목록
 	java.util.List<String> selectRoomUsers;		// 특정 방 유저 목록 
-	//String selectedRoom;
+
 	DvaRoom enterRoom;
 	String clientMessage;
 	
@@ -178,6 +178,29 @@ public class WaitingPanel extends Panel {
 
 			}
 		});
+		/** 대기실 유저와 방 유저 둘 중 한군데만 선택될 수 있음 */
+		/** 대기실 유저 목록에서 유저를 클릭했을 때 발생하는 이벤트 */
+		waitList.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// 방 유저 목록에 선택된 유저가 있으면 선택 해제
+				if(roomUserList.getSelectedIndex() != -1) {
+					roomUserList.deselect(roomUserList.getSelectedIndex());
+				}
+				bottomPanel.whisperB.setEnabled(true);
+			}
+		});
+		/** 방 유저 목록에서 유저를 클릭했을 때 발생하는 이벤트 */
+		roomUserList.addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				// 방 유저 목록에 선택된 유저가 있으면 선택 해제
+				if(waitList.getSelectedIndex() != -1) {
+					waitList.deselect(waitList.getSelectedIndex());
+				}
+				bottomPanel.whisperB.setEnabled(true);
+			}
+		});
 	}
 	
 // 데이터 관련 메소드
@@ -229,7 +252,11 @@ public class WaitingPanel extends Panel {
 	}
 	
 	/** 방에 입장하는 메소드 */
-	public void enterRoom() {
+	public void enterRoom(String roomName) {
+		for (DvaRoom dvaRoom : rooms) {
+			if(dvaRoom.getRoomName().equals(roomName))
+				enterRoom = dvaRoom;
+		}
 		enterRoom.getClients().add(frame.client.getNickName());
 		frame.changeCard(MainFrame.ROOM, enterRoom);
 	}
@@ -247,24 +274,6 @@ public class WaitingPanel extends Panel {
 		waitList.remove(user);
 		
 	}
-	/** 선택한 방에 입장하는 메소드 */
-	/*
-	public void enterSelectRoom() {
-		DvaRoom room = rooms.get(roomList.getSelectedIndex());
-		room.setClients(selectRoomUsers);
-		room.getClients().add(frame.client.getNickName());
-		//frame.changeCard(MainFrame.ROOM, room);
-	}*/
-	
-	/** 새로운 방에 입장을 요청하는 메소드 */
-	/*
-	public void tryEnterNewRoom(DvaRoom room) {
-		room.getClients().add(frame.client.getNickName());
-		//frame.changeCard(MainFrame.ROOM, room);
-		
-	}
-	*/
-
 	
 	/** 방을 생성하는 메소드 */
 	public void createRoom() {
@@ -294,7 +303,16 @@ public class WaitingPanel extends Panel {
 		// 다이어그램 표시
 		int result = JOptionPane.showConfirmDialog(this, panel, "방 생성", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-		
+		// 빈칸이 있을경우 종료
+		if ( enterNameTF.getText().equals("") || capacityTF.getText().equals("")) {
+			JOptionPane.showMessageDialog(frame, "빈칸을 모두 입력하세요.", "경고", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+		// 수용인원이 너무 클 경우
+		if (Integer.parseInt(capacityTF.getText()) > 40) {
+			JOptionPane.showMessageDialog(frame, "최대 수용 인원은 40입니다.", "경고", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
 		// 방 생성 요청
 		if(result == 0) {
 			enterRoom  = new DvaRoom(enterNameTF.getText(), frame.client.getNickName(), 1,
@@ -308,6 +326,7 @@ public class WaitingPanel extends Panel {
 		}
 
 	}
+	
 	/** 패널을 초기화 하는 메소드 */
 	public void resetPanel() {
 		rooms = new ArrayList<DvaRoom>(); 

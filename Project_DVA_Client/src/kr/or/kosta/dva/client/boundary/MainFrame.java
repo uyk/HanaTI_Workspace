@@ -4,12 +4,15 @@ import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Frame;
+import java.awt.Label;
 import java.awt.Panel;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.List;
 
+import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
 
 import kr.or.kosta.dva.client.entity.DvaClient;
@@ -118,6 +121,7 @@ public class MainFrame extends Frame{
 			break;
 		case WAIT :						// 대기실로 이동
 			client.setLocation(Protocol.ANTEROOM);
+			waitingPanel.resetPanel();
 			setTitle("::: DVA CHAT APP ::: \t< User : " + client.getNickName() + ">");
 			setSize(800,500);
 			setResizable(true);
@@ -158,7 +162,7 @@ public class MainFrame extends Frame{
 			client.connectServer();
 			client.recieveMessage();
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, e.getMessage(), "연결 실패", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(this, e.getMessage(), "연결 실패", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	
@@ -184,7 +188,8 @@ public class MainFrame extends Frame{
 		client.sendMessage(clientMessage);
 	}
 	
-	// roomList() 
+
+// 대기실 패널의 컴포넌트를 조작하는 메소드
 	public void WaitPanelRoomList(List<DvaRoom> rooms) {
 		waitingPanel.setRoomList(rooms);
 	}
@@ -204,8 +209,8 @@ public class MainFrame extends Frame{
 	public void WaitPanelEnterNewRoom(DvaRoom room) {
 		waitingPanel.enterNewRoom(room);
 	}*/
-	public void WaitPanelEnterRoom() {
-		waitingPanel.enterRoom();
+	public void WaitPanelEnterRoom(String roomName) {
+		waitingPanel.enterRoom(roomName);
 	}
 	public void WaitPanelNewWaitUser(String user) {
 		waitingPanel.newWaitUser(user);
@@ -213,6 +218,8 @@ public class MainFrame extends Frame{
 	public void WaitPanelOutWaitUser(String user) {
 		waitingPanel.outWaitUser(user);
 	}
+	
+// 채팅방 패널의 컴포넌트를 조작하는 메소드
 	public void RoomPanelRoomUsers(List<String> users) {
 		roomPanel.setRoomUsers(users);
 	}
@@ -225,4 +232,102 @@ public class MainFrame extends Frame{
 //	public void RoomPanelOutRoom() {		//바텀패널에서 바로 호출
 //		roomPanel.outRoom();
 //	}
+	public void RoomPanelNewChat(String chat) {
+		roomPanel.newChat(chat);
+	}
+	public void RoomPanelInvite(List<String> users) {
+		roomPanel.invite(users);
+	}
+	
+// 패널 공통 메소드
+	/**
+	 * 특정 사용자에게 쪽지를 보내는 메소드
+	 * @param reciever 쪽지를 받을 대상
+	 */
+	public void sendWhisper(String reciever) {
+		// 다이얼로그로 유저 리스트와 버튼 표시
+		Panel panel = new Panel();
+		TextArea whisperTA = new TextArea(2,1);
+		panel.setLayout(new BorderLayout());
+		panel.add(new Label("받는사람 : " + reciever), BorderLayout.NORTH);
+		panel.add(whisperTA, BorderLayout.CENTER);
+		String[] buttons = {"쪽지", "취소"};
+		int result = JOptionPane.showOptionDialog(this, panel, "쪽지 발신", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
+				null, buttons, null);
+		
+		// 선택한 버튼 분석
+		if(result == 0) {
+			String clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
+					client.currentTime() + Protocol.DELEMETER + 
+					client.getNickName() + Protocol.DELEMETER +
+					reciever + Protocol.INNER_DELEMETER+ 
+					whisperTA.getText() ;
+			client.sendMessage(clientMessage);
+		}
+		else {
+			System.out.println("[debug] 쪽지 보내기 취소");
+		}
+	}
+	/**
+	 * 수신한 쪽지를 보여주는 메소드
+	 */
+	public void recieveWhisper(String sender, String message) {
+		Panel panel = new Panel();
+		TextArea messageTA = new TextArea(message, 2,1, TextArea.SCROLLBARS_NONE);
+		TextArea replyTA = new TextArea(2,1);
+
+		messageTA.setEditable(false);
+		
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		panel.add(new Label("보낸사람 : " + sender));
+		panel.add(messageTA);
+		panel.add(new Label("답장"));
+		panel.add(replyTA);
+		
+		String[] buttons = {"답장 전송", "취소"};
+		int result = JOptionPane.showOptionDialog(this, panel,"쪽지 수신", 
+				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
+				null, buttons, null);
+		
+		// 선택한 버튼 분석
+		if(result == 0) {
+			String clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
+					client.currentTime() + Protocol.DELEMETER + 
+					client.getNickName() + Protocol.DELEMETER +
+					sender + Protocol.INNER_DELEMETER+
+					replyTA.getText() ;
+			client.sendMessage(clientMessage);
+		}
+		else {
+			System.out.println("[debug] 쪽지 보내기 취소");
+		}
+	}
+	
+	/**
+	 * 초대 메시지를 보여주는 메소드
+	 */
+	public void recieveInvite(String sender, String roomName) {
+		String clientMessage = null;
+		String[] buttons = {"승락", "거절"};
+		int result = JOptionPane.showOptionDialog(this, 
+				"[ " + sender + " ] 님이 [ "+ roomName + " ]방으로 초대했습니다.", 
+				"초대", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, 
+				null, buttons, null);
+		// 초대 승낙
+		if(result == 0) {
+			clientMessage = Protocol.CS_INVITE_OK + Protocol.DELEMETER + 
+					client.currentTime() + Protocol.DELEMETER + 
+					client.getNickName() + Protocol.DELEMETER +
+					roomName;
+		}
+		// 초대 거절
+		else {
+			clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
+					client.currentTime() + Protocol.DELEMETER + 
+					client.getNickName() + Protocol.DELEMETER +
+					sender;
+		}
+		client.sendMessage(clientMessage);
+	}
 }
