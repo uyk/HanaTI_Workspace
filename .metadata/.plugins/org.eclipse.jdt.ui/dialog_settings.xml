@@ -68,6 +68,7 @@
 		<item value="false" key="JarManifestWizardPage.SAVE_MANIFEST"/>
 		<item value="false" key="JarPackageWizardPage.EXPORT_OUTPUT_FOLDER"/>
 		<list key="JarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="C:\KOSTA187\DVA_Client_유예겸.jar"/>
 			<item value="C:\KOSTA187\ams_v2_유예겸.jar"/>
 			<item value="C:\KOSTA187\ams_유예겸.jar"/>
 		</list>

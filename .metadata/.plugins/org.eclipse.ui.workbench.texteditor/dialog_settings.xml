@@ -2,27 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="new Dv" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="new dv"/>
-			<item value="new cl"/>
-			<item value="cl"/>
-			<item value="fini"/>
-			<item value="deb"/>
-			<item value="Deb"/>
-			<item value="connec"/>
-			<item value="connect&apos;"/>
-			<item value="connect"/>
-			<item value="clien"/>
-			<item value="clein"/>
-			<item value="cleint"/>
-			<item value="tring clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER"/>
-			<item value="wait"/>
-			<item value="testSendMessage"/>
+			<item value="sys"/>
+			<item value="system."/>
+			<item value="hea"/>
+			<item value="he"/>
+			<item value="헤더"/>
+			<item value="new"/>
+			<item value="select"/>
+			<item value="split"/>
+			<item value="enterRoom()"/>
+			<item value="enterR"/>
+			<item value="enter"/>
+			<item value="roomN"/>
+			<item value="roonN"/>
+			<item value="public void RoomPanelNewChat(String chat) {"/>
+			<item value="joptio"/>
 		</list>
 		<list key="replacehistory">
 		</list>
@@ -31,7 +31,7 @@
 		<item value="340" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1341" key="DIALOG_X_ORIGIN"/>
-		<item value="195" key="DIALOG_Y_ORIGIN"/>
+		<item value="1573" key="DIALOG_X_ORIGIN"/>
+		<item value="382" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
