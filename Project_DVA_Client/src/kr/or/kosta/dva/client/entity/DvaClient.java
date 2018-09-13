@@ -179,19 +179,21 @@ public class DvaClient extends Client{
 		case Protocol.SC_ROOMLIST :
 			// 방 정보들을 담는 리스트
 			List<DvaRoom> rooms = new ArrayList<>();
-			if(tokens.length <= 3 ) return;
-			// tokens[3] : 방이름 샘플★★유예겸★★5★★15.....
-			String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			for (int i = 0; i < roomTokens.length; i += 4) {
-				DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
-						Integer.parseInt(roomTokens[i+2]), 
-						Integer.parseInt(roomTokens[i+3]));
-				rooms.add(room);
-				System.out.println("[debug] 받아온 방 정보: " +
-						room.getRoomName() +"  " +
-						room.getRoomOwner() +"  " +
-						room.getUserCount() +"  " +
-						room.getCapacity());
+			// 하나 이상의 방이 있음
+			if(tokens.length >3) {
+				// tokens[3] : 방이름 샘플★★유예겸★★5★★15.....
+				String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
+				for (int i = 0; i < roomTokens.length; i += 4) {
+					DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
+							Integer.parseInt(roomTokens[i+2]), 
+							Integer.parseInt(roomTokens[i+3]));
+					rooms.add(room);
+					System.out.println("[debug] 받아온 방 정보: " +
+							room.getRoomName() +"  " +
+							room.getRoomOwner() +"  " +
+							room.getUserCount() +"  " +
+							room.getCapacity());
+				}
 			}
 			frame.WaitPanelRoomList(rooms);
 			
@@ -235,7 +237,8 @@ public class DvaClient extends Client{
 			break;
 		// 3101 방 입장 성공
 		case Protocol.SC_ENTRANCE_SUCCESS :
-			frame.WaitPanelEnterRoom();
+			if(!(tokens[3].equals(Protocol.ANTEROOM))) 
+				frame.WaitPanelEnterRoom();
 			break;
 		// 3102 방 입장 실패
 		case Protocol.SC_ENTRANCE_FAIL :
@@ -267,10 +270,12 @@ public class DvaClient extends Client{
 		// 3201 내가 방에서 나감
 		case Protocol.SC_ROOM_OUT_SUCCESS:
 			// 대기실에서 나가는 것은 로그아웃 또는 finish로 했기 때문에 안건드림
-			if(getLocation().equals(Protocol.ANTEROOM))
-				frame.WaitPanelNewWaitUser(tokens[3]);
+			// 대기실로 나감
+			
 			break;	
 		}
+		
+		//  방 정보 변경
 	}
 
 }

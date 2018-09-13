@@ -141,7 +141,7 @@ public class MainFrame extends Frame{
 
 	/** 프로그램 종료 메소드 */
 	public void finish() {
-		if(client.getNickName() != null) { 
+		if(client != null) { 
 			logoutEvent();
 		}
 		setVisible(false);
@@ -222,4 +222,7 @@ public class MainFrame extends Frame{
 	public void RoomPanelOutWaitUser(String user) {
 		roomPanel.outRoomUser(user);
 	}
+//	public void RoomPanelOutRoom() {		//바텀패널에서 바로 호출
+//		roomPanel.outRoom();
+//	}
 }

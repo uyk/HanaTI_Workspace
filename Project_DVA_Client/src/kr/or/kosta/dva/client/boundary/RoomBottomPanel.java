@@ -38,8 +38,8 @@ public class RoomBottomPanel extends Panel{
 		waitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.changeCard(MainFrame.WAIT, null);
-				
+				frame.roomPanel.outRoom();
+				//frame.changeCard(MainFrame.WAIT, null);
 			}
 		});
 		

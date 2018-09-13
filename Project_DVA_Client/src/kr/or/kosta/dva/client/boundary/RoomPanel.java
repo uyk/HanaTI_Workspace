@@ -12,6 +12,7 @@ import java.awt.TextArea;
 import java.awt.TextField;
 
 import kr.or.kosta.dva.client.entity.DvaRoom;
+import kr.or.kosta.dva.client.entity.Protocol;
 
 /**
  * 채팅방 화면을 구현하는 패널
@@ -170,5 +171,16 @@ public class RoomPanel extends Panel {
 		userList.remove(user);
 
 		setHeader();	//인원 수정
+	}
+	
+	/** 방을 나가 대기실로 돌아가는 메소드 */
+	public void outRoom() {	
+		// 방 나간다고 서버에 알리기
+		String clientMessage = Protocol.CS_ROOM_OUT + Protocol.DELEMETER +
+				frame.client.currentTime() + Protocol.DELEMETER + 
+				frame.client.getNickName();
+		frame.client.sendMessage(clientMessage);
+		frame.changeCard(MainFrame.WAIT, null);
+		
 	}
 }
