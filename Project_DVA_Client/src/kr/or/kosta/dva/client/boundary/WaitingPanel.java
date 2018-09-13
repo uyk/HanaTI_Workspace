@@ -33,7 +33,8 @@ public class WaitingPanel extends Panel {
 	java.util.List<DvaRoom> rooms;				// 방목록
 	java.util.List<String> waitUsers;			// 대기실 유저 목록
 	java.util.List<String> selectRoomUsers;		// 특정 방 유저 목록 
-	String selectedRoom;
+	//String selectedRoom;
+	DvaRoom enterRoom;
 	String clientMessage;
 	
 	// 화면구성 인스턴스 변수
@@ -159,8 +160,9 @@ public class WaitingPanel extends Panel {
 		roomList.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				DvaRoom room = rooms.get(roomList.getSelectedIndex());				
-				selectedRoom = room.getRoomName();
+				//DvaRoom room = rooms.get(roomList.getSelectedIndex());				
+				//selectedRoom = room.getRoomName();
+				enterRoom = rooms.get(roomList.getSelectedIndex());
 				
 				// 방 정보 요청 메시지를 보냄			
 				clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
@@ -215,6 +217,7 @@ public class WaitingPanel extends Panel {
 	public void tryEnterSelectRoom() {	
 		DvaRoom room = rooms.get(roomList.getSelectedIndex());
 		room.setClients(selectRoomUsers);
+		
 		// 방 입장 요청 보내기
 		clientMessage = Protocol.CS_ENTRANCE + Protocol.DELEMETER +
 				frame.client.currentTime() + Protocol.DELEMETER + 
@@ -225,17 +228,19 @@ public class WaitingPanel extends Panel {
 	}
 	
 	/** 선택한 방에 입장하는 메소드 */
+	/*
 	public void enterSelectRoom() {
 		DvaRoom room = rooms.get(roomList.getSelectedIndex());
 		room.setClients(selectRoomUsers);
 		room.getClients().add(frame.client.getNickName());
-		frame.changeCard(MainFrame.ROOM, room);
-	}
+		//frame.changeCard(MainFrame.ROOM, room);
+	}*/
 	
 	/** 새로운 방에 입장을 요청하는 메소드 */
-	public void enterNewRoom(DvaRoom room) {
+	public void tryEnterNewRoom(DvaRoom room) {
 		room.getClients().add(frame.client.getNickName());
-		frame.changeCard(MainFrame.ROOM, room);
+		//frame.changeCard(MainFrame.ROOM, room);
+		
 	}
 	
 	/** 방에 입장하는 메소드 */
