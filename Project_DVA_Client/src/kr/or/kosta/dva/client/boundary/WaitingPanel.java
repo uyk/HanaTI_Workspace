@@ -169,7 +169,7 @@ public class WaitingPanel extends Panel {
 						frame.client.currentTime() + Protocol.DELEMETER + 
 						frame.client.getNickName() + Protocol.DELEMETER +
 						Protocol.CS_ROOMUSERLIST + Protocol.INNER_DELEMETER +
-						selectedRoom;
+						enterRoom.getRoomName();
 				frame.client.sendMessage(clientMessage);
 				//frame.client.testSendMessage(clientMessage);
 				bottomPanel.enterB.setEnabled(true);
@@ -185,8 +185,6 @@ public class WaitingPanel extends Panel {
 	public void setRoomList(java.util.List<DvaRoom> rooms) {
 		this.rooms = rooms;
 		roomList.removeAll();					// awt 리스트 초기화
-		//테스트를 위해 가짜 방 하나 추가		// debug
-		rooms.add(new DvaRoom("테스트 방", "가짜방장", 5, 10));
 		for (int i = 0; i < rooms.size(); i++) {
 			DvaRoom room = rooms.get(i);
 			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
@@ -208,21 +206,21 @@ public class WaitingPanel extends Panel {
 	public void setRoomUsers(java.util.List<String> users) {
 		this.selectRoomUsers = users;
 		roomUserList.removeAll();
-		for (int i = 1; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++) {
 			roomUserList.add(users.get(i));
 		}
+		System.out.println("[debug] setRoomUsers :" + users);
 	}
 	
 	/** 선택한 방에 입장을 요청하는 메소드 */
 	public void tryEnterSelectRoom() {	
-		DvaRoom room = rooms.get(roomList.getSelectedIndex());
-		room.setClients(selectRoomUsers);
+		enterRoom.setClients(selectRoomUsers);
 		
 		// 방 입장 요청 보내기
 		clientMessage = Protocol.CS_ENTRANCE + Protocol.DELEMETER +
 				frame.client.currentTime() + Protocol.DELEMETER + 
 				frame.client.getNickName() + Protocol.DELEMETER + 
-				room.getRoomName();
+				enterRoom.getRoomName();
 		
 		frame.client.sendMessage(clientMessage);
 	}
@@ -237,16 +235,18 @@ public class WaitingPanel extends Panel {
 	}*/
 	
 	/** 새로운 방에 입장을 요청하는 메소드 */
+	/*
 	public void tryEnterNewRoom(DvaRoom room) {
 		room.getClients().add(frame.client.getNickName());
 		//frame.changeCard(MainFrame.ROOM, room);
 		
 	}
+	*/
 	
 	/** 방에 입장하는 메소드 */
-	public void enterRoom(DvaRoom room) {
-		room.getClients().add(frame.client.getNickName());
-		frame.changeCard(MainFrame.ROOM, room);
+	public void enterRoom() {
+		enterRoom.getClients().add(frame.client.getNickName());
+		frame.changeCard(MainFrame.ROOM, enterRoom);
 	}
 	
 	/** 방을 생성하는 메소드 */
@@ -280,11 +280,13 @@ public class WaitingPanel extends Panel {
 		
 		// 방 생성 요청
 		if(result == 0) {
+			enterRoom  = new DvaRoom(enterNameTF.getText(), frame.client.getNickName(), 
+					1, Integer.parseInt(capacityTF.getText()));
 			clientMessage = Protocol.CS_ROOM_ADD + Protocol.DELEMETER +
 					frame.client.currentTime() + Protocol.DELEMETER +
 					frame.client.getNickName() + Protocol.DELEMETER + 
-					enterNameTF.getText() + Protocol.INNER_DELEMETER + 
-					capacityTF.getText();
+					enterRoom.getRoomName() + Protocol.INNER_DELEMETER + 
+					enterRoom.getCapacity();
 			frame.client.sendMessage(clientMessage);
 		}
 
@@ -295,7 +297,7 @@ public class WaitingPanel extends Panel {
 		waitUsers = new ArrayList<String>();
 		selectRoomUsers = new ArrayList<String>();
 		
-		selectedRoom = null;
+		enterRoom = null;
 		clientMessage = null;
 		
 		roomList.removeAll();

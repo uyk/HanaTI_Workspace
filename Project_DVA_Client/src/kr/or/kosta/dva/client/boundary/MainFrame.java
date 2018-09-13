@@ -142,7 +142,6 @@ public class MainFrame extends Frame{
 	/** 프로그램 종료 메소드 */
 	public void finish() {
 		if(client != null) { 
-			client.stopClient();
 			logoutEvent();
 		}
 		setVisible(false);
@@ -198,11 +197,15 @@ public class MainFrame extends Frame{
 	public void WaitPanelTryEnterSelectRoom() {
 		waitingPanel.tryEnterSelectRoom();
 	}
+	/*
 	public void WaitPanelEnterSelectRoom() {
 		waitingPanel.enterSelectRoom();
 	}
 	public void WaitPanelEnterNewRoom(DvaRoom room) {
 		waitingPanel.enterNewRoom(room);
+	}*/
+	public void WaitPanelEnterRoom() {
+		waitingPanel.enterRoom();
 	}
 	public void RoomPanelRoomUsers(List<String> users) {
 		roomPanel.setRoomUsers(users);
