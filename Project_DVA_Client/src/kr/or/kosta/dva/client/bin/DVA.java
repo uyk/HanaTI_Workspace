@@ -14,9 +14,9 @@ public class DVA {
 		frame.setCenter();
 		frame.setVisible(true);	
 		
-		DvaClient dvaClient = new DvaClient(frame);
+		//DvaClient dvaClient = new DvaClient(frame);
 		
-		frame.setClient(dvaClient);
+		//frame.setClient(dvaClient);
 		//ChatClient chatClient = new ChatClient(frame);
 		
 		//frame.setChatClient(chatClient);

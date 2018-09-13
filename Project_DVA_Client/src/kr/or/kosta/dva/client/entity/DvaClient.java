@@ -180,7 +180,7 @@ public class DvaClient extends Client{
 			// 방 정보들을 담는 리스트
 			List<DvaRoom> rooms = new ArrayList<>();
 			if(tokens.length <= 3 ) return;
-			// tokens[3] : 방제목 샘플1★★유예겸★★5★★15.....
+			// tokens[3] : 방이름 샘플★★유예겸★★5★★15.....
 			String[] roomTokens = tokens[3].split(Protocol.INNER_DELEMETER);
 			for (int i = 0; i < roomTokens.length; i += 4) {
 				DvaRoom room = new DvaRoom(roomTokens[i], roomTokens[i+1], 
@@ -195,7 +195,7 @@ public class DvaClient extends Client{
 		case Protocol.SC_ROOMUSERLIST :
 			// 유저 목록을 저장할 리스트
 			List<String> users = new ArrayList<>();
-			// tokens[3] : 방이름샘플★★유예겸★★김예겸★★가나다...
+			// tokens[3] : 방이름 샘플★★유예겸★★김예겸★★가나다...
 			if(tokens.length <= 3 ) return;
 			String[] roomUserTokens = tokens[3].split(Protocol.INNER_DELEMETER);
 			
@@ -217,14 +217,12 @@ public class DvaClient extends Client{
 			}
 			// 대기실이 아닌 경우
 			else{
-				
+				//  RoomPanel의 유저 목록 변경
+				frame.RoomPanelRoomUsers(users);
 			}
 			break;
 		// 3001 방 생성 성공
 		case Protocol.SC_ROOM_ADD_SUCCESS :
-			String[] roomInfo = tokens[3].split(Protocol.INNER_DELEMETER);
-			//DvaRoom room = new DvaRoom(roomInfo[0], roomInfo[1], 
-			//		Integer.parseInt(roomInfo[2]), Integer.parseInt(roomInfo[3]));
 			frame.WaitPanelEnterRoom();
 			break;
 		// 3002 방 생성 실패
@@ -233,21 +231,34 @@ public class DvaClient extends Client{
 			break;
 		// 3101 방 입장 성공
 		case Protocol.SC_ENTRANCE_SUCCESS :
-			//if(tokens)
 			frame.WaitPanelEnterRoom();
 			break;
 		// 3102 방 입장 실패
 		case Protocol.SC_ENTRANCE_FAIL :
-			//if(tokens)
 			JOptionPane.showMessageDialog(frame, "방입장 실패", "경고", JOptionPane.ERROR_MESSAGE);
 			break;	
 		// 3103 다른 유저가 방에 들어옴
 		case Protocol.SC_ENTRANCE_MEMBER :
-			//if(tokens)
-			JOptionPane.showMessageDialog(frame, "누가들어옴", "경고", JOptionPane.ERROR_MESSAGE);
+			// tokens[3] : 유예겸
+			// 대기실
+			if(getLocation().equals(Protocol.ANTEROOM))
+				frame.WaitPanelNewWaitUser(tokens[3]);
 			break;	
-			
+		// 3104 다른 유저가 방에서 나감
+		case Protocol.SC_OUT_MEMBER :
+			// tokens[3] : 유예겸
+			// 대기실
+			if(getLocation().equals(Protocol.ANTEROOM))
+				frame.WaitPanelNewWaitUser(tokens[3]);
+			break;	
+							
+		// 3201 내가 방에서 나감
+		case Protocol.SC_ROOM_OUT_SUCCESS:
+			// 대기실에서 나가는 것은 로그아웃 또는 finish로 했기 때문에 안건드림
+			if(getLocation().equals(Protocol.ANTEROOM))
+				frame.WaitPanelNewWaitUser(tokens[3]);
+			break;	
 		}
-		
 	}
+
 }

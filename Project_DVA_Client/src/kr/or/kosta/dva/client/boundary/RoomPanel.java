@@ -67,11 +67,13 @@ public class RoomPanel extends Panel {
 
 	public void setRoom(DvaRoom room) {
 		this.room = room;
-		roomNameL.setText(room.getRoomName());
+		roomNameL.setText( String.format("방제 : %-60s 방장 : %-15s [ %d / %d ]", room.getRoomName(), room.getRoomOwner() 
+		, room.getClients().size(), room.getCapacity()));
+
 	}
 	public void setRoomUserList() {
 		userList.removeAll();
-		for(int i = 1; i < room.getClients().size(); i++)
+		for(int i = 0; i < room.getClients().size(); i++)
 			userList.add(room.getClients().get(i));
 		
 	}

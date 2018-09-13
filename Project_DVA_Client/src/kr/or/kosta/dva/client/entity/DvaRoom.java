@@ -13,7 +13,7 @@ public class DvaRoom extends Room{
 		setCapacity(capacity);
 		setClients(new ArrayList<>());
 	}
-	
+
 	public int getUserCount() {
 		return userCount;
 	}

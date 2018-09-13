@@ -37,7 +37,7 @@ public class WaitingPanel extends Panel {
 	DvaRoom enterRoom;
 	String clientMessage;
 	
-	// 화면구성 인스턴스 변수
+// 화면구성 인스턴스 변수
 	Choice searchType;
 	TextField searchTF;
 	Button searchB;
@@ -46,10 +46,11 @@ public class WaitingPanel extends Panel {
 	
 	WaitingBottomPanel bottomPanel;
 	
-	// 레이아웃관련 인스턴스 변수
+// 레이아웃관련 인스턴스 변수
 	GridBagLayout gridBagLayout;
 	GridBagConstraints gridBagConstraints;
-	
+
+//생성자
 	/**
 	 * 패널이 부착된 프레임을 인자로 받는 생성자.
 	 * 화면 출력 인스턴스들을 초기화하고 컨텐츠 배치 메소드 호출.
@@ -90,6 +91,8 @@ public class WaitingPanel extends Panel {
 	}
 	
 	
+	
+// 배치관련 메소드
 	/**
 	 * GridBag 레이아웃에 컴포넌트를 추가하는 메소드
 	 * 
@@ -151,7 +154,6 @@ public class WaitingPanel extends Panel {
 		// 버튼 영역
 		addToGridBag(bottomPanel, 		0, 5, 5, 1, 0, 0);
 	}
-
 	/**
 	 * 컴포넌트에 이벤트를 등록하는 메소드
 	 */
@@ -178,6 +180,7 @@ public class WaitingPanel extends Panel {
 		});
 	}
 	
+// 데이터 관련 메소드
 	/**
 	 * 방 목록을 받아와 list 영역에 표시하는 메소드
 	 * @param rooms
@@ -190,7 +193,7 @@ public class WaitingPanel extends Panel {
 			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
 					i , room.getRoomName(),
 					room.getRoomOwner(), 
-					room.getUserCount(), room.getCapacity()));
+					room.getClients().size(), room.getCapacity()));
 		}
 		
 	}
@@ -202,7 +205,7 @@ public class WaitingPanel extends Panel {
 			waitList.add(users.get(i));
 		}
 	}
-	/** 특정 방 유저 목록 설정 */
+	/** 선택한 방 유저 목록 설정 */
 	public void setRoomUsers(java.util.List<String> users) {
 		this.selectRoomUsers = users;
 		roomUserList.removeAll();
@@ -225,6 +228,25 @@ public class WaitingPanel extends Panel {
 		frame.client.sendMessage(clientMessage);
 	}
 	
+	/** 방에 입장하는 메소드 */
+	public void enterRoom() {
+		enterRoom.getClients().add(frame.client.getNickName());
+		frame.changeCard(MainFrame.ROOM, enterRoom);
+	}
+	
+	/** 대기실에 신규 유저 들어오면 추가하는 메소드 */
+	public void newWaitUser(String user) {
+		waitUsers.add(user);
+		waitList.add(user);
+		
+	}
+	
+	/** 대기실에서 유저가 나가면 제거하는 메소드 */
+	public void outWaitUser(String user) {
+		waitUsers.remove(user);
+		waitList.remove(user);
+		
+	}
 	/** 선택한 방에 입장하는 메소드 */
 	/*
 	public void enterSelectRoom() {
@@ -242,12 +264,7 @@ public class WaitingPanel extends Panel {
 		
 	}
 	*/
-	
-	/** 방에 입장하는 메소드 */
-	public void enterRoom() {
-		enterRoom.getClients().add(frame.client.getNickName());
-		frame.changeCard(MainFrame.ROOM, enterRoom);
-	}
+
 	
 	/** 방을 생성하는 메소드 */
 	public void createRoom() {
@@ -280,8 +297,8 @@ public class WaitingPanel extends Panel {
 		
 		// 방 생성 요청
 		if(result == 0) {
-			enterRoom  = new DvaRoom(enterNameTF.getText(), frame.client.getNickName(), 
-					1, Integer.parseInt(capacityTF.getText()));
+			enterRoom  = new DvaRoom(enterNameTF.getText(), frame.client.getNickName(), 1,
+					Integer.parseInt(capacityTF.getText()));
 			clientMessage = Protocol.CS_ROOM_ADD + Protocol.DELEMETER +
 					frame.client.currentTime() + Protocol.DELEMETER +
 					frame.client.getNickName() + Protocol.DELEMETER + 
