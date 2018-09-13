@@ -59,7 +59,6 @@ public class DvaClient extends Client{
 	 * @throws Exception
 	 */
 	public void connectServer() throws Exception {
-		System.out.println("debug : connectionServer");
 		try {
 			socket = new Socket(SERVER, PORT);
 			in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -96,15 +95,14 @@ public class DvaClient extends Client{
 					try {
 						serverMessage = in.readLine();
 						if(serverMessage == null) return;
-						System.out.println("[Debug] Server Receive Message: " + serverMessage);
 						process(serverMessage);
 						
 					} catch(SocketException e) {
-						System.out.println("[Debug] thread Socket Exception :" + e.getLocalizedMessage());
+//						System.out.println("[Debug] thread Socket Exception :" + e.getLocalizedMessage());
 						running = false;
 					} catch(Exception e) {
 						e.printStackTrace();
-						System.out.println("[Debug] thread exception :" + e.getLocalizedMessage());
+//						System.out.println("[Debug] thread exception :" + e.getLocalizedMessage());
 						break;
 					}
 				}
@@ -119,37 +117,8 @@ public class DvaClient extends Client{
 	 */
 	@Override
 	public void sendMessage(String message) {
-		System.out.println("[debug] sendMessage message: " + message);
 		if(out != null) out.println(message);
 	}
-
-	/*
-	// 테스트를 위해 서버에서 보낸 메시지 설정
-	public void testSendMessage(String message) {
-		System.out.println("[debug] testSendMessage message: " + message);
-		// 서버로 부터 받은 메시지를 외부토큰으로 분해
-		String[] tokens = message.split(Protocol.DELEMETER);
-		int protocol = Integer.parseInt(tokens[0]);
-		String time = tokens[1];
-		String nickName = tokens[2];
-		
-		String SCMessage = null;
-		// 프로토콜에 따라 메시지 분석
-		switch (protocol) {
-		case Protocol.CS_GET_LIST :
-			SCMessage = Protocol.SC_ROOMUSERLIST+ Protocol.DELEMETER +
-						currentTime() + Protocol.DELEMETER + 
-						getNickName() + Protocol.DELEMETER + 
-						"테스트방" + Protocol.INNER_DELEMETER +
-						"이름1" + Protocol.INNER_DELEMETER +
-						"이름2" + Protocol.INNER_DELEMETER +
-						"이름3" + Protocol.INNER_DELEMETER;
-						
-			process(SCMessage);
-			break;
-		}
-	}
-	*/
 	
 	/**
 	 * 서버로부터 메시지를 수신하는 스레드 발생.
@@ -157,7 +126,6 @@ public class DvaClient extends Client{
 	 */
 	@Override
 	protected void process(String message) {
-		System.out.println("[debug] process message: " + message+"\n");
 		// 서버로 부터 받은 메시지를 외부토큰으로 분해
 		String[] tokens = message.split(Protocol.DELEMETER);
 		int protocol = Integer.parseInt(tokens[0]);
@@ -281,7 +249,6 @@ public class DvaClient extends Client{
 			String[] chatTokens = tokens[3].split(Protocol.INNER_DELEMETER);
 			String chat = "[" + chatTokens[0] + "] \t :" + chatTokens[1] + "\n";
 
-			System.out.println("[debug] process chat : " + chat);
 			frame.RoomPanelNewChat(chat);
 			break;
 		// 4101 쪽지 메시지 성공
@@ -312,7 +279,6 @@ public class DvaClient extends Client{
 		// 5101 초대메시지 수신
 		case Protocol.SC_INVITE_MESSAGE:
 			String[] inviteTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			System.out.println("[debug] process 초대 수신 : " + inviteTokens);
 			frame.recieveInvite(inviteTokens[0], inviteTokens[1]);
 			break;
 

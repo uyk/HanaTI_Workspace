@@ -56,7 +56,6 @@ public class WaitingBottomPanel extends Panel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.waitingPanel.tryEnterSelectRoom();
-				System.out.println("[debug] waitingBottomPanel new room");
 			}
 		});
 		// 새로운 방을 생성하는 메소드

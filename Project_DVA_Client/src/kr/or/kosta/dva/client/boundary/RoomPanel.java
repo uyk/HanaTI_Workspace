@@ -1,6 +1,5 @@
 package kr.or.kosta.dva.client.boundary;
 
-import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -267,9 +266,6 @@ public class RoomPanel extends Panel {
 					frame.client.getNickName() + Protocol.DELEMETER +
 					waitUsers.getSelectedItem();
 			frame.client.sendMessage(clientMessage);
-		}
-		else {
-			System.out.println("[debug] 쪽지 보내기 취소");
 		}
 	}
 }

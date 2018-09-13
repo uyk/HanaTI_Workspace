@@ -16,8 +16,6 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.TextEvent;
-import java.awt.event.TextListener;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
@@ -89,7 +87,6 @@ public class WaitingPanel extends Panel {
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
 		
-		//setRoomList();
 		setContents();
 		eventRegist();
 	}
@@ -188,7 +185,6 @@ public class WaitingPanel extends Panel {
 				}
 				// 뒤에서 두번째가 방장
 				String roomOwner = tokens.get(tokens.size() - 2);
-				System.out.println("[debug] 이름 : " + roomOwner);
 				
 				// 방장이름으로 선택한 방 정보를 찾아 enterRoom에 저장
 				for (DvaRoom dvaRoom : rooms) {
@@ -276,7 +272,6 @@ public class WaitingPanel extends Panel {
 		for (int i = 0; i < users.size(); i++) {
 			roomUserList.add(users.get(i));
 		}
-		System.out.println("[debug] setRoomUsers :" + users);
 	}
 	
 	/** 선택한 방에 입장을 요청하는 메소드 */

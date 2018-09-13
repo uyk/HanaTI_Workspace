@@ -184,7 +184,6 @@ public class MainFrame extends Frame{
 		String clientMessage = Protocol.CS_LOGIN + Protocol.DELEMETER
 				+ client.currentTime() + Protocol.DELEMETER +
 				nickName;
-//		client.testSendMessage(clientMessage);
 		client.sendMessage(clientMessage);
 	}
 	
@@ -202,13 +201,6 @@ public class MainFrame extends Frame{
 	public void WaitPanelTryEnterSelectRoom() {
 		waitingPanel.tryEnterSelectRoom();
 	}
-	/*
-	public void WaitPanelEnterSelectRoom() {
-		waitingPanel.enterSelectRoom();
-	}
-	public void WaitPanelEnterNewRoom(DvaRoom room) {
-		waitingPanel.enterNewRoom(room);
-	}*/
 	public void WaitPanelEnterRoom(String roomName) {
 		waitingPanel.enterRoom(roomName);
 	}
@@ -229,9 +221,6 @@ public class MainFrame extends Frame{
 	public void RoomPanelOutWaitUser(String user) {
 		roomPanel.outRoomUser(user);
 	}
-//	public void RoomPanelOutRoom() {		//바텀패널에서 바로 호출
-//		roomPanel.outRoom();
-//	}
 	public void RoomPanelNewChat(String chat) {
 		roomPanel.newChat(chat);
 	}
@@ -303,9 +292,6 @@ public class MainFrame extends Frame{
 					sender + Protocol.INNER_DELEMETER+
 					replyTA.getText() ;
 			client.sendMessage(clientMessage);
-		}
-		else {
-			System.out.println("[debug] 쪽지 보내기 취소");
 		}
 	}
 	

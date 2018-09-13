@@ -5,9 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-
-import javax.swing.JOptionPane;
 
 public class RoomBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
@@ -51,7 +48,6 @@ public class RoomBottomPanel extends Panel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				frame.roomPanel.sendInviteRequest();
-				System.out.println("debug roomBottomPanel actionListener: invite");
 			}
 		});
 		
