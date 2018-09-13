@@ -151,6 +151,24 @@ public class RoomPanel extends Panel {
 		for (String string : users) {
 			userList.add(string);
 		}
-		setHeader();
+		setHeader();	//인원 수정
+	}
+	
+	/** 대기실에 신규 유저 들어오면 추가하는 메소드 */
+	public void newRoomUser(String user) {
+		room.getClients().add(user);
+		room.setUserCount(room.getClients().size());
+		userList.add(user);
+
+		setHeader();	//인원 수정
+	}
+	
+	/** 대기실에서 유저가 나가면 제거하는 메소드 */
+	public void outRoomUser(String user) {
+		room.getClients().remove(user);
+		room.setUserCount(room.getClients().size());
+		userList.remove(user);
+
+		setHeader();	//인원 수정
 	}
 }

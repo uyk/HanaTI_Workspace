@@ -247,6 +247,10 @@ public class DvaClient extends Client{
 			// 대기실
 			if(getLocation().equals(Protocol.ANTEROOM))
 				frame.WaitPanelNewWaitUser(tokens[3]);
+			// 채팅방
+			else {
+				frame.RoomPanelNewWaitUser(tokens[3]);
+			}
 			break;	
 		// 3104 다른 유저가 방에서 나감
 		case Protocol.SC_OUT_MEMBER :
@@ -254,6 +258,10 @@ public class DvaClient extends Client{
 			// 대기실
 			if(getLocation().equals(Protocol.ANTEROOM))
 				frame.WaitPanelOutWaitUser(tokens[3]);
+			// 채팅방
+			else {
+				frame.RoomPanelOutWaitUser(tokens[3]);
+			}
 			break;	
 							
 		// 3201 내가 방에서 나감
