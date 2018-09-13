@@ -216,14 +216,12 @@ public class DvaClient extends Client{
 				}
 				// 대기실이면서 다른 방 유저 요청했을 경우
 				else {
-					System.out.println("[debug] process 대기실 다른방");
 					frame.WaitPanelRoomUsers(users);
 				}
 			}
 			// 대기실이 아닌 경우
 			else{
 				// RoomPanel의 유저 목록 변경
-				System.out.println("[debug] process 방유저" + users);
 				frame.RoomPanelRoomUsers(users);
 			}
 			break;
@@ -255,7 +253,7 @@ public class DvaClient extends Client{
 			// tokens[3] : 유예겸
 			// 대기실
 			if(getLocation().equals(Protocol.ANTEROOM))
-				frame.WaitPanelNewWaitUser(tokens[3]);
+				frame.WaitPanelOutWaitUser(tokens[3]);
 			break;	
 							
 		// 3201 내가 방에서 나감
