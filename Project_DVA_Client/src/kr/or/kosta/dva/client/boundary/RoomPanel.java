@@ -67,8 +67,7 @@ public class RoomPanel extends Panel {
 
 	public void setRoom(DvaRoom room) {
 		this.room = room;
-		roomNameL.setText( String.format("방제 : %-60s 방장 : %-15s [ %d / %d ]", room.getRoomName(), room.getRoomOwner() 
-		, room.getClients().size(), room.getCapacity()));
+		setHeader();
 
 	}
 	public void setRoomUserList() {
@@ -76,6 +75,10 @@ public class RoomPanel extends Panel {
 		for(int i = 0; i < room.getClients().size(); i++)
 			userList.add(room.getClients().get(i));
 		
+	}
+	public void setHeader() {
+		roomNameL.setText( String.format("방제 : %-60s 방장 : %-15s [ %d / %d ]", room.getRoomName(), room.getRoomOwner() 
+				, room.getUserCount(), room.getCapacity()));
 	}
 
 	/**
@@ -142,9 +145,12 @@ public class RoomPanel extends Panel {
 	 * @param users 서버에서 받아온 유저 목록
 	 */
 	public void setRoomUsers(java.util.List<String> users) {
+		room.setClients(users);
+		room.setUserCount(room.getClients().size());
 		userList.removeAll();
 		for (String string : users) {
 			userList.add(string);
 		}
+		setHeader();
 	}
 }

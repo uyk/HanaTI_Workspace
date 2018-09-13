@@ -207,13 +207,13 @@ public class MainFrame extends Frame{
 	public void WaitPanelEnterRoom() {
 		waitingPanel.enterRoom();
 	}
-	public void RoomPanelRoomUsers(List<String> users) {
-		roomPanel.setRoomUsers(users);
-	}
 	public void WaitPanelNewWaitUser(String user) {
 		waitingPanel.newWaitUser(user);
 	}
 	public void WaitPanelOutWaitUser(String user) {
 		waitingPanel.outWaitUser(user);
+	}
+	public void RoomPanelRoomUsers(List<String> users) {
+		roomPanel.setRoomUsers(users);
 	}
 }

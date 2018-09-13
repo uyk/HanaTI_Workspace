@@ -193,7 +193,7 @@ public class WaitingPanel extends Panel {
 			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
 					i , room.getRoomName(),
 					room.getRoomOwner(), 
-					room.getClients().size(), room.getCapacity()));
+					room.getUserCount(), room.getCapacity()));
 		}
 		
 	}
@@ -201,7 +201,7 @@ public class WaitingPanel extends Panel {
 	public void setWaitUsers(java.util.List<String> users) {
 		this.waitUsers = users;
 		waitList.removeAll();
-		for (int i = 1; i < users.size(); i++) {
+		for (int i = 0; i < users.size(); i++) {
 			waitList.add(users.get(i));
 		}
 	}

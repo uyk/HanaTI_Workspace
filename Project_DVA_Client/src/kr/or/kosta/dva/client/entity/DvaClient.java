@@ -187,6 +187,11 @@ public class DvaClient extends Client{
 						Integer.parseInt(roomTokens[i+2]), 
 						Integer.parseInt(roomTokens[i+3]));
 				rooms.add(room);
+				System.out.println("[debug] 받아온 방 정보: " +
+						room.getRoomName() +"  " +
+						room.getRoomOwner() +"  " +
+						room.getUserCount() +"  " +
+						room.getCapacity());
 			}
 			frame.WaitPanelRoomList(rooms);
 			
@@ -197,11 +202,12 @@ public class DvaClient extends Client{
 			List<String> users = new ArrayList<>();
 			// tokens[3] : 방이름 샘플★★유예겸★★김예겸★★가나다...
 			if(tokens.length <= 3 ) return;
-			String[] roomUserTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			
-			// 유저 이름을 roomUsers 리스트에 추가
-			for (int i = 0; i < roomUserTokens.length; i++)
+			// 첫번째 토큰은 방 이름
+			String[] roomUserTokens = tokens[3].split(Protocol.INNER_DELEMETER);		
+			// 방 이름 제외 유저 이름을 roomUsers 리스트에 추가
+			for (int i = 1; i < roomUserTokens.length; i++)
 				users.add(roomUserTokens[i]);
+			
 			// 유저가 대기실에 있는 경우
 			if(getLocation().equals(Protocol.ANTEROOM)) {
 				// 대기실이면서 대기실 유저 요청했을 경우
@@ -211,13 +217,13 @@ public class DvaClient extends Client{
 				// 대기실이면서 다른 방 유저 요청했을 경우
 				else {
 					System.out.println("[debug] process 대기실 다른방");
-					System.out.println("[debug] process 대기실 다른방" + users);
 					frame.WaitPanelRoomUsers(users);
 				}
 			}
 			// 대기실이 아닌 경우
 			else{
-				//  RoomPanel의 유저 목록 변경
+				// RoomPanel의 유저 목록 변경
+				System.out.println("[debug] process 방유저" + users);
 				frame.RoomPanelRoomUsers(users);
 			}
 			break;
