@@ -6,7 +6,6 @@ import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import kr.or.kosta.dva.client.entity.DvaRoom;
 /**
  * Waiting Panel에 부착되는 패널 클래스.
  * 입장, 신규, 쪽지, 로그아웃, 종료 버튼을 처리한다.

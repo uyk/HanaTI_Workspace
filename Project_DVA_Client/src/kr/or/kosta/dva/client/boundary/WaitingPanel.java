@@ -19,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import javax.swing.JOptionPane;
 
@@ -33,6 +34,7 @@ import kr.or.kosta.dva.client.entity.Protocol;
 public class WaitingPanel extends Panel {
 	MainFrame frame;
 	java.util.List<DvaRoom> rooms;				// 방목록
+	java.util.List<DvaRoom> currentRooms;		// 방목록
 	java.util.List<String> waitUsers;			// 대기실 유저 목록
 	java.util.List<String> selectRoomUsers;		// 특정 방 유저 목록 
 
@@ -68,13 +70,13 @@ public class WaitingPanel extends Panel {
 		searchType = new Choice();
 		searchType.add("대화방 제목");
 		searchType.add("방장");
-		searchType.add("참여자");
 		
 		searchTF = new TextField();
 		
 		searchB = new Button("검색");	
 		
-		roomL = new Label("번호");
+		roomL = new Label(String.format("%-15s %-75s %-25s %s", "번호",
+				"방 이름", "방장", "인원"));
 		waitL = new Label("대기실 명단", Label.CENTER);
 		roomUserL = new Label("채팅방 명단", Label.CENTER);
 		
@@ -137,10 +139,7 @@ public class WaitingPanel extends Panel {
 		addToGridBag(new Label(""), 	3, 0, 2, 1, 0, 0);
 
 		// 방 정보, 대기실 유저 라벨
-		addToGridBag(roomL, 			0, 1, 1, 1, 0, 0);
-		addToGridBag(new Label("제목"), 1, 1, 1, 1, 0, 0);
-		addToGridBag(new Label("방장"), 2, 1, 1, 1, 0, 0);
-		addToGridBag(new Label("인원"), 3, 1, 1, 1, 0, 0);
+		addToGridBag(roomL, 			0, 1, 4, 1, 0, 0);
 		addToGridBag(waitL, 			4, 1, 1, 1, 0, 0);
 		
 		// 방 정보, 대기실 유저 리스트
@@ -179,7 +178,24 @@ public class WaitingPanel extends Panel {
 		roomList.addItemListener(new ItemListener() {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
-				enterRoom = rooms.get(roomList.getSelectedIndex());
+				// 리스트에서 선택한 영역을 텍스트로 반환
+				String roomInfo = roomList.getSelectedItem();
+				// 공백으로 분리
+				StringTokenizer st = new StringTokenizer(roomInfo, " ");
+				java.util.List<String> tokens = new ArrayList<>();
+				while(st.hasMoreTokens()) {
+					tokens.add(st.nextToken());
+				}
+				// 뒤에서 두번째가 방장
+				String roomOwner = tokens.get(tokens.size() - 2);
+				System.out.println("[debug] 이름 : " + roomOwner);
+				
+				// 방장이름으로 선택한 방 정보를 찾아 enterRoom에 저장
+				for (DvaRoom dvaRoom : rooms) {
+					if(dvaRoom.getRoomOwner().equals(roomOwner)) {
+						enterRoom = dvaRoom;
+					}
+				}
 				
 				// 방 정보 요청 메시지를 보냄			
 				clientMessage = Protocol.CS_GET_LIST + Protocol.DELEMETER + 
@@ -226,7 +242,11 @@ public class WaitingPanel extends Panel {
 		roomList.removeAll();					// awt 리스트 초기화
 		for (int i = 0; i < rooms.size(); i++) {
 			DvaRoom room = rooms.get(i);
-			roomList.add(String.format("%-10d %-30s %-10s %s/%s", 
+			int nb = room.getRoomName().getBytes().length;
+			int ob= room.getRoomOwner().getBytes().length;
+			nb = 80 - nb;
+			ob = 30 - ob;
+			roomList.add(String.format("%-15d %-"+nb+"s %-"+ob+"s %s/%s", 
 					i + 1, room.getRoomName(),
 					room.getRoomOwner(), 
 					room.getUserCount(), room.getCapacity()));
@@ -309,8 +329,21 @@ public class WaitingPanel extends Panel {
 		capacityTF.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if(e.getKeyChar() < '0' || e.getKeyChar() > '9') {
+				char c = e.getKeyChar();
+				if(c != '\b' && (e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
 					JOptionPane.showMessageDialog(panel, "숫자만 입력하세요", "경고", JOptionPane.ERROR_MESSAGE);
+					e.consume();
+				}
+			}
+		});
+		
+		// 방장 필드에는 공백 불가
+		enterNameTF.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if(!(c+"").matches("^[ㄱ-ㅣ0-9가-힣a-zA-Z\\s]") && c != '\b') {
+					JOptionPane.showMessageDialog(panel, "유효하지 않은 문자입니다", "경고", JOptionPane.ERROR_MESSAGE);
 					e.consume();
 				}
 			}
@@ -324,18 +357,19 @@ public class WaitingPanel extends Panel {
 		// 다이어그램 표시
 		int result = JOptionPane.showConfirmDialog(this, panel, "방 생성", 
 				JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE);
-		// 빈칸이 있을경우 종료
-		if ( enterNameTF.getText().equals("") || capacityTF.getText().equals("")) {
-			JOptionPane.showMessageDialog(frame, "빈칸을 모두 입력하세요.", "경고", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
-		// 수용인원이 너무 클 경우
-		if (Integer.parseInt(capacityTF.getText()) > 40) {
-			JOptionPane.showMessageDialog(frame, "최대 수용 인원은 40입니다.", "경고", JOptionPane.ERROR_MESSAGE);
-			return;
-		}
+
 		// 방 생성 요청
 		if(result == 0) {
+			// 빈칸이 있을경우 종료
+			if ( enterNameTF.getText().equals("") || capacityTF.getText().equals("")) {
+				JOptionPane.showMessageDialog(frame, "빈칸을 모두 입력하세요.", "경고", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			// 수용인원이 너무 클 경우
+			if (Integer.parseInt(capacityTF.getText()) > 40) {
+				JOptionPane.showMessageDialog(frame, "최대 수용 인원은 40입니다.", "경고", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
 			enterRoom  = new DvaRoom(enterNameTF.getText(), frame.client.getNickName(), 1,
 					Integer.parseInt(capacityTF.getText()));
 			clientMessage = Protocol.CS_ROOM_ADD + Protocol.DELEMETER +
@@ -346,13 +380,37 @@ public class WaitingPanel extends Panel {
 			frame.client.sendMessage(clientMessage);
 		}
 
+
 	}
 	
-	/** 방 이름으로 검색하는 메소드 */
+	/** 방 이름 또는 방장으로 검색하는 메소드 */
 	public void searchRoom() {
+		java.util.List<DvaRoom> searchedRooms = new ArrayList<DvaRoom>();
+		String text = searchTF.getText();
+		// 검색 영역이 빈칸이면 전체 출력
 		if(searchTF.getText().equals("")) {
-			
+			formatRoomList(rooms);
 		}
+		//검색 조건
+		switch(searchType.getSelectedIndex()) {
+		// 제목
+		case 0 :
+			for (DvaRoom dvaRoom : rooms) {
+				if(dvaRoom.getRoomName().contains(text)) {
+					searchedRooms.add(dvaRoom);
+				}
+			}
+			break;
+		// 방장
+		case 1 : 
+			for (DvaRoom dvaRoom : rooms) {
+				if(dvaRoom.getRoomOwner().contains(text)) {
+					searchedRooms.add(dvaRoom);
+				}
+			}
+			break;
+		}
+		formatRoomList(searchedRooms);
 	}
 	
 	/** 패널을 초기화 하는 메소드 */

@@ -269,9 +269,6 @@ public class MainFrame extends Frame{
 					whisperTA.getText() ;
 			client.sendMessage(clientMessage);
 		}
-		else {
-			System.out.println("[debug] 쪽지 보내기 취소");
-		}
 	}
 	/**
 	 * 수신한 쪽지를 보여주는 메소드
@@ -331,7 +328,7 @@ public class MainFrame extends Frame{
 		}
 		// 초대 거절
 		else {
-			clientMessage = Protocol.CS_WHISPER + Protocol.DELEMETER + 
+			clientMessage = Protocol.CS_INVITE_NO + Protocol.DELEMETER + 
 					client.currentTime() + Protocol.DELEMETER + 
 					client.getNickName() + Protocol.DELEMETER +
 					sender;
