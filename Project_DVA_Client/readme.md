@@ -42,17 +42,19 @@ OOP 기본 원리, Exception, Collection, AWT, Stream, Thread, Network API 등�
 
 #### 대기실
 
-![](C:\KOSTA187\workspace\Project_DVA_Client\UI_waitingRoom.png)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/UI_waitingRoom.png?raw=true)
+
+
 
 #### 채팅방
 
-![](C:\KOSTA187\workspace\Project_DVA_Client\UI_chatingRoom.png)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/UI_chatingRoom.png?raw=true)
 
 
 
 ## UML 클래스 다이어그램
 
-![](C:\KOSTA187\workspace\Project_DVA_Client\dva_client_uml.jpg)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/dva_client_uml.jpg?raw=true)
 
 
 ## 실행 화면
