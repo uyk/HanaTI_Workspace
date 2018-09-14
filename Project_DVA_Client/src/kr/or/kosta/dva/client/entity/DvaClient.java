@@ -247,7 +247,7 @@ public class DvaClient extends Client{
 		// 4001 채팅메시지 받음
 		case Protocol.SC_CHAT_MESSAGE :
 			String[] chatTokens = tokens[3].split(Protocol.INNER_DELEMETER);
-			String chat = "[" + chatTokens[0] + "] \t :" + chatTokens[1] + "\n";
+			String chat = "[" + chatTokens[0] + "]  :  " + chatTokens[1] + "\n";
 
 			frame.RoomPanelNewChat(chat);
 			break;
