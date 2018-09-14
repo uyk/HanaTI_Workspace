@@ -42,19 +42,19 @@ OOP 기본 원리, Exception, Collection, AWT, Stream, Thread, Network API 등�
 
 #### 대기실
 
-![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/UI_waitingRoom.png?raw=true)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/img/UI_waitingRoom.png?raw=true)
 
 
 
 #### 채팅방
 
-![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/UI_chatingRoom.png?raw=true)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/img/UI_chatingRoom.png?raw=true)
 
 
 
 ## UML 클래스 다이어그램
 
-![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/dva_client_uml.jpg?raw=true)
+![](https://github.com/uyk/HanaTI_Workspace/blob/new/Project_DVA_Client/img/dva_client_uml.jpg?raw=true)
 
 ## 프로토콜 설계
 
