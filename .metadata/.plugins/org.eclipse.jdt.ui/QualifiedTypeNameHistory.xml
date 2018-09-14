@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="kr.or.kosta.chat.server.Client"/>
 <fullyQualifiedTypeName name="kr.or.kosta.chat.common.Protocol"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.ChatingRoomPanel"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.RoomPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.WindowAdapter"/>
 <fullyQualifiedTypeName name="TalkFrame"/>
 <fullyQualifiedTypeName name="java.util.Date"/>
@@ -39,7 +38,6 @@
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Client"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.DvaClient"/>
 <fullyQualifiedTypeName name="java.net.SocketException"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.WaitingPanel"/>
 <fullyQualifiedTypeName name="java.awt.event.TextListener"/>
 <fullyQualifiedTypeName name="java.awt.event.KeyAdapter"/>
 <fullyQualifiedTypeName name="javax.swing.JOptionPane"/>
@@ -60,4 +58,6 @@
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.RoomPanel"/>
+<fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.WaitingPanel"/>
 </qualifiedTypeNameHistroy>
