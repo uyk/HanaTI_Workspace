@@ -14,15 +14,15 @@ import java.awt.event.ActionListener;
  */
 public class WaitingBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
-	MainFrame frame;
+	WaitingPanel panel;
 	Button enterB, newRoomB, whisperB, logoutB, exitB;
 	
 	/**
 	 * 생성자. 인스턴스 초기화, 컨텐츠 세팅, 이벤트 등록.
 	 * @param frame
 	 */
-	public WaitingBottomPanel(MainFrame frame) {
-		this.frame = frame;
+	public WaitingBottomPanel(WaitingPanel panel) {
+		this.panel = panel;
 		
 		enterB = new Button("입장");
 		newRoomB = new Button("신규");
@@ -55,14 +55,14 @@ public class WaitingBottomPanel extends Panel{
 		enterB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.waitingPanel.tryEnterSelectRoom();
+				panel.tryEnterSelectRoom();
 			}
 		});
 		// 새로운 방을 생성하는 메소드
 		newRoomB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.waitingPanel.createRoom();
+				panel.createRoom();
 			}
 		});
 		
@@ -71,11 +71,11 @@ public class WaitingBottomPanel extends Panel{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String reciever = null;
-				if(frame.waitingPanel.waitList.getSelectedIndex() != -1)
-					reciever = frame.waitingPanel.waitList.getSelectedItem();
+				if(panel.waitList.getSelectedIndex() != -1)
+					reciever = panel.waitList.getSelectedItem();
 				else
-					reciever = frame.waitingPanel.roomUserList.getSelectedItem();
-				frame.sendWhisper(reciever);
+					reciever = panel.roomUserList.getSelectedItem();
+				panel.frame.sendWhisper(reciever);
 			}
 		});
 		
@@ -83,14 +83,14 @@ public class WaitingBottomPanel extends Panel{
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.logoutEvent();				
+				panel.frame.logoutEvent();				
 			}
 		});
 		
 		exitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.finish();
+				panel.frame.finish();
 				
 			}
 		});

@@ -82,7 +82,7 @@ public class WaitingPanel extends Panel {
 		waitList = new List();
 		roomUserList = new List();
 		
-		bottomPanel = new WaitingBottomPanel(frame);
+		bottomPanel = new WaitingBottomPanel(this);
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();

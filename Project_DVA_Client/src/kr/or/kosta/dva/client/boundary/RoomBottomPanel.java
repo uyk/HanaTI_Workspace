@@ -8,11 +8,11 @@ import java.awt.event.ActionListener;
 
 public class RoomBottomPanel extends Panel{
 	// 프레임 카드 변경을 위해 프레임 인스턴스를 가짐
-	MainFrame frame;
+	RoomPanel panel;
 	Button waitB, inviteB, whisperB, logoutB, exitB;
 	
-	public RoomBottomPanel(MainFrame frame) {
-		this.frame = frame;
+	public RoomBottomPanel(RoomPanel frame) {
+		this.panel = frame;
 		
 		waitB = new Button("대기실");
 		inviteB = new Button("초대");
@@ -39,7 +39,7 @@ public class RoomBottomPanel extends Panel{
 		waitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.roomPanel.outRoom();
+				panel.outRoom();
 			}
 		});
 		
@@ -47,7 +47,7 @@ public class RoomBottomPanel extends Panel{
 		inviteB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.roomPanel.sendInviteRequest();
+				panel.sendInviteRequest();
 			}
 		});
 		
@@ -55,7 +55,7 @@ public class RoomBottomPanel extends Panel{
 		whisperB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.sendWhisper(frame.roomPanel.userList.getSelectedItem());
+				panel.frame.sendWhisper(panel.userList.getSelectedItem());
 			}
 		});
 		
@@ -63,7 +63,7 @@ public class RoomBottomPanel extends Panel{
 		logoutB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.logoutEvent();
+				panel.frame.logoutEvent();
 			}
 		});
 		
@@ -71,7 +71,7 @@ public class RoomBottomPanel extends Panel{
 		exitB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				frame.finish();
+				panel.frame.finish();
 				
 			}
 		});

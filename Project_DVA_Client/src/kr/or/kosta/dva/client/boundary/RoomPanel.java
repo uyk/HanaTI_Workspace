@@ -60,7 +60,7 @@ public class RoomPanel extends Panel {
 		newChatTF = new TextField();
 		sendB = new Button("전송");
 		
-		bottomPanel = new 	RoomBottomPanel(frame);
+		bottomPanel = new 	RoomBottomPanel(this);
 		
 		gridBagLayout = new GridBagLayout();
 		gridBagConstraints = new GridBagConstraints();
