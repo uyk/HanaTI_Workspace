@@ -88,7 +88,7 @@ where department_id in (select department_id
                        from employees
                        where last_name like '%T%');
 
--- 11번 10번부서ㅠㅠ
+-- 11번 
 select PHONE_NUMBER "번호",
        LAST_NAME "이름",
        salary "급여"
