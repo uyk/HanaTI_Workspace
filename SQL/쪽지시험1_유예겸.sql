@@ -39,32 +39,34 @@ from employees
 where mod(employee_id , 2) = 1;
 
 -- 9번
-SELECT NEXT_DAY(ADD_MONTHS(SYSDATE, 6), 6)  "6개월 후 금요일"
+SELECT to_char(NEXT_DAY(ADD_MONTHS(SYSDATE, 6), 6), 'YYYY-MM-DD HH24:MI:ss day') "6개월 후 금요일"
 FROM dual;
 
 -- 10번
-SELECT employee_id "사번", first_name "성", 
-          DECODE(manager_id, null, '대빵', 
-                              manager_id) "상사"
+SELECT  employee_id "사번", 
+        first_name "성", 
+        DECODE(manager_id, null, '대빵', 
+                            manager_id) "상사"
 FROM   employees;
 
 -- 11번 
-SELECT DECODE(mod(employee_id, 3), 0, '영화배우', 
-                 1, '개그맨', 
-                 2, '가수') "팀이름",
-       employee_id "사원번호", last_name "사원명"
+SELECT DECODE(mod(employee_id, 3), 
+                  0, '영화배우', 
+                  1, '개그맨', 
+                  2, '가수') "팀이름",
+       employee_id "사원번호", 
+       last_name "사원명"
 FROM   employees;
 
 -- 12번
-SELECT first_name || ' ' || last_name "이름",
-       (salary / 1000) 
-FROM   employees;
-
-SELECT LPAD('($'||salary||')',FLOOR(salary/1000)+LENGTH(salary)+3,'*')
-FROM employees;
+SELECT  RPAD(first_name || ' ' || last_name, 20, ' ') "이름", 
+        LPAD('($'||salary||')',FLOOR(salary/1000)+LENGTH(salary)+3,'*') "급여"
+FROM employees
+order by salary desc;
 
 -- 13 번 
-select department_id "부서", count(*) "인원수" 
+select department_id "부서", 
+      count(*) "인원수" 
 from employees
 where hire_date >= '2002-03-01' and hire_date < '2003-03-01'
 group by department_id
@@ -77,7 +79,10 @@ group by job_id
 having avg(salary) < 10000;
 
 -- 15번
-SELECT TO_char(hire_date,'Q') "분기", count(*)"사원수"
+SELECT  TO_char(hire_date,'Q') "분기", 
+        count(*)"사원수"
 FROM employees
 where to_char(hire_date, 'yy') = '04'
 group by TO_char(hire_date,'Q');
+
+??
