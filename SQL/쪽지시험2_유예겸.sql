@@ -128,29 +128,5 @@ where salary > (select avg(salary)
                        where last_name like '%u%');
                        
 -- 15번
-select job_id "업무번호",
-       avg(salary) "평균급여"
-from employees 
-where job_id = (select job_id
-                from employees
-                where avg(salary) = min ((select avg(salary)
-                                          from employees
-                                          group by job_id ))
-                group by job_id                        
-                )
-group by job_id;             
-
-SELECT first_name, salary
-FROM   employees
-WHERE  ROWNUM <=5
-ORDER  BY salary DESC;
-
--- FROM절에서 서브쿼리(Inline View)를 사용해야 한다
-SELECT * 
-FROM   (SELECT * 
-           FROM   employees 
-           ORDER  BY salary DESC) 
-WHERE  ROWNUM <= 5;
-
 
 

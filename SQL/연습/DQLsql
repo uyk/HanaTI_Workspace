@@ -1,0 +1,13 @@
+select distinct job_id, last_name
+from employees
+where department_id = 50;
+
+-- ∆Ú±’¿Ã ∞∞¿∫ 
+select first_name
+from emp
+intersect
+select first_name
+from employees
+order by first_name;
+
+
