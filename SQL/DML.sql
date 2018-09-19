@@ -24,6 +24,8 @@ INSERT INTO departments (department_id,  department_name, manager_id, location_i
 VALUES       (departments_seq.NEXTVAL, 'KOSTA', NULL, NULL); 
 
 
+
+
 -- 
 SELECT * 
 FROM   user_sequences;  --데이터 딕셔너리 (시스템 테이블)
