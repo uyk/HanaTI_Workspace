@@ -1,0 +1,16 @@
+SELECT *
+FROM EMP
+order by department_id desc;
+
+
+INSERT INTO EMP 
+SELECT *
+FROM EMPLOYEES
+WHERE DEPARTMENT_ID = 100;
+
+UPDATE EMP
+SET SALARY = 100
+WHERE DEPARTMENT_ID = 100;
+
+Delete from emp
+where department_id = 100;
