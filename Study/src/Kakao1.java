@@ -7,42 +7,39 @@ public class Kakao1 {
 
 	static public String[] solution(String[] record) {
 		// 레코드를 출력용 문자열로 바꿔서 저장(~님이 들어왔습니다)
-        String[] answer2 = new String[record.length];
+		ArrayList<String> listAnswer = new ArrayList<>();
+		String[] answer;
+		int count = 0;
+		
         // 이름 ID 해시테이블
         Hashtable<String, String> names = new Hashtable<>();
-        int count = 0;
         
         for (int i = 0; i < record.length; i++) {
         	String[] tokens = record[i].split(" ");
 
         	if(tokens.length == 3 ) names.put(tokens[1], tokens[2]);
 			if(tokens[0].equals("Enter")) {
-				answer2[i] = tokens[1] + "님이 들어왔습니다.";
+				listAnswer.add(tokens[1] + "님이 들어왔습니다.");
 			}
 			else if(tokens[0].equals("Leave")) {
-				answer2[i] = tokens[1] + "님이 나갔습니다.";
+				listAnswer.add(tokens[1] + "님이 나갔습니다.");
 			}
 			else {
-				// change (출력안해도됨)
+				// change
 				count++;
 			}
 		}
-
-    	String[] answer = new String[record.length - count];
-    	
-        List<String> answerL = new ArrayList<String>();
-        for (String string : answer2) {
-			if(string != null && !string.equals("")) answerL.add(string);
+        
+        answer = new String[listAnswer.size()];
+        for (int i = 0; i < listAnswer.size(); i++) {
+    		answer[i] = listAnswer.get(i);
 		}
         
-        for (int i = 0; i < answer.length; i++) {
-			answer[i] = answerL.get(i);
-		}
-
         Enumeration<String> en = names.keys();
         while(en.hasMoreElements()) {
 	        String key = en.nextElement().toString();
         	for (int i = 0; i < answer.length; i++) {
+//        		answer[i] = listAnswer.get(i);
         		answer[i] = answer[i].replace(key, names.get(key));
 			}
         }

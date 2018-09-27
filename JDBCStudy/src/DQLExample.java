@@ -29,7 +29,6 @@ public class DQLExample {
 				"       JOIN departments d \r\n" + 
 				"         ON e.department_id = d.department_id ";
 
-		
 		try {
 			Class.forName(driver);	
 		} catch (ClassNotFoundException e) {
