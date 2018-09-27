@@ -1,4 +1,4 @@
-package demo.bytestream.server;
+package bytestream.server;
 
 import java.io.IOException;
 import java.net.InetAddress;

@@ -1,4 +1,4 @@
-package demo.http.server;
+package http.server;
 
 import java.io.File;
 import java.io.IOException;

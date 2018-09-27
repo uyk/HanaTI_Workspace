@@ -1,4 +1,4 @@
-package demo.http.server;
+package http.server;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,6 +1,5 @@
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,7 +23,7 @@ public class DQLExample {
 				"SELECT e.employee_id                    \"id\", \r\n" + 
 				"       e.last_name                      \"ename\", \r\n" + 
 				"       e.salary                         \"salary\", \r\n" + 
-				"       TO_CHAR(e.hire_date, 'yy-mm-dd HH24') \"hiredate\", \r\n" + 
+				"       TO_CHAR(e.hire_date, 'yy-mm-dd') \"hiredate\", \r\n" + 
 				"       d.department_name                \"dname\" \r\n" + 
 				"FROM   employees e \r\n" + 
 				"       JOIN departments d \r\n" + 

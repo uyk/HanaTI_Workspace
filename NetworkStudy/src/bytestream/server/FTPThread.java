@@ -1,4 +1,4 @@
-package demo.bytestream.server;
+package bytestream.server;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
