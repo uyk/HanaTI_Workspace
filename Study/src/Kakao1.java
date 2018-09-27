@@ -9,11 +9,12 @@ public class Kakao1 {
 		// 레코드를 출력용 문자열로 바꿔서 저장(~님이 들어왔습니다)
 		ArrayList<String> listAnswer = new ArrayList<>();
 		String[] answer;
-		int count = 0;
+//		int count = 0;
 		
         // 이름 ID 해시테이블
         Hashtable<String, String> names = new Hashtable<>();
         
+        // 여기서 
         for (int i = 0; i < record.length; i++) {
         	String[] tokens = record[i].split(" ");
 
@@ -26,7 +27,7 @@ public class Kakao1 {
 			}
 			else {
 				// change
-				count++;
+				//count++;
 			}
 		}
         
@@ -39,7 +40,6 @@ public class Kakao1 {
         while(en.hasMoreElements()) {
 	        String key = en.nextElement().toString();
         	for (int i = 0; i < answer.length; i++) {
-//        		answer[i] = listAnswer.get(i);
         		answer[i] = answer[i].replace(key, names.get(key));
 			}
         }
