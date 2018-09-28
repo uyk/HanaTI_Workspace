@@ -40,6 +40,7 @@ public class Kakao1 {
         while(en.hasMoreElements()) {
 	        String key = en.nextElement().toString();
         	for (int i = 0; i < answer.length; i++) {
+
         		answer[i] = answer[i].replace(key, names.get(key));
 			}
         }

@@ -2,12 +2,13 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="CHAT" key="selection"/>
+		<item value="id" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="id"/>
 			<item value="chat"/>
 			<item value="sys"/>
 			<item value="system."/>
@@ -22,7 +23,6 @@
 			<item value="enter"/>
 			<item value="roomN"/>
 			<item value="roonN"/>
-			<item value="public void RoomPanelNewChat(String chat) {"/>
 		</list>
 		<list key="replacehistory">
 		</list>

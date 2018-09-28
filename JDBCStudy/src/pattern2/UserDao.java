@@ -1,4 +1,4 @@
-package pattern;
+package pattern2;
 
 import java.sql.Connection;
 import java.util.List;
@@ -17,7 +17,6 @@ public interface UserDao {
 	public void delete(String id) throws Exception;
 	public List<User> listAll() throws Exception;
 	public User certify(String id, String passwd) throws Exception;
-	public List<Map<String,String>> employeeList() throws Exception;
 	public Connection getConnection() throws Exception;
 	
 }

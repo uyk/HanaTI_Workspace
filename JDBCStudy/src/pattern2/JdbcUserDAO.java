@@ -1,4 +1,4 @@
-package pattern;
+package pattern2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,12 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class JdbcUserDAO implements UserDao {
-	private static final String driver = "oracle.jdbc.OracleDriver";
-	private static final String url = "jdbc:oracle:thin:@localhost:1521:xe";
-	private static final String userName = "hr";
-	private static final String password = "hr";
-
+public abstract class JdbcUserDAO implements UserDao {
+	
 	@Override
 	public void create(User user) throws Exception {
 		Connection con = null;
@@ -279,9 +275,4 @@ public class JdbcUserDAO implements UserDao {
 	}
 
 
-	@Override
-	public Connection getConnection() throws Exception {
-		Class.forName(driver).newInstance();
-		return DriverManager.getConnection(url, userName, password);
-	}
 }
