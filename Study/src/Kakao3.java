@@ -3,9 +3,9 @@ import java.util.HashSet;
 public class Kakao3 {
     public static int solution(String[][] relation) {
         int answer = 0;
-        HashSet<String> hs = new HashSet<>();
         // 열 검사
         for (int i = 0; i < relation[0].length; i++) {
+            HashSet<String> hs = new HashSet<>();
         	// 행 검사 
 			for (int j = 0; j < relation.length; j++) {
 				hs.add(relation[j][i]);
