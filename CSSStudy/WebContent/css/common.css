@@ -1,0 +1,9 @@
+/** CSS 선택자(셀렉터) */
+ body {
+   font-family: 궁서;
+ }
+ p {
+   font-size: 20pt;
+   color: red;
+   background-color: gold !important;
+ }
