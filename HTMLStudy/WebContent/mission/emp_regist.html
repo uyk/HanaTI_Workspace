@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>신규사원 등록</title>
+</head>
+<body>
+<h1>신규사원 등록</h1>
+
+<form action="" method="post">
+  <table border="1" width="50%" > 
+    
+    <tr>
+      <td>사원번호
+      <td> <input type="text" name="id" placeholder="2~10자리 숫자" pattern="[0-9]{2,10}" maxlength="10" autofocus required>
+    </tr>
+    <tr> 
+      <td>이름
+      <td> <input type="text" name="first_name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required> 
+    </tr>
+    <tr>
+      <td>성
+      <td> <input type="text" name="last_name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required>
+    </tr>
+    <tr>
+      <td>이메일
+      <td> <input type="text" name="email_front" >
+            @ 
+           <select name="email_sel">
+              <option >선택하세요
+              <option>naver.com
+              <option>gmail.com
+              <option>daum.net
+              <option>yahoo.com
+           </select>
+           <input type="text" name="email_back">
+    </tr>
+    <tr>
+      <td>전화번호
+      <td> <input type="text" name="phone" placeholder="예: 010-4128-3788" pattern="[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}" required>
+    </tr>
+    <tr>
+      <td>입사일자
+      <td> <input type="date" name="reg_date">
+    </tr>
+    <tr>
+      <td>부서
+      <td><select name="dept" >
+              <option>선택하세요
+              <option>인사
+              <option>경영
+              <option>전산
+              <option>회계
+           </select>
+    </tr>
+    <tr>
+      <td>업무
+      <td> <select name="job">
+              <option>선택하세요
+              <option>job1
+              <option>job2
+              <option>job3
+              <option>job4
+           </select>
+    </tr>
+    <tr>
+      <td>부서장
+      <td> <select name="manager">
+              <option>선택하세요
+              <option>김예겸
+              <option>유예겸
+              <option>김천재
+              <option>이천재
+           </select>
+    </tr>
+    <tr>
+      <td>급여
+      <td> <input type="text" name="salary" pattern="[0-9]+" required>
+    </tr>
+  </table>
+  <p style="width:50%" align="center">
+    <input type="submit" name="submit_button" value="가입">
+    <input type="reset" name="reset_button" value="취소">
+  </p>
+</form>
+
+</body>
+</html>

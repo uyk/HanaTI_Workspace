@@ -6,29 +6,44 @@
 </head>
 <body>
 <h2>폼 관련 태그</h2>
-<form >
-id : <input type="text" name="userid"> <br/>
-pw : <input type="password" name="userpw"> <br/>
-<!-- <input type="button" value="Login"> -->
-<input type="submit" value="Login">
-<input type="reset" value="cancle">
+<form action="" method="post">
 
-<select name="teams">
-  <option>두산 타이거즈
-  <option>SK 라이온즈
-  <option>한화 자이언츠
-</select>
-
-<!-- <select name="teams" multiple="multiple"> -->
-<select name="teams" multiple>
-  <option>두산 타이거즈
-  <option>SK 라이온즈
-  <option>한화 자이언츠
-</select>
-
-<textarea name="message" rows="5" cols="50">
-점심..............!
-</textarea>
+  <fieldset>
+    <legend>로그인 정보</legend>
+    <label>아이디 : <input type="text" name="userid" autocomplete="off"> </label> <br/>
+    비밀번호 : <input type="password" name="userpw"> <br/>
+    <!-- <input type="button" value="Login"> -->
+    <input type="submit" value="Login">
+    <input type="reset" value="cancle">
+  </fieldset>
+  
+  
+  <select name="teams">
+    <option>두산 타이거즈
+    <option>SK 라이온즈
+    <option>한화 자이언츠
+  </select>
+  
+  <!-- <select name="teams" multiple="multiple"> -->
+  <select name="teams" multiple>
+    <option>두산 타이거즈
+    <option>SK 라이온즈
+    <option>한화 자이언츠
+  </select>
+  
+  <textarea name="message" rows="5" cols="50">
+  점심..............!
+  </textarea>
+  <label>남자<input type="radio" name="gender"></label>
+  <label>여자<input type="radio" name="gender"checked></label>
+  
+  <input type="hidden" name="some" value="test">
+  
+  
+  <input type="file" name="file_upload">
+  <input type="image" src="images/icons6978.png">
+  <button>버튼</button>
+  
 
 </form>
 </body>

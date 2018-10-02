@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>계좌관리</title>
+</head>
+<body>
+
+<form action="" method="post">
+  <table border="1" width="50%" > 
+    
+    <tr>
+      <th> 계좌종류
+      <td> <select name="type">
+              <option>전체
+              <option>입출금
+              <option>마이너스
+           </select>
+    </tr>
+    <tr> 
+      <th>계좌번호
+      <td> <input type="text" name="number" placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}" maxlength="9" >
+           <button>조회</button>
+           <button>삭제</button>
+    </tr>
+    <tr>
+      <th>예금주명
+      <td> <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required>
+           <button>검색</button>
+    </tr>
+    <tr>
+      <th>비밀번호
+      <td> <input type="password" name="pw" >
+           입금금액
+           <input type="text" name="deposit" pattern="[0-9]+">
+    </tr>
+    <tr>
+      <th>대출금액
+      <td> <input type="text" name="deposit" pattern="[0-9]+">
+           <button>신규등록</button>
+           <button>전체조회</button>
+    </tr>
+
+  </table>
+  
+  <p style="width:50%">
+    <span style="align-self: left"> 계좌목록</span>
+    <span style="align-self: right"> 단위(원)</span>
+  </p>
+  
+  <table border="1" width="50%" > 
+    <tr>
+      <th>계좌종류
+      <th>계좌번호
+      <th>예금주명
+      <th>현재잔액
+      <th>대출금액
+    </tr>
+    <tr> 
+      <td>입출금
+      <td>1111-2222
+      <td>유예겸
+      <td>500000000
+      <td>0
+    </tr>
+  </table>
+  
+</form>
+
+</body>
+</html>
