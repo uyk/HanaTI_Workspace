@@ -1,10 +1,52 @@
-table {
+div [id$="_div"]{
 	border-collapse: collapse;
 	width: 50%;
+	height: 45px;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin: 0px 10px;
+}
+
+#main {
+	margin: 20px 0px;
+}
+#table {
+	border-collapse: collapse;
+	width: 50%;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin-left : 10px;
+	margin-bottom : 15px;
+}
+#label {
+	margin: 10px;
+}
+.header {
+	width: 160px;
+	padding: 10px;
+	font-weight: bold;
+	color: #153d73;
+	border-right: 1px solid #ccc;
+    vertical-align: center;
+    display: inline-block;
+}
+.contents {
+	width: 349px;
+	padding: 10px;
+	vertical-align: center;
+    display: inline-block;
+}
+	
+table {
+	border-collapse: collapse;
+	width: 95%;
 	text-align: left;
 	line-height: 1.5;
+    border-left: 1px solid #ccc;
 	border-top: 1px solid #ccc;
-	border-left: 3px solid #369;
 	margin: 20px 10px;
 }
 
@@ -12,9 +54,10 @@ table th {
 	width: 110px;
 	padding: 10px;
 	font-weight: bold;
-	color: #153d73;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+    color: #ffffff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #153d73;
 }
 
 table td {
@@ -32,14 +75,11 @@ caption {
 	margin-bottom: 15px;
 }
 
-p {
-	width: 50%;
-}
-
-input[name$="_button"] {
+button {
 	border-width:0;
+	border-radius:5px;
 	background-color: #153d73;
 	color: white;
-	width: 60px;
+	width: 80px;
 	height: 25px;
 }

@@ -7,66 +7,116 @@
 </head>
 <body>
 
-<form action="" method="post">
-  <table> 
-    
-    <tr>
-      <th> 계좌종류
-      <td> <select name="type">
-              <option>전체
-              <option>입출금
-              <option>마이너스
-           </select>
-    </tr>
-    <tr> 
-      <th>계좌번호
-      <td> <input type="text" name="number" placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}" maxlength="9" >
-           <button>조회</button>
-           <button>삭제</button>
-    </tr>
-    <tr>
-      <th>예금주명
-      <td> <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required>
-           <button>검색</button>
-    </tr>
-    <tr>
-      <th>비밀번호
-      <td> <input type="password" name="pw" >
-           입금금액
-           <input type="text" name="deposit" pattern="[0-9]+">
-    </tr>
-    <tr>
-      <th>대출금액
-      <td> <input type="text" name="deposit" pattern="[0-9]+">
-           <button>신규등록</button>
-           <button>전체조회</button>
-    </tr>
+<div id="main">
 
-  </table>
+  <div id="type_div">
+    <span class="header">계좌종류</span>
+    <span class="conents">
+      <select name="type">
+          <option>전체
+          <option>입출금
+          <option>마이너스
+       </select></span>
+  </div>
   
-  <p style="width:50%">
-    <span style="align-content: left"> 계좌목록</span>
-    <span style="align-content: right"> 단위(원)</span>
-  </p>
+  <div id="num_div">
+    <span class="header">계좌번호</span>
+    <span class="conents">
+      <input type="text" name="number" placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}" maxlength="9" >
+      <button>조회</button>
+      <button>삭제</button>
+    </span>
+  </div>
   
-  <table> 
-    <tr>
-      <th>계좌종류
-      <th>계좌번호
-      <th>예금주명
-      <th>현재잔액
-      <th>대출금액
-    </tr>
-    <tr> 
-      <td>입출금
-      <td>1111-2222
-      <td>유예겸
-      <td>500000000
-      <td>0
-    </tr>
-  </table>
+  <div id="name_div">
+    <span class="header">예금주명</span>
+    <span class="conents">
+      <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required>
+      <button>검색</button>
+    </span>
+  </div>
   
-</form>
+  <div id="pw_div">
+    <span class="header">비밀번호</span>
+    <span class="conents">
+      <input type="password" name="pw" >
+      입금금액
+      <input type="text" name="deposit" pattern="[0-9]+">
+    </span>
+  </div>
+  
+  <div id="minus_div">
+    <span class="header">대출금액</span>
+    <span class="conents">
+      <input type="text" name="minus" pattern="[0-9]+">
+      <button>신규등록</button>
+      <button>전체조회</button>
+    </span>
+  </div>
 
+  <div id="table">
+      <span id ="label" style="float: left"> 계좌목록</span>
+      <span id ="label" style="float: right"> 단위(원)</span>
+    <table> 
+      <tr>
+        <th>계좌종류
+        <th>계좌번호
+        <th>예금주명
+        <th>현재잔액
+        <th>대출금액
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+      <tr> 
+        <td>입출금
+        <td>1111-2222
+        <td>유예겸
+        <td>500000000
+        <td>0
+      </tr>
+    </table>
+  </div>
+
+</div>
 </body>
 </html>
