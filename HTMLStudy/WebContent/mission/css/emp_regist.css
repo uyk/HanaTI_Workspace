@@ -1,0 +1,45 @@
+table {
+	border-collapse: collapse;
+	width: 50%;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin: 20px 10px;
+}
+
+table th {
+	width: 110px;
+	padding: 10px;
+	font-weight: bold;
+	color: #153d73;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+table td {
+	width: 349px;
+	padding: 10px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+caption {
+	text-align: center;	
+	font-size: 30px;
+	font-weight: bold;
+	color: #153d73;
+	margin-bottom: 15px;
+}
+
+p {
+	width: 50%;
+}
+
+input[name$="_button"] {
+	border-width:0;
+	background-color: #153d73;
+	color: white;
+	width: 60px;
+	height: 25px;
+}

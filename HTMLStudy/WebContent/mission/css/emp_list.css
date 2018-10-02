@@ -1,0 +1,29 @@
+table {
+    border-collapse: collapse;
+    line-height: 1.5;
+    border: 1px solid #ccc;
+    margin: 20px 10px;
+	width: 50%;
+}
+table th {
+    padding: 10px;
+    font-weight: bold;
+    color: #ffffff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #153d73;
+}
+table td {
+    width: 350px;
+    padding: 10px;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+caption {
+	text-align: center;	
+	font-size: 30px;
+	font-weight: bold;
+	color: #153d73;
+	margin-bottom: 15px;
+}
