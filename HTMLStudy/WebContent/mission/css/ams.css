@@ -1,6 +1,6 @@
 div [id$="_div"]{
 	border-collapse: collapse;
-	width: 50%;
+	width: 60%;
 	height: 45px;
 	border-top: 1px solid #ccc;
 	border-right: 1px solid #ccc;
@@ -10,11 +10,13 @@ div [id$="_div"]{
 }
 
 #main {
+	width: 100%;
+	min-width: 600px;
 	margin: 20px 0px;
 }
 #table {
 	border-collapse: collapse;
-	width: 50%;
+	width: 60%;
 	border-right: 1px solid #ccc;
 	border-bottom: 1px solid #ccc;
 	border-left: 3px solid #369;
@@ -25,7 +27,7 @@ div [id$="_div"]{
 	margin: 10px;
 }
 .header {
-	width: 160px;
+	width: 20%;
 	padding: 10px;
 	font-weight: bold;
 	color: #153d73;
@@ -82,4 +84,15 @@ button {
 	width: 80px;
 	height: 25px;
 
+}
+
+/** 화면 크기가 작아지면 컨텐츠 너비를 화면의 95%로 확대*/
+@media all and (min-width:320px) and (max-width:1000px) {
+
+	div [id$="_div"]{
+		width: 95%;
+	}
+	#table {
+		width: 95%;
+	}
 }
