@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>자바스크립트 함수</title>
+<script type="text/javascript">
+// #1. 선언형 함수 정의
+function sum(x, y, z) {
+	return x + y + z
+}
+
+// #2. 익명 함수 정의 - 함수를 전달하거나 리턴할 때 사용
+var show = function (message) {
+	document.write(message);
+}
+
+function some(callback) {
+	callback();
+}
+
+function some2() {
+	return function() {
+		document.write("리턴함수")
+	}
+}
+
+// #3. 중첩함수
+function hypotenus(a,b) {
+	function square(x) { return Math.pow(x,2); }
+	return Math.sqrt(square(a) + square(b));
+}
+</script>
+</head>
+<body>
+
+
+<script type="text/javascript">
+// window객체에 등록된 sum 메소드 호출
+var result = sum(10,20);
+document.write(result);
+show("출력해봐");
+some(function() {
+	document.write("익명함수");
+})
+some2()();
+document.write(hypotenus(20,30));
+</script>
+</body>
+</html>
