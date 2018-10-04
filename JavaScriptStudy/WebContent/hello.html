@@ -3,8 +3,90 @@
 <head>
 <meta charset="utf-8">
 <title>JavaScript</title>
+<script src="./js/common.js"></script>
 </head>
 <body>
+<h2>자바스크립트 연습입니다</h2>
+<p>문장(Statement)
+자바스크립트 문장은 웹 브라우저(스크립트엔진)에게 내리는 명령문으로 줄이 바뀌면 하나의 문장이 끝난 것으로 판단한다.
+따라서 ;(세미콜론)을 생략해도 되지만 가급적 ;(세미콜론)을 붙이도록 한다.
+자바스크립트는 전세계의 모든 문자를 표현할 수 있는 유니코드(unicode)를 지원한다.
+자바스크립트는 대소문자를 구분한다.
+myName과 MyName 변수는 같지 않다.
+자바스크립트에서 HTML 태그와 속성은 반드시 소문자로 적어주어야 한다.
+예) body, onclick  등…
+자바스크립트는 공백문자(스페이스, 탭)를 모두 무시한다.
+가독성을 위해 공백문자를 추가할 수 있다(아래 문장은 동일하다)
+</p>
+
+--------------------------------------------------------------------------<br/>
+<!-- 스크립트 선언 -->
+<script type="text/javascript">
+// 식별자, 키워드, 변수, 데이터타입, 연산자, 제어문, 함수, 객체
+// 문서에 출력
+document.write("<h2>안녕, 자바스크립트..</h2><br/>");
+document.write("유예겸");
+document.write(50);
+document.write(false);
+document.write(true);
+document.write("<br/>");
+</script>
+--------------------------------------------------------------------------<br/>
+
+<script type="text/javascript">
+//변수 선언
+// 기본 데이터 타입
+var name;
+document.write(name);	
+
+var a = 10, b = "이십",c =30;
+name="유예겸입니다."
+document.write(name);	
+
+a = "하이";
+document.write(a);
+document.write(a.length);
+
+var flag=true;
+document.write("<br/>")
+
+
+// 레퍼런스 타입
+var message = new String("레퍼런스 타입 문자열 객체");
+document.write(message.length);
+document.write(message);
+document.write("<br/>")
+
+// 변수 오버라이딩
+var a = 1000;
+document.write(a);
+
+// 동적 타입핑
+var dynamic = "문자열";
+document.write(dynamic);
+var dynamic = 10;
+document.write(dynamic);
+var dynamic = false;
+document.write(dynamic);
+
+</script>
+
+<br/>--------------------------------------------------------------------------<br/>
+
+<script type="text/javascript">
+/*
+// 함수 선언
+function sum(x, y) {		// 변수 타입 필요없이 이름만
+	return x + y;
+}
+*/
+
+var x = 50, y = 40;
+var result = sum(x,y);
+document.write(result);
+
+</script>
+
 
 </body>
 </html>
