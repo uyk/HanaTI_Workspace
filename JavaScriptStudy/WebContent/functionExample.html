@@ -29,6 +29,16 @@ function hypotenus(a,b) {
 	function square(x) { return Math.pow(x,2); }
 	return Math.sqrt(square(a) + square(b));
 }
+
+// 비정형 인자 함수 정의
+function summ() {
+	//console.log(arguments);
+	var result = 0;
+	for( var i in arguments) {
+		result += arguments[i];
+	}
+	console.log(result);
+}
 </script>
 </head>
 <body>
@@ -44,6 +54,11 @@ some(function() {
 })
 some2()();
 document.write(hypotenus(20,30));
+
+summ();
+summ(2);
+summ(10, 50.0, "가나다");
+
 </script>
 </body>
 </html>
