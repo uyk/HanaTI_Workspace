@@ -33,6 +33,25 @@ product.toString = function () {
 console.log(product.name);
 console.log(product["type"]);
 console.log(product.toString());
+
+delete product.price;
+console.log(product.price);
+console.log("-----------------------------------");
+
+for ( var name in product) {
+	console.log(name + " : " + product[name]);
+}
+
+var string = new String("김기정");
+for ( var key in string) {
+	console.log(key + " : " + string[key]	);
+}
+
+for ( var name in Object.prototype) {
+	console.log(name + " : " + String.prototype[name]);
+}
+
+console.log('type' in product);
 </script>
 </body>
 </html>
