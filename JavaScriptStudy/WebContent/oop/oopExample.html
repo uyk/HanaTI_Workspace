@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+/** 사용자 정의 객체 */
+function Student(name, korean, math, english, science) {
+	this.name = name;
+	this.korean = korean;
+	this.math = math;
+	this.english = english;
+	this.science = science;
+	
+	this.toString = function() {
+		return this.name + "\t " + this.korean + "\t" + this.math + "\t" + this.english + "\t" + this.science;
+	}
+	
+	this.getSum = function() {
+		return this.korean + this.math + this.english + this.science;
+	}
+	
+	this.getAverage = function() {
+		return this.getSum() / 4;
+	}
+} 
+
+Student.schoolName="KOSTA";		// Student 객체들이 공유하는 인스턴스 변수(자바의 static)
+
+</script>
+
+</head>
+<body>
+<script type="text/javascript">
+var student = new Student("유예겸", 50,60,90,70);
+console.log(student.name);
+console.log(student.korean);
+console.log(student["name"]);
+
+console.log(typeof Student);
+console.log(Student);
+console.log(student);
+console.log(student.toString());
+
+console.log("총점 : " + student.getSum());
+console.log("평균 : " + student.getAverage());
+
+console.log(Student.schoolName);	// ??
+		
+</script>
+</body>
+</html>

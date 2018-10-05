@@ -59,6 +59,7 @@ table th {
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background: #153d73;
+    text-align: center;
 }
 
 table td {

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+// 내장 개체 테스트
+var string = new String("김기정");
+console.log(string.charAt(1));
+
+var today = new Date();
+console.log(today);
+console.log(today.toString());
+
+var array = new Array();
+array.push(1);
+array.push("김기정");
+array.push(90.5);
+console.log(array[0]);
+console.log(array)
+
+//함수 동적 생성
+var sum = new Function("x", "y", "return x + y");
+console.log(sum(10,20));
+</script>
+</body>
+</html>

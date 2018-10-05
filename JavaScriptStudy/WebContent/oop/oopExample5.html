@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+<script type="text/javascript">
+//var product = new Object();
+
+var product = {};
+product.name = "7D 건조망고";
+product.type = "당절임";
+product.element = "망고, 설탕";
+product.origin = "필리핀";
+
+var product2 = {
+  name : "7D 건조망고",
+  type : "당절임",
+  element : "망고, 설탕",
+  origin : "필리핀",
+  price : function () {
+	return 500;
+  }
+}
+
+// 동적 메소드 추가
+product.toString = function () {
+	return this.name + "\t" + this.type;
+}
+
+console.log(product.name);
+console.log(product["type"]);
+console.log(product.toString());
+</script>
+</body>
+</html>
