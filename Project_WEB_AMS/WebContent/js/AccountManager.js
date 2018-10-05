@@ -12,10 +12,12 @@ function AccountManager() {
 AccountManager.prototype.add = function(account) {
 	// account의 계좌번호로 이미 존재하는 계좌인지 검사
 	if(this.searchByNumber(account.num)) {
+		// 존재하면 false 반환
 		return false;
 	}
 	// 존재하지 않을 경우 추가
 	this.accounts.push(account);
+	// 추가에 성공하면 true 반환
 	return true;
 }
 // accounts에서 계좌번호를 계좌를 조회
