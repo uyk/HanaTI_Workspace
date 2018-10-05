@@ -11,6 +11,11 @@
 //var array = new Array();
 //var array = new Array(10);
 var array = new Array(10, 20, 30, "김기정", new Date());
+
+for ( var key in array) {
+	console.log(key + " : " + array[key]);
+}
+
 array.push("소영종");
 array.push(1000);
 
@@ -54,11 +59,3 @@ for ( var key in array) {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
