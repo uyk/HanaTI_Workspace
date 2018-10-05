@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>AMS</title>
+<script type="text/javascript" src="./js/Account.js"></script>
+<script type="text/javascript" src="./js/MinusAccount.js"></script>
+</head>
+<body>
+<script>
+var account = new Account("1111-2222","유예겸","1234",50000);
+console.log(account);
+account.deposit(1000);
+console.log(account);
+account.withdraw(1000);
+console.log(account);
+console.log(account.checkPasswd("1111"));
+console.log(account.toString());
+console.log("마이너스");
+var maccount = new MinusAccount("3333-2222", "김예겸", "5555", 900000, 10000)
+console.log(maccount.toString());
+</script>
+</body>
+</html>
