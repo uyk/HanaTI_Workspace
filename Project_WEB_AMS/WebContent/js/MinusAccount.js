@@ -15,7 +15,5 @@ MinusAccount.prototype.constructor = MinusAccount;
 
 // 마이너스 계좌의 내용을 반환하는 메소드
 MinusAccount.prototype.toString = function() {
-	console.log("q");
-
-	return Account.bankName + " " + this.num + " " + this.owner + " " + this.pw + " " + this.rest + " " + this.bm;
+	return Account.prototype.toString.call(this) + " " + this.bm;
 }
