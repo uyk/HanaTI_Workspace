@@ -5,6 +5,7 @@
 <title>AMS</title>
 <script type="text/javascript" src="./js/Account.js"></script>
 <script type="text/javascript" src="./js/MinusAccount.js"></script>
+<script type="text/javascript" src="./js/AccountManager.js"></script>
 </head>
 <body>
 <script>
@@ -19,6 +20,18 @@ console.log(account.toString());
 console.log("마이너스");
 var maccount = new MinusAccount("3333-2222", "김예겸", "5555", 900000, 10000)
 console.log(maccount.toString());
+console.log("------------------am-------------");
+var am = new AccountManager();
+am.add(account);
+am.add(maccount);
+console.log(am.add(new Account("5555-2222","유예겸","1234",50000)));
+console.log(am.add(new Account("5555-2222","유예겸","1234",50000)));
+var foundAccount = am.searchByNumber("1111-2222");
+console.log("FA : " + foundAccount);
+console.log("SO : " + am.searchByOwner("유예겸"));
+console.log("RA : " + am.remove("1111-2222"));
+console.log(am.toString());
+
 </script>
 </body>
 </html>
