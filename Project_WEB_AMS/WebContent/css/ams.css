@@ -1,0 +1,102 @@
+div [id$="_div"]{
+	border-collapse: collapse;
+	width: 60%;
+	height: 45px;
+	border-top: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin: 0px 10px;
+}
+
+input[type=submit]  {
+	border-width:0;
+	border-radius:5px;
+	background-color: #153d73;
+	color: white;
+	width: 80px;
+	height: 25px;
+
+}
+
+#main {
+	width: 100%;
+	min-width: 600px;
+	margin: 20px 0px;
+}
+#table {
+	border-collapse: collapse;
+	width: 60%;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 3px solid #369;
+	margin-left : 10px;
+	margin-bottom : 15px;
+}
+#label {
+	margin: 10px;
+}
+.header {
+	width: 20%;
+	padding: 10px;
+	font-weight: bold;
+	color: #153d73;
+	border-right: 1px solid #ccc;
+    vertical-align: center;
+    display: inline-block;
+}
+
+.contents {
+	padding: 10px;
+    display: inline-block;
+}
+	
+table {
+	border-collapse: collapse;
+	width: 95%;
+	text-align: left;
+	line-height: 1.5;
+    border-left: 1px solid #ccc;
+	border-top: 1px solid #ccc;
+	margin: 20px 10px;
+}
+
+table th {
+	width: 110px;
+	padding: 10px;
+	font-weight: bold;
+    color: #ffffff;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    background: #153d73;
+    text-align: center;
+}
+
+table td {
+	width: 349px;
+	padding: 10px;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+}
+
+/*
+button {
+	border-width:0;
+	border-radius:5px;
+	background-color: #153d73;
+	color: white;
+	width: 80px;
+	height: 25px;
+
+}
+*/
+/** 화면 크기가 작아지면 컨텐츠 너비를 화면의 95%로 확대*/
+@media all and (min-width:320px) and (max-width:1000px) {
+
+	div [id$="_div"]{
+		width: 95%;
+	}
+	#table {
+		width: 95%;
+	}
+}
