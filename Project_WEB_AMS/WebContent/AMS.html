@@ -8,8 +8,10 @@
 <script type="text/javascript" src="./js/Account.js"></script>
 <script type="text/javascript" src="./js/MinusAccount.js"></script>
 <script type="text/javascript" src="./js/AccountManager.js"></script>
+<script type="text/javascript" src="./js/EventHandler.js"></script>
 </head>
 <body>
+<!--  
 <script>
 var account = new Account("1111-2222","유예겸","1234",50000);
 console.log(account);
@@ -36,8 +38,8 @@ console.log(am.toString());
 
 </script>
 
-
-<form action="" method="post">
+-->
+<form name="amsForm" action="" method="post">
   <div id="main">
   
     <div id="type_div">
@@ -53,16 +55,16 @@ console.log(am.toString());
     <div id="num_div">
       <span class="header">계좌번호</span>
       <span class="contents">
-        <input type="text" name="number" placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}" maxlength="9"  required>
-        <input type="submit" value="조회">
-        <input type="submit" value="삭제">
+        <input type="text" name="number" placeholder="0000-0000" pattern="[0-9]{4}-[0-9]{4}" maxlength="9" >
+        <input type="submit" value="조회"  name ="sbn">
+        <input type="submit" value="삭제" name="rm">
       </span>
     </div>
     
     <div id="name_div">
       <span class="header">예금주명</span>
       <span class="contents">
-        <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" required>
+        <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" >
         <input type="submit" value="검색">  
       </span>
     </div>
@@ -70,7 +72,7 @@ console.log(am.toString());
     <div id="pw_div">
       <span class="header">비밀번호</span>
       <span class="contents">
-        <input type="password" name="pw" >
+        <input type="password" name="pw" placeholder="5~20자리 숫자" pattern="[0-9]{5,20}">
         입금금액
         <input type="text" name="deposit" pattern="[0-9]+">
       </span>
@@ -80,8 +82,8 @@ console.log(am.toString());
       <span class="header">대출금액</span>
       <span class="contents">
         <input type="text" name="minus" pattern="[0-9]+">
-        <input type="submit" value="신규등록">  
-        <input type="submit" value="전체조회">  
+        <input type="submit" value="신규등록" name="newBt">  
+        <input type="button" value="전체조회" name="allAcc">  
       </span>
     </div>
   
@@ -89,6 +91,7 @@ console.log(am.toString());
         <span id ="label" style="float: left"> 계좌목록</span>
         <span id ="label" style="float: right"> 단위(원)</span>
       <table> 
+        <thead>
         <tr>
           <th>계좌종류
           <th>계좌번호
@@ -96,6 +99,8 @@ console.log(am.toString());
           <th>현재잔액
           <th>대출금액
         </tr>
+        </thead>
+        <tbody id="myTbody">
         <tr> 
           <td>입출금
           <td>1111-2222
@@ -103,48 +108,7 @@ console.log(am.toString());
           <td>500000000
           <td>0
         </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
+        </tbody>
       </table>
     </div>
   </div>

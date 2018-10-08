@@ -1,3 +1,6 @@
+/**
+* AMS 테이블과 폼에 디자인을 입히는 CSS 파일
+*/
 div [id$="_div"]{
 	border-collapse: collapse;
 	width: 60%;

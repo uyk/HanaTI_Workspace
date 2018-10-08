@@ -20,6 +20,11 @@ AccountManager.prototype.add = function(account) {
 	// 추가에 성공하면 true 반환
 	return true;
 }
+// accounts의 전체 계좌 정보를 반환.
+AccountManager.prototype.list = function() {
+	return this.accounts;
+}
+
 // accounts에서 계좌번호를 계좌를 조회
 AccountManager.prototype.searchByNumber = function(num) {
 	for ( var i in this.accounts) {
