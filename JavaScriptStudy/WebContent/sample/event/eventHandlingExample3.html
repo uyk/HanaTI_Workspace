@@ -14,11 +14,15 @@ window.onload =  function(){
 	document.getElementById("parapraph").onclick = 	function(e){
 		var event = e || window.event;
 		alert("클릭이벤트 처리 완료!");
+		
+		// 이벤트 객체 e에 stopPropagation 객체가 있으면..
 		if(e.stopPropagation){
 			e.stopPropagation();
 		}else{
+			// 10버전 이하 익스플로러에서는 cancleBubble로..
 			e.cancelBubble = true;
 		}
+		
 	}
 }
 
@@ -34,8 +38,3 @@ window.onload =  function(){
 </div>
 </body>
 </html>
-
-
-
-
-

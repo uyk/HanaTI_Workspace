@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+<h2>DOM 이란1</h2>
+<p>자리돔이 최고야</p>
+<h2>DOM 이란2</h2>
+<p>자리돔이 최고야</p>
+<h2>DOM 이란3</h2>
+<p>자리돔이 최고야</p>
+<h2>DOM 이란4</h2>
+<p>자리돔이 최고야</p>
+<script>
+//DOM API를 이용한 DOM 객체 접근
+var array = document.getElementsByTagName("h2");
+console.log(array.length);
+for ( var i = 0; i < array.length; i++) {
+	var obj = array[i];
+	console.log(obj);
+	console.log(obj.constructor);
+	obj.style="	:red";
+}
+</script>
+</body>
+</html>

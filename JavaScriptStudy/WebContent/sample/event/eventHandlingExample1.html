@@ -17,7 +17,7 @@ window.onload =  function(){
 	document.getElementById("myButton").onclick = function(){
 		console.log("버튼 클릭됨...");
 		document.getElementsByTagName("div")[0].innerHTML = "소미 바보";
-		document.getElementsByTagName("div")[0].style.fontSize = 150+"pt";
+		document.getElementsByTagName("div")[0].style.fontSize = 150 + "pt";
 	}
 	
 	// 이벤트리스너 제거
@@ -37,7 +37,10 @@ window.onload =  function(){
 	
 	
 	document.getElementById("button2").onclick = function(e){
-		var event = e || window.event;
+		var event = e || window.event;	// (e == null ) ? window.event : e
+		for ( var name in e) {
+			console.log(name + ":" + e[name]);
+		}
 		console.log(event.type);
 		event.target.style.backgroundColor = "tomato";
 		for ( var key in event) {

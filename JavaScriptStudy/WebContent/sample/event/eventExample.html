@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트 처리</title>
+</head>
+<body>
+<input type="button" value="클릭하세요. 자바스크립트" id="myButton">
+<script>
+
+var eventSource = document.getElementById("myButton");
+
+function someDo() {
+	alert("@");
+}
+
+eventSource.onclick = function() {
+	console.log("콘파이사주세여");
+	
+}
+
+// 고전 이벤트 처리 모델
+eventSource.onclick = someDo;
+
+// 표준 이벤트 처리 모델
+//eventSource.addEventListener("click",someDo);
+
+// 익스플로러 이벤트 처리 모델
+//eventSource.attachEvent("onClick", someDo);
+
+eventSource.addEventListener("click",someDo, false);
+
+</script>
+
+</body>
+</html>
