@@ -22,14 +22,16 @@ function closeWindow() {
     myWindow.close();
 }
 
-//openWindow();
+openWindow();
 //closeWindow();
 
 window.setTimeout(function(){
 	//alert("경고창입니다..");
-	openWindow();
+	//openWindow();
+	myWindow.close();
 }, 3000);
 
+window.setTimeout(openWindow, 4000);
 </script>
 
 </body>
