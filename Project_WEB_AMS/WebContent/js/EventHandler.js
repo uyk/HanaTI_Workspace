@@ -40,7 +40,7 @@ function eventRegist() {
 	// 입금 버튼
 	document.amsForm.depositBt.onclick = deposit;
 	// 출금 버튼
-	document.amsForm.withdraw.onclick = withdraw;
+	document.amsForm.withdrawBt.onclick = withdraw;
 }
 
 //키가 입력될 때마다 유효성 검사
@@ -63,9 +63,7 @@ function isValidKey(e) {
 
 // 버튼 클릭시 발생하는 유효성 검사 함수
 function isValid(src) {
-	console.log("1");
 	if( (src.value == "" || src.validity.patternMismatch)) {
-		console.log("2");
 		src.reportValidity();
 		setTimeout(function() {
 				document.amsForm.deposit.focus();
@@ -219,6 +217,7 @@ function searchByOwner() {
 		printMessage("존재하지 않는 예금주입니다.");
 		return false;
 	}
+	
 	for ( var i in result) {
 		printAcc(result[i]);
 	}
@@ -250,7 +249,6 @@ function remove() {
 
 // 계좌번호와 비밀번호를 확인해서 입출금
 function deposit() {	
-	console.log("3");
 	clearTable();
 	// 계좌번호 유효성 검사
 	var src = document.amsForm.number;
@@ -275,17 +273,56 @@ function deposit() {
 	}
 	// 비밀번호 불일치
 	if(!result.checkPasswd(pw)) {
-		console.log(pw + " " + result.pw);
 		printMessage("비밀번호가 일치하지 않습니다.");
 		return false;
 	}
 	result.deposit(deposit);
+	
+	// form 초기화
+	reset();
+	
 	printAcc(result);
 
 }
 
+// 출금 함수
 function withdraw() {
+	clearTable();
+	// 계좌번호 유효성 검사
+	var src = document.amsForm.number;
+	if(!(isValid(src))) return false;
+	var accNum = src.value;
 	
+	// 비밀번호 유효성 검사
+	src = document.amsForm.pw;
+	if(!(isValid(src))) return false;
+	var pw = src.value;
+	
+	// 출금금액 유효성 검사
+	src = document.amsForm.withdraw;
+	if(!(isValid(src))) return false;
+	var withdraw = src.value;
+
+	// 조회 실패
+	var result = am.searchByNumber(accNum)
+	if(!result) {
+		printMessage("존재하지 않는 계좌번호입니다.");
+		return false;
+	}
+	// 비밀번호 불일치
+	if(!result.checkPasswd(pw)) {
+		printMessage("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	
+	if(! (result.withdraw(withdraw))) {
+		printMessage("잔액이 부족합니다.");
+		return false;
+	}
+	
+	// form 초기화
+	reset();
+	printAcc(result);
 }
 
 

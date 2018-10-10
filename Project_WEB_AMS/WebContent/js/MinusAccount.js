@@ -5,6 +5,7 @@
 function MinusAccount(num,owner,pw,rest, bm) {
 	Account.call(this, num, owner, pw, rest);
 	this.bm = bm;
+	this.rest -= bm;
 }
 MinusAccount.prototype = new Account();
 delete MinusAccount.prototype.num;
