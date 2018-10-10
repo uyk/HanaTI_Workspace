@@ -23,12 +23,13 @@ AccountManager.prototype.add = function(account) {
 
 // accounts의 전체 계좌 정보를 반환.
 AccountManager.prototype.list = function(type) {
-	// 전체 계좌 전보 반환
+	// 전체 계좌 정보 반환
 	if(type == 0) return this.accounts;
 	
 	var comAccounts = [];
 	var minusAccounts = [];
 
+	// 계좌 타입에 따라 계좌 정보 반환
 	for ( var i in this.accounts) {
 		if( (this.accounts[i]) instanceof MinusAccount) 
 			minusAccounts.push(this.accounts[i]);
@@ -57,6 +58,7 @@ AccountManager.prototype.searchByOwner = function(owner) {
 		if((this.accounts[i]).owner == owner) 
 			tempA.push(this.accounts[i]);
 	}
+	if(tempA.length == 0 ) return false;
 	return tempA;
 }
 // accounts에서 계좌번호로 해당계좌를 제거

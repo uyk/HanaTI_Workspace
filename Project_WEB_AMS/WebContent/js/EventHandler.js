@@ -40,9 +40,9 @@ function isValidKey(e) {
 	window.s = source;
 	// 유효성 검사 대상이 아니면 함수 종료
 	if(!(source.validity.customError)) return false;
+	
 	// 입력값이 패턴과 일치하지 않으면 라벨을 빨간색으로 표시
-	if( source.value == "" ||
-			source.validity.patternMismatch ) {
+	if( source.value == "" || source.validity.patternMismatch ) {
 		document.getElementById(s.name+"L").style.color="red";
 		console.log("!");
 	}
@@ -67,25 +67,29 @@ function type() {
 // AccountManager와 연동하는 함수
 // 계좌 등록
 function add() {
-	var src = document.amsForm.number;
 	// 계좌번호 유효성 검사
+	var src = document.amsForm.number;
 	if(!(isValid(src))) return false;
 	var accNum = src.value;
 	// 예금주명 유효성 검사
-	var accOwner = document.amsForm.name.value;
-	if(!(isValidOwner())) return false;
+	src = document.amsForm.name;
+	if(!(isValid(src))) return false;
+	var accOwner = src.value;
 	// 비밀번호 유효성 검사
-	var pw = document.amsForm.pw.value;
-	if(!(isValidPW())) return false;
+	src = document.amsForm.pw;
+	if(!(isValid(src))) return false;
+	var pw = src.value;
 	// 예금 유효성 검사
-	var deposit = document.amsForm.deposit.value;
-	if(!(isValidDP())) return false;
+	src = document.amsForm.deposit;
+	if(!(isValid(src))) return false;
+	var deposit = src.value;
 	
 	// 계좌 타입에 따라 대출금 유효성 검사
 	// 마이너스 계좌
 	if(document.amsForm.type.selectedIndex == 2) {
-		var minus = document.amsForm.minus.value;
-		if(!(isValidMinus())) return false;
+		src = document.amsForm.minus;
+		if(!(isValid(src))) return false;
+		var minus = src.value;
 		var account = new MinusAccount(accNum, accOwner,pw,deposit,minus);
 		
 	}
@@ -96,7 +100,7 @@ function add() {
 	
 	// 추가 실패
 	if(!(am.add(account))) {
-		alert("이미 존재하는 계좌번호 입니다");
+		printMessage("이미 존재하는 계좌번호입니다.");	
 		return false;
 	}
 	console.log(am);
@@ -145,6 +149,7 @@ function printAcc(account) {
 
 //테이블 목록 초기화
 function clearTable() {
+    document.getElementById("message").innerHTML = "";
 	while (document.getElementsByTagName('tbody')[0].children[0] != undefined) {
 		document.getElementsByTagName('tbody')[0].children[0].remove();
 	}
@@ -152,19 +157,21 @@ function clearTable() {
 
 //계좌 번호로 조회
 function searchByNumber() {
-	// 유효성 검사 추가 필요
+	clearTable();
 	// 계좌번호 유효성 검사
-	var accNum = document.amsForm.number.value;
-	if(!(isValidNum(accNum))) return false;
+	var src = document.amsForm.number;
+	if(!(isValid(src))) return false;
+	var accNum = src.value;
 
 	// 조회 실패
 	var result = am.searchByNumber(accNum)
 	if(!result) {
-		alert("존재하지 않는 계좌번호 입니다.");
+		printMessage("존재하지 않는 계좌번호입니다.");
+		//src.setCustomValidity("존재하지 않는 계좌번호 입니다.");
+		//src.reportValidity();		
 		return false;
 	}
 	
-	clearTable();
 	printAcc(result);
 
 	// form 초기화
@@ -175,19 +182,21 @@ function searchByNumber() {
 
 // 예금주명으로 조회
 function searchByOwner() {
+	clearTable();
+	
 	// 예금주명 유효성 검사
-	var accOwner = document.amsForm.name.value;
-	if(!(isValidOwner(accOwner))) return false;
-
+	src = document.amsForm.name;
+	if(!(isValid(src))) return false;
+	var accOwner = src.value;
+	
 	// 조회된 배열을 result에 저장
 	var result = am.searchByOwner(accOwner)
 	// 조회 실패
 	if(!result) {
-		alert("존재하지 않는 예금주입니다.");
+		src.setCustomValidity("존재하지 않는 예금주입니다.");
+		src.reportValidity();
 		return false;
 	}
-	
-	clearTable();
 	for ( var i in result) {
 		console.log(i + " : " + result[i]);
 		printAcc(result[i]);
@@ -203,18 +212,21 @@ function searchByOwner() {
 function remove() {
 	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
-	var accNum = document.amsForm.number.value;
-	if(!(isValidNum(accNum))) return false;
+	var src = document.amsForm.number;
+	if(!(isValid(src))) return false;
+	var accNum = src.value;
 	
 	// account를 result에 저장
 	var result = am.remove(accNum)
 	// result가 false면 존재하지 않는 계좌번호
 	if(!result) {
-		alert("존재하지 않는 계좌번호입니다.");
+		src.setCustomValidity("존재하지 않는 계좌번호입니다.");
+		src.reportValidity();
 		return false;
 	}
 	// 제거 완료 표시
-	alert(accNum + '계좌를 제거했습니다.');
+	src.setCustomValidity(accNum + '계좌를 제거했습니다.');
+	src.reportValidity();
 	console.log(am);
 	// 서버에 제출 안함
 	return false;
@@ -223,58 +235,9 @@ function remove() {
 
 // 유효성 검사 함수
 function isValid(src) {
-	if( (src.value == "" ||
-			src.validity.patternMismatch)) {
+	setValidityMessage();
+	if( (src.value == "" || src.validity.patternMismatch)) {
 		src.reportValidity()
-		return false; 
-	}
-	return true;
-}
-// 계좌번호 유효성 검사
-function isValidNum() {
-	if( (document.amsForm.number.value =="" ||
-			document.amsForm.number.validity.patternMismatch)) {
-		document.amsForm.number.reportValidity();
-		return false;
-	}
-	return true;
-}
-
-// 예금주명 유효성 검사
-function isValidOwner() {
-	if( (document.amsForm.name.value =="" ||
-			document.amsForm.name.validity.patternMismatch)) {
-		document.amsForm.name.reportValidity();
-		return false; 
-	}
-	return true;
-}
-
-// 비밀번호 유효성 검사
-function isValidPW() {
-	if( (document.amsForm.pw.value =="" ||
-			document.amsForm.pw.validity.patternMismatch)) {
-		document.amsForm.pw.reportValidity();
-		return false;
-	}
-	return true;
-}
-
-// 입금금액 유효성 검사
-function isValidDP(){
-	if( (document.amsForm.deposit.value =="" ||
-			document.amsForm.deposit.validity.patternMismatch)) {
-		document.amsForm.deposit.reportValidity();
-		return false;
-	}
-	return true;
-}
-
-// 대출금액 유효성 검사
-function isValidMinus(minus){
-	if( (document.amsForm.minus.value =="" ||
-			document.amsForm.minus.validity.patternMismatch)) {
-		document.amsForm.minus.reportValidity();
 		return false; 
 	}
 	return true;
@@ -301,4 +264,10 @@ function reset() {
 	for ( var i = 0; i < labels.length; i++) {
 		labels[i].style.color = "black";
 	}
+}
+
+// 메시지를 출력하는 함수
+function printMessage(message) {
+	clearTable();
+    document.getElementById("message").innerHTML = message;
 }

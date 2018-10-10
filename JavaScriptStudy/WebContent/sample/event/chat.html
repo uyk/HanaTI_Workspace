@@ -39,7 +39,19 @@ function appendText() {
 </script>
 </head>
 <body>
-<textarea rows="5" cols="50" id="messageTA"></textarea><br/>
+<textarea rows="5" cols="50" id="messageTA">ddd</textarea><br/>
 <input type="text" size="42" maxlength="42" id="inputTF"><input type="button" value="전송" id="sendB">
+
+  <form action="" method="get">
+  Name: <input type="text" oninvalid="alert('You must fill out the form!');" name="fname" pattern="[0-9]{5,20}">
+  <input type="submit" value="Submit">
+</form>
+
+<p>If you click submit, without filling out the text field,
+an alert message will occur.</p>
+
+<p><strong>Note:</strong> The oninvalid event is not supported in Internet Explorer 9 and earlier or Safari.</p>
+  
+
 </body>
 </html>
