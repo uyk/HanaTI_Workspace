@@ -20,9 +20,26 @@ AccountManager.prototype.add = function(account) {
 	// 추가에 성공하면 true 반환
 	return true;
 }
+
 // accounts의 전체 계좌 정보를 반환.
-AccountManager.prototype.list = function() {
-	return this.accounts;
+AccountManager.prototype.list = function(type) {
+	// 전체 계좌 전보 반환
+	if(type == 0) return this.accounts;
+	
+	var comAccounts = [];
+	var minusAccounts = [];
+
+	for ( var i in this.accounts) {
+		if( (this.accounts[i]) instanceof MinusAccount) 
+			minusAccounts.push(this.accounts[i]);
+		else 
+			comAccounts.push(this.accounts[i]);
+	}
+
+	// 입출금 계좌 정보 반환
+	if(type == 1) return comAccounts;
+	// 마이너스 계좌 정보 반환
+	else return minusAccounts;
 }
 
 // accounts에서 계좌번호를 계좌를 조회
