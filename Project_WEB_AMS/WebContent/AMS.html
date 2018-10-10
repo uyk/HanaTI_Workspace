@@ -65,7 +65,7 @@ console.log(am.toString());
       <span class="header">예금주명</span>
       <span class="contents">
         <input type="text" name="name" placeholder="1~20자리 한글 or 영어" pattern="[가-힣a-zA-Z]{1,20}" maxlength="20" >
-        <input type="submit" value="검색">  
+        <input type="submit" value="검색" name="sbo">  
       </span>
     </div>
     
@@ -83,7 +83,7 @@ console.log(am.toString());
       <span class="contents">
         <input type="text" name="minus" pattern="[0-9]+">
         <input type="submit" value="신규등록" name="newBt">  
-        <input type="button" value="전체조회" name="allAcc">  
+        <input type="submit" value="전체조회" name="allAcc">  
       </span>
     </div>
   
@@ -101,13 +101,7 @@ console.log(am.toString());
         </tr>
         </thead>
         <tbody id="myTbody">
-        <tr> 
-          <td>입출금
-          <td>1111-2222
-          <td>유예겸
-          <td>500000000
-          <td>0
-        </tr>
+
         </tbody>
       </table>
     </div>

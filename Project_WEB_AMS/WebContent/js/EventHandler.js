@@ -1,8 +1,6 @@
 /**
  * AMS의 이벤트를 관리하는 자바스크립트 코드
- * 이벤트 핸들러는 하나만 필요하다고 간주하여 객체로 정의한다.
- * AccountManager가 여러개일 때 하나의 이벤트 핸들러에서 필요한 AccountManager에 접속
- */
+*/
 
 window.onload = function() {
 	init();
@@ -19,18 +17,20 @@ function init() {
 /** 이벤트 소스에 이벤트 리스너 등록 */
 function eventRegist() {
 	// 계좌 추가
-	document.amsForm.newBt.onclick = addToAm;
+	document.amsForm.newBt.onclick = add;
 	// 전체 계좌 조회
-	document.amsForm.allAcc.onclick = allAccList;
+	document.amsForm.allAcc.onclick = list;
 	// 계좌번호로 조회
-	document.amsForm.sbn.onclick = sbn;
+	document.amsForm.sbn.onclick = searchByNumber;
+	// 예금주로 조회
+	document.amsForm.sbo.onclick = searchByOwner;	
 	// 계좌번호로 삭제
-	document.amsForm.rm.onclick = rm;
+	document.amsForm.rm.onclick = remove;
 	
 }
 // AccountManager와 연동하는 함수
 // 계좌 등록
-function addToAm() {
+function add() {
 	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
 	var accNum = document.amsForm.number.value;
@@ -63,7 +63,7 @@ function addToAm() {
 }
 
 // 전체 계좌 목록을 출력
-function allAccList() {
+function list() {
 	clearTable();
 	var accounts = am.list();
 	for ( var i in accounts) {
@@ -109,7 +109,7 @@ function clearTable() {
 }
 
 //계좌 번호로 조회
-function sbn() {
+function searchByNumber() {
 	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
 	var accNum = document.amsForm.number.value;
@@ -131,18 +131,51 @@ function sbn() {
 	return false;
 }
 
-function rm() {
+// 예금주명으로 조회
+function searchByOwner() {
+	// 예금주명 유효성 검사
+	var accOwner = document.amsForm.name.value;
+	if(!(isValidOwner(accOwner))) return false;
+
+	// 조회된 배열을 result에 저장
+	var result = am.searchByOwner(accOwner)
+	// 조회 실패
+	if(!result) {
+		alert("존재하지 않는 예금주입니다.");
+		return false;
+	}
+	
+	clearTable();
+	for ( var i in result) {
+		console.log(i + " : " + result[i]);
+		printAcc(result[i]);
+	}
+	console.log(am);
+	
+	// form의 필드 초기화
+	document.amsForm.reset();
+	// 서버에 제출 안함
+	return false;
+}
+
+function remove() {
 	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
 	var accNum = document.amsForm.number.value;
 	if(!(isValidNum(accNum))) return false;
 	
-	// 패
+	// account를 result에 저장
 	var result = am.remove(accNum)
+	// result가 false면 존재하지 않는 계좌번호
 	if(!result) {
-		alert("존재하지 않는 계좌번호 입니다.");
+		alert("존재하지 않는 계좌번호입니다.");
 		return false;
 	}
+	// 제거 완료 표시
+	alert(accNum + '계좌를 제거했습니다.');
+	console.log(am);
+	// 서버에 제출 안함
+	return false;
 }
 
 
