@@ -12,7 +12,7 @@ div [id$="_div"]{
 	margin: 0px 10px;
 }
 
-input[type=submit]  {
+input[type=submit], input[type=button]  {
 	border-width:0;
 	border-radius:5px;
 	background-color: #153d73;
@@ -41,6 +41,13 @@ select {
 	min-width: 760px;
 	margin: 20px 0px;
 }
+#button_div {
+	text-align: center;
+	height:30px;
+	padding : 10px 0px;
+}
+
+
 #table {
 	border-collapse: collapse;
 	width: 60%;
@@ -51,13 +58,20 @@ select {
 	margin-bottom : 15px;
 }
 #description {
-	margin: 10px;
+	margin-left: 15px;
+	margin-right: 25px;
+	padding-bottom: 5px;
 }
 
 #message {
+	font-size: 17px;
 	text-align: center;
-	padding-bottom: 20px;
+	padding-top: 15px;
+	font-weight: bold;
+	color: #153d73;
+    vertical-align: center;
 }
+
 .header {
 	width: 15%;
 	padding: 10px;

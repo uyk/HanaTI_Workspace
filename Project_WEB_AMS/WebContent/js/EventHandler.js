@@ -12,6 +12,11 @@ function init() {
 	// AccountManager 생성
 	window.am = new AccountManager();
 	setValidityMessage();	
+	
+	// am에 테스트 데이터 추가
+	am.add(new Account("1111-2222", "유예겸","12345","5000"));
+	am.add(new Account("2222-2222", "유예겸","12345","15000"));
+	am.add(new MinusAccount("1111-3333", "김예겸","12345","522000","1000"));
 }
 
 /** 이벤트 소스에 이벤트 리스너 등록 */
@@ -30,7 +35,12 @@ function eventRegist() {
 	document.amsForm.sbo.onclick = searchByOwner;	
 	// 계좌번호로 삭제
 	document.amsForm.rm.onclick = remove;
-	
+	// 취소 버튼
+	document.amsForm.cancelBt.onclick = reset;
+	// 입금 버튼
+	document.amsForm.depositBt.onclick = deposit;
+	// 출금 버튼
+	document.amsForm.withdraw.onclick = withdraw;
 }
 
 //키가 입력될 때마다 유효성 검사
@@ -44,13 +54,26 @@ function isValidKey(e) {
 	// 입력값이 패턴과 일치하지 않으면 라벨을 빨간색으로 표시
 	if( source.value == "" || source.validity.patternMismatch ) {
 		document.getElementById(s.name+"L").style.color="red";
-		console.log("!");
 	}
 	// 입력값이 패턴과 일치하면 라벨을 파란색으로 표시
 	else {
 		document.getElementById(s.name+"L").style.color="blue";
-		console.log("?");
 	}
+}
+
+// 버튼 클릭시 발생하는 유효성 검사 함수
+function isValid(src) {
+	console.log("1");
+	if( (src.value == "" || src.validity.patternMismatch)) {
+		console.log("2");
+		src.reportValidity();
+		setTimeout(function() {
+				document.amsForm.deposit.focus();
+				src.focus();
+			}, 1500);
+		return false; 
+	}
+	return true;
 }
 
 // 계좌 타입 선택
@@ -67,6 +90,7 @@ function type() {
 // AccountManager와 연동하는 함수
 // 계좌 등록
 function add() {
+	clearTable();
 	// 계좌번호 유효성 검사
 	var src = document.amsForm.number;
 	if(!(isValid(src))) return false;
@@ -103,7 +127,6 @@ function add() {
 		printMessage("이미 존재하는 계좌번호입니다.");	
 		return false;
 	}
-	console.log(am);
 	// form 초기화
 	reset();
 	// 서버에 제출 안함
@@ -114,11 +137,13 @@ function add() {
 function list() {
 	clearTable();
 	var accounts = am.list(document.amsForm.type.selectedIndex);
+	if(accounts.length == 0 ) {
+		printMessage("출력할 계좌가 없습니다");
+		return false;
+	}
 	for ( var i in accounts) {
-		console.log(i + " : " + accounts[i]);
 		printAcc(accounts[i]);
 	}
-	console.log(am);
 	// 서버에 제출 안함
 	return false;
 }
@@ -167,8 +192,6 @@ function searchByNumber() {
 	var result = am.searchByNumber(accNum)
 	if(!result) {
 		printMessage("존재하지 않는 계좌번호입니다.");
-		//src.setCustomValidity("존재하지 않는 계좌번호 입니다.");
-		//src.reportValidity();		
 		return false;
 	}
 	
@@ -193,15 +216,12 @@ function searchByOwner() {
 	var result = am.searchByOwner(accOwner)
 	// 조회 실패
 	if(!result) {
-		src.setCustomValidity("존재하지 않는 예금주입니다.");
-		src.reportValidity();
+		printMessage("존재하지 않는 예금주입니다.");
 		return false;
 	}
 	for ( var i in result) {
-		console.log(i + " : " + result[i]);
 		printAcc(result[i]);
 	}
-	console.log(am);
 
 	// form 초기화
 	reset();
@@ -210,7 +230,6 @@ function searchByOwner() {
 }
 
 function remove() {
-	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
 	var src = document.amsForm.number;
 	if(!(isValid(src))) return false;
@@ -220,28 +239,55 @@ function remove() {
 	var result = am.remove(accNum)
 	// result가 false면 존재하지 않는 계좌번호
 	if(!result) {
-		src.setCustomValidity("존재하지 않는 계좌번호입니다.");
-		src.reportValidity();
+		printMessage("존재하지 않는 계좌번호입니다.");
 		return false;
 	}
 	// 제거 완료 표시
-	src.setCustomValidity(accNum + '계좌를 제거했습니다.');
-	src.reportValidity();
-	console.log(am);
+	printMessage(accNum + " 계좌를 제거했습니다.");
 	// 서버에 제출 안함
 	return false;
 }
 
+// 계좌번호와 비밀번호를 확인해서 입출금
+function deposit() {	
+	console.log("3");
+	clearTable();
+	// 계좌번호 유효성 검사
+	var src = document.amsForm.number;
+	if(!(isValid(src))) return false;
+	var accNum = src.value;
+	
+	// 비밀번호 유효성 검사
+	src = document.amsForm.pw;
+	if(!(isValid(src))) return false;
+	var pw = src.value;
+	
+	// 입금금액 유효성 검사
+	src = document.amsForm.deposit;
+	if(!(isValid(src))) return false;
+	var deposit = src.value;
 
-// 유효성 검사 함수
-function isValid(src) {
-	setValidityMessage();
-	if( (src.value == "" || src.validity.patternMismatch)) {
-		src.reportValidity()
-		return false; 
+	// 조회 실패
+	var result = am.searchByNumber(accNum)
+	if(!result) {
+		printMessage("존재하지 않는 계좌번호입니다.");
+		return false;
 	}
-	return true;
+	// 비밀번호 불일치
+	if(!result.checkPasswd(pw)) {
+		console.log(pw + " " + result.pw);
+		printMessage("비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	result.deposit(deposit);
+	printAcc(result);
+
 }
+
+function withdraw() {
+	
+}
+
 
 function setValidityMessage() {
 	// 계좌번호 유효성 검사 메시지
