@@ -11,34 +11,7 @@
 <script type="text/javascript" src="./js/EventHandler.js"></script>
 </head>
 <body>
-<!--  
-<script>
-var account = new Account("1111-2222","유예겸","1234",50000);
-console.log(account);
-account.deposit(1000);
-console.log(account);
-account.withdraw(1000);
-console.log(account);
-console.log(account.checkPasswd("1111"));
-console.log(account.toString());
-console.log("마이너스");
-var maccount = new MinusAccount("3333-2222", "김예겸", "5555", 900000, 10000)
-console.log(maccount.toString());
-console.log("------------------am-------------");
-var am = new AccountManager();
-am.add(account);
-am.add(maccount);
-console.log(am.add(new Account("5555-2222","유예겸","1234",50000)));
-console.log(am.add(new Account("5555-2222","유예겸","1234",50000)));
-var foundAccount = am.searchByNumber("1111-2222");
-console.log("FA : " + foundAccount);
-console.log("SO : " + am.searchByOwner("유예겸"));
-console.log("RA : " + am.remove("1111-2222"));
-console.log(am.toString());
 
-</script>
-
--->
 <form name="amsForm" action="" method="post">
   <div id="main">
   
@@ -49,7 +22,9 @@ console.log(am.toString());
             <option>전체
             <option>입출금
             <option>마이너스
-         </select></span>
+        </select>
+      </span>
+      <input type="submit" value="전체조회" name="allAcc">  
     </div>
     
     <div id="num_div">
@@ -73,17 +48,21 @@ console.log(am.toString());
       <span class="header">비밀번호</span>
       <span class="contents">
         <input type="password" name="pw" placeholder="5~20자리 숫자" pattern="[0-9]{5,20}">
-        입금금액
-        <input type="text" name="deposit" pattern="[0-9]+">
+      </span>
+    </div>
+    
+    <div id="deposit_div">
+      <span class="header">입금금액</span>
+      <span class="contents">
+          <input type="text" name="deposit" pattern="[0-9]+">
+          <input type="submit" value="신규등록" name="newBt">  
       </span>
     </div>
     
     <div id="minus_div">
       <span class="header">대출금액</span>
       <span class="contents">
-        <input type="text" name="minus" pattern="[0-9]+">
-        <input type="submit" value="신규등록" name="newBt">  
-        <input type="submit" value="전체조회" name="allAcc">  
+        <input type="text" name="minus" disabled="disabled" pattern="[0-9]+">
       </span>
     </div>
   

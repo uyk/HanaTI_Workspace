@@ -16,6 +16,8 @@ function init() {
 
 /** 이벤트 소스에 이벤트 리스너 등록 */
 function eventRegist() {
+	// 계좌 타입 선택
+	document.amsForm.type.onchange = type;
 	// 계좌 추가
 	document.amsForm.newBt.onclick = add;
 	// 전체 계좌 조회
@@ -28,27 +30,44 @@ function eventRegist() {
 	document.amsForm.rm.onclick = remove;
 	
 }
+// 계좌 타입 선택
+function type() {
+	if(document.amsForm.type.selectedIndex != 2) {
+		document.amsForm.minus.disabled = true;
+		document.amsForm.minus.value = "";
+	}
+	else {
+		document.amsForm.minus.disabled = false;
+	}
+}
 // AccountManager와 연동하는 함수
 // 계좌 등록
 function add() {
-	// 유효성 검사 추가 필요
 	// 계좌번호 유효성 검사
 	var accNum = document.amsForm.number.value;
 	if(!(isValidNum(accNum))) return false;
 	// 예금주명 유효성 검사
 	var accOwner = document.amsForm.name.value;
 	if(!(isValidOwner(accOwner))) return false;
-	
 	// 비밀번호 유효성 검사
 	var pw = document.amsForm.pw.value;
 	if(!(isValidPW(pw))) return false;
-	
 	// 예금 유효성 검사
 	var deposit = document.amsForm.deposit.value;
 	if(!(isValidDP(deposit))) return false;
 	
-	// 계좌 만들어서 추가
-	var account = new Account(accNum, accOwner,pw,deposit);
+	// 계좌 타입에 따라 대출금 유효성 검사
+	// 마이너스 계좌
+	if(document.amsForm.type.selectedIndex == 2) {
+		var minus = document.amsForm.minus.value;
+		if(!(isValidMinus(minus))) return false;
+		var account = new MinusAccount(accNum, accOwner,pw,deposit,minus);
+		
+	}
+	// 입출금 계좌
+	else {
+		var account = new Account(accNum, accOwner,pw,deposit);
+	}
 	
 	// 추가 실패
 	if(!(am.add(account))) {
@@ -215,6 +234,16 @@ function isValidDP(dp){
 	if(!(dp.match(/[0-9]+/))){
 		alert('입금금액을 확인해주세요.');
 		document.amsForm.deposit.focus();
+		return false; // 디폴트 이벤트핸들러 제거
+	}
+	return true;
+}
+
+// 대출금액 유효성 검사
+function isValidMinus(minus){
+	if(!(minus.match(/[0-9]+/))){
+		alert('대출금액을 확인해주세요.');
+		document.amsForm.minus.focus();
 		return false; // 디폴트 이벤트핸들러 제거
 	}
 	return true;
