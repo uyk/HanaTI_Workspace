@@ -20,6 +20,7 @@ Account.prototype.deposit = function(money) {
 	this.rest += money;
 	return this.rest;
 }
+
 // 출금시 money만큼 잔액이 감소하는 메소드
 Account.prototype.withdraw = function(money) {
 	if(money <= 0) return false;
