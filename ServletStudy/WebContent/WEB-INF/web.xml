@@ -53,4 +53,37 @@
     <servlet-name>LifecycleServlet</servlet-name>
     <url-pattern>/cycle.do</url-pattern>
   </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>HTTPServletRequestServlet</display-name>
+    <servlet-name>HTTPServletRequestServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.HTTPServletRequestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HTTPServletRequestServlet</servlet-name>
+    <url-pattern>/request.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>ReceiveServlet</display-name>
+    <servlet-name>ReceiveServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.ReceiveServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReceiveServlet</servlet-name>
+    <url-pattern>/receive.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>HTTPServletResponseServlet</display-name>
+    <servlet-name>HTTPServletResponseServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.HTTPServletResponseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HTTPServletResponseServlet</servlet-name>
+    <url-pattern>/response.do</url-pattern>
+  </servlet-mapping>
 </web-app>
