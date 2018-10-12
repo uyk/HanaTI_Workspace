@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="css/basic.css">
+
 </head>
 <body>
 
@@ -39,7 +40,7 @@
   <div class="rightcolumn">
     <div class="card">
       <div id="loginDiv">
-        <form action="/login.do">
+        <form action="/servlet/login.do" method="post">
           <input type="text" id="userid" name="userid" placeholder="Identifier...">
           <input type="password" id="userpw" name="userpw" placeholder="Password...">
           <input type="submit" value="Login">
