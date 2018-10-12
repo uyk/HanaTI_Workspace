@@ -5,6 +5,10 @@
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
+  <context-param>
+    <param-name>Location</param-name>
+    <param-value>c:/a/n/c/some.xml</param-value>
+  </context-param>
   <servlet>
     <servlet-name>HelloServlet</servlet-name>
     <servlet-class>kr.or.kosta.servlet.HelloServlet</servlet-class>
@@ -21,7 +25,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloServlet2</servlet-name>
-    <url-pattern>/hello</url-pattern>
+    <url-pattern>/hello2.do</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -53,8 +57,7 @@
     <servlet-name>LifecycleServlet</servlet-name>
     <url-pattern>/cycle.do</url-pattern>
   </servlet-mapping>
-  
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>HTTPServletRequestServlet</display-name>
     <servlet-name>HTTPServletRequestServlet</servlet-name>
@@ -64,7 +67,6 @@
     <servlet-name>HTTPServletRequestServlet</servlet-name>
     <url-pattern>/request.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>ReceiveServlet</display-name>
@@ -75,7 +77,6 @@
     <servlet-name>ReceiveServlet</servlet-name>
     <url-pattern>/receive.do</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <description></description>
     <display-name>HTTPServletResponseServlet</display-name>
@@ -85,5 +86,99 @@
   <servlet-mapping>
     <servlet-name>HTTPServletResponseServlet</servlet-name>
     <url-pattern>/response.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DatabaseServlet</display-name>
+    <servlet-name>DatabaseServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.DatabaseServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatabaseServlet</servlet-name>
+    <url-pattern>/database.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DatabaseServlet2</display-name>
+    <servlet-name>DatabaseServlet2</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.DatabaseServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DatabaseServlet2</servlet-name>
+    <url-pattern>/database2.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletConfigServlet</display-name>
+    <servlet-name>ServletConfigServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.ServletConfigServlet</servlet-class>
+    <init-param>
+      <param-name>driver</param-name>
+      <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletConfigServlet</servlet-name>
+    <url-pattern>/config.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DispatchServlet</display-name>
+    <servlet-name>DispatchServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.DispatchServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DispatchServlet</servlet-name>
+    <url-pattern>/dispatch.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ServletContextServlet</display-name>
+    <servlet-name>ServletContextServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.ServletContextServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ServletContextServlet</servlet-name>
+    <url-pattern>/context.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>HttpSessionServlet</display-name>
+    <servlet-name>HttpSessionServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.HttpSessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HttpSessionServlet</servlet-name>
+    <url-pattern>/session.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CookieServlet</display-name>
+    <servlet-name>CookieServlet</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.CookieServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CookieServlet</servlet-name>
+    <url-pattern>/cookie.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>login.do</display-name>
+    <servlet-name>login.do</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.LoginServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login.do</servlet-name>
+    <url-pattern>/login.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>count.do</display-name>
+    <servlet-name>count.do</servlet-name>
+    <servlet-class>kr.or.kosta.servlet.CountServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>count.do</servlet-name>
+    <url-pattern>/count.do</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -37,6 +37,8 @@ public class HelloServlet extends HttpServlet {		// implements Servlet
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h2>오늘은" + nowString + "입니다...</h2>");
+		
+		out.println("<h2>공유데이터 : " + getServletContext().getAttribute("message") + "</h2>");
 		out.println("</body>");
 		out.println("</html>");
 	}

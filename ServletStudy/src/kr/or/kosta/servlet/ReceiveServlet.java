@@ -34,6 +34,8 @@ public class ReceiveServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");		
 		PrintWriter out = response.getWriter();
 		
+		request.setCharacterEncoding("utf-8");
+		
 		// 요청 파라메터 수신
 		String userId = request.getParameter("userid");
 		String userPw = request.getParameter("userpw");
