@@ -107,7 +107,7 @@ public class LoginServlet extends HttpServlet {
 		String id = request.getParameter("userid");
 		String pw = request.getParameter("userpw");
 		
-		
+		/*
 		// 첫 접속
 		Cookie[] cookies = request.getCookies();
 		if(cookies == null) {
@@ -128,6 +128,7 @@ public class LoginServlet extends HttpServlet {
 			pwCookie.setMaxAge(60*60*24*30);
 			response.addCookie(pwCookie);
 		}
+		*/
 		
 		// 로그인 성공
 		if(id.equals("bangry") || pw.equals("1234")) {
