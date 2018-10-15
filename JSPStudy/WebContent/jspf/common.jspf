@@ -1,0 +1,9 @@
+<%!
+int count;
+public void jspInit() {
+  count = 100;
+}
+public void jspDestroy() {
+  count = 0; 
+}
+%>
