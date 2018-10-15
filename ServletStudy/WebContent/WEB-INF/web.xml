@@ -176,6 +176,7 @@
     <display-name>LoginServlet2</display-name>
     <servlet-name>LoginServlet2</servlet-name>
     <servlet-class>kr.or.kosta.servlet.LoginServlet2</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet2</servlet-name>

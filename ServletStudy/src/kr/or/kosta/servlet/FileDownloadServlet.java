@@ -34,6 +34,7 @@ public class FileDownloadServlet extends HttpServlet {
 	}
 	
 	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String fileName = request.getParameter("file");
 		if (fileName == null || fileName.equals(""))
 			return;
