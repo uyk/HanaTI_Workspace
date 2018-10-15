@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>파일목록</title>
+<style type="text/css">
+body {
+  width : 60%;
+}
+h2 {
+  text-align: center;
+  font-weight: bold;
+  vertical-align: top;
+  color: #369;
+}
+table{
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+
+}
+thead th {
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+tbody th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    background: #f3f6f7;
+    border-right: 1px solid #036;
+}
+td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+    border-left: 1px solid #036;
+}
+
+</style>
+<script type="text/javascript">
+function download(fileName) {
+	console.log("a");
+	location.href="/servlet/download.do?file="+fileName;
+}
+
+</script>
+</head>
+<body>
+<h2>자료실</h2>
+<table>
+  <thead>
+    <tr>
+      <th>번호</th>
+      <th>파일명</th>
+      <th>사이즈</th>
+      <th>다운로드</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>번호</th>
+      <td>파일명</td>
+      <td>사이즈</td>
+      <td><button onclick="download('sample.txt')">다운로드</button></td>
+    </tr>
+    <tr>
+      <th>번호</th>
+      <td>파일명</td>
+      <td>사이즈</td>
+      <td><button onclick="download('sample.txt')">다운로드</button></td>
+    </tr>
+    <tr>
+      <th>번호</th>
+      <td>파일명</td>
+      <td>사이즈</td>
+      <td><button onclick="download('sample.txt')">다운로드</button></td>
+    </tr>
+    <tr>
+      <th>번호</th>
+      <td>파일명</td>
+      <td>사이즈</td>
+      <td><button onclick="download('sample.txt')">다운로드</button></td>
+    </tr>
+    <tr>
+      <th>번호</th>
+      <td>파일명</td>
+      <td>사이즈</td>
+      <td><button onclick="download('sample.txt')">다운로드</button></td>
+    </tr>
+  </tbody>
+</table>
+</body>
+</html>
