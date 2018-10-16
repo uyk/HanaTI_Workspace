@@ -22,7 +22,7 @@ else if(request.getParameter("type").equals("login")) {
   request.setCharacterEncoding("utf-8");
   String id = request.getParameter("userid");
   String pw = request.getParameter("userpw");
-  id = URLEncoder.encode(id, “UTF-8”);
+  id = URLEncoder.encode(id, "UTF-8");
       
   pageContext.setAttribute("pageId", id );
   Cookie cookie = new Cookie("loginId", id);
@@ -55,24 +55,18 @@ else {
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="css/basic.css">
-
 </head>
 <body>
-
 <div class="header">
   <h1>My Website</h1>
   <p>Resize the browser window to see the effect.</p>
 </div>
-
-<div class="topnav">
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#">Link</a>
-  <a href="#" style="float:right">Link</a>
-</div>
-
+<%--탑 메뉴 시작--%>
+<jsp:include page="include/navigator.jsp"></jsp:include>
+<%--탑 메뉴 종료--%>
 <div class="row">
   <div class="leftcolumn">
+    <!-- 
     <div class="card">
       <h2>TITLE HEADING</h2>
       <h5>Title description, Dec 7, 2017</h5>
@@ -87,55 +81,16 @@ else {
       <p>Some text..</p>
       <p>Sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
     </div>
+     -->
+     현재페이지에 맞는 내용
   </div>
-  
-  <div class="rightcolumn">
-    <div class="card">
-      <%  
-      //로그인중이 아님
-      if(pageContext.getAttribute("pageId") == null) { 
-      %>
-      <div id="loginDiv">
-        <form action="index.jsp" method="post">
-          <input type="text" id="userid" name="userid" placeholder="Identifier...">
-          <input type="password" id="userpw" name="userpw" placeholder="Password...">
-          <input type="submit" value="Login">
-          <input type="text" id="type" name="type" style="visibility: hidden;" value="login">
-        </form>
-      </div>      
-      <%  
-      }
-      // 로그인중
-      else{ 
-      %>
-      <div id="logoutDiv">
-        <form action="index.jsp" method="get">
-          <label id="userInfo"> <%=pageContext.getAttribute("pageId") %>님이 로그인중..</label>
-          <input type="submit" value="Logout">
-          <input type="text" id="type" name="type" style="visibility: hidden;" value="logout">
-        </form>
-      </div>   
-      <%  
-      } 
-      %>
-    </div>
-    
-    <div class="card">
-      <h3>Popular Post</h3>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-      <div class="fakeimg"><p>Image</p></div>
-    </div>
-    <div class="card">
-      <h3>Follow Me</h3>
-      <p>Some text..</p>
-    </div>
-  </div>
+  <%--우측 메뉴 시작--%>
+  <jsp:include page="include/asside.jsp"></jsp:include>
+  <%--우측 메뉴 종료--%>
 </div>
-
-<div class="footer">
-  <h2>Footer</h2>
-</div>
+<%--하단 메뉴 시작--%>
+<jsp:include page="include/footer.jsp"></jsp:include>
+<%--하단 메뉴 종료--%>
 
 </body>
 </html>

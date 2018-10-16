@@ -26,5 +26,6 @@ for(int i = 2; i < 10; i++) {
 %>
 </table>
 <h2>당신은 <%=++count %>번째 방문자입니다.</h2>
+<h2><%=request.getParameter("name") %> , <%= request.getParameter("age")%></h2>
 </body>
 </html>
