@@ -17,7 +17,8 @@ session.setAttribute("message", "session 스코프객체입니다.");        // 
 
 application.setAttribute("message", "accplication 스코프객체입니다."); // 범위가 가장 넓지만 거의 사용하지 않음
 %>
-현재 페이지 메시지 : <%=pageContext.getAttribute("message") %>
+현재 페이지 메시지 : <%=pageContext.getAttribute("message") %><br/>
+<%=pageContext.findAttribute("이름") %>
 
 </body>
 </html>

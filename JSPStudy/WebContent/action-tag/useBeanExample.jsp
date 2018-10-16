@@ -10,7 +10,7 @@
 <jsp:setProperty property="passwd" name="account" value="1234"></jsp:setProperty>
 <jsp:setProperty property="restMoney" name="account" value="100000"></jsp:setProperty>
 
-<%--<jsp:forward page="userBeanExample2.jsp"> --%>
+<%-- <jsp:forward page="userBeanExample2.jsp"> --%>
 <!DOCTYPE html>
 <html>
 <head>
