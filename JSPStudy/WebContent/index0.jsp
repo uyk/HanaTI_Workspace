@@ -1,5 +1,5 @@
+<%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.util.Calendar"%>
-<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,25 +13,17 @@ String message = "jsp 실행 과정..";
 Calendar today = Calendar.getInstance();
 out.println(today.toString());
 %>
+
 ===========================<br/>
 <%
 out.println("jsp 쉽다");
 %>
 ===========================<br/>
-===========================<br/>
 <%
 out.println("졸......려..");
 %>
-<%
-int counter;
-public void printMessage(String metmessage) {
-    System.out.println(message);
-  }
-%>
-<%
-String mas = '쉬자좀';
 
-%>
-메시지 : <%=msg %>;
+===========================<br/>
+
 </body>
 </html>
