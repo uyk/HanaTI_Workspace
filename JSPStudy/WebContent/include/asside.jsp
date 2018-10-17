@@ -7,7 +7,7 @@
       if(pageContext.getAttribute("pageId") == null) { 
       %>
       <div id="loginDiv">
-        <form action="index.jsp" method="post">
+        <form action="<%= application.getContextPath()%>/user/regist_form.jsp" method="post">
           <input type="text" id="userid" name="userid" placeholder="Identifier...">
           <input type="password" id="userpw" name="userpw" placeholder="Password...">
           <input type="submit" value="Login">
@@ -20,7 +20,7 @@
       else{ 
       %>
       <div id="logoutDiv">
-        <form action="index.jsp" method="get">
+        <form action="<%= application.getContextPath()%>/user/regist_form.jsp" method="get">
           <label id="userInfo"> <%=pageContext.getAttribute("pageId") %>님이 로그인중..</label>
           <input type="submit" value="Logout">
           <input type="text" id="type" name="type" style="visibility: hidden;" value="logout">

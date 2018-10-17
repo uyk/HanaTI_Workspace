@@ -3,5 +3,5 @@
   <a href="#">Link</a>
   <a href="#">Link</a>
   <a href="#">Link</a>
-  <a href="#" style="float:right">Link</a>
+  <a href="<%= application.getContextPath()%>/user/regist_form.jsp" style="float:right">회원가입</a>
 </div>
