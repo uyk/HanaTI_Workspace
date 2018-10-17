@@ -19,12 +19,16 @@ if(request.getMethod().equals("GET")) {
   // 존재하지 않는 아이디
   if(dao.read(id) == null){
     System.out.println("가능 :" + id);
-    response.sendRedirect("../signUp.jsp");
+    %>
+    사용가능한 아이디입니다.
+    <%
   }
   // 존재하는 아이디
   else {
     System.out.println("불가능 :" + id);
-    response.sendRedirect("../signUp.jsp");
+    %>
+    사용할 수 없는 아이디입니다.
+    <%
   } 
 }
 // 회원 가입 요청
@@ -35,7 +39,7 @@ else {
   // 가입결과 jsp로 디스패치
   System.out.println("가입완료");
   %>
-  <jsp:forward page="regis_result.jsp"></jsp:forward>
+  <jsp:forward page="result.jsp"></jsp:forward>
   <%
 }
 %>

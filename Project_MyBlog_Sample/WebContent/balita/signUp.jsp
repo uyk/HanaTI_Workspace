@@ -7,7 +7,7 @@
     <%--헤드 종료--%>
     <script>
       function validateId() {
-        location.href="user/signUpAction.jsp?id="+ document.getElementById("id").value;
+    	  window.open("user/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=100,height=100');
       }
     </script>
   </head>
@@ -34,24 +34,28 @@
                   <input type="text" id="id" class="form-control " name="id">
                 </div>
                 <div class="col-md-4 form-group">
+                  <!-- 공간을 위한 더미 라벨 -->
                   <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
                   <input type="button" value="중복확인" class="btn btn-primary" onclick="validateId()">
                 </div>
                 <div class="col-md-4 form-group">
-                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label><label for="id">5~20자 영어</label>
+                  <!-- 공간을 위한 더미 라벨 -->
+                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
+                  <label for="id">5~20자 영어</label>
                 </div>
               </div>
               <!-- 비밀번호 입력 -->
               <div class="row">
                 <div class="col-md-4 form-group">
                   <label for="passwd">Password</label>
-                  <input type="text" id="passwd" class="form-control " name="passwd">
+                  <input type="password" id="passwd" class="form-control " name="passwd">
                 </div>
                 <div class="col-md-4 form-group">
                   <label for="cpw">Confirm Password</label>
-                  <input type="text" id="cpw" class="form-control " name="cpw">
+                  <input type="password" id="cpw" class="form-control " name="cpw">
                 </div>
                 <div class="col-md-4 form-group">
+                  <!-- 공간을 위한 더미 라벨 -->
                   <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
                   <label for="id">5~10자 영어 및 특수문자</label>
                 </div>
@@ -63,7 +67,9 @@
                   <input type="text" id="name" class="form-control " name="name">
                 </div>
                 <div class="col-md-4 form-group">
-                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label><label for="id">5~10자 영어 및 한글</label>
+                  <!-- 공간을 위한 더미 라벨 -->
+                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
+                  <label for="id">5~10자 영어 및 한글</label>
                 </div>
               </div>
               <!-- 이메일 입력 -->
