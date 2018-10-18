@@ -1,8 +1,8 @@
 <%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
-<%@page import="kr.or.kosta.blog.user.dao.DaoFactory"%>
-<%@page import="kr.or.kosta.blog.user.dao.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
+<%@page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 DaoFactory factory = new JdbcDaoFactory();

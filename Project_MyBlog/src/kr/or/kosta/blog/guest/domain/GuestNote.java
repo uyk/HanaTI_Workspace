@@ -2,58 +2,58 @@ package kr.or.kosta.blog.guest.domain;
 
 public class GuestNote {
 	
-	private String id;
-	private String name;
-	private String passwd;
-	private String email;
+	private String guestBookId;
+	private String userId;
+	private String contents;
 	private String regdate;
 	
 	public GuestNote() {
 		super();
 	}
 	
-	public GuestNote(String id, String name, String passwd, String email, String regdate) {
+	public GuestNote(String guestBookId, String userId, String contents, String regdate) {
 		super();
-		this.id = id;
-		this.name = name;
-		this.passwd = passwd;
-		this.email = email;
+		this.guestBookId = guestBookId;
+		this.userId = userId;
+		this.contents = contents;
 		this.regdate = regdate;
 	}
-	
-	public String getId() {
-		return id;
+
+	public String getGuestBookId() {
+		return guestBookId;
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public void setGuestBookId(String guestBookId) {
+		this.guestBookId = guestBookId;
 	}
-	public String getName() {
-		return name;
+
+	public String getUserId() {
+		return userId;
 	}
-	public void setName(String name) {
-		this.name = name;
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
-	public String getPasswd() {
-		return passwd;
+
+	public String getContents() {
+		return contents;
 	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
+
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
+
 	public String getRegdate() {
 		return regdate;
 	}
+
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", passwd=" + passwd + ", email=" + email + ", regdate=" + regdate
-				+ "]";
+		return "GuestNote [guestBookId=" + guestBookId + ", userId=" + userId + ", contents=" + contents + ", regdate=" + regdate + "]";
 	}
+	
 }

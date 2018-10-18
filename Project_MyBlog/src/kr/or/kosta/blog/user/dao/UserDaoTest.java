@@ -6,6 +6,8 @@ import java.util.Map;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import kr.or.kosta.blog.common.DaoFactory;
+import kr.or.kosta.blog.common.JdbcDaoFactory;
 import kr.or.kosta.blog.user.domain.User;
 
 public class UserDaoTest {

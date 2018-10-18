@@ -1,8 +1,8 @@
 c<%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
-<%@page import="kr.or.kosta.blog.user.dao.JdbcDaoFactory"%>
-<%@page import="kr.or.kosta.blog.user.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%
 	request.setCharacterEncoding("utf-8");
 %>

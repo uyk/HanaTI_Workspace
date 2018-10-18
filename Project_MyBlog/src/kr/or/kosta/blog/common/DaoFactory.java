@@ -1,11 +1,14 @@
 /**
  * 
  */
-package kr.or.kosta.blog.user.dao;
+package kr.or.kosta.blog.common;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+
+import kr.or.kosta.blog.guest.dao.GuestNoteDao;
+import kr.or.kosta.blog.user.dao.UserDao;
 
 /**
  * 추상 팩토리 패턴 적용을 위한 DaoFactory
@@ -41,8 +44,7 @@ public abstract class DaoFactory {
 	}
 	
 	public abstract UserDao getUserDao();
-//	public BarDao getBarDao();
-//	public FooDao getFooDao();
+	public abstract GuestNoteDao getGuestNoteDao();
 	
 	
 }
