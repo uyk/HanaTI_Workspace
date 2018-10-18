@@ -34,7 +34,7 @@
               <div class="row">
                 <div class="col-md-4 form-group">
                   <label for="name">Password</label>
-                  <input type="password" id="pw" pw="pw" class="form-control ">
+                  <input type="password" id="pw" name="pw" class="form-control ">
                 </div>
               </div>
               <!-- 버튼 -->

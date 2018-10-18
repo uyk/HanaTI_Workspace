@@ -7,7 +7,7 @@
     <%--헤드 종료--%>
     <script>
       function validateId() {
-    	  window.open("user/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=100,height=100');
+    	  window.open("user/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=200,height=100');
       }
     </script>
   </head>
