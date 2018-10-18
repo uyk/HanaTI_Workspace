@@ -7,8 +7,10 @@
 <jsp:useBean id="user" class="kr.or.kosta.jsp.dao.User" scope="request"></jsp:useBean>
 <jsp:setProperty property="*" name="user"></jsp:setProperty>
 <%
+String path = application.getContextPath();
 // 아이디 중복검사 요청
-if(request.getMethod().equals("GET") && request.getParameter("id") != null) {
+if(request.getMethod().equals("GET")) {
+  if(request.getParameter("id") == null) return;
   System.out.println("signUP get");
   String id = request.getParameter("id");
 
@@ -18,23 +20,27 @@ if(request.getMethod().equals("GET") && request.getParameter("id") != null) {
   // 존재하지 않는 아이디
   if(dao.read(id) == null){
     System.out.println("가능 :" + id);
-    response.sendRedirect("../signUp.jsp");
+    %>
+    사용가능한 아이디입니다.
+    <%
   }
   // 존재하는 아이디
   else {
     System.out.println("불가능 :" + id);
-    response.sendRedirect("../signUp.jsp");
+    %>
+    사용할 수 없는 아이디입니다.
+    <%
   } 
 }
 // 회원 가입 요청
 else {
   DaoFactory factory = new JdbcDaoFactory();
   UserDao dao = factory.getUserDao();
-  dao.create(user);
+  // dao.create(user);
   // 가입결과 jsp로 디스패치
   System.out.println("가입완료");
   %>
-  <jsp:forward page="regis_result.jsp"></jsp:forward>
+  <jsp:forward page="/result.jsp"></jsp:forward>
   <%
 }
-%>
+%>  

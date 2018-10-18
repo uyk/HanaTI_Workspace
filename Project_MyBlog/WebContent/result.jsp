@@ -4,12 +4,12 @@
 <html>
   <head>
     <%--헤드 시작--%>
-    <jsp:include page="include/head.jsp"></jsp:include>
+    <jsp:include page="/include/head.jsp"></jsp:include>
     <%--헤드 종료--%>
   </head>
   <body>
     <%--탑 메뉴 시작--%>
-    <jsp:include page="include/header.jsp"></jsp:include>
+    <jsp:include page="/include/header.jsp"></jsp:include>
     <%--탑 메뉴 종료--%>
     
     <section class="site-section">
@@ -33,14 +33,14 @@
                 <p>이메일 : <%= user.getEmail()%></p>
                 <p> HOME 버튼을 클릭하시면 홈페이지로 이동합니다.</p>
                 <div class="col-md-2">
-                  <input type="button" value="HOME" class="btn btn-primary" onclick="location.href='index.jsp'">
+                  <input type="button" value="HOME" class="btn btn-primary" onclick="location.href='/index.jsp'">
                 </div>
               </div>
             </div>
           </div>
           <%-- END main-content --%>
           <%--사이드 시작--%>
-          <jsp:include page="include/side.jsp"></jsp:include>
+          <jsp:include page="/include/side.jsp"></jsp:include>
           <%--사이드 종료--%>
           
         </div>
@@ -48,21 +48,11 @@
     </section>
   
     <%--FOOTER 시작--%>
-    <jsp:include page="include/footer.jsp"></jsp:include>
+    <jsp:include page="/include/footer.jsp"></jsp:include>
     <%--FOOTER 종료--%>
     
-    <%--Loader 시작--%>
-    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
-
-    <script src="js/jquery-3.2.1.min.js"></script>
-    <script src="js/jquery-migrate-3.0.0.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/jquery.waypoints.min.js"></script>
-    <script src="js/jquery.stellar.min.js"></script>
-
-    
-    <script src="js/main.js"></script>
+    <%-- LOADER 시작--%>
+    <jsp:include page="/include/loader.jsp"></jsp:include>
+    <%-- LOADER 종료--%>
   </body>
 </html>
