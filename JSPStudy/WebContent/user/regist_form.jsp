@@ -1,7 +1,7 @@
-<%@page import="kr.or.kosta.blog.user.domain.User"%>
-<%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
-<%@page import="kr.or.kosta.blog.user.dao.JdbcDaoFactory"%>
-<%@page import="kr.or.kosta.blog.user.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.User"%>
+<%@page import="kr.or.kosta.jsp.dao.UserDao"%>
+<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@ page import="java.net.URLEncoder"%> 
 <!DOCTYPE html>
