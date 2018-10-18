@@ -19,16 +19,27 @@ public class GuestNodeDaoTest {
 			guestNote.setContents("반갑습니다.");
 			dao.create(guestNote);
 			*/
+			/** 방명록 번호로 수정 테스트
 			guestNote.setGuestBookId("67");			
 			guestNote.setContents("수정2했습니다.");
 			dao.update(guestNote);
+			*/
 			/*
 			System.out.println("**** 전체목록 테스트 ****");
 			List<GuestNote> list =  dao.listAll();
-			for (GuestNote user : list) {
-				System.out.println(user);				
+			for (GuestNote gn : list) {
+				System.out.println(gn);		
 			}
 			*/
+			/*
+			System.out.println("**** id로 검색 테스트 ****");
+			List<GuestNote> list =  dao.listByUserId("bangry");
+			for (GuestNote gn : list) {
+				System.out.println(gn);		
+			}
+			*/
+			dao.delete("2");
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
