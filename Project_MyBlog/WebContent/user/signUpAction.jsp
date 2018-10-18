@@ -1,4 +1,4 @@
-<%@page import="kr.or.kosta.jsp.dao.User"%>
+c<%@page import="kr.or.kosta.jsp.dao.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.or.kosta.jsp.dao.UserDao"%>
 <%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
@@ -49,14 +49,16 @@ if(request.getMethod().equals("GET")) {
   }
   // 잘못된 접근
   else {
-    
+    %>
+    <jsp:forward page="/index.jsp"></jsp:forward>
+    <%
   }
   System.out.println("signUP get");
 
 }
 // 회원 가입 요청
 else {
-  //dao.create(user);
+  dao.create(user);
   // 가입결과 jsp로 디스패치
   System.out.println("가입완료");
   %>

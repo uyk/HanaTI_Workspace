@@ -27,7 +27,7 @@
               <div class="row">
                 <div class="col-md-4 form-group">
                   <label for="id">Id</label>
-                  <input type="text" id="id" class="form-control" name="id" pattern="[a-zA-Z0-9]{1,10}" >
+                  <input type="text" id="id" class="form-control" name="id" pattern="[a-zA-Z0-9]{1,10}" required>
                 </div>
                 <div class="col-md-4 form-group">
                   <!-- 공간을 위한 더미 라벨 -->
@@ -44,12 +44,12 @@
               <div class="row">
                 <div class="col-md-4 form-group">
                   <label for="passwd">Password</label>
-                  <input type="password" id="passwd" class="form-control " name="passwd" pattern="[a-zA-Z0-9!@#$%^&*]{1,10}" >
+                  <input type="password" id="passwd" class="form-control " name="passwd" pattern="[a-zA-Z0-9!@#$%^&*]{1,10}" required>
                 </div>
                 <div class="col-md-4 form-group">
                   <label for="cpw">Confirm Password</label>
                   <span id="cpwIcon">
-                    <i class="fas fa-times-circle"></i>
+                    <i class="far fa-check-circle"></i>
                   </span>
                   <input type="password" id="cpw" class="form-control " name="cpw">
                 </div>
@@ -63,7 +63,7 @@
               <div class="row"> 
                 <div class="col-md-4 form-group">
                   <label for="name">Name</label>
-                  <input type="text" id="name" class="form-control " name="name" pattern="[가-힣a-zA-Z]{1,20}">
+                  <input type="text" id="name" class="form-control " name="name" pattern="[가-힣a-zA-Z]{1,20}" required>
                 </div>
                 <!-- 공간을 위한 더미 라벨 -->
                 <div class="col-md-4 form-group">
@@ -79,7 +79,7 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label for="email">Email</label>
-                  <input type="email" id="email" class="form-control " name="email">
+                  <input type="email" id="email" class="form-control " name="email" required>
                 </div>
                 <div class="col-md-4 form-group">
                   <!-- 공간을 위한 더미 라벨 -->
@@ -90,7 +90,7 @@
               <!-- 버튼 -->
               <div class="row" >
                 <div class="col-md-2 form-group">
-                  <input type="submit" value="Sign Up" class="btn btn-primary">
+                  <input type="button" value="Sign Up" class="btn btn-primary" onclick="mySubmit()">
                 </div>
                 <div class="col-md-2 form-group">
                   <input type="reset" value="Cancel" class="btn btn-primary">

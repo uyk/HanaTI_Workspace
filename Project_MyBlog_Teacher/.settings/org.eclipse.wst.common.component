@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="Project_MyBlog_Teacher">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="commons-dbcp2-2.0.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-dbcp2-2.0.1/commons-dbcp2-2.0.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-collections4-4.0.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-collections4-4.0/commons-collections4-4.0">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-fileupload-1.3.1.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-fileupload-1.3.1/commons-fileupload-1.3.1">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="ojdbc6.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/ojdbc6/ojdbc6">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-io-2.4.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-io-2.4/commons-io-2.4">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-logging-1.2/commons-logging-1.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-pool2-2.2.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/commons-pool2-2.2/commons-pool2-2.2">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="context-root" value="Project_MyBlog_Teacher"/>
+        <property name="java-output-path" value="/Project_MyBlog_Teacher/build/classes"/>
+    </wb-module>
+</project-modules>
