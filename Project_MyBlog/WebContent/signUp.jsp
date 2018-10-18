@@ -9,6 +9,9 @@
       function validateId() {
     	  window.open("/user/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=200,height=100');
       }
+      function validateEmail() {
+    	  window.open("/user/signUpAction.jsp?email="+ document.getElementById("email").value,'validateId','width=200,height=100');
+      }
     </script>
   </head>
   <body>
@@ -77,6 +80,16 @@
                 <div class="col-md-6 form-group">
                   <label for="email">Email</label>
                   <input type="text" id="email" class="form-control " name="email">
+                </div>
+                <div class="col-md-4 form-group">
+                  <!-- 공간을 위한 더미 라벨 -->
+                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
+                  <input type="button" value="중복확인" class="btn btn-primary" onclick="validateEmail()">
+                </div>
+                <div class="col-md-4 form-group">
+                  <!-- 공간을 위한 더미 라벨 -->
+                  <label style="visibility:hidden">5~10자 영어 및 특수문자</label>
+                  <label for="id">5~20자 영어</label>
                 </div>
               </div>
               <!-- 버튼 -->

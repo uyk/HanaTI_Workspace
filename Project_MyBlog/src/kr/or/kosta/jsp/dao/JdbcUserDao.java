@@ -89,6 +89,45 @@ public class JdbcUserDao implements UserDao {
 		}
 		return user;
 	}
+	
+	@Override
+	public User readEmail(String email) throws Exception {
+		User user = null;
+		
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "SELECT id, \r\n" + 
+				     "       name, \r\n" + 
+				     "       passwd, \r\n" + 
+				     "       email, \r\n" + 
+				     "       TO_CHAR(regdate, 'YYYY\"년\" MM\"월\" DD\"일\" DAY') regdate \r\n" + 
+				     "FROM   users \r\n" + 
+				     "WHERE  email = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, email);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+//				user = new User();
+//				user.setId(rs.getString("id"));
+//				user.setName(rs.getString("name"));
+//				user.setPasswd(rs.getString("passwd"));
+//				user.setEmail(rs.getString("email"));
+//				user.setRegdate(rs.getString("regdate"));
+				user = createUser(rs);
+			}
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return user;
+	}
 
 	@Override
 	public void update(User user) throws Exception {
