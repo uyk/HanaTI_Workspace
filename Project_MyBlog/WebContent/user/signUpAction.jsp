@@ -36,14 +36,14 @@ if(request.getMethod().equals("GET")) {
 	  if(dao.readEmail(email) == null){
 	    System.out.println("가능 이메일 :" + email);
 	    %>
-	    사용가능한 아이디입니다.
+	    사용가능한 메일주소입니다.
 	    <%
 	  }
 	  // 존재하는 아이디
 	  else {
 	    System.out.println("불가능 이메일 :" + email);
 	    %>
-	    사용할 수 없는 아이디입니다.
+	    사용할 수 없는 메일주소입니다.
 	    <%
 	  }
   }
@@ -56,7 +56,7 @@ if(request.getMethod().equals("GET")) {
 }
 // 회원 가입 요청
 else {
-  dao.create(user);
+  //dao.create(user);
   // 가입결과 jsp로 디스패치
   System.out.println("가입완료");
   %>
