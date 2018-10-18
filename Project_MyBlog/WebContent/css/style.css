@@ -1,6 +1,8 @@
+
+
 body {
   background: #fff;
-  font-family: "Josefin Sans", arial, sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   font-weight: 300;
   font-size: 18px;
   line-height: 1.9;
@@ -20,7 +22,7 @@ a:hover {
 
 h1, h2, h3, h4, h5 {
   color: #000;
-  font-family: "Josefin Sans", arial, sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
 }
 
 header {
@@ -421,7 +423,7 @@ header .navbar .dropdown-menu a {
 }
 
 .site-section {
-  padding: 7em 0;
+  padding: 4em 0;
 }
 
 .site-section.py-md {
@@ -1019,7 +1021,7 @@ textarea.form-control {
 
 .box h2 {
   font-size: 18px;
-  font-family: "Josefin Sans", arial, sans-serif;
+  font-family: 'Do Hyeon', sans-serif;
   -webkit-transition: .3s all ease;
   -o-transition: .3s all ease;
   transition: .3s all ease;

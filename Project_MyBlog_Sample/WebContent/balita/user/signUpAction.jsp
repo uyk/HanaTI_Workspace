@@ -35,11 +35,11 @@ if(request.getMethod().equals("GET")) {
 else {
   DaoFactory factory = new JdbcDaoFactory();
   UserDao dao = factory.getUserDao();
-  dao.create(user);
+  // dao.create(user);
   // 가입결과 jsp로 디스패치
   System.out.println("가입완료");
   %>
-  <jsp:forward page="result.jsp"></jsp:forward>
+  <jsp:forward page="../index.jsp"></jsp:forward>
   <%
 }
 %>
