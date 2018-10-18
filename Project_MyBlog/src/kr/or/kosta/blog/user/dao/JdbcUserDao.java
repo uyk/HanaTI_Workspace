@@ -1,4 +1,4 @@
-package kr.or.kosta.jsp.dao;
+package kr.or.kosta.blog.user.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -12,6 +12,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
+
+import kr.or.kosta.blog.user.domain.User;
 
 public class JdbcUserDao implements UserDao {
 	

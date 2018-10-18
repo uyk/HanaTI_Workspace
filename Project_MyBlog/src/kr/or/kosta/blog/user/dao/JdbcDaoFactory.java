@@ -1,4 +1,4 @@
-package kr.or.kosta.jsp.dao;
+package kr.or.kosta.blog.user.dao;
 
 import java.lang.reflect.Method;
 

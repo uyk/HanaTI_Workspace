@@ -1,10 +1,12 @@
-package kr.or.kosta.jsp.dao;
+package kr.or.kosta.blog.user.dao;
 
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+
+import kr.or.kosta.blog.user.domain.User;
 
 public class UserDaoTest {
 

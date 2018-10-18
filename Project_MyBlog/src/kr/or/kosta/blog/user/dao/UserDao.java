@@ -1,7 +1,9 @@
-package kr.or.kosta.jsp.dao;
+package kr.or.kosta.blog.user.dao;
 
 import java.util.List;
 import java.util.Map;
+
+import kr.or.kosta.blog.user.domain.User;
 
 /**
  * Dao 패턴 적용을 위한 인터페이스 선언

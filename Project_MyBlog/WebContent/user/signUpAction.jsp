@@ -1,10 +1,12 @@
-c<%@page import="kr.or.kosta.jsp.dao.User"%>
+c<%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="kr.or.kosta.jsp.dao.UserDao"%>
-<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
-<%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
-<% request.setCharacterEncoding("utf-8"); %>
-<jsp:useBean id="user" class="kr.or.kosta.jsp.dao.User" scope="request"></jsp:useBean>
+<%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
+<%@page import="kr.or.kosta.blog.user.dao.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.blog.user.dao.DaoFactory"%>
+<%
+	request.setCharacterEncoding("utf-8");
+%>
+<jsp:useBean id="user" class="kr.or.kosta.blog.user.domain.User" scope="request"></jsp:useBean>
 <jsp:setProperty property="*" name="user"></jsp:setProperty>
 <%
 DaoFactory factory = new JdbcDaoFactory();
