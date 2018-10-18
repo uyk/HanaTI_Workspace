@@ -5,10 +5,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 request.setCharacterEncoding("utf-8");
-System.out.println(request);
-System.out.println(request.getMethod());
-%>
-<%
+
 //로그인할 때 쿠키 추가
 if(request.getMethod().equals("POST")) {
   System.out.println("2");

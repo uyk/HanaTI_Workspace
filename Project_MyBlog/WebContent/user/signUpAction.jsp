@@ -1,4 +1,4 @@
-c<%@page import="kr.or.kosta.blog.user.domain.User"%>
+<%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
 <%@page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
