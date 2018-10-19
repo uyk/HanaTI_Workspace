@@ -1,7 +1,6 @@
 <%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
-<%@page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -9,7 +8,7 @@
 <jsp:useBean id="user" class="kr.or.kosta.blog.user.domain.User" scope="request"></jsp:useBean>
 <jsp:setProperty property="*" name="user"></jsp:setProperty>
 <%
-DaoFactory factory = new JdbcDaoFactory();
+DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 UserDao dao = factory.getUserDao();
 // 중복검사 요청
 if(request.getMethod().equals("GET")) {

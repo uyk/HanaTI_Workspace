@@ -30,13 +30,12 @@ if(cookies != null) {
             <a class="nav-link active" href="/index.jsp">Home</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="/category.jsp" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="/category.jsp">Asia</a>
-              <a class="dropdown-item" href="/category.jsp">Europe</a>
-              <a class="dropdown-item" href="/category.jsp">Dubai</a>
-              <a class="dropdown-item" href="/category.jsp">Africa</a>
-              <a class="dropdown-item" href="/category.jsp">South America</a>
+              <a class="dropdown-item" href="/category.jsp?id=1&name=Notice">Notice</a>
+              <a class="dropdown-item" href="/category.jsp?id=2&name=Korea">Korea</a>
+              <a class="dropdown-item" href="/category.jsp?id=3&name=Japan">Japan</a>
+              <a class="dropdown-item" href="/category.jsp?id=4&name=Croatia">Croatia</a>
             </div>
           </li>
           <li class="nav-item">

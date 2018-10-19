@@ -1,10 +1,10 @@
 <%@ page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page import="kr.or.kosta.blog.user.dao.UserDao"%>
-<%@ page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
 <%@ page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 request.setCharacterEncoding("utf-8");
+DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 
 //로그인할 때 쿠키 추가
 if(request.getMethod().equals("POST")) {
@@ -14,7 +14,6 @@ if(request.getMethod().equals("POST")) {
   System.out.println(id + ":" + pw);
 
   // 회원 가입 여부 체크
-  DaoFactory factory = new JdbcDaoFactory();
   UserDao dao = factory.getUserDao();
   User user = dao.certify(id, pw);
   System.out.println(user);

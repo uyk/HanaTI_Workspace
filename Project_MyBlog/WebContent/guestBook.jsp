@@ -76,21 +76,6 @@ if(cookies != null) {
             <%-- 방명록 목록 시작 --%>
             <jsp:include page="/action/guestBookAction.jsp"></jsp:include>
             <%-- 방명록 목록 종료 --%>
-            <!-- 페이징 row 시작 -->
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <nav aria-label="Page navigation" class="text-center">
-                  <ul class="pagination">
-                    <li class="page-item  active"><a class="page-link" href="#">Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-            <!-- 페이징 row 끝 -->
           </div>
           <!-- END main-content -->
           

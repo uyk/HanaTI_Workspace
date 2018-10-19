@@ -1,12 +1,4 @@
-<%@page import="kr.or.kosta.blog.common.JdbcDaoFactory"%>
-<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<%!
-public void jspInit() {
-  DaoFactory factory = new JdbcDaoFactory();
-  //application.setAttribute("factory", factory);
-}
-%>
 <!DOCTYPE html>
 <html>
   <head>
