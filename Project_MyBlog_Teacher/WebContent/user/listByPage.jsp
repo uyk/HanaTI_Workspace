@@ -8,7 +8,7 @@
 
 <%
 // 페이지당 보여지는 목록수 설정
-int listSize = 15;
+int listSize = 3;
 
 // 선택페이지 수신
 String requestPage = request.getParameter("page");

@@ -17,7 +17,7 @@
         <!-- 카테고리 제목 -->
         <div class="row mb-4">
           <div class="col-md-6">
-            <h2 class="mb-4">Category: <%=request.getParameter("name") %></h2>
+            <h2 class="mb-4">Category: <%=request.getParameter("board") %></h2>
           </div>
         </div>
         <!-- 메인 and 사이드 div 시작 -->
@@ -26,8 +26,9 @@
           <div class="col-md-12 col-lg-8 main-content">
             <%-- 글 목록 시작 --%>
             <jsp:include page="/action/categoryAction.jsp">
-              <jsp:param name="board" value='<%=request.getParameter("name") %>'></jsp:param>
-              <jsp:param name="page" value='1'></jsp:param>
+              <jsp:param name="board" value='<%=request.getParameter("board") %>'></jsp:param>
+              <jsp:param name="page" value='<%=request.getParameter("page") %>'></jsp:param>
+              <jsp:param name="test" value='aa'></jsp:param>
             </jsp:include>
             <%-- 글 목록 종료 --%>
 

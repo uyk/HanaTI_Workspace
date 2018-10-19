@@ -187,10 +187,54 @@ public class JdbcArticleDao implements ArticleDao {
 		return null;
 	}
 
+	/** 검색유형, 검색값에 따른 사용자 개수 반환 - 페이징 처리 시 필요 */	
 	@Override
 	public int countBySearch(String searchType, String searchValue, int boardId) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		int count = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql =
+				"SELECT Count(article_id) count \r\n" + 
+				"FROM   article \r\n" + 
+				"WHERE  board_id = ?";
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		if(searchType != null){
+			switch (searchType) {
+				case "subject":
+					sql += " and subject LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+				case "writer":  
+					sql += " and writer LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+			}
+		}
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardId);
+			
+			// 전체검색이 아닌경우 경우
+			if(searchType != null){
+				pstmt.setString(2, searchValue);
+			}
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt("count");
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return count;
 	}
 
 	@Override
