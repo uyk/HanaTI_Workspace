@@ -23,13 +23,20 @@ public class JdbcArticleDaoTest {
 			guestNote.setContents("수정2했습니다.");
 			dao.update(guestNote);
 			*/
-			
+			/**
 			System.out.println("**** 전체목록 테스트 ****");
 			List<Article> list =  dao.listAll();
 			for (Article article2 : list) {
 				System.out.println(article2);		
 			}
-			
+			*/
+			System.out.println("**** 페이징 테스트 ****");
+			// 1번 게시판 게시글을 5개씩 출력. 첫번째 페이지
+			List<Article> list =  dao.listByPage(1,5,1);
+			for (Article article2 : list) {
+				System.out.println(article2);
+				
+			}
 			/*
 			System.out.println("**** id로 검색 테스트 ****");
 			List<GuestNote> list =  dao.listByUserId("bangry");

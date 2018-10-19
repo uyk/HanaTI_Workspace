@@ -92,16 +92,87 @@ public class JdbcArticleDao implements ArticleDao {
 		return list;
 	}
 
+	/** 선택페이지에 따른 사용자 목록 반환 */	
 	@Override
 	public List<Article> listByPage(int page, int boardId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return listByPage(page, 10, boardId);
 	}
 
+	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */
 	@Override
 	public List<Article> listByPage(int page, int listSize, int boardId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Article> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql =
+				"SELECT article_id, \r\n" + 
+				"       board_id, \r\n" + 
+				"       writer, \r\n" + 
+				"       subject, \r\n" + 
+				"       content, \r\n" + 
+				"       regdate, \r\n" + 
+				"       hitcount, \r\n" + 
+				"       ip, \r\n" + 
+				"       passwd, \r\n" + 
+				"       attach_file, \r\n" + 
+				"       group_no, \r\n" + 
+				"       level_no, \r\n" + 
+				"       order_no \r\n" + 
+				"FROM   (SELECT Ceil(rownum / ?) request_page, \r\n" + 
+				"               article_id, \r\n" + 
+				"               board_id, \r\n" + 
+				"               writer, \r\n" + 
+				"               subject, \r\n" + 
+				"               content, \r\n" + 
+				"               regdate, \r\n" + 
+				"               hitcount, \r\n" + 
+				"               ip, \r\n" + 
+				"               passwd, \r\n" + 
+				"               attach_file, \r\n" + 
+				"               group_no, \r\n" + 
+				"               level_no, \r\n" + 
+				"               order_no \r\n" + 
+				"        FROM   (SELECT article_id, \r\n" + 
+				"                       board_id, \r\n" + 
+				"                       writer, \r\n" + 
+				"                       subject, \r\n" + 
+				"                       content, \r\n" + 
+				"                       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
+				"                       hitcount, \r\n" + 
+				"                       ip, \r\n" + 
+				"                       passwd, \r\n" + 
+				"                       attach_file, \r\n" + 
+				"                       group_no, \r\n" + 
+				"                       level_no, \r\n" + 
+				"                       order_no \r\n" + 
+				"                FROM   article \r\n" + 
+				"                WHERE  board_id = ? \r\n" + 
+				"                ORDER  BY article_id DESC)) \r\n" + 
+				"WHERE  request_page = ?";
+		System.out.println(sql);
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, listSize);
+			pstmt.setInt(2, boardId);
+			pstmt.setInt(3, page);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Article>();
+			while(rs.next()) {
+				Article article = createArticle(rs);
+				list.add(article);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
 	}
 
 	@Override
