@@ -94,13 +94,13 @@ public class JdbcArticleDao implements ArticleDao {
 
 	/** 선택페이지에 따른 사용자 목록 반환 */	
 	@Override
-	public List<Article> listByPage(int page, int boardId) throws Exception {
+	public List<Article> listByPage(int boardId, int page) throws Exception {
 		return listByPage(page, 10, boardId);
 	}
 
 	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */
 	@Override
-	public List<Article> listByPage(int page, int listSize, int boardId) throws Exception {
+	public List<Article> listByPage(int boardId, int page, int listSize) throws Exception {
 		List<Article> list = null;
 		
 		Connection con = null;
@@ -152,7 +152,6 @@ public class JdbcArticleDao implements ArticleDao {
 				"                WHERE  board_id = ? \r\n" + 
 				"                ORDER  BY article_id DESC)) \r\n" + 
 				"WHERE  request_page = ?";
-		System.out.println(sql);
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -176,7 +175,7 @@ public class JdbcArticleDao implements ArticleDao {
 	}
 
 	@Override
-	public List<Article> listByPage(int page, int listSize, String searchType, String searchValue, int boardId)
+	public List<Article> listByPage(int boardId, int page, int listSize, String searchType, String searchValue)
 			throws Exception {
 		// TODO Auto-generated method stub
 		return null;

@@ -25,7 +25,10 @@
           <!-- 메인 컨텐츠 시작 -->
           <div class="col-md-12 col-lg-8 main-content">
             <%-- 글 목록 시작 --%>
-            <jsp:include page="/action/categoryAction.jsp"></jsp:include>
+            <jsp:include page="/action/categoryAction.jsp">
+              <jsp:param name="board" value='<%=request.getParameter("name") %>'></jsp:param>
+              <jsp:param name="page" value='1'></jsp:param>
+            </jsp:include>
             <%-- 글 목록 종료 --%>
 
 

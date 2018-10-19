@@ -24,13 +24,13 @@ public interface ArticleDao {
 	public List<Article> listAll() throws Exception;
 	
 	/** 선택페이지에 따른 사용자 목록 반환 */	
-	public List<Article> listByPage(int page, int boardId) throws Exception;
+	public List<Article> listByPage(int boardId, int page) throws Exception;
 	
 	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */	
-	public List<Article> listByPage(int page, int listSize, int boardId) throws Exception;
+	public List<Article> listByPage(int boardId, int page, int listSize) throws Exception;
 	
 	/** 선택페이지, 조회 목록개수, 검색유형, 검색값에 따른 사용자 목록 반환 */	
-	public List<Article> listByPage(int page, int listSize, String searchType, String searchValue, int boardId) throws Exception;
+	public List<Article> listByPage(int boardId, int page, int listSize, String searchType, String searchValue) throws Exception;
 	
 	/** 선택페이지, 조회 목록개수, 검색유형, 검색값에 따른 사용자 목록 반환 */	
 	public List<Article> listByPage(Params params) throws Exception;
