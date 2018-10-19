@@ -1840,3 +1840,6 @@ blockquote p {
 .validL {
 	font-size: 13px;
 }
+.alert {
+	margin-top: 1.5rem;
+}

@@ -38,19 +38,35 @@ if(cookies != null) {
             <div class="bio text-center">
               <img src="/images/person_2.jpg" alt="Image Placeholder" class="img-fluid">
               <div class="bio-body">
-                <form action="#">
+                <form action="/action/guestBookCreateAction.jsp">
                 <%
                 if(pageContext.getAttribute("id") == null) {
                 %>
-              	  <textarea class="form-control mb-3" name="guestNoteTA" readonly placeholder="로그인 후에 방명록을 작성할 수 있습니다."></textarea>
+              	  <textarea class="form-control mb-3" name="contents" readonly placeholder="로그인 후에 방명록을 작성할 수 있습니다."></textarea>
                   <input class="btn btn-primary btn-sm" disabled type="submit" value="등록">
                 <%
                 }
                 else {
                 %> 
-                  <textarea class="form-control mb-3" name="guestNoteTA" placeholder="<%=pageContext.getAttribute("id") %>님 방명록을 입력하세요"></textarea>
+                  <textarea class="form-control mb-3" name="contents" placeholder="<%=pageContext.getAttribute("id") %>님 방명록을 입력하세요"></textarea>
                   <input class="btn btn-primary btn-sm" type="submit" value="등록">
+                  <input type="text" name="userId" value="<%=pageContext.getAttribute("id") %>" hidden="true">
                 <%
+                  String message = request.getParameter("message");
+                  if(message != null && message.equals("sucess")) {
+                  %>
+                    <div class="alert alert-success" role="alert">
+                      방명록을 등록했습니다!
+                    </div>
+                  <%
+                  }
+                  else if(message != null && request.getParameter("message").equals("fail")){
+            	  %>
+                    <div class="alert alert-danger" role="alert">
+                      내용을 입력해주세요.
+                    </div>
+                  <%
+                  }
                 }
                 %>
                 </form>

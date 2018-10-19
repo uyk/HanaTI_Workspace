@@ -61,7 +61,7 @@ if(cookies != null) {
           else{ 
           %>
           <li class="nav-item">
-            <a class="nav-link" href="/user/signInAction.jsp">Logout</a>
+            <a class="nav-link" href="/action/signInAction.jsp">Logout</a>
           </li> 
           <%  
           } 
