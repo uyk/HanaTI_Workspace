@@ -12,18 +12,18 @@ public class Params {
 	private int pageSize;        /** 출력 페이지 개수 */
 	private String searchType;   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
-	private String boardId;		 /** 검색 카테고리*/
+	private int boardId;		 /** 검색 카테고리*/
 	
 	
 	public Params() {
-		this(1, 15, 5, null, null, null);
+		this(1, 15, 5, null, null, 0);
 	}
 	
-	public Params(int page, int listSize, String searchType, String searchValue) {
-		this(page, listSize, 5, null, null, null);
+	public Params(int page, int listSize, String searchType, String searchValue, int boardId) {
+		this(page, listSize, 5, null, null, 0);
 	}
 	
-	public Params(int page, int listSize, int pageSize, String searchType, String searchValue, String boardId) {
+	public Params(int page, int listSize, int pageSize, String searchType, String searchValue, int boardId) {
 		this.page = page;
 		this.listSize = listSize;
 		this.pageSize = pageSize;
@@ -72,11 +72,11 @@ public class Params {
 		this.searchValue = searchValue;
 	}
 
-	public String getBoardId() {
+	public int getBoardId() {
 		return boardId;
 	}
 
-	public void setBoardId(String boardId) {
+	public void setBoardId(int boardId) {
 		this.boardId = boardId;
 	}
 

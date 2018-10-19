@@ -160,7 +160,7 @@ public class PageBuilder {
 	/** 테스트을 위한 main */
 	public static void main(String[] args) {
 		/** 사용자 선택페이지, 페이지에 출력할 행의 수, 페이지 수, 검색유형, 검색값 */
-		Params params = new Params(1, 15, 10, null, null, null);
+		Params params = new Params(1, 15, 10, null, null, 0);
 		int selectCount = 156;
 		PageBuilder pageBuilder = new PageBuilder(params, selectCount);
 		pageBuilder.build();
@@ -206,7 +206,7 @@ public class PageBuilder {
 		System.out.println("-----------------------------------------------");
 		
 		// 이름으로 검색 시
-		Params searchParams = new Params(1, 15, 10, "name", "김", null);
+		Params searchParams = new Params(1, 15, 10, "name", "김", 0);
 		int searchCount = 11;
 		PageBuilder pageBuilder2 = new PageBuilder(searchParams, searchCount);
 		pageBuilder2.build();

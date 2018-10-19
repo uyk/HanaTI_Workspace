@@ -8,10 +8,8 @@ DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 
 //로그인할 때 쿠키 추가
 if(request.getMethod().equals("POST")) {
-  System.out.println("2");
   String id = request.getParameter("id");
   String pw = request.getParameter("pw");
-  System.out.println(id + ":" + pw);
 
   // 회원 가입 여부 체크
   UserDao dao = factory.getUserDao();
@@ -21,7 +19,6 @@ if(request.getMethod().equals("POST")) {
   // 회원인 경우
   if(user != null) {
     Cookie cookie = new Cookie("id", id);
-    System.out.println(cookie.getName() + " : " + cookie.getValue());
     cookie.setPath("/");
     response.addCookie(cookie);
     response.sendRedirect("../index.jsp");
@@ -42,11 +39,9 @@ if(request.getMethod().equals("POST")) {
 
 // 로그아웃할 때 쿠키 제거
 else {
-  System.out.println("3");
   Cookie[] cookies = request.getCookies();
   if(cookies != null) {
     for (Cookie cookie : cookies) {
-      System.out.println("[logout]" + cookie.getName() + " : " + cookie.getValue());
       if(cookie.getName().equals("id")) {
         cookie.setPath("/");
         cookie.setMaxAge(0);

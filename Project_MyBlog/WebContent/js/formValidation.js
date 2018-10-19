@@ -54,7 +54,7 @@ function checkCPW() {
 
 function validateId() {
 	if(document.getElementById("id").reportValidity()){
-	  window.open("/user/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=300,height=100');
+	  window.open("/action/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=300,height=100');
 	}
 }
 
@@ -62,7 +62,7 @@ function validateEmail() {
 	console.log(document.getElementById("cpw").reportValidity());
 	
 	if(document.getElementById("email").reportValidity()){
-	  window.open("/user/signUpAction.jsp?email="+ document.getElementById("email").value,'validateId','width=300,height=100');
+	  window.open("/action/signUpAction.jsp?email="+ document.getElementById("email").value,'validateId','width=300,height=100');
 	}
 }
 

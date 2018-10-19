@@ -17,14 +17,12 @@ if(request.getMethod().equals("GET")) {
 	  String id = request.getParameter("id");
 	  // 존재하지 않는 아이디
 	  if(dao.read(id) == null){
-	    System.out.println("가능 아이디 :" + id);
 	    %>
 	    사용가능한 아이디입니다.
 	    <%
 	  }
 	  // 존재하는 아이디
 	  else {
-	    System.out.println("불가능 아이디 :" + id);
 	    %>
 	    사용할 수 없는 아이디입니다.
 	    <%
@@ -35,14 +33,12 @@ if(request.getMethod().equals("GET")) {
       String email = request.getParameter("email");
 	  // 존재하지 않는 이메일
 	  if(dao.readEmail(email) == null){
-	    System.out.println("가능 이메일 :" + email);
 	    %>
 	    사용가능한 메일주소입니다.
 	    <%
 	  }
 	  // 존재하는 아이디
 	  else {
-	    System.out.println("불가능 이메일 :" + email);
 	    %>
 	    사용할 수 없는 메일주소입니다.
 	    <%
@@ -54,7 +50,6 @@ if(request.getMethod().equals("GET")) {
     <jsp:forward page="/index.jsp"></jsp:forward>
     <%
   }
-  System.out.println("signUP get");
 
 }
 // 회원 가입 요청
