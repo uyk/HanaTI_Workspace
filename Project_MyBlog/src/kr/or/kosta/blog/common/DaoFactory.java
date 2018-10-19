@@ -7,6 +7,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import kr.or.kosta.blog.board.dao.ArticleDao;
+import kr.or.kosta.blog.board.dao.BoardDao;
 import kr.or.kosta.blog.guest.dao.GuestNoteDao;
 import kr.or.kosta.blog.user.dao.UserDao;
 
@@ -45,6 +47,8 @@ public abstract class DaoFactory {
 	
 	public abstract UserDao getUserDao();
 	public abstract GuestNoteDao getGuestNoteDao();
+	public abstract BoardDao getBoardDao();
+	public abstract ArticleDao getArticleDao();
 	
 	
 }

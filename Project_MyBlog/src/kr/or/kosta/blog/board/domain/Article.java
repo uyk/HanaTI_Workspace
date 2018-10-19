@@ -7,25 +7,25 @@ package kr.or.kosta.blog.board.domain;
  */
 
 public class Article {
-	private int articleId;
-	private int boardId;
-	private String writer;
-	private String subject;
-	private String content;
-	private String regdate;
-	private int hitcount;
-	private String ip;
-	private String passwd;
-	private String attachFile;
-	private int groupNo;
-	private int orderNo;
+	private int articleId; 		/** 게시글 식별번호 */
+	private int boardId; 		/** 소속 게시판번호 */		
+	private String writer; 		/** 작성자 아이디 */
+	private String subject; 	/** 게시글 제목 */
+	private String content; 	/** 게시글 내용 */
+	private String regdate; 	/** 게시글 등록일자 */
+	private int hitcount; 		/** 게시글 조회수 */
+	private String ip; 			/** 작성자 아이피 */
+	private String passwd; 		/** 게시글 비밀번호 */
+	private String attachFile; 	/** 첨부파일 */
+	private int groupNo; 		/** 계층형 게시판 구조를 위한 게시글 그룹번호 */
+	private int levelNo; 		/** 계층형 게시판 구조를 위한 그룹내 게시글 레벨번호 */
+	private int orderNo; 		/** 계층형 게시판 구조를 위한 그룹내 게시글 순서번호*/
 	
 	public Article() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Article(int articleId, int boardId, String writer, String subject, String content, String regdate,
-			int hitcount, String ip, String passwd, String attachFile, int groupNo, int orderNo) {
+			int hitcount, String ip, String passwd, String attachFile, int groupNo, int levelNo, int orderNo) {
 		super();
 		this.articleId = articleId;
 		this.boardId = boardId;
@@ -38,6 +38,7 @@ public class Article {
 		this.passwd = passwd;
 		this.attachFile = attachFile;
 		this.groupNo = groupNo;
+		this.levelNo = levelNo;
 		this.orderNo = orderNo;
 	}
 	
@@ -107,10 +108,24 @@ public class Article {
 	public void setGroupNo(int groupNo) {
 		this.groupNo = groupNo;
 	}
+	public int getLevelNo() {
+		return levelNo;
+	}
+	public void setLevelNo(int levelNo) {
+		this.levelNo = levelNo;
+	}
 	public int getOrderNo() {
 		return orderNo;
 	}
 	public void setOrderNo(int orderNo) {
 		this.orderNo = orderNo;
+	}
+	
+	@Override
+	public String toString() {
+		return "Article [articleId=" + articleId + ", boardId=" + boardId + ", writer=" + writer + ", subject="
+				+ subject + ", content=" + content + ", regdate=" + regdate + ", hitcount=" + hitcount + ", ip=" + ip
+				+ ", passwd=" + passwd + ", attachFile=" + attachFile + ", groupNo=" + groupNo + ", levelNo=" + levelNo
+				+ ", orderNo=" + orderNo + "]";
 	}
 }
