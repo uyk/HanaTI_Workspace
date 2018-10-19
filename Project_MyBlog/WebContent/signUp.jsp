@@ -22,7 +22,7 @@
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
             
-            <form name="signUpForm" action="user/signUpAction.jsp" method="post">
+            <form name="signUpForm" action="/action/signUpAction.jsp" method="post">
               <!-- 아이디 입력 -->
               <div class="row">
                 <div class="col-md-4 form-group">

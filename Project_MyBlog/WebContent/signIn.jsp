@@ -22,7 +22,7 @@
         <div class="row blog-entries">
           <!-- 정보 입력 div 시작 -->
           <div class="col-md-12 col-lg-8 main-content">
-            <form class="centerForm" action="/user/signInAction.jsp" method="post">
+            <form class="centerForm" action="/action/signInAction.jsp" method="post">
               <!-- 아이디 입력 -->
               <div class="row">
                 <div class="col-md-4 form-group">
@@ -30,6 +30,7 @@
                   <input type="text" id="id" name="id" class="form-control ">
                 </div>
               </div>
+              
               <!-- 패스워드 입력 -->
               <div class="row">
                 <div class="col-md-4 form-group">

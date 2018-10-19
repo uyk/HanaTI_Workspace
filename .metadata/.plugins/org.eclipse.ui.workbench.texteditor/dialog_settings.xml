@@ -16,36 +16,41 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="onc" key="selection"/>
+		<item value="patt" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="onc"/>
-			<item value="end"/>
-			<item value="tag"/>
+			<item value="patt"/>
+			<item value="check"/>
+			<item value="label"/>
+			<item value="src"/>
+			<item value="href"/>
+			<item value="appli"/>
 			<item value="js"/>
-			<item value="main"/>
-			<item value="onclick"/>
-			<item value="button"/>
-			<item value="act"/>
-			<item value="act."/>
-			<item value="로그"/>
-			<item value="login"/>
-			<item value="console"/>
-			<item value="reset"/>
-			<item value="time"/>
-			<item value="report"/>
+			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>
+			<item value="&apos;Nanum Brush Script&apos;, cursive;"/>
+			<item value="font-family: &apos;Nanum Brush Script&apos;, cursive;"/>
+			<item value="&apos;Nanum Myeongjo&apos;, serif;"/>
+			<item value="&quot;Josefin Sans&quot;, arial, sans-serif;"/>
+			<item value="&quot;Josefin Sans&quot;"/>
+			<item value="josefin"/>
+			<item value="pt"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>
+			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>
+			<item value="&apos;Nanum Brush Script&apos;, cursive;"/>
+			<item value="font-family: &apos;Nanum Brush Script&apos;, cursive;"/>
+			<item value="&apos;Nanum Myeongjo&apos;, serif;"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
-		<item value="340" key="DIALOG_WIDTH"/>
+		<item value="333" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1021" key="DIALOG_X_ORIGIN"/>
-		<item value="406" key="DIALOG_Y_ORIGIN"/>
+		<item value="1450" key="DIALOG_X_ORIGIN"/>
+		<item value="218" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

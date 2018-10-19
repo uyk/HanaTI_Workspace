@@ -1,4 +1,16 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%
+// 쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
+pageContext.setAttribute("id", null);
+Cookie[] cookies = request.getCookies();
+if(cookies != null) {
+  for (Cookie cookie : cookies) {
+    if(cookie.getName().equals("id")) {
+      pageContext.setAttribute("id", cookie.getValue()); // 현재 페이지에 정보 저장
+    }
+  }
+}
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,156 +28,38 @@
         <!-- 카테고리 제목 -->
         <div class="row mb-4">
           <div class="col-md-6">
-            <h2 class="mb-4">Category: Food</h2>
+            <h2 class="mb-4">GUEST BOOK</h2>
           </div>
         </div>
         <!-- 메인 and 사이드 div 시작 -->
         <div class="row blog-entries">
           <!-- 메인 컨텐츠 시작 -->
           <div class="col-md-12 col-lg-8 main-content">
-            <!-- 포스트 리스트 시작 -->
-            <div class="row mb-5 mt-5">
-              <div class="col-md-12">
-                <!-- 각 포스트 div -->
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Travel</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_11.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Lifestyle</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_12.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Food</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_9.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Travel</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_8.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Lifestyle</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_7.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Food</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_6.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Travel</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_5.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Lifestyle</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
-                <div class="post-entry-horzontal">
-                  <a href="#">
-                    <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_4.jpg);"></div>
-                    <span class="text">
-                      <div class="post-meta">
-                        <span class="category">Food</span>
-                        <span class="mr-2">March 15, 2018 </span> &bullet;
-                        <span class="ml-2"><span class="fa fa-comments"></span> 3</span>
-                      </div>
-                      <h2>There’s a Cool New Way for Men to Wear Socks and Sandals</h2>
-                    </span>
-                  </a>
-                </div>
-                <!-- END post -->
-
+            <div class="bio text-center">
+              <img src="/images/person_2.jpg" alt="Image Placeholder" class="img-fluid">
+              <div class="bio-body">
+                <form action="#">
+                <%
+                if(pageContext.getAttribute("id") == null) {
+                %>
+              	  <textarea class="form-control mb-3" name="guestNoteTA" readonly placeholder="로그인 후에 방명록을 작성할 수 있습니다."></textarea>
+                  <input class="btn btn-primary btn-sm" disabled type="submit" value="등록">
+                <%
+                }
+                else {
+                %> 
+                  <textarea class="form-control mb-3" name="guestNoteTA" placeholder="<%=pageContext.getAttribute("id") %>님 방명록을 입력하세요"></textarea>
+                  <input class="btn btn-primary btn-sm" type="submit" value="등록">
+                <%
+                }
+                %>
+                </form>
+               <!-- <p><a href="#" class="btn btn-primary btn-sm">등록</a></p> --> 
               </div>
             </div>
-            <!-- 포스트 리스트 끝 -->
-
+            <%-- 방명록 목록 시작 --%>
+            <jsp:include page="/action/guestBookAction.jsp"></jsp:include>
+            <%-- 방명록 목록 종료 --%>
             <!-- 페이징 row 시작 -->
             <div class="row">
               <div class="col-md-12 text-center">
