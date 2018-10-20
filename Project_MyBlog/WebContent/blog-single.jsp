@@ -8,6 +8,7 @@ DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 String articleId = request.getParameter("article");
 Article article = articleDao.read(articleId);
+request.setAttribute("article", article);
 %>
 <!DOCTYPE html>
 <html>
@@ -51,7 +52,10 @@ Article article = articleDao.read(articleId);
 
             
             <div class="pt-5">
-              <p><a href="/category.jsp?board=<%=article.getBoardId()%>&page=1">글목록</a></p>
+              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=1'">글목록</button>
+              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=1'">덧글</button>
+              <button class="btn btn-primary btn-sm" onclick="location.href='/editAticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">수정</button>
+              <button class="btn btn-danger btn-sm" onclick="location.href='/editAticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">삭제</button>
             </div>
 
 			<%-- 코멘트 시작 --%>

@@ -46,9 +46,7 @@ if(request.getMethod().equals("GET")) {
   }
   // 잘못된 접근
   else {
-    %>
-    <jsp:forward page="/index.jsp"></jsp:forward>
-    <%
+	  response.sendRedirect("/index.jsp");
   }
 
 }
