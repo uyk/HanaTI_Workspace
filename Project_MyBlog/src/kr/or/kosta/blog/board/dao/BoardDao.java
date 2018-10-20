@@ -13,7 +13,7 @@ import kr.or.kosta.blog.board.domain.Board;
 public interface BoardDao {
 	public void create(Board board) throws Exception;
 	
-	public BoardDao read(String boardId) throws Exception;
+	public Board read(String boardId) throws Exception;
 	
 	public void update(Board board) throws Exception;
 	

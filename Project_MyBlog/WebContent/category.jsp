@@ -1,5 +1,16 @@
+<%@page import="kr.or.kosta.blog.board.domain.Board"%>
+<%@page import="kr.or.kosta.blog.board.dao.BoardDao"%>
+<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<% request.setCharacterEncoding("utf-8"); %>
+<% 
+request.setCharacterEncoding("utf-8"); 
+DaoFactory factory = (DaoFactory)application.getAttribute("factory");
+
+BoardDao boardDao = factory.getBoardDao();
+Board board = boardDao.read(request.getParameter("board"));
+
+
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -14,15 +25,16 @@
       
     <section class="site-section">
       <div class="container">
-        <!-- 카테고리 제목 -->
+      	<%--카테고리 제목--%>
         <div class="row mb-4">
           <div class="col-md-6">
-            <h2 class="mb-4">Category: <%=request.getParameter("board") %></h2>
+            <h2 class="mb-4">Category: <%=board.getTitle() %></h2>
+            <h5 class="mb-4"><%=board.getDescription() %></h5>
           </div>
         </div>
-        <!-- 메인 and 사이드 div 시작 -->
+      	<%-- 메인, 사이드 div 시작 --%>
         <div class="row blog-entries">
-          <!-- 메인 컨텐츠 시작 -->
+      	  <%-- 메인 컨텐츠 시작 --%>
           <div class="col-md-12 col-lg-8 main-content">
             <%-- 글 목록 시작 --%>
             <jsp:include page="/action/categoryAction.jsp">
@@ -30,34 +42,15 @@
               <jsp:param name="page" value='<%=request.getParameter("page") %>'></jsp:param>
             </jsp:include>
             <%-- 글 목록 종료 --%>
-
-
-            <!-- 페이징 row 시작 -->
-            <!-- 
-            <div class="row">
-              <div class="col-md-12 text-center">
-                <nav aria-label="Page navigation" class="text-center">
-                  <ul class="pagination">
-                    <li class="page-item  active"><a class="page-link" href="#">Prev</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                  </ul>
-                </nav>
-              </div>
-            </div>
-             -->
-            <!-- 페이징 row 끝 -->
           </div>
-          <!-- END main-content -->
+          <%-- 메인 컨텐츠 종료 --%>
           
           <%--사이드 시작--%>
           <jsp:include page="/include/side.jsp"></jsp:include>
           <%--사이드 종료--%>
 
         </div>
-        <!-- 메인 and 사이드 div 종료 -->
+      	<%-- 메인 and 사이드 div 종료 --%>
       </div>
     </section>
     

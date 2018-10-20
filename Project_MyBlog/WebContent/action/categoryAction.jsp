@@ -1,4 +1,3 @@
-<%@page import="java.util.Enumeration"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
@@ -8,16 +7,11 @@
 <%
 request.setCharacterEncoding("utf-8");
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
+
 ArticleDao dao = factory.getArticleDao();
-Enumeration e = request.getParameterNames();
-System.out.println("--------파라미터 시작-------");
-while(e.hasMoreElements()) {
-  System.out.println(e.nextElement()); 
-}
-System.out.println("--------파라미터 끝-------");
-String board = request.getParameter("board");
+
+int boardId = Integer.parseInt(request.getParameter("board"));
 String index = request.getParameter("page");
-System.out.println(board + " : " +index);
 
 // 페이지 인덱스 처리
 if(index == null || index.equals("") || index.equals("null")){
@@ -25,20 +19,6 @@ if(index == null || index.equals("") || index.equals("null")){
 }
 int indexI = Integer.parseInt(index);
 
-// 게시판 분류
-int boardId = 0;
-if(board.equals("Notice")) {
-	boardId = 1;
-}
-else if(board.equals("Korea")) {
-  boardId = 2;
-}
-else if(board.equals("Japan")) {
-  boardId = 3;
-}
-else if(board.equals("Croatia")) {
-  boardId = 4;
-}
 
 //검색 요청일 경우 파라메터 수신. 없을경우 null
 String searchType = request.getParameter("searchType");
@@ -50,7 +30,7 @@ if(searchType == null || searchType.equals("")){
 
 // 페이징 연산
 // 페이지당 보여지는 목록수 설정
-int listSize = 3;
+int listSize = 5;
 //페이징 처리에 필요한 검색 개수 DB조회
 int rowCount = dao.countBySearch(searchType, searchValue, boardId);
 //페이지 개수
@@ -74,14 +54,14 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
 %>
 
 <%-- 포스트 리스트 시작 --%>
-<div class="row mb-5 mt-5">
+<div class="row mb-5 ">
   <div class="col-md-12">
     <%
     for(int i=0; i<list.size(); i++){
       Article article = list.get(i);
     %>
       <div class="post-entry-horzontal">
-        <a style="width: -webkit-fill-available;">
+        <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>">
         
           <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
           <span class="text">
@@ -113,7 +93,7 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
       	}
       	else {
       		%>
-      		<li class="page-item"><a class="page-link" href="/category.jsp?page=<%=indexI - 1%>&board=<%=board%>">Prev</a></li>
+      		<li class="page-item"><a class="page-link" href="/categoryAction.jsp?page=<%=indexI - 1%>&board=<%=boardId%>">Prev</a></li>
       		<%
       	}
 	  	for(int i=startPage; i<=endPage; i++){
@@ -123,7 +103,7 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
 	  	<%          
 	    	}else{
 	  	%>
-	    	   <li class="page-item"><a class="page-link" href="/category.jsp?page=<%=i%>&board=<%=board%>"><%=i %></a></li>
+	    	   <li class="page-item"><a class="page-link" href="/category.jsp?page=<%=i%>&board=<%=boardId%>"><%=i %></a></li>
 	  	<%          
 	   	 	}
 	 	 }
@@ -134,7 +114,7 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
       	}
       	else {
       		%>
-      		<li class="page-item"><a class="page-link" href="/category.jsp?page=<%=indexI + 1%>&board=<%=board%>">Next</a></li>
+      		<li class="page-item"><a class="page-link" href="/category.jsp?page=<%=indexI + 1%>&board=<%=boardId%>">Next</a></li>
       		<%
       	}
       	%>

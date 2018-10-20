@@ -1,5 +1,10 @@
+<%@page import="kr.or.kosta.blog.board.domain.Board"%>
+<%@page import="java.util.List"%>
+<%@page import="kr.or.kosta.blog.board.dao.BoardDao"%>
+<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
+request.setCharacterEncoding("utf-8");
 // 쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
 pageContext.setAttribute("id", null);
 Cookie[] cookies = request.getCookies();
@@ -10,6 +15,11 @@ if(cookies != null) {
     }
   }
 }
+
+DaoFactory factory = (DaoFactory)application.getAttribute("factory");
+BoardDao boardDao = factory.getBoardDao();
+List<Board> boardList = boardDao.listAll();
+
 %>
 <header role="banner">
   <div class="container logo-wrap">
@@ -32,10 +42,14 @@ if(cookies != null) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="/category.jsp?board=Notice&page=<%=request.getParameter("page")%>">Notice</a>
-              <a class="dropdown-item" href="/category.jsp?board=Korea&page=<%=request.getParameter("page")%>">Korea</a>
-              <a class="dropdown-item" href="/category.jsp?board=Japan&page=<%=request.getParameter("page")%>">Japan</a>
-              <a class="dropdown-item" href="/category.jsp?board=Croatia&page=<%=request.getParameter("page")%>">Croatia</a>
+              <%
+              for(int i=0; i< boardList.size(); i++){
+            	  System.out.println("boardList.get(i) : " + boardList.get(i));
+           	  %>
+           	  	  <a class="dropdown-item" href="/category.jsp?board=<%=boardList.get(i).getBoardId()%>&page=<%=request.getParameter("page")%>"><%=boardList.get(i).getTitle()%></a>
+       	  	  <% 
+          	  }
+          	  %>
             </div>
           </li>
           <li class="nav-item">

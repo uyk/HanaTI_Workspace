@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.domain.Article;
 import kr.or.kosta.blog.common.Params;
+import kr.or.kosta.blog.user.domain.User;
 
 public class JdbcArticleDao implements ArticleDao {
 	private DataSource dataSource;
@@ -31,8 +32,44 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public Article read(String articleId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Article article = null;
+		
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				"SELECT article_id, \r\n" + 
+				"       board_id, \r\n" + 
+				"       writer, \r\n" + 
+				"       subject, \r\n" + 
+				"       content, \r\n" + 
+				"       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
+				"       hitcount, \r\n" + 
+				"       ip, \r\n" + 
+				"       passwd, \r\n" + 
+				"       attach_file, \r\n" + 
+				"       group_no, \r\n" + 
+				"       level_no, \r\n" + 
+				"       order_no \r\n" + 
+				"FROM   article \r\n" + 
+				"WHERE  article_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, articleId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				article = createArticle(rs);
+			}
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return article;
 	}
 
 	@Override
@@ -62,7 +99,7 @@ public class JdbcArticleDao implements ArticleDao {
 				"       writer, \r\n" + 
 				"       subject, \r\n" + 
 				"       content, \r\n" + 
-				"       regdate, \r\n" + 
+				"       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
 				"       hitcount, \r\n" + 
 				"       ip, \r\n" + 
 				"       passwd, \r\n" + 
