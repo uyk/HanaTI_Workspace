@@ -92,13 +92,13 @@ public class JdbcArticleDao implements ArticleDao {
 		return list;
 	}
 
-	/** 선택페이지에 따른 사용자 목록 반환 */	
+	/** 선택페이지에 따른 게시글 목록 반환 */	
 	@Override
 	public List<Article> listByPage(int boardId, int page) throws Exception {
 		return listByPage(page, 10, boardId);
 	}
 
-	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */
+	/** 선택페이지, 조회 목록개수에 따른 게시글 목록 반환 */
 	@Override
 	public List<Article> listByPage(int boardId, int page, int listSize) throws Exception {
 		List<Article> list = null;
@@ -187,7 +187,7 @@ public class JdbcArticleDao implements ArticleDao {
 		return null;
 	}
 
-	/** 검색유형, 검색값에 따른 사용자 개수 반환 - 페이징 처리 시 필요 */	
+	/** 검색유형, 검색값에 따른 게시글 개수 반환 - 페이징 처리 시 필요 */	
 	@Override
 	public int countBySearch(String searchType, String searchValue, int boardId) throws Exception {
 		int count = 0;

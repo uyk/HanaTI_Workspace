@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.2" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="kr.or.kosta.dva.client.entity.Client" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/Client.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="155" x="157" y="99"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="kr.or.kosta.dva.client.entity.DvaClient" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/DvaClient.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="387" width="191" x="413" y="65"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="kr.or.kosta.dva.client.entity.DvaException" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/DvaException.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="207" width="142" x="752" y="177"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="kr.or.kosta.dva.client.entity.DvaRoom" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/DvaRoom.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="189" width="167" x="1046" y="195"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <interface id="5" language="java" name="kr.or.kosta.dva.client.entity.Protocol" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/Protocol.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="783" width="176" x="91" y="93"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </interface>  
+  <class id="6" language="java" name="kr.or.kosta.dva.client.entity.Room" project="Project_DVA_Client2" 
+    file="/Project_DVA_Client2/src/kr/or/kosta/dva/client/entity/Room.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="243" width="161" x="214" y="558"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <generalization id="7">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="6"/>  
+  </generalization>  
+  <association id="8">    
+    <end type="SOURCE" refId="2" navigable="false">      
+      <attribute id="9" name="roomList"/>      
+      <multiplicity id="10" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="1"/>  
+  </generalization>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

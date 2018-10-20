@@ -28,7 +28,6 @@
             <jsp:include page="/action/categoryAction.jsp">
               <jsp:param name="board" value='<%=request.getParameter("board") %>'></jsp:param>
               <jsp:param name="page" value='<%=request.getParameter("page") %>'></jsp:param>
-              <jsp:param name="test" value='aa'></jsp:param>
             </jsp:include>
             <%-- 글 목록 종료 --%>
 

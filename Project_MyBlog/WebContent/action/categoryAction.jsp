@@ -10,16 +10,20 @@ request.setCharacterEncoding("utf-8");
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao dao = factory.getArticleDao();
 Enumeration e = request.getParameterNames();
+System.out.println("--------파라미터 시작-------");
 while(e.hasMoreElements()) {
   System.out.println(e.nextElement()); 
 }
+System.out.println("--------파라미터 끝-------");
 String board = request.getParameter("board");
 String index = request.getParameter("page");
 System.out.println(board + " : " +index);
 
-if(index == null || index.equals("")){
+// 페이지 인덱스 처리
+if(index == null || index.equals("") || index.equals("null")){
 	index = "1";
 }
+int indexI = Integer.parseInt(index);
 
 // 게시판 분류
 int boardId = 0;
@@ -55,7 +59,8 @@ System.out.println(rowCount + ", " + pageCount);
 //페이지 목록의 시작페이지번호와 마지막페이지번호 계산
 //목록별 번호
 int pageSize = 5;
-int listNo = (Integer.parseInt(index) - 1) / pageSize; // 목록 식별번호
+System.out.println(indexI);
+int listNo = (indexI - 1) / pageSize; // 목록 식별번호
 //(1~5): 0, (6~10): 1, (11~15): 2, .....
 
 int startPage = (listNo * pageSize) + 1;
@@ -64,7 +69,7 @@ int endPage = (listNo * pageSize) + pageSize;
 if (endPage > pageCount){
 endPage = pageCount;
 }
-List<Article> list = dao.listByPage(boardId,Integer.parseInt(index),listSize);
+List<Article> list = dao.listByPage(boardId,indexI,listSize);
 
 %>
 
@@ -100,30 +105,41 @@ List<Article> list = dao.listByPage(boardId,Integer.parseInt(index),listSize);
   <div class="col-md-12 text-center">
     <nav aria-label="Page navigation" class="text-center">
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      	<%
+      	if(indexI == 1) {
+      		%>
+      		<li class="page-item"><a class="page-link" style="pointer-events: none;cursor: default;">Prev</a></li>
+      		<%
+      	}
+      	else {
+      		%>
+      		<li class="page-item"><a class="page-link" href="/category.jsp?page=<%=indexI - 1%>&board=<%=board%>">Prev</a></li>
+      		<%
+      	}
+	  	for(int i=startPage; i<=endPage; i++){
+	    	if(i == indexI){
+	  	%>
+	      		<li class="page-item active"><a class="page-link" href="#"><%=i %></a></li>
+	  	<%          
+	    	}else{
+	  	%>
+	    	   <li class="page-item"><a class="page-link" href="/category.jsp?page=<%=i%>&board=<%=board%>"><%=i %></a></li>
+	  	<%          
+	   	 	}
+	 	 }
+      	if(indexI == pageCount) {
+      		%>
+      		<li class="page-item"><a class="page-link" style="pointer-events: none;cursor: default;">Next</a></li>
+      		<%
+      	}
+      	else {
+      		%>
+      		<li class="page-item"><a class="page-link" href="/category.jsp?page=<%=indexI + 1%>&board=<%=board%>">Next</a></li>
+      		<%
+      	}
+      	%>
       </ul>
     </nav>
   </div>
 </div>
-<div class="pagination">
-  <!-- <a href="#">&laquo;</a> -->
-  <%
-  for(int i=startPage; i<=endPage; i++){
-    if(i == Integer.parseInt(index)){
-  %>
-      <a class="active"><%=i %></a>
-  <%          
-    }else{
-  %>
-       <a href="/category.jsp?page=<%=i%>&board=<%=board%>"><%=i %></a>
-  <%          
-    }
-  }
-  %>
-  <!-- <a href="#">&raquo;</a> -->
-</div>
-<!-- 페이징 끝 -->
+<%-- 페이징 끝 --%>

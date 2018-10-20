@@ -32,10 +32,10 @@ if(cookies != null) {
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
             <div class="dropdown-menu" aria-labelledby="dropdown04">
-              <a class="dropdown-item" href="/category.jsp?board=Notice&<%=request.getParameter("page")%>">Notice</a>
-              <a class="dropdown-item" href="/category.jsp?board=Korea&<%=request.getParameter("page")%>">Korea</a>
-              <a class="dropdown-item" href="/category.jsp?board=Japan&<%=request.getParameter("page")%>">Japan</a>
-              <a class="dropdown-item" href="/category.jsp?board=Croatia&<%=request.getParameter("page")%>">Croatia</a>
+              <a class="dropdown-item" href="/category.jsp?board=Notice&page=<%=request.getParameter("page")%>">Notice</a>
+              <a class="dropdown-item" href="/category.jsp?board=Korea&page=<%=request.getParameter("page")%>">Korea</a>
+              <a class="dropdown-item" href="/category.jsp?board=Japan&page=<%=request.getParameter("page")%>">Japan</a>
+              <a class="dropdown-item" href="/category.jsp?board=Croatia&page=<%=request.getParameter("page")%>">Croatia</a>
             </div>
           </li>
           <li class="nav-item">
