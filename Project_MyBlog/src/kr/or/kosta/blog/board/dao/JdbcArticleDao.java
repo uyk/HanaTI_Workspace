@@ -11,7 +11,6 @@ import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.domain.Article;
 import kr.or.kosta.blog.common.Params;
-import kr.or.kosta.blog.user.domain.User;
 
 public class JdbcArticleDao implements ArticleDao {
 	private DataSource dataSource;
@@ -80,7 +79,25 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public void delete(String articleId) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				"DELETE FROM article \r\n" + 
+				"WHERE  article_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, articleId);
+			rs = pstmt.executeQuery();
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
 
 	}
 

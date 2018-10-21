@@ -44,7 +44,6 @@ List<Board> boardList = boardDao.listAll();
             <div class="dropdown-menu" aria-labelledby="dropdown04">
               <%
               for(int i=0; i< boardList.size(); i++){
-            	  System.out.println("boardList.get(i) : " + boardList.get(i));
            	  %>
            	  	  <a class="dropdown-item" href="/category.jsp?board=<%=boardList.get(i).getBoardId()%>&page=<%=request.getParameter("page")%>"><%=boardList.get(i).getTitle()%></a>
        	  	  <% 

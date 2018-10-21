@@ -3,12 +3,23 @@
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <% 
+
 request.setCharacterEncoding("utf-8");
+//쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
+pageContext.setAttribute("id", null);
+Cookie[] cookies = request.getCookies();
+if(cookies != null) {
+	for (Cookie cookie : cookies) {
+		 if(cookie.getName().equals("id")) {
+		   pageContext.setAttribute("id", cookie.getValue()); // 현재 페이지에 정보 저장
+		 }
+	}
+}
+
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 String articleId = request.getParameter("article");
 Article article = articleDao.read(articleId);
-request.setAttribute("article", article);
 %>
 <!DOCTYPE html>
 <html>
@@ -51,11 +62,22 @@ request.setAttribute("article", article);
             </div>
 
             
-            <div class="pt-5">
-              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=1'">글목록</button>
-              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=1'">덧글</button>
-              <button class="btn btn-primary btn-sm" onclick="location.href='/editAticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">수정</button>
-              <button class="btn btn-danger btn-sm" onclick="location.href='/editAticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">삭제</button>
+            <div class="pt-5 mb-5">
+              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=<%=request.getParameter("page")%>'">글목록</button>
+              <% if(pageContext.getAttribute("id") == null) {
+              %>
+              <button class="btn btn-primary btn-sm" disabled>덧글</button>
+              <button class="btn btn-primary btn-sm" disabled>수정</button>
+              <button class="btn btn-danger btn-sm" disabled>삭제</button>
+              <%
+              } else {
+              %>
+              <button class="btn btn-primary btn-sm" onclick="location.href='/editArticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">덧글</button>
+              <button class="btn btn-primary btn-sm" onclick="location.href='/editArticle.jsp?type=3&articleId=<%=article.getArticleId()%>'">수정</button>
+              <button class="btn btn-danger btn-sm" onclick="location.href='/editArticle.jsp?type=4&articleId=<%=article.getArticleId()%>'">삭제</button>
+              <%
+              }
+              %>
             </div>
 
 			<%-- 코멘트 시작 --%>

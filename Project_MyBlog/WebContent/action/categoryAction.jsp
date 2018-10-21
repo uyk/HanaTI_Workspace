@@ -61,7 +61,7 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
       Article article = list.get(i);
     %>
       <div class="post-entry-horzontal">
-        <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>">
+        <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>&page=<%=index%>">
         
           <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
           <span class="text">
