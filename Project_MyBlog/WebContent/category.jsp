@@ -4,12 +4,20 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <% 
 request.setCharacterEncoding("utf-8"); 
+//쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
+pageContext.setAttribute("id", null);
+Cookie[] cookies = request.getCookies();
+if(cookies != null) {
+	for (Cookie cookie : cookies) {
+		 if(cookie.getName().equals("id")) {
+		   pageContext.setAttribute("id", cookie.getValue()); // 현재 페이지에 정보 저장
+		 }
+	}
+}
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 
 BoardDao boardDao = factory.getBoardDao();
 Board board = boardDao.read(request.getParameter("board"));
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -27,9 +35,23 @@ Board board = boardDao.read(request.getParameter("board"));
       <div class="container">
       	<%--카테고리 제목--%>
         <div class="row mb-4">
-          <div class="col-md-6">
+          <div class="col-md-9">
             <h2 class="mb-4">Category: <%=board.getTitle() %></h2>
             <h5 class="mb-4"><%=board.getDescription() %></h5>
+          </div>
+          <div class="col-md-3">
+            <label style="visibility: hidden;">Dummy</label>
+            <%
+            if(pageContext.getAttribute("id") == null) {
+           	%>
+            <a ><i class="fas fa-edit" style="pointer-events: none;cursor: default; background: gray;">&nbsp;New</i></a>
+           	<%
+            } else {
+           	%>
+            <a href="/editArticle.jsp?type=1&boardId=<%=board.getBoardId()%>"><i style="background: #007bff;"class="fas fa-edit">&nbsp;New</i></a>
+           	<%
+            }
+            %>
           </div>
         </div>
       	<%-- 메인, 사이드 div 시작 --%>

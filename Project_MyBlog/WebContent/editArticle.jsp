@@ -20,14 +20,19 @@ String articleId = request.getParameter("articleId");
 int type = Integer.parseInt(request.getParameter("type"));
 String description = null;
 Article article = null;
-System.out.println(articleId);
 if(articleId != null) {
 	article = articleDao.read(articleId);
 }
 else {
+	// 신규글
 	article = new Article();
-	article.setSubject("");
+	article.setBoardId(Integer.parseInt(request.getParameter("boardId")));
 	article.setWriter((String)pageContext.getAttribute("id"));
+	article.setSubject("");
+	article.setContent("");
+	String ip = request.getRemoteAddr() ;
+	System.out.println("editArticle " + ip);
+	article.setIp(ip);
 }
 switch(type) {
 // 신규글
@@ -84,17 +89,17 @@ case 4:
               <div class="row">
                 <div class="col-md-4 form-group">
                   <label for="writer">작성자</label>
-                  <input type="text" id="writer" class="form-control " name="writer" value="<%=article.getWriter() %>" disabled>
+                  <input type="text" class="form-control" value="<%=article.getWriter() %>" disabled>
                 </div>
                 <div class="col-md-4 form-group">
                   <label for="passwd">비밀번호</label>
-                  <input type="password" id="passwd" class="form-control " name="passwd">
+                  <input type="password" id="passwd" class="form-control " name="passwd" required>
                 </div>
               </div>
               <!-- 내용 입력 -->
               <div class="row">
                 <div class="col-md-12 form-group article-content">
-                  <textarea class="form-control mb-3" id="name" name="content" ></textarea>
+                  <textarea class="form-control mb-3" id="name" name="content" required><%=article.getContent() %></textarea>
                 </div>
               </div>
               <!-- 버튼 -->
@@ -103,6 +108,13 @@ case 4:
                   <input type="submit" value="등록" class="btn btn-primary">
                 </div>
               </div>
+              <input type="hidden" id="type" name="type" value="<%=type%>">
+              <input type="hidden" id="writer" name="writer" value="<%=article.getWriter()%>">
+              <input type="hidden" id="ip" name="ip" value="<%=article.getIp()%>">
+              <input type="hidden" id="boardId" name="boardId" value="<%=article.getBoardId()%>">
+              <input type="hidden" id="groupNo" name="groupNo" value="<%=article.getGroupNo()%>">
+              <input type="hidden" id="levelNo" name="levelNo" value="<%=article.getLevelNo()%>">
+              <input type="hidden" id="orderNo" name="orderNo" value="<%=article.getOrderNo()%>">
             </form>
           </div>
           <%-- END main-content --%>

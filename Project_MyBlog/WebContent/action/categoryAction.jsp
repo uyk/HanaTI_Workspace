@@ -35,11 +35,9 @@ int listSize = 5;
 int rowCount = dao.countBySearch(searchType, searchValue, boardId);
 //페이지 개수
 int pageCount = (int)Math.ceil((double)rowCount / listSize);
-System.out.println(rowCount + ", " + pageCount);
 //페이지 목록의 시작페이지번호와 마지막페이지번호 계산
 //목록별 번호
 int pageSize = 5;
-System.out.println(indexI);
 int listNo = (indexI - 1) / pageSize; // 목록 식별번호
 //(1~5): 0, (6~10): 1, (11~15): 2, .....
 

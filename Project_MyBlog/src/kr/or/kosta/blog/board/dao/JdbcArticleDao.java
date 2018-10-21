@@ -25,7 +25,58 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public void create(Article article) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		String sql = 
+				"INSERT INTO article \r\n" + 
+				"            (article_id, \r\n" + 
+				"             board_id, \r\n" + 
+				"             writer, \r\n" + 
+				"             subject, \r\n" + 
+				"             content, \r\n" + 
+				"             ip, \r\n" + 
+				"             passwd, \r\n" + 
+				"             group_no, \r\n" + 
+				"             level_no, \r\n" + 
+				"             order_no) \r\n" + 
+				"VALUES     (article_id_seq.nextval, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            0, \r\n" + 
+				"            0";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, article.getBoardId());
+			pstmt.setString(2, article.getWriter());
+			pstmt.setString(3, article.getSubject());
+			pstmt.setString(4, article.getContent());
+			pstmt.setString(5, article.getIp());
+			pstmt.setString(6, article.getPasswd());
+			// 신규글
+			if(article.getGroupNo() == 0) {
+				pstmt.setString(7, "article_id_seq.currval");
+				pstmt.setInt(8, 0);
+				pstmt.setInt(9, 0);
+			}
+			// 덧글
+			else {
+				pstmt.setInt(7, article.getGroupNo());
+				pstmt.setInt(8, article.getLevelNo());
+				pstmt.setInt(9, article.getOrderNo());
+			}
+			pstmt.executeUpdate();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
 
 	}
 
