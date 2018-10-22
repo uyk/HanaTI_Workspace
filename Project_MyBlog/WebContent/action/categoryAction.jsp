@@ -55,9 +55,11 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
           <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
           <span class="text">
             <div class="post-meta">
-              <span class="category"><%=article.getWriter()%></span>
-              <span class="mr-2"><%=article.getRegdate() %></span> &bullet;
-              <%-- <span class="ml-2"><span class="fa fa-comments"></span> 3</span> --%>
+              <span class="category"><%=article.getArticleId() %></span>
+              <span class="mr-2"><%=article.getWriter() %></span> &bullet;
+              <span class="mr-2"><%= article.getIp() %></span> &bullet;
+              <span class="mr-2"><%= article.getRegdate() %></span> &bullet;
+              <span class="ml-2"><i class="fas fa-eye"></i> &nbsp;<%= article.getHitcount()%></span>
             </div>
             <h2><%=article.getSubject() %></h2>
           </span>

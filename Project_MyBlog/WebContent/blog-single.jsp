@@ -2,6 +2,7 @@
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
+
 <% 
 request.setCharacterEncoding("utf-8");
 //쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
@@ -17,7 +18,10 @@ if(cookies != null) {
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 String articleId = request.getParameter("article");
+articleDao.increaseHit(Integer.parseInt(articleId));
 Article article = articleDao.read(articleId);
+
+
 %>
 <!DOCTYPE html>
 <html>
@@ -39,10 +43,11 @@ Article article = articleDao.read(articleId);
           <div class="col-md-12 col-lg-8 main-content">
             <h1 class="mb-4"><%= article.getSubject() %></h1>
             <div class="post-meta">
-                        <span class="category"><%= article.getWriter() %></span>
-                        <span class="mr-2">&bullet; <%= article.getIp() %></span> &bullet;
-                        <span class="mr-2"><%= article.getRegdate() %></span> 
-                        <span class="ml-2"><i class="fas fa-eye"></i> &nbsp;<%= article.getHitcount()%></span>
+              <span class="category"><%=article.getArticleId() %></span>
+              <span class="mr-2"><%=article.getWriter() %></span> &bullet;
+              <span class="mr-2"><%= article.getIp() %></span> &bullet;
+              <span class="mr-2"><%= article.getRegdate() %></span> &bullet;
+              <span class="ml-2"><i class="fas fa-eye"></i> &nbsp;<%= article.getHitcount()%></span>
             </div>
             <div class="post-content-body">
 	            <div class="row mb-5">
@@ -58,10 +63,9 @@ Article article = articleDao.read(articleId);
 	            </div>
             <p><%= article.getContent()%></p>
             </div>
-
             
             <div class="pt-5 mb-5">
-              <button class="btn btn-primary btn-sm" onclick="location.href='/category.jsp?board=<%=article.getBoardId()%>&page=<%=request.getParameter("page")%>'">글목록</button>
+              <a class="btn btn-primary btn-sm" href="/category.jsp?board=<%=article.getBoardId()%>&page=<%=request.getParameter("page")%>">글목록</a>
               <% if(pageContext.getAttribute("id") == null) {
               %>
               <button class="btn btn-primary btn-sm" disabled>덧글</button>
@@ -70,14 +74,14 @@ Article article = articleDao.read(articleId);
               <%
               } else {
               %>
-              <button class="btn btn-primary btn-sm" onclick="location.href='/editArticle.jsp?type=2&articleId=<%=article.getArticleId()%>'">덧글</button>
+              <a class="btn btn-primary btn-sm" href="/editArticle.jsp?type=2&articleId=<%=article.getArticleId()%>">덧글</a>
               <button class="btn btn-primary btn-sm" onclick="location.href='/editArticle.jsp?type=3&articleId=<%=article.getArticleId()%>'">수정</button>
               <button class="btn btn-danger btn-sm" onclick="location.href='/editArticle.jsp?type=4&articleId=<%=article.getArticleId()%>'">삭제</button>
+              <input type="text" id="passwd" name="passwd">
               <%
               }
               %>
             </div>
-
 			<%-- 코멘트 시작 --%>
             <%-- 코멘트 끝 --%>
             

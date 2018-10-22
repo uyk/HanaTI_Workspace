@@ -27,6 +27,8 @@ public class JdbcArticleDao implements ArticleDao {
 	public void create(Article article) throws Exception {
 		Connection con =  null;
 		PreparedStatement pstmt = null;
+		String groupNo = null;
+		groupNo = (article.getGroupNo() == 0) ? "article_id_seq.currval" : "?";
 		String sql = 
 				"INSERT INTO article \r\n" + 
 				"            (article_id, \r\n" + 
@@ -45,10 +47,10 @@ public class JdbcArticleDao implements ArticleDao {
 				"            ?, \r\n" + 
 				"            ?, \r\n" + 
 				"            ?, \r\n" + 
-				"            ?, \r\n" + 
-				"            ?, \r\n" + 
-				"            0, \r\n" + 
-				"            0";
+				"            ?, \r\n" +
+				"	 		 "+ groupNo + ", \r\n" + 
+				"	 		 ?, \r\n" + 
+				"	 		 ?)";
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -60,17 +62,22 @@ public class JdbcArticleDao implements ArticleDao {
 			pstmt.setString(6, article.getPasswd());
 			// 신규글
 			if(article.getGroupNo() == 0) {
-				pstmt.setString(7, "article_id_seq.currval");
+				System.out.println("JDBC Article Dao // create // groutNo == 0");
+				pstmt.setInt(7, 0);
 				pstmt.setInt(8, 0);
-				pstmt.setInt(9, 0);
+				pstmt.executeUpdate();
 			}
 			// 덧글
 			else {
+				System.out.println("JDBC Article Dao // create // groutNo =! 0");
+				sql += 	"	?, \r\n" + 
+						"	?, \r\n" + 
+						"	?)";
 				pstmt.setInt(7, article.getGroupNo());
 				pstmt.setInt(8, article.getLevelNo());
 				pstmt.setInt(9, article.getOrderNo());
+				pstmt.executeUpdate();
 			}
-			pstmt.executeUpdate();
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
@@ -124,7 +131,31 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public void update(Article article) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		System.out.println("update start");
+		System.out.println(article);
+		
+		String sql = 
+				"UPDATE article \r\n" + 
+				"SET    subject = ?, \r\n" + 
+				"       passwd = ?, \r\n" + 
+				"       content = ? \r\n" + 
+				"WHERE  article_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getSubject());
+			pstmt.setString(2, article.getPasswd());
+			pstmt.setString(3, article.getContent());
+			pstmt.setInt(4, article.getArticleId());
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		System.out.println("update end");
 
 	}
 
@@ -132,7 +163,6 @@ public class JdbcArticleDao implements ArticleDao {
 	public void delete(String articleId) throws Exception {
 		Connection con =  null;
 		PreparedStatement pstmt = null;
-		ResultSet rs = null;
 		
 		String sql = 
 				"DELETE FROM article \r\n" + 
@@ -141,10 +171,8 @@ public class JdbcArticleDao implements ArticleDao {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, articleId);
-			rs = pstmt.executeQuery();
 		}finally {
 			try {
-				if(rs != null)    rs.close();
 				if(pstmt != null) pstmt.close();
 				if(con != null)   con.close();
 			}catch (Exception e) {}
@@ -348,6 +376,33 @@ public class JdbcArticleDao implements ArticleDao {
 		return 0;
 	}
 	
+	@Override
+	public int getLastOrder(int groupNo) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+	@Override
+	public void increaseHit(int articleId) throws Exception {		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql =
+				"UPDATE article \r\n" + 
+				"SET    HITCOUNT = HITCOUNT + 1 \r\n" + 
+				"WHERE  article_id = ?";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, articleId);
+			pstmt.executeQuery();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+	}
 	
 	private Article createArticle(ResultSet rs) throws SQLException{
 		Article article = new Article();

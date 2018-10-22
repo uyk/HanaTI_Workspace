@@ -21,17 +21,10 @@ case 2:
 	break;
 //글 수정
 case 3:
+    System.out.println("editArticleAction case 3 start");
 	articleDao.update(article);
+    System.out.println("editArticleAction case 3 end");
 	break;
 }
+response.sendRedirect("/category.jsp?board="+article.getBoardId());
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="utf-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>

@@ -2,6 +2,8 @@
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@ page contentType="text/html; charset=utf-8" %>
+<%-- request에서 articleID를 받아서 article객체를 읽어온 후 
+수정되거나 생성된 정보와 객체 각 프로퍼티 정보를 hidden으로 editArticleAction으로 보냄 --%>
 <%
 request.setCharacterEncoding("utf-8");
 //쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
@@ -20,11 +22,11 @@ String articleId = request.getParameter("articleId");
 int type = Integer.parseInt(request.getParameter("type"));
 String description = null;
 Article article = null;
-if(articleId != null) {
+if(type == 3 || type == 4) {
 	article = articleDao.read(articleId);
 }
 else {
-	// 신규글
+	// 신규글 또는 덧글
 	article = new Article();
 	article.setBoardId(Integer.parseInt(request.getParameter("boardId")));
 	article.setWriter((String)pageContext.getAttribute("id"));
@@ -42,10 +44,15 @@ case 1:
 // 덧글
 case 2:
 	description = "덧글 작성";
+    article.setLevelNo(article.getGroupNo() + 1);
+    // 덧글을 달려고 하는 글 그룹의 마지막 orderNo에 + 1 한 숫자를 orderNo로 한다.
+    //article.setOrderNo(articleDao.getLastOrder(article.getGroupNo()) + 1);
 	break;
 // 글 수정
 case 3:
 	description = "게시글 수정";
+    System.out.println("editArticle // edit // " + article);
+    //articleDao.update(article);
 	break;
 // 글 삭제
 case 4:
@@ -109,7 +116,9 @@ case 4:
                 </div>
               </div>
               <input type="hidden" id="type" name="type" value="<%=type%>">
+              <input type="hidden" id="articleId" name="articleId" value="<%=article.getArticleId()%>">
               <input type="hidden" id="writer" name="writer" value="<%=article.getWriter()%>">
+              <input type="hidden" id="regDate" name="regDate" value="<%=article.getRegdate()%>">
               <input type="hidden" id="ip" name="ip" value="<%=article.getIp()%>">
               <input type="hidden" id="boardId" name="boardId" value="<%=article.getBoardId()%>">
               <input type="hidden" id="groupNo" name="groupNo" value="<%=article.getGroupNo()%>">
