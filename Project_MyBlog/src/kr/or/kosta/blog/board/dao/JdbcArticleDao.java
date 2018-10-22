@@ -51,7 +51,6 @@ public class JdbcArticleDao implements ArticleDao {
 			groupNo = "?";
 			orderNo = maxOrderNo + "";
 			*/
-			System.out.println(1);
 			increaseOrderT(article.getArticleId(), article.getGroupNo());
 			groupNo = "?";
 			orderNo = "(SELECT order_no + 1 \r\n" + 
@@ -110,7 +109,6 @@ public class JdbcArticleDao implements ArticleDao {
 				if(con != null)   con.close();
 			}catch (Exception e) {}
 		}
-		System.out.println(4);
 
 	}
 
@@ -474,7 +472,6 @@ public class JdbcArticleDao implements ArticleDao {
 	}
 	
 	private void increaseOrderT(int parentId, int groupNo) throws SQLException{
-		System.out.println(2);
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql =
@@ -497,7 +494,6 @@ public class JdbcArticleDao implements ArticleDao {
 				if(con != null)   con.close();
 			}catch (Exception e) {}
 		}
-		System.out.println(3);
 	}
 	
 	private int maxOrderNo(int groupNo, int levelNo, int parentId) throws Exception{		
@@ -536,5 +532,52 @@ public class JdbcArticleDao implements ArticleDao {
 		}
 		return maxNo;
 	}
+
+	@Override
+	public List<Article> listPopular(int count) throws Exception {
+		List<Article> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				"SELECT article_id, \r\n" + 
+				"       board_id, \r\n" + 
+				"       writer, \r\n" + 
+				"       subject, \r\n" + 
+				"       content, \r\n" + 
+				"       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
+				"       hitcount, \r\n" + 
+				"       ip, \r\n" + 
+				"       passwd, \r\n" + 
+				"       attach_file, \r\n" + 
+				"       group_no, \r\n" + 
+				"       level_no, \r\n" + 
+				"       order_no \r\n" + 
+				"FROM   (SELECT * \r\n" + 
+				"        FROM   article \r\n" + 
+				"        ORDER  BY hitcount DESC) \r\n" + 
+				"WHERE  rownum <= ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1,count);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Article>();
+			while(rs.next()) {
+				Article article = createArticle(rs);
+				list.add(article);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
+	}
+	
 
 }

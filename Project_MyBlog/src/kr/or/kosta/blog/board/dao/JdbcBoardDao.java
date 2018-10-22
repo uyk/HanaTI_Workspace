@@ -116,4 +116,33 @@ public class JdbcBoardDao implements BoardDao {
 		return board;
 	}
 
+	@Override
+	public int countArticles(int boardId) throws Exception {
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		String sql = 
+				"SELECT Count(article_id) count\r\n" + 
+				"FROM   article \r\n" + 
+				"WHERE  board_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, boardId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("count");
+			}
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return count;
+	}
+
 }

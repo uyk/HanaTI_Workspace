@@ -20,6 +20,9 @@ public interface ArticleDao {
 	
 	public void delete(String articleId) throws Exception;
 	
+	/** 조회수가 높은 게시글의 목록을 반환하는 메소드 */
+	public List<Article> listPopular(int count) throws Exception;
+	
 	/** 페이징 처리없이 모든 카테고리의 게시글 목록을 가져오는 메소드*/
 	public List<Article> listAll() throws Exception;
 	

@@ -54,9 +54,15 @@ public class JdbcArticleDaoTest {
 				System.out.println(gn);		
 			}
 			*/			
-			
+			/*
 			System.out.println("**** id로 제거 테스트 ****");
 			dao.delete("49");
+			*/
+			System.out.println("**** 인기글 테스트 ****");
+			List<Article> list =  dao.listPopular(3);
+			for (Article article2 : list) {
+				System.out.println(article2);		
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
