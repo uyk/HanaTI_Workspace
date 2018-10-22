@@ -53,7 +53,7 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
         <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>&page=<%=index%>">
         
           <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
-          <span class="article_at_category" style="padding: 15px 15px 15px <%=40 + article.getLevelNo()*30%>px;">
+          <span class="article_at_category" style="padding: 15px 15px 15px <%=35 + article.getLevelNo()*40%>px;">
             <div class="row">
             <%
             if(article.getLevelNo() != 0) {

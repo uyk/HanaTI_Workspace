@@ -28,7 +28,37 @@ public class JdbcArticleDao implements ArticleDao {
 		Connection con =  null;
 		PreparedStatement pstmt = null;
 		String groupNo = null;
-		groupNo = (article.getGroupNo() == 0) ? "article_id_seq.currval" : "?";
+		String orderNo = null;
+		// 0레벨 글
+		if(article.getLevelNo() == 0) {
+			groupNo = "article_id_seq.currval";
+			orderNo = "?";
+		}
+		// 1레벨 글
+		if(article.getLevelNo() == 1) {
+			groupNo = "?";
+			orderNo = "(SELECT MAX(order_no) + 1 \r\n" + 
+					  " FROM   article \r\n" + 
+					  " WHERE  board_id = "+article.getBoardId()+" \r\n" + 
+					  " AND group_no = "+article.getGroupNo()+")";
+		}
+		// 2레벨 글 이상
+		else if(article.getLevelNo() >= 2) {
+			/*
+			int maxOrderNo = maxOrderNo(article.getGroupNo(), article.getLevelNo(), article.getArticleId());
+			System.out.println("maxNo 3 : " + maxOrderNo);
+			increaseOrder(article.getGroupNo(), maxOrderNo);
+			groupNo = "?";
+			orderNo = maxOrderNo + "";
+			*/
+			System.out.println(1);
+			increaseOrderT(article.getArticleId(), article.getGroupNo());
+			groupNo = "?";
+			orderNo = "(SELECT order_no + 1 \r\n" + 
+					"   FROM   article \r\n" + 
+					"   WHERE  article_id = "+article.getArticleId()+")";
+		}
+		
 		String sql = 
 				"INSERT INTO article \r\n" + 
 				"            (article_id, \r\n" + 
@@ -50,7 +80,7 @@ public class JdbcArticleDao implements ArticleDao {
 				"            ?, \r\n" +
 				"	 		 "+ groupNo + ", \r\n" + 
 				"	 		 ?, \r\n" + 
-				"	 		 ?)";
+				"	 		 "+ orderNo +")";
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -61,21 +91,17 @@ public class JdbcArticleDao implements ArticleDao {
 			pstmt.setString(5, article.getIp());
 			pstmt.setString(6, article.getPasswd());
 			// 신규글
-			if(article.getGroupNo() == 0) {
+			if(article.getLevelNo() == 0) {
 				System.out.println("JDBC Article Dao // create // groutNo == 0");
-				pstmt.setInt(7, 0);
-				pstmt.setInt(8, 0);
+				pstmt.setInt(7, 0); 			// level No
+				pstmt.setInt(8, 0);				// order No
 				pstmt.executeUpdate();
 			}
 			// 덧글
 			else {
-				System.out.println("JDBC Article Dao // create // groutNo =! 0");
-				sql += 	"	?, \r\n" + 
-						"	?, \r\n" + 
-						"	?)";
 				pstmt.setInt(7, article.getGroupNo());
 				pstmt.setInt(8, article.getLevelNo());
-				pstmt.setInt(9, article.getOrderNo());
+				System.out.println("create : " + article);
 				pstmt.executeUpdate();
 			}
 		}finally {
@@ -84,6 +110,7 @@ public class JdbcArticleDao implements ArticleDao {
 				if(con != null)   con.close();
 			}catch (Exception e) {}
 		}
+		System.out.println(4);
 
 	}
 
@@ -420,6 +447,94 @@ public class JdbcArticleDao implements ArticleDao {
 		article.setLevelNo(rs.getInt("level_no"));
 		article.setOrderNo(rs.getInt("order_no"));
 		return article;
+	}
+	
+	private void increaseOrder(int groupId, int maxOrderNo) throws SQLException{
+		System.out.println("increaseOrder : " + groupId + ": " + maxOrderNo);
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql =
+				"UPDATE article \r\n" + 
+				"SET    order_no = order_no + 1 \r\n" + 
+				"WHERE  group_no = ? \r\n" + 
+				"       and order_no >= ?";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, groupId);
+			pstmt.setInt(2, maxOrderNo);
+			pstmt.executeQuery();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+	}
+	
+	private void increaseOrderT(int parentId, int groupNo) throws SQLException{
+		System.out.println(2);
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		String sql =
+				"UPDATE article \r\n" + 
+				"SET    order_no = order_no + 1 \r\n" + 
+				"WHERE  group_no = ? \r\n" + 
+				"       AND order_no > (SELECT order_no \r\n" + 
+				"                       FROM   article \r\n" + 
+				"                       WHERE  article_id = ?)";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, groupNo);
+			pstmt.setInt(2, parentId);
+			pstmt.executeQuery();
+		} finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		System.out.println(3);
+	}
+	
+	private int maxOrderNo(int groupNo, int levelNo, int parentId) throws Exception{		
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int maxNo = 0;
+		int parentOrderNo = read(parentId+"").getOrderNo();
+		
+		String sql = 
+				"SELECT DECODE(MAX(order_no) + 1 , null, 0, MAX(order_no) + 1) maxNo\r\n" + 
+				"FROM   article\r\n" + 
+				"WHERE  group_no = ?\r\n" + 
+				"       and level_no = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, groupNo);
+			pstmt.setInt(2, levelNo);
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				maxNo = rs.getInt("maxNo");
+			}
+			System.out.println("maxNo 1 : " + maxNo);
+			if(maxNo == 0) {
+				maxNo =  parentOrderNo + 1;
+				System.out.println("maxNo 2 : " + maxNo);
+			}
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return maxNo;
 	}
 
 }

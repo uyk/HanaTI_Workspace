@@ -16,44 +16,49 @@ if(cookies != null) {
 		 }
 	}
 }
+
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
-String articleId = request.getParameter("articleId");
+String recievedId = request.getParameter("articleId");
 int type = Integer.parseInt(request.getParameter("type"));
 String description = null;
 Article article = null;
-if(type == 3 || type == 4) {
-	article = articleDao.read(articleId);
-}
-else {
-	// 신규글 또는 덧글
+
+if(type == 1 || type == 2) {
 	article = new Article();
-	article.setBoardId(Integer.parseInt(request.getParameter("boardId")));
-	article.setWriter((String)pageContext.getAttribute("id"));
-	article.setSubject("");
 	article.setContent("");
+	article.setWriter((String)pageContext.getAttribute("id"));
 	article.setIp(request.getRemoteAddr());
 }
+
 switch(type) {
 // 신규글
 case 1:
+	article.setSubject("");
+	article.setBoardId(Integer.parseInt(request.getParameter("boardId")));
 	description = "신규 글 작성";
 	break;
 // 덧글
 case 2:
+    Article parentArticle = articleDao.read(recievedId);
+    article.setArticleId(parentArticle.getArticleId());         // increaseOrder를 위해 부모 게시글의 ID를 우선 ID로 가진다.
+	article.setSubject("re: " + parentArticle.getSubject());
+    article.setBoardId(parentArticle.getBoardId());
+    article.setGroupNo(parentArticle.getGroupNo());
+    article.setLevelNo(parentArticle.getLevelNo() + 1);
 	description = "덧글 작성";
-    article.setLevelNo(article.getGroupNo() + 1);
-    // 덧글을 달려고 하는 글 그룹의 마지막 orderNo에 + 1 한 숫자를 orderNo로 한다.
-    article.setOrderNo(articleDao.getLastOrder(article.getGroupNo()) + 1);
 	break;
 // 글 수정
 case 3:
+	article = articleDao.read(recievedId);
 	description = "게시글 수정";
     System.out.println("editArticle // edit // " + article);
 	break;
 // 글 삭제
 case 4:
-	articleDao.delete(articleId);
+	article = articleDao.read(recievedId);
+    System.out.println(recievedId);
+	articleDao.delete(recievedId);
 	response.sendRedirect("/category.jsp?board=" + article.getBoardId());
 	break;
 }
