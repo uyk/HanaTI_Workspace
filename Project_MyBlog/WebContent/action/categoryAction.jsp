@@ -24,7 +24,7 @@ if(searchType == null || searchType.equals("")){
 }
 // 페이징 연산
 // 페이지당 보여지는 목록수 설정
-int listSize = 5;
+int listSize = 10;
 //페이징 처리에 필요한 검색 개수 DB조회
 int rowCount = dao.countBySearch(searchType, searchValue, boardId);
 //페이지 개수
@@ -53,15 +53,29 @@ List<Article> list = dao.listByPage(boardId,indexI,listSize);
         <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>&page=<%=index%>">
         
           <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
-          <span class="text">
-            <div class="post-meta">
-              <span class="category"><%=article.getArticleId() %></span>
-              <span class="mr-2"><%=article.getWriter() %></span> &bullet;
-              <span class="mr-2"><%= article.getIp() %></span> &bullet;
-              <span class="mr-2"><%= article.getRegdate() %></span> &bullet;
-              <span class="ml-2"><i class="fas fa-eye"></i> &nbsp;<%= article.getHitcount()%></span>
+          <span class="article_at_category" style="padding: 15px 15px 15px <%=40 + article.getLevelNo()*30%>px;">
+            <div class="row">
+            <%
+            if(article.getLevelNo() != 0) {
+            %>
+              <div>
+                <label style="visibility: hidden; display: block;">.</label>
+                <i class="fas fa-angle-double-right"></i>
+              </div>
+            <% 
+            }
+            %>
+              <div>
+                <div class="post-meta info_at_category">
+                  <span class="category"><%=article.getArticleId() %></span>
+                  <span class="mr-2"><%=article.getWriter() %></span> &bullet;
+                  <span class="mr-2"><%= article.getIp() %></span> &bullet;
+                  <span class="mr-2"><%= article.getRegdate() %></span> &bullet;
+                  <span class="ml-2"><i class="fas fa-eye"></i> &nbsp;<%= article.getHitcount()%></span>
+                </div>
+                <h5><%=article.getSubject() %></h5>
+              </div>
             </div>
-            <h2><%=article.getSubject() %></h2>
           </span>
         </a>
       </div>

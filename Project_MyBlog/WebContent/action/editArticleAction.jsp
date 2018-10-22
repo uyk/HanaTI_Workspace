@@ -21,9 +21,7 @@ case 2:
 	break;
 //글 수정
 case 3:
-    System.out.println("editArticleAction case 3 start");
 	articleDao.update(article);
-    System.out.println("editArticleAction case 3 end");
 	break;
 }
 response.sendRedirect("/category.jsp?board="+article.getBoardId());

@@ -1855,3 +1855,33 @@ blockquote p {
     color: #fff !important;
     margin-right: 10px
 }
+.info_at_category {
+	font-size: 15px;
+}
+.article_at_category {
+	/**padding: 15px;*/
+	width: calc(100 - 200px);
+	border: 1px solid #e6e6e6;
+	display: table-cell;
+	vertical-align: middle;
+}
+
+@media (max-width: 767.98px) {
+  .article_at_category {
+    display: block;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .article_at_category {
+    width: 100%;
+    /*height: 200px;*/
+    border: 1px solid #e6e6e6;
+    border-top: none;
+  }
+}
+
+.fa-angle-double-right {
+	padding-right: 10px;
+	font-size: 1em;
+}

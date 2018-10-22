@@ -133,8 +133,6 @@ public class JdbcArticleDao implements ArticleDao {
 	public void update(Article article) throws Exception {
 		Connection con =  null;
 		PreparedStatement pstmt = null;
-		System.out.println("update start");
-		System.out.println(article);
 		
 		String sql = 
 				"UPDATE article \r\n" + 
@@ -149,13 +147,13 @@ public class JdbcArticleDao implements ArticleDao {
 			pstmt.setString(2, article.getPasswd());
 			pstmt.setString(3, article.getContent());
 			pstmt.setInt(4, article.getArticleId());
+			pstmt.executeQuery();
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
 				if(con != null)   con.close();
 			}catch (Exception e) {}
 		}
-		System.out.println("update end");
 
 	}
 
@@ -171,6 +169,7 @@ public class JdbcArticleDao implements ArticleDao {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, articleId);
+			pstmt.executeQuery();
 		}finally {
 			try {
 				if(pstmt != null) pstmt.close();
@@ -283,7 +282,8 @@ public class JdbcArticleDao implements ArticleDao {
 				"                       order_no \r\n" + 
 				"                FROM   article \r\n" + 
 				"                WHERE  board_id = ? \r\n" + 
-				"                ORDER  BY article_id DESC)) \r\n" + 
+				"                ORDER  BY group_no DESC, \r\n" + 
+				"                          order_no ASC)) \r\n" + 
 				"WHERE  request_page = ?";
 		try {
 			con = dataSource.getConnection();

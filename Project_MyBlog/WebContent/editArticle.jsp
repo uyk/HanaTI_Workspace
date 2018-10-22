@@ -32,9 +32,7 @@ else {
 	article.setWriter((String)pageContext.getAttribute("id"));
 	article.setSubject("");
 	article.setContent("");
-	String ip = request.getRemoteAddr() ;
-	System.out.println("editArticle " + ip);
-	article.setIp(ip);
+	article.setIp(request.getRemoteAddr());
 }
 switch(type) {
 // 신규글
@@ -46,13 +44,12 @@ case 2:
 	description = "덧글 작성";
     article.setLevelNo(article.getGroupNo() + 1);
     // 덧글을 달려고 하는 글 그룹의 마지막 orderNo에 + 1 한 숫자를 orderNo로 한다.
-    //article.setOrderNo(articleDao.getLastOrder(article.getGroupNo()) + 1);
+    article.setOrderNo(articleDao.getLastOrder(article.getGroupNo()) + 1);
 	break;
 // 글 수정
 case 3:
 	description = "게시글 수정";
     System.out.println("editArticle // edit // " + article);
-    //articleDao.update(article);
 	break;
 // 글 삭제
 case 4:

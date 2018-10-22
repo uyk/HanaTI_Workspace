@@ -24,7 +24,7 @@ public class JdbcDaoFactory extends DaoFactory {
 		Method method;
 		try {
 			method = cls.getMethod("setDataSource", DataSource.class);
-			method.invoke(dao, createDataSource());
+			method.invoke(dao, getDataSource());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -33,8 +33,10 @@ public abstract class DaoFactory {
 	private static final int MAX_TOTAL = 10;
 	private static final int MAX_IDLE = 5;
 	
-	public DataSource createDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
+	private BasicDataSource  dataSource;
+	
+	public DaoFactory() {
+		dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(DRIVER);
 		dataSource.setUrl(URL);
 		dataSource.setUsername(USERNAME);
@@ -42,9 +44,16 @@ public abstract class DaoFactory {
 		dataSource.setInitialSize(INIT_SIZE);
 		dataSource.setMaxTotal(MAX_TOTAL);
 		dataSource.setMaxIdle(MAX_IDLE);
-		return dataSource;
 	}
 	
+	public BasicDataSource getDataSource() {
+		return dataSource;
+	}
+
+	public void setDataSource(BasicDataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+
 	public abstract UserDao getUserDao();
 	public abstract GuestNoteDao getGuestNoteDao();
 	public abstract BoardDao getBoardDao();
