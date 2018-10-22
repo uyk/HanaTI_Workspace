@@ -16,27 +16,27 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="patt" key="selection"/>
+		<item value="countBy" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="countby"/>
+			<item value="count"/>
+			<item value="id"/>
+			<item value="page"/>
+			<item value="user"/>
+			<item value="action"/>
+			<item value="bio"/>
+			<item value="mt"/>
+			<item value="MT"/>
+			<item value="SEC"/>
+			<item value="load"/>
 			<item value="patt"/>
 			<item value="check"/>
 			<item value="label"/>
 			<item value="src"/>
-			<item value="href"/>
-			<item value="appli"/>
-			<item value="js"/>
-			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>
-			<item value="&apos;Nanum Brush Script&apos;, cursive;"/>
-			<item value="font-family: &apos;Nanum Brush Script&apos;, cursive;"/>
-			<item value="&apos;Nanum Myeongjo&apos;, serif;"/>
-			<item value="&quot;Josefin Sans&quot;, arial, sans-serif;"/>
-			<item value="&quot;Josefin Sans&quot;"/>
-			<item value="josefin"/>
-			<item value="pt"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>

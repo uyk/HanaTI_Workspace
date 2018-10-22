@@ -25,14 +25,101 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public void create(Article article) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		String sql = 
+				"INSERT INTO article \r\n" + 
+				"            (article_id, \r\n" + 
+				"             board_id, \r\n" + 
+				"             writer, \r\n" + 
+				"             subject, \r\n" + 
+				"             content, \r\n" + 
+				"             ip, \r\n" + 
+				"             passwd, \r\n" + 
+				"             group_no, \r\n" + 
+				"             level_no, \r\n" + 
+				"             order_no) \r\n" + 
+				"VALUES     (article_id_seq.nextval, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            ?, \r\n" + 
+				"            0, \r\n" + 
+				"            0";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, article.getBoardId());
+			pstmt.setString(2, article.getWriter());
+			pstmt.setString(3, article.getSubject());
+			pstmt.setString(4, article.getContent());
+			pstmt.setString(5, article.getIp());
+			pstmt.setString(6, article.getPasswd());
+			// 신규글
+			if(article.getGroupNo() == 0) {
+				pstmt.setString(7, "article_id_seq.currval");
+				pstmt.setInt(8, 0);
+				pstmt.setInt(9, 0);
+			}
+			// 덧글
+			else {
+				pstmt.setInt(7, article.getGroupNo());
+				pstmt.setInt(8, article.getLevelNo());
+				pstmt.setInt(9, article.getOrderNo());
+			}
+			pstmt.executeUpdate();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
 
 	}
 
 	@Override
 	public Article read(String articleId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		Article article = null;
+		
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				"SELECT article_id, \r\n" + 
+				"       board_id, \r\n" + 
+				"       writer, \r\n" + 
+				"       subject, \r\n" + 
+				"       content, \r\n" + 
+				"       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
+				"       hitcount, \r\n" + 
+				"       ip, \r\n" + 
+				"       passwd, \r\n" + 
+				"       attach_file, \r\n" + 
+				"       group_no, \r\n" + 
+				"       level_no, \r\n" + 
+				"       order_no \r\n" + 
+				"FROM   article \r\n" + 
+				"WHERE  article_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, articleId);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				article = createArticle(rs);
+			}
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return article;
 	}
 
 	@Override
@@ -43,7 +130,25 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public void delete(String articleId) throws Exception {
-		// TODO Auto-generated method stub
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				"DELETE FROM article \r\n" + 
+				"WHERE  article_id = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, articleId);
+			rs = pstmt.executeQuery();
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
 
 	}
 
@@ -62,7 +167,7 @@ public class JdbcArticleDao implements ArticleDao {
 				"       writer, \r\n" + 
 				"       subject, \r\n" + 
 				"       content, \r\n" + 
-				"       regdate, \r\n" + 
+				"       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
 				"       hitcount, \r\n" + 
 				"       ip, \r\n" + 
 				"       passwd, \r\n" + 
@@ -92,13 +197,13 @@ public class JdbcArticleDao implements ArticleDao {
 		return list;
 	}
 
-	/** 선택페이지에 따른 사용자 목록 반환 */	
+	/** 선택페이지에 따른 게시글 목록 반환 */	
 	@Override
 	public List<Article> listByPage(int boardId, int page) throws Exception {
 		return listByPage(page, 10, boardId);
 	}
 
-	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */
+	/** 선택페이지, 조회 목록개수에 따른 게시글 목록 반환 */
 	@Override
 	public List<Article> listByPage(int boardId, int page, int listSize) throws Exception {
 		List<Article> list = null;
@@ -187,7 +292,7 @@ public class JdbcArticleDao implements ArticleDao {
 		return null;
 	}
 
-	/** 검색유형, 검색값에 따른 사용자 개수 반환 - 페이징 처리 시 필요 */	
+	/** 검색유형, 검색값에 따른 게시글 개수 반환 - 페이징 처리 시 필요 */	
 	@Override
 	public int countBySearch(String searchType, String searchValue, int boardId) throws Exception {
 		int count = 0;

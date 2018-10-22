@@ -55,6 +55,9 @@ public class JdbcArticleDaoTest {
 			}
 			*/			
 			
+			System.out.println("**** id로 제거 테스트 ****");
+			dao.delete("49");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

@@ -1,14 +1,14 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
-// 쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
+//쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
 pageContext.setAttribute("id", null);
 Cookie[] cookies = request.getCookies();
 if(cookies != null) {
-  for (Cookie cookie : cookies) {
-    if(cookie.getName().equals("id")) {
-      pageContext.setAttribute("id", cookie.getValue()); // 현재 페이지에 정보 저장
-    }
-  }
+	for (Cookie cookie : cookies) {
+		 if(cookie.getName().equals("id")) {
+		   pageContext.setAttribute("id", cookie.getValue()); // 현재 페이지에 정보 저장
+		 }
+	}
 }
 %>
 <!DOCTYPE html>

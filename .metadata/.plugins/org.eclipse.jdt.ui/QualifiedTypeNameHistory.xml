@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.swing.BoxLayout"/>
-<fullyQualifiedTypeName name="java.awt.List"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.Protocol"/>
 <fullyQualifiedTypeName name="java.awt.TextArea"/>
 <fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
 <fullyQualifiedTypeName name="java.awt.TextField"/>
@@ -54,10 +51,13 @@
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.io.FileOutputStream"/>
 <fullyQualifiedTypeName name="java.io.OutputStream"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="javax.sql.DataSource"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.dao.GuestNoteDao"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.dao.JdbcGuestNoteDao"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.dao.GuestNodeDaoTest"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.domain.GuestNote"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.board.domain.Board"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.board.domain.Article"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.common.Params"/>
+<fullyQualifiedTypeName name="java.util.List"/>
 </qualifiedTypeNameHistroy>
