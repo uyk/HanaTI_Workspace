@@ -1,3 +1,4 @@
+<%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
 <%@page import="kr.or.kosta.blog.board.domain.Board"%>
@@ -21,30 +22,32 @@ if(cookies != null) {
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 BoardDao boardDao = factory.getBoardDao();
 ArticleDao articleDao = factory.getArticleDao();
+UserDao userDao = factory.getUserDao();
 int populars = 3;
 List<Board> boardList = boardDao.listAll();
 List<Article> popularAs = articleDao.listPopular(populars);
 %>
 <div class="col-md-12 col-lg-4 sidebar">
   <div class="sidebar-box search-form-wrap">
-    <form action="#" class="search-form">
-      <div class="form-group">
-        <span class="icon fa fa-search"></span>
-        <input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
-      </div>
-    </form>
   </div>
   <!-- END sidebar-box -->
+  <%
+  // 로그인중
+  if ( pageContext.getAttribute("id") != null) {
+  %>
   <div class="sidebar-box">
     <div class="bio text-center">
       <img src="/images/person_1.jpg" alt="Image Placeholder" class="img-fluid">
       <div class="bio-body">
         <h2><%= pageContext.getAttribute("id") %></h2>
-        <p>Hello <%= pageContext.getAttribute("id") %></p>
+        <p><%= userDao.read((String)pageContext.getAttribute("id")).getName() %> 님 환영합니다 <i class="far fa-smile-wink"></i></p>
         <p><a href="#" class="btn btn-primary btn-sm">Read my bio</a></p>
       </div>
     </div>
   </div>
+  <%
+  }
+  %>
   <!-- END sidebar-box -->  
   <div class="sidebar-box">
     <h3 class="heading">Popular Posts</h3>

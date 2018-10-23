@@ -46,9 +46,8 @@ public interface ArticleDao {
 	
 	public int countBySearch(Params params) throws Exception;
 	
-	/** 게시글 그룹의 마지막 orderNo를 반환 */
-	public int getLastOrder(int groupNo) throws Exception;
-	
 	public void increaseHit(int articleId) throws Exception;
+	
+	public boolean certify(int articleId, String writer, String passwd) throws Exception;
 
 }

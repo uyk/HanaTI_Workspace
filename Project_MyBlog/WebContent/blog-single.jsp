@@ -29,6 +29,42 @@ Article article = articleDao.read(articleId);
     <%--헤드 시작--%>
     <jsp:include page="/include/head.jsp"></jsp:include>
     <%--헤드 종료--%>
+    <script>
+		function isValid(e) {
+			var event = e || window.event;
+			var source = event.srcElement;
+			window.s = source;
+			
+			var myId = '<%=pageContext.getAttribute("id")%>'
+			var writer = '<%=article.getWriter()%>';
+			var myPasswd = document.getElementById("passwd").value;
+			var passwd = '<%=article.getPasswd()%>'
+			var type = 0;
+			
+			if(writer != myId) {
+				document.getElementById("alert").innerText = "본인이 작성한 글만 수정 및 삭제가 가능합니다.";
+				document.getElementById("alert").style.visibility = "visible";
+				return;
+			}
+			if(myPasswd == "") {
+				document.getElementById("alert").innerText = "패스워드를 입력해주세요.";
+				document.getElementById("alert").style.visibility = "visible";
+				return;
+			}
+			if(myPasswd != passwd) {
+				document.getElementById("alert").innerText = "패스워드가 일치하지 않습니다.";
+				document.getElementById("alert").style.visibility = "visible";
+				return;
+			}
+			if(source.id == "modify") {
+				type = 3;
+			}
+			else if (source.id == "delete") {
+				type = 4;
+			}
+			document.location.href= '/editArticle.jsp?type='+type+'&articleId=<%=article.getArticleId()%>';
+		}
+    </script>
   </head>
   <body>
     <%--탑 메뉴 시작--%>
@@ -75,14 +111,20 @@ Article article = articleDao.read(articleId);
               } else {
               %>
               <a class="btn btn-primary btn-sm" href="/editArticle.jsp?type=2&articleId=<%=article.getArticleId()%>">덧글</a>
-              <button class="btn btn-primary btn-sm" onclick="location.href='/editArticle.jsp?type=3&articleId=<%=article.getArticleId()%>'">수정</button>
-              <button class="btn btn-danger btn-sm" onclick="location.href='/editArticle.jsp?type=4&articleId=<%=article.getArticleId()%>'">삭제</button>
-              <input type="text" id="passwd" name="passwd">
+              <button class="btn btn-primary btn-sm" id="modify" name="modify" onclick="isValid()">수정</button>
+              <button class="btn btn-danger btn-sm" id="delete" name="delete"onclick="isValid()">삭제</button>
+              <input type="password" id="passwd" name="passwd" placeholder=" Password">
               <%
               }
               %>
+	            <%-- 알림 표시 --%>
+					    <div class="row">
+		            <div class="alert alert-danger col-md-12 single-alert" id="alert" role="alert" style="visibility: hidden;">
+	
+	              </div>
+              </div>
             </div>
-			<%-- 코멘트 시작 --%>
+						<%-- 코멘트 시작 --%>
             <%-- 코멘트 끝 --%>
             
           </div>

@@ -11,8 +11,10 @@ import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.domain.Article;
 import kr.or.kosta.blog.common.Params;
+import kr.or.kosta.blog.user.domain.User;
 
 public class JdbcArticleDao implements ArticleDao {
+	public static final int DEFAULT_LIST_SIZE = 10;
 	private DataSource dataSource;
 	
 	public DataSource getDataSource() {
@@ -252,7 +254,7 @@ public class JdbcArticleDao implements ArticleDao {
 	/** 선택페이지에 따른 게시글 목록 반환 */	
 	@Override
 	public List<Article> listByPage(int boardId, int page) throws Exception {
-		return listByPage(page, 10, boardId);
+		return listByPage(page, DEFAULT_LIST_SIZE, boardId);
 	}
 
 	/** 선택페이지, 조회 목록개수에 따른 게시글 목록 반환 */
@@ -335,8 +337,105 @@ public class JdbcArticleDao implements ArticleDao {
 	@Override
 	public List<Article> listByPage(int boardId, int page, int listSize, String searchType, String searchValue)
 			throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Article> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql =
+				"SELECT article_id, \r\n" + 
+				"       board_id, \r\n" + 
+				"       writer, \r\n" + 
+				"       subject, \r\n" + 
+				"       content, \r\n" + 
+				"       regdate, \r\n" + 
+				"       hitcount, \r\n" + 
+				"       ip, \r\n" + 
+				"       passwd, \r\n" + 
+				"       attach_file, \r\n" + 
+				"       group_no, \r\n" + 
+				"       level_no, \r\n" + 
+				"       order_no \r\n" + 
+				"FROM   (SELECT Ceil(rownum / ?) request_page, \r\n" + 
+				"               article_id, \r\n" + 
+				"               board_id, \r\n" + 
+				"               writer, \r\n" + 
+				"               subject, \r\n" + 
+				"               content, \r\n" + 
+				"               regdate, \r\n" + 
+				"               hitcount, \r\n" + 
+				"               ip, \r\n" + 
+				"               passwd, \r\n" + 
+				"               attach_file, \r\n" + 
+				"               group_no, \r\n" + 
+				"               level_no, \r\n" + 
+				"               order_no \r\n" + 
+				"        FROM   (SELECT article_id, \r\n" + 
+				"                       board_id, \r\n" + 
+				"                       writer, \r\n" + 
+				"                       subject, \r\n" + 
+				"                       content, \r\n" + 
+				"                       To_char(regdate, 'YYYY-MM-DD HH24:MI') regdate, \r\n" + 
+				"                       hitcount, \r\n" + 
+				"                       ip, \r\n" + 
+				"                       passwd, \r\n" + 
+				"                       attach_file, \r\n" + 
+				"                       group_no, \r\n" + 
+				"                       level_no, \r\n" + 
+				"                       order_no \r\n" + 
+				"                FROM   article \r\n" + 
+				"                WHERE  board_id = ? \r\n";
+
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		if(searchType != null){
+			switch (searchType) {
+				case "subject":
+					sql += " and subject LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+				case "writer":  
+					sql += " and writer LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+				case "content" :
+					sql += " and content LIKE ? \r\n";
+					break;
+			}
+		}
+		sql += 	"                ORDER  BY group_no DESC, \r\n" + 
+				"                          order_no ASC)) \r\n" + 
+				"WHERE  request_page = ?";
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, listSize);
+			pstmt.setInt(2, boardId);
+			
+			// 전체검색이 아닌경우 경우
+			if(searchType != null){
+				pstmt.setString(3, searchValue);
+				pstmt.setInt(4, page);
+			}else{// 전체검색인 경우
+				pstmt.setInt(3, page);
+			}
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<Article>();
+			while(rs.next()) {
+				Article article = createArticle(rs);
+				list.add(article);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
 	}
 
 	@Override
@@ -369,6 +468,9 @@ public class JdbcArticleDao implements ArticleDao {
 					sql += " and writer LIKE ? \r\n";
 					searchValue = "%" + searchValue + "%";
 					break;
+				case "content" :
+					sql += " and content LIKE ? \r\n";
+					break;
 			}
 		}
 		
@@ -397,12 +499,6 @@ public class JdbcArticleDao implements ArticleDao {
 
 	@Override
 	public int countBySearch(Params params) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-	
-	@Override
-	public int getLastOrder(int groupNo) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -623,6 +719,41 @@ public class JdbcArticleDao implements ArticleDao {
 			}catch (Exception e) {}
 		}
 		return list;
+	}
+
+	@Override
+	public boolean certify(int articleId, String writer, String passwd) throws Exception {
+		boolean isVaild = false;
+		Connection con =  null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = 
+				 "SELECT Count(article_id) count\n" + 
+				 "FROM   article \n" + 
+				 "WHERE  article_id = ? \n" + 
+				 "       AND writer = ? \n" + 
+				 "       AND passwd = ? ";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, articleId);
+			pstmt.setString(2, writer);
+			pstmt.setString(3, passwd);
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				if(rs.getInt("count") == 1)
+					isVaild = true;
+			}
+			
+		}finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return isVaild;
 	}
 	
 

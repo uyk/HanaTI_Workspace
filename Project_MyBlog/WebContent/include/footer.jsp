@@ -18,7 +18,7 @@ List<Article> relentAs = articleDao.listRecent(recents);
         <p>
           <img src="/images/uyk.jpg" alt="Image placeholder" class="img-fluid">
         </p>
-        <p> Hello freinds. This is UYK's Blog for making monument about travles <i class="fas fa-plane"></i>. Welcome to my Blog!</p>
+        <p> Hello friends. This is UYK's Blog for making monument about travels <i class="fas fa-plane"></i> Welcome to my Blog!</p>
       </div>
       <div class="col-md-6 ml-auto">
         <div class="row">
@@ -67,9 +67,9 @@ List<Article> relentAs = articleDao.listRecent(recents);
     </div>
     <div class="row">
       <div class="col-md-12">
-        This Blog is designed by UYK<br>
+        This Blog is designed by UYK <i class="far fa-kiss-wink-heart"></i> <br>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+        Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with by <a href="https://colorlib.com" target="_blank">Colorlib</a>
         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
       </div>
     </div>

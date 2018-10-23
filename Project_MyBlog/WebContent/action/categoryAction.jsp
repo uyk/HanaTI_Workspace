@@ -1,3 +1,4 @@
+<%@page import="java.util.Enumeration"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
@@ -6,6 +7,11 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 request.setCharacterEncoding("utf-8");
+Enumeration e = request.getParameterNames();
+while(e.hasMoreElements()) {
+	String param = (String)(e.nextElement());
+	System.out.println( "category Action // " + param + " : " + request.getParameter(param));
+}
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao dao = factory.getArticleDao();
 int boardId = Integer.parseInt(request.getParameter("board"));
@@ -18,15 +24,19 @@ int indexI = Integer.parseInt(index);
 //검색 요청일 경우 파라메터 수신. 없을경우 null
 String searchType = request.getParameter("searchType");
 String searchValue = request.getParameter("searchValue");
-if(searchType == null || searchType.equals("")){
-  searchType = null;
-  searchValue = null;
-}
+System.out.println( "category Action 2 // " + searchType + " , " + searchValue);
 // 페이징 연산
 // 페이지당 보여지는 목록수 설정
 int listSize = 10;
 //페이징 처리에 필요한 검색 개수 DB조회
-int rowCount = dao.countBySearch(searchType, searchValue, boardId);
+int rowCount = 0;
+if(searchType == null || searchType.equals("") || searchType.equals("null")){
+	System.out.println( "category Action 1 // ");
+  searchType = null;
+  searchValue = null;
+	//rowCount = dao.countBySearch(null, null, boardId);
+}
+rowCount = dao.countBySearch(searchType, searchValue, boardId);
 //페이지 개수
 int pageCount = (int)Math.ceil((double)rowCount / listSize);
 //페이지 목록의 시작페이지번호와 마지막페이지번호 계산
@@ -39,7 +49,8 @@ int endPage = (listNo * pageSize) + pageSize;
 if (endPage > pageCount){
 endPage = pageCount;
 }
-List<Article> list = dao.listByPage(boardId,indexI,listSize);
+
+List<Article> list = dao.listByPage(boardId, indexI, listSize, searchType, searchValue);
 %>
 
 <%-- 포스트 리스트 시작 --%>

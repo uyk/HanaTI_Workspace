@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.awt.TextArea"/>
-<fullyQualifiedTypeName name="java.awt.event.ActionListener"/>
-<fullyQualifiedTypeName name="java.awt.TextField"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.entity.DvaRoom"/>
 <fullyQualifiedTypeName name="java.util.StringTokenizer"/>
 <fullyQualifiedTypeName name="kr.or.kosta.dva.client.boundary.RoomPanel"/>
@@ -12,7 +9,6 @@
 <fullyQualifiedTypeName name="java.beans.Statement"/>
 <fullyQualifiedTypeName name="java.sql.Statement"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
-<fullyQualifiedTypeName name="java.sql.SQLException"/>
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="DMLExample"/>
 <fullyQualifiedTypeName name="java.sql.Types"/>
@@ -56,8 +52,12 @@
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.dao.JdbcGuestNoteDao"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.dao.GuestNodeDaoTest"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.guest.domain.GuestNote"/>
-<fullyQualifiedTypeName name="kr.or.kosta.blog.board.domain.Board"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.board.domain.Article"/>
 <fullyQualifiedTypeName name="kr.or.kosta.blog.common.Params"/>
 <fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.apache.commons.dbcp2.BasicDataSource"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.user.dao.UserDao"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.user.domain.User"/>
+<fullyQualifiedTypeName name="kr.or.kosta.blog.board.domain.Board"/>
+<fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>
