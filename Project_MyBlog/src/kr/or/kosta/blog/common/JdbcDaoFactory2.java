@@ -2,17 +2,20 @@ package kr.or.kosta.blog.common;
 
 import java.lang.reflect.Method;
 import java.util.Hashtable;
-import java.util.List;
 
 import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.dao.ArticleDao;
 import kr.or.kosta.blog.board.dao.BoardDao;
-import kr.or.kosta.blog.board.domain.Board;
 import kr.or.kosta.blog.guest.dao.GuestNoteDao;
 import kr.or.kosta.blog.user.dao.UserDao;
-import kr.or.kosta.blog.user.domain.User;
-import oracle.net.aso.f;
+
+/**
+ * DaoFactory를 상속하여 dao를 생성하여 해시테이블로 관리하는 팩토리 패턴 클래스
+ * 
+ * @author 유예겸
+ *
+ */
 
 public class JdbcDaoFactory2 extends DaoFactory {
 	private static final String USER = "kr.or.kosta.blog.user.dao.JdbcUserDao";
@@ -68,15 +71,4 @@ public class JdbcDaoFactory2 extends DaoFactory {
 			e.printStackTrace();
 		}
 	}
-	/**
-	public static void main(String[] args) throws Exception {
-		DaoFactory factory = new JdbcDaoFactory2();
-		UserDao dao = factory.getUserDao();
-		List<User> list = dao.listAll();
-		for (User user : list) {
-			System.out.println(user.toString());
-		}
-		
-	}
-	*/
 }

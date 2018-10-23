@@ -1,11 +1,16 @@
 package kr.or.kosta.blog.guest.domain;
 
+/** 
+ * 방명록 정보를 저장하는 도메인 클래스
+ * @author 유예겸
+ *
+ */
 public class GuestNote {
 	
-	private String guestBookId;
-	private String userId;
-	private String contents;
-	private String regdate;
+	private String guestBookId;			/** 방명록 식별 번호 */
+	private String userId;				/** 방명록 작성자 id */
+	private String contents;			/** 방명록 내용 */
+	private String regdate;				/** 방명록 작성 시각 */
 	
 	public GuestNote() {
 		super();

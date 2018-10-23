@@ -1,7 +1,6 @@
 package kr.or.kosta.blog.user.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
@@ -15,6 +14,11 @@ import javax.sql.DataSource;
 
 import kr.or.kosta.blog.user.domain.User;
 
+/**
+ * JDBC API로 DB와 연동하여 User 데이터를 관리하는 Dao
+ * @author 유예겸
+ *
+ */
 public class JdbcUserDao implements UserDao {
 	
 	private DataSource dataSource;
@@ -27,6 +31,7 @@ public class JdbcUserDao implements UserDao {
 		this.dataSource = dataSource;
 	}
 
+	/** 계정 생성 */
 	@Override
 	public void create(User user) throws Exception {
 		Connection con =  null;
@@ -53,6 +58,7 @@ public class JdbcUserDao implements UserDao {
 		}
 	}
 
+	/** id의 계정 읽기 */
 	@Override
 	public User read(String id) throws Exception {
 		User user = null;
@@ -74,12 +80,6 @@ public class JdbcUserDao implements UserDao {
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-//				user = new User();
-//				user.setId(rs.getString("id"));
-//				user.setName(rs.getString("name"));
-//				user.setPasswd(rs.getString("passwd"));
-//				user.setEmail(rs.getString("email"));
-//				user.setRegdate(rs.getString("regdate"));
 				user = createUser(rs);
 			}
 		}finally {
@@ -92,6 +92,7 @@ public class JdbcUserDao implements UserDao {
 		return user;
 	}
 	
+	/** email로 계정 읽기 */
 	@Override
 	public User readEmail(String email) throws Exception {
 		User user = null;
@@ -113,12 +114,6 @@ public class JdbcUserDao implements UserDao {
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
-//				user = new User();
-//				user.setId(rs.getString("id"));
-//				user.setName(rs.getString("name"));
-//				user.setPasswd(rs.getString("passwd"));
-//				user.setEmail(rs.getString("email"));
-//				user.setRegdate(rs.getString("regdate"));
 				user = createUser(rs);
 			}
 		}finally {
@@ -131,6 +126,7 @@ public class JdbcUserDao implements UserDao {
 		return user;
 	}
 
+	/** 계정 수정 */
 	@Override
 	public void update(User user) throws Exception {
 		Connection con =  null;
@@ -156,12 +152,14 @@ public class JdbcUserDao implements UserDao {
 
 	}
 
+	/** 계정 제거 */
 	@Override
 	public void delete(String id) throws Exception {
 		// TODO Auto-generated method stub
 
 	}
 
+	/** 전체 유저 목록 반환 */
 	@Override
 	public List<User> listAll() throws Exception {
 		List<User> list = null;
@@ -196,6 +194,7 @@ public class JdbcUserDao implements UserDao {
 	}
 	
 
+	/** id와 passwd로 인증 */
 	@Override
 	public User certify(String id, String passwd) throws Exception {
 		User user = null;
@@ -231,6 +230,7 @@ public class JdbcUserDao implements UserDao {
 		return user;
 	}
 	
+	/** SQL의 결과값으로 user 인스턴스를 생성하고 데이터를 저장하는 메소드 */
 	private User createUser(ResultSet rs) throws SQLException{
 		User user = new User();
 		user.setId(rs.getString("id"));
@@ -239,55 +239,6 @@ public class JdbcUserDao implements UserDao {
 		user.setEmail(rs.getString("email"));
 		user.setRegdate(rs.getString("regdate"));
 		return user;
-	}
-	
-	
-	@Override
-	public List<Map<String, String>> employeeList() throws Exception {
-		List<Map<String, String>> list = null;
-		
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		String sql = "SELECT e.employee_id     eid, \r\n" + 
-				     "       e.last_name       ename, \r\n" + 
-				     "       e.salary          salary, \r\n" + 
-				     "       d.department_name dname, \r\n" + 
-				     "       l.city            city, \r\n" + 
-				     "       e2.last_name      mname \r\n" + 
-				     "FROM   employees e \r\n" + 
-				     "       left outer join departments d \r\n" + 
-				     "                    ON e.department_id = d.department_id \r\n" + 
-				     "       left outer join locations l \r\n" + 
-				     "                    ON d.location_id = l.location_id \r\n" + 
-				     "       left outer join employees e2 \r\n" + 
-				     "                    ON e.manager_id = e2.employee_id \r\n" + 
-				     "ORDER  BY eid ASC";
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			list = new ArrayList<Map<String, String>>();
-			ResultSetMetaData rsd = rs.getMetaData();
-			int columCount = rsd.getColumnCount();
-			while(rs.next()) {
-				Map<String, String> row = new HashMap<String, String>();
-				for(int i=1; i<=columCount; i++) {
-					String columName = rsd.getColumnLabel(i);
-					String columValue = rs.getString(i);
-					row.put(columName, columValue);
-				}
-				list.add(row);				
-			}
-		} finally {
-			try {
-				if(rs != null)    rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null)   con.close();
-			}catch (Exception e) {}
-		}
-		return list;
 	}
 	
 }

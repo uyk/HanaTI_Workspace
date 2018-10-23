@@ -1,12 +1,17 @@
 package kr.or.kosta.blog.user.domain;
 
+/**
+ * 사용자 정보를 저장하는 도메인 클래스
+ * @author 유예겸
+ *
+ */
 public class User {
 	
-	private String id;
-	private String name;
-	private String passwd;
-	private String email;
-	private String regdate;
+	private String id;			/** 사용자 식별 id */
+	private String name;		/** 사용자 이름 */
+	private String passwd;		/** 비밀번호 */
+	private String email;		/** 이메일 */
+	private String regdate;		/** 가입 날짜 */
 	
 	public User() {
 		super();

@@ -19,8 +19,10 @@ public interface GuestNoteDao {
 	
 	public void delete(String guestBookId) throws Exception;
 	
+	/** userId가 작성한 방명록 목록을 반환하는 메소드 */
 	public List<GuestNote> listByUserId(String userId) throws Exception;
 
+	/** 전체 방명록을 반환하는 메소드 */
 	public List<GuestNote> listAll() throws Exception;
 	
 	/** 유저 id와 방명록 id를 비교하여 인증하는 메소드 */

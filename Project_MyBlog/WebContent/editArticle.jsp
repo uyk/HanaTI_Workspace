@@ -21,7 +21,7 @@ DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 String recievedId = request.getParameter("articleId");
 int type = Integer.parseInt(request.getParameter("type"));
-String description = null;
+String description = null; 
 Article article = null;
 
 if(type == 1 || type == 2) {
@@ -52,12 +52,12 @@ case 2:
 case 3:
 	article = articleDao.read(recievedId);
 	description = "게시글 수정";
-    System.out.println("editArticle // edit // " + article);
 	break;
 // 글 삭제
 case 4:
 	article = articleDao.read(recievedId);
-    System.out.println(recievedId);
+  // 자식 게시글이 있는지 확인
+  
 	articleDao.delete(recievedId);
 	response.sendRedirect("/category.jsp?board=" + article.getBoardId());
 	break;

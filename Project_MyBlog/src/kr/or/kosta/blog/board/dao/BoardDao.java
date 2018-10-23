@@ -21,7 +21,7 @@ public interface BoardDao {
 	
 	/** 전체 게시판 목록 */
 	public List<Board> listAll() throws Exception;
-	/** 게시판의 게시글 개수 반환 */
 	
+	/** 게시판의 게시글 개수 반환 */	
 	public int countArticles(int boardId) throws Exception;
 }

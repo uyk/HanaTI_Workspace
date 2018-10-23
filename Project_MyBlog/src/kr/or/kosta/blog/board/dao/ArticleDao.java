@@ -46,8 +46,10 @@ public interface ArticleDao {
 	
 	public int countBySearch(Params params) throws Exception;
 	
+	/** 상세 글을 볼 때 조회수 증가하는 메소드 */
 	public void increaseHit(int articleId) throws Exception;
 	
+	/** 게시글 wirter와 인자로 받은 이름, 비밀번호를 비교하는 메소드 */
 	public boolean certify(int articleId, String writer, String passwd) throws Exception;
 
 }

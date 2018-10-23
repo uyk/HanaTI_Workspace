@@ -1,6 +1,7 @@
 package kr.or.kosta.blog.board.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,10 +12,14 @@ import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.domain.Article;
 import kr.or.kosta.blog.common.Params;
-import kr.or.kosta.blog.user.domain.User;
 
+/**
+ * DB의 Article을 제어하는 Dao 
+ * @author 유예겸
+ *
+ */
 public class JdbcArticleDao implements ArticleDao {
-	public static final int DEFAULT_LIST_SIZE = 10;
+	public static final int DEFAULT_LIST_SIZE = 10;			// list size를 인자로 받지 않았을 때 화면에 출력하는 게시글 개수 
 	private DataSource dataSource;
 	
 	public DataSource getDataSource() {
@@ -46,13 +51,6 @@ public class JdbcArticleDao implements ArticleDao {
 		}
 		// 2레벨 글 이상
 		else if(article.getLevelNo() >= 2) {
-			/*
-			int maxOrderNo = maxOrderNo(article.getGroupNo(), article.getLevelNo(), article.getArticleId());
-			System.out.println("maxNo 3 : " + maxOrderNo);
-			increaseOrder(article.getGroupNo(), maxOrderNo);
-			groupNo = "?";
-			orderNo = maxOrderNo + "";
-			*/
 			increaseOrderT(article.getArticleId(), article.getGroupNo());
 			groupNo = "?";
 			orderNo = "(SELECT order_no + 1 \r\n" + 
@@ -189,7 +187,8 @@ public class JdbcArticleDao implements ArticleDao {
 		
 		String sql = 
 				"DELETE FROM article \r\n" + 
-				"WHERE  article_id = ?";
+				"WHERE  article_id = ?";                                                                                                                                                                                              
+		
 		try {
 			con = dataSource.getConnection();
 			pstmt = con.prepareStatement(sql);
@@ -403,8 +402,8 @@ public class JdbcArticleDao implements ArticleDao {
 					break;
 			}
 		}
-		sql += 	"                ORDER  BY group_no DESC, \r\n" + 
-				"                          order_no ASC)) \r\n" + 
+		sql += 	"ORDER  BY group_no DESC, \r\n" + 
+				"	       order_no ASC)) \r\n" + 
 				"WHERE  request_page = ?";
 		
 		try {
@@ -542,29 +541,6 @@ public class JdbcArticleDao implements ArticleDao {
 		return article;
 	}
 	
-	private void increaseOrder(int groupId, int maxOrderNo) throws SQLException{
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		String sql =
-				"UPDATE article \r\n" + 
-				"SET    order_no = order_no + 1 \r\n" + 
-				"WHERE  group_no = ? \r\n" + 
-				"       and order_no >= ?";
-		
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, groupId);
-			pstmt.setInt(2, maxOrderNo);
-			pstmt.executeQuery();
-		} finally {
-			try {
-				if(pstmt != null) pstmt.close();
-				if(con != null)   con.close();
-			}catch (Exception e) {}
-		}
-	}
-	
 	private void increaseOrderT(int parentId, int groupNo) throws SQLException{
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -589,42 +565,8 @@ public class JdbcArticleDao implements ArticleDao {
 			}catch (Exception e) {}
 		}
 	}
-	
-	private int maxOrderNo(int groupNo, int levelNo, int parentId) throws Exception{		
-		Connection con =  null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		
-		int maxNo = 0;
-		int parentOrderNo = read(parentId+"").getOrderNo();
-		
-		String sql = 
-				"SELECT DECODE(MAX(order_no) + 1 , null, 0, MAX(order_no) + 1) maxNo\r\n" + 
-				"FROM   article\r\n" + 
-				"WHERE  group_no = ?\r\n" + 
-				"       and level_no = ?";
-		try {
-			con = dataSource.getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, groupNo);
-			pstmt.setInt(2, levelNo);
-			rs = pstmt.executeQuery();
-			if (rs.next()) {
-				maxNo = rs.getInt("maxNo");
-			}
-			if(maxNo == 0) {
-				maxNo =  parentOrderNo + 1;
-			}
-		}finally {
-			try {
-				if(rs != null)    rs.close();
-				if(pstmt != null) pstmt.close();
-				if(con != null)   con.close();
-			}catch (Exception e) {}
-		}
-		return maxNo;
-	}
 
+	/** 조회수가 높은 게시글의 목록을 반환하는 메소드 */
 	@Override
 	public List<Article> listPopular(int count) throws Exception {
 		List<Article> list = null;
@@ -671,6 +613,7 @@ public class JdbcArticleDao implements ArticleDao {
 		return list;
 	}
 
+	/** 최근 게시글의 목록을 반환하는 메소드 */
 	@Override
 	public List<Article> listRecent(int count) throws Exception {
 		List<Article> list = null;
@@ -717,6 +660,7 @@ public class JdbcArticleDao implements ArticleDao {
 		return list;
 	}
 
+	/** 게시글 wirter와 인자로 받은 이름, 비밀번호를 비교하는 메소드 */
 	@Override
 	public boolean certify(int articleId, String writer, String passwd) throws Exception {
 		boolean isVaild = false;

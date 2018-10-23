@@ -3,8 +3,6 @@
  */
 package kr.or.kosta.blog.common;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import kr.or.kosta.blog.board.dao.ArticleDao;

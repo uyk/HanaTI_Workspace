@@ -7,10 +7,10 @@ package kr.or.kosta.blog.board.domain;
  */
 
 public class Board {
-    private int boardId;
-    private int category;
-    private String title;
-    private String description;
+    private int boardId;				/** 게시판 아이디 */
+    private int category;				/** 게시판 그룹 */
+    private String title;				/** 게시판 이름 */
+    private String description;			/** 게시판 설명 */
     
 	public Board() {
 		super();

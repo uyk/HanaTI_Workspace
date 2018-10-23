@@ -10,7 +10,12 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import kr.or.kosta.blog.board.domain.Board;
-import kr.or.kosta.blog.user.domain.User;
+
+/**
+ * DB의 Board을 제어하는 Dao 
+ * @author 유예겸
+ *
+ */
 
 public class JdbcBoardDao implements BoardDao {
 	private DataSource dataSource;
@@ -25,8 +30,6 @@ public class JdbcBoardDao implements BoardDao {
 
 	@Override
 	public void create(Board board) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -64,16 +67,13 @@ public class JdbcBoardDao implements BoardDao {
 
 	@Override
 	public void update(Board board) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public void delete(String boardId) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
+	/** 전체 게시판 목록 */
 	@Override
 	public List<Board> listAll() throws Exception {
 		List<Board> list = null;
@@ -116,6 +116,7 @@ public class JdbcBoardDao implements BoardDao {
 		return board;
 	}
 
+	/** 게시판의 게시글 개수 반환 */	
 	@Override
 	public int countArticles(int boardId) throws Exception {
 		Connection con =  null;

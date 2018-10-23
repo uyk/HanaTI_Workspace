@@ -13,6 +13,11 @@ import kr.or.kosta.blog.guest.dao.JdbcGuestNoteDao;
 import kr.or.kosta.blog.user.dao.JdbcUserDao;
 import kr.or.kosta.blog.user.dao.UserDao;
 
+/**
+ * DaoFactory를 상속하여 dao를 생성하는 클래스
+ * @author 유예겸
+ *
+ */
 public class JdbcDaoFactory extends DaoFactory {
 
 	@Override
