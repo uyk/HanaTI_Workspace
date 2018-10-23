@@ -1,3 +1,4 @@
+<%-- 해당 게시판의 게시글 목록을 출력하는 jsp파일 --%>
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
@@ -7,34 +8,37 @@
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 request.setCharacterEncoding("utf-8");
-Enumeration e = request.getParameterNames();
-while(e.hasMoreElements()) {
-	String param = (String)(e.nextElement());
-}
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao dao = factory.getArticleDao();
+
 int boardId = Integer.parseInt(request.getParameter("board"));
 String index = request.getParameter("page");
+
 // 페이지 인덱스 처리
+// page 인덱스가 요청 인자로 안오면 1페이지 출력
 if(index == null || index.equals("") || index.equals("null")){
 	index = "1";
 }
 int indexI = Integer.parseInt(index);
-//검색 요청일 경우 파라메터 수신. 없을경우 null
+
+//검색 요청에 대한 파라미터 수신. 없을경우 null
 String searchType = request.getParameter("searchType");
 String searchValue = request.getParameter("searchValue");
+
 // 페이징 연산
 // 페이지당 보여지는 목록수 설정
 int listSize = 10;
 //페이징 처리에 필요한 검색 개수 DB조회
 int rowCount = 0;
+// 검색요청이 아닐 경우 null로 설정
 if(searchType == null || searchType.equals("") || searchType.equals("null")){
   searchType = null;
   searchValue = null;
-	//rowCount = dao.countBySearch(null, null, boardId);
 }
+
+// 검색 또는 전체 결과에 따른 게시글 개수
 rowCount = dao.countBySearch(searchType, searchValue, boardId);
-//페이지 개수
+// 페이지 개수
 int pageCount = (int)Math.ceil((double)rowCount / listSize);
 //페이지 목록의 시작페이지번호와 마지막페이지번호 계산
 //목록별 번호
@@ -44,7 +48,7 @@ int listNo = (indexI - 1) / pageSize; // 목록 식별번호
 int startPage = (listNo * pageSize) + 1;
 int endPage = (listNo * pageSize) + pageSize;
 if (endPage > pageCount){
-endPage = pageCount;
+  endPage = pageCount;
 }
 
 List<Article> list = dao.listByPage(boardId, indexI, listSize, searchType, searchValue);
@@ -60,7 +64,6 @@ List<Article> list = dao.listByPage(boardId, indexI, listSize, searchType, searc
       <div class="post-entry-horzontal">
         <a style="width: -webkit-fill-available;" href="/blog-single.jsp?article=<%=article.getArticleId()%>&page=<%=index%>">
         
-          <%-- <div class="image element-animate" data-animate-effect="fadeIn" style="background-image: url(/images/img_10.jpg);"></div> --%>
           <span class="article_at_category" style="padding: 15px 15px 15px <%=35 + article.getLevelNo()*40%>px;">
             <div class="row">
             <%

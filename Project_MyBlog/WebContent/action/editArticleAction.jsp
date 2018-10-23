@@ -1,3 +1,4 @@
+<%-- 게시글 수정 요청을 받아 create와 update를 수행하는 jsp파일 --%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
@@ -23,5 +24,6 @@ case 3:
 	articleDao.update(article);
 	break;
 }
+//요청을 처리하고 게시글 목록 화면으로 이동
 response.sendRedirect("/category.jsp?board="+article.getBoardId());
 %>

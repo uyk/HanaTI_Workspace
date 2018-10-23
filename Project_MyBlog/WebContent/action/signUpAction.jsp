@@ -1,3 +1,4 @@
+<%-- 회원가입 액션을 처리하는 jsp파일 --%>
 <%@page import="kr.or.kosta.blog.user.domain.User"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
