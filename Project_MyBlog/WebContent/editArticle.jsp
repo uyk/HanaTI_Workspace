@@ -1,9 +1,12 @@
+<%--
+게시글을 작성 또는 수정하는 페이지.
+request에서 articleID를 받아서 article객체를 읽어온 후,
+수정할 정보 또는 생성할 정보를 hidden으로 editArticleAction으로 보냄다 
+--%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<%-- request에서 articleID를 받아서 article객체를 읽어온 후 
-수정되거나 생성된 정보와 객체 각 프로퍼티 정보를 hidden으로 editArticleAction으로 보냄 --%>
 <%
 request.setCharacterEncoding("utf-8");
 //쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장
@@ -19,11 +22,13 @@ if(cookies != null) {
 
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
+// 인자로 받은 id(새 글일 경우 null, 덧글일 경우 부모 id, 수정일 경우 수정할 id, 삭제일 경우 삭제할 id)
 String recievedId = request.getParameter("articleId");
 int type = Integer.parseInt(request.getParameter("type"));
 String description = null; 
 Article article = null;
 
+// 신규글 또는 덧글
 if(type == 1 || type == 2) {
 	article = new Article();
 	article.setContent("");
@@ -55,9 +60,8 @@ case 3:
 	break;
 // 글 삭제
 case 4:
+    // 페이지 출력 없이 바로 게시글을 삭제하고 게시글 목록으로 이동
 	article = articleDao.read(recievedId);
-  // 자식 게시글이 있는지 확인
-  
 	articleDao.delete(recievedId);
 	response.sendRedirect("/category.jsp?board=" + article.getBoardId());
 	break;

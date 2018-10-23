@@ -1,3 +1,7 @@
+<%--
+방명록을 보여주는 페이지.
+방명록 목록을 보여주는 guestBookAction.jsp를 include한다.
+ --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 //쿠키를 검사하여 로그인상태면 id를 페이지 컨텍스트에 저장

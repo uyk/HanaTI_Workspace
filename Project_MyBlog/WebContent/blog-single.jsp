@@ -1,3 +1,7 @@
+<%-- 
+하나의 게시글 정보를 보여주는 페이지
+버튼이 클릭되면 버튼에 따라 editArticle.jsp로 이동
+ --%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
@@ -18,10 +22,8 @@ if(cookies != null) {
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 String articleId = request.getParameter("article");
-articleDao.increaseHit(Integer.parseInt(articleId));
+articleDao.increaseHit(Integer.parseInt(articleId));    // 처음 페이지에 들어올 때 조회수 증가
 Article article = articleDao.read(articleId);
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -41,27 +43,34 @@ Article article = articleDao.read(articleId);
 			var passwd = '<%=article.getPasswd()%>'
 			var type = 0;
 			
+			// 게시글의 wirter와 쿠키의 id가 다를 경우
 			if(writer != myId) {
 				document.getElementById("alert").innerText = "본인이 작성한 글만 수정 및 삭제가 가능합니다.";
 				document.getElementById("alert").style.visibility = "visible";
 				return;
 			}
+			// passwd를 입력하지 않았을 경우
 			if(myPasswd == "") {
 				document.getElementById("alert").innerText = "패스워드를 입력해주세요.";
 				document.getElementById("alert").style.visibility = "visible";
 				return;
 			}
+			// 게시글이 passwd와 입력한 passwd가 다를 경우
 			if(myPasswd != passwd) {
 				document.getElementById("alert").innerText = "패스워드가 일치하지 않습니다.";
 				document.getElementById("alert").style.visibility = "visible";
 				return;
 			}
+			// 모든 유효성 검사 통과함
+			// 수정버튼이 클릭된경우
 			if(source.id == "modify") {
 				type = 3;
 			}
+			// 삭제 버튼이 클릭된경우
 			else if (source.id == "delete") {
 				type = 4;
 			}
+			// editArticle.jsp로 type과 articleid를 인자로 전송
 			document.location.href= '/editArticle.jsp?type='+type+'&articleId=<%=article.getArticleId()%>';
 		}
     </script>
@@ -117,16 +126,12 @@ Article article = articleDao.read(articleId);
               <%
               }
               %>
-	            <%-- 알림 표시 --%>
-					    <div class="row">
-		            <div class="alert alert-danger col-md-12 single-alert" id="alert" role="alert" style="visibility: hidden;">
-	
-	              </div>
+              <%-- 알림 표시 --%>
+              <div class="row">
+                <div class="alert alert-danger col-md-12 single-alert" id="alert" role="alert" style="visibility: hidden;">
+                </div>
               </div>
             </div>
-						<%-- 코멘트 시작 --%>
-            <%-- 코멘트 끝 --%>
-            
           </div>
           <%-- 메인 끝 --%>
           <%--사이드 시작--%>

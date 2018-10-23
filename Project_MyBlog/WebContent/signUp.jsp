@@ -1,3 +1,9 @@
+<%--
+회원가입 화면 페이지.
+페이지 유효성 검사를 위한 /js/formValidation.js 파일을 추가한다.
+키 입력시마다 유효성을 검사하여 라벨 색을 변경, 패스워드 일치 아이콘 색을 변경.
+버튼 입력시 유효성을 검사 후 signUpAction.jsp로 이동한다.
+ --%>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>

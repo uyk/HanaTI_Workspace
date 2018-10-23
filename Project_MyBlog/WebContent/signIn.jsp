@@ -1,3 +1,6 @@
+<%--
+로그인 화면 페이지
+ --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
 <html>

@@ -1,3 +1,8 @@
+<%--
+메인 페이지.
+조회수 높은 게시글과 최근 게시글 세 가지 씩 보여준다.
+ --%>
+
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
@@ -28,41 +33,42 @@ List<Article> relentAs = articleDao.listRecent(recents);
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-						<%-- 조회수 높은 게시글 --%>
+			<%-- 조회수 높은 게시글 --%>
             <div class="owl-carousel owl-theme home-slider">
-              <%
-			        for(int i=0; i< popularAs.size(); i++){
-			        %>
-			        <div>
-			          <a href="/blog-single.jsp?article=<%=popularAs.get(i).getArticleId()%>&page=1" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_<%=3-i %>.jpg');" >
-			            <div class="text half-to-full">
-				            <div class="post-meta">				            
-                      <span class="category"><%=popularAs.get(i).getWriter()%></span>
-                      <span class="mr-2"><%=popularAs.get(i).getRegdate()%></span> &bullet;
-                      <span class="ml-2"><span class="fas fa-eye"></span>&nbsp;<%=popularAs.get(i).getHitcount() %></span>
-                    </div>
-                    <h3><%=popularAs.get(i).getSubject()%></h3>
-                    <p><% 
-                    	  String content = popularAs.get(i).getContent(); 
-                    		if(content.length() > 200) {
-                    			content = content.substring(0, 200);
-                    		}
-                    	  %> 
-                    		<%=content %></p>
-		            	</div>
-			          </a>
-			        </div>
-			        <% 
-			        }
-			        %>              
+            <%
+  	        for(int i=0; i< popularAs.size(); i++){
+  	        %>
+  	        <div>
+  	          <a href="/blog-single.jsp?article=<%=popularAs.get(i).getArticleId()%>&page=1" class="a-block d-flex align-items-center height-lg" style="background-image: url('images/img_<%=3-i %>.jpg');" >
+  	            <div class="text half-to-full">
+	              <div class="post-meta">				            
+                    <span class="category"><%=popularAs.get(i).getWriter()%></span>
+                    <span class="mr-2"><%=popularAs.get(i).getRegdate()%></span> &bullet;
+                    <span class="ml-2"><span class="fas fa-eye"></span>&nbsp;<%=popularAs.get(i).getHitcount() %></span>
+                  </div>
+                  <h3><%=popularAs.get(i).getSubject()%></h3>
+                  <p>
+                  <% 
+              	  String content = popularAs.get(i).getContent(); 
+              		if(content.length() > 200) {
+              			content = content.substring(0, 200);
+              		}
+              	  %> 
+                  <%=content %></p>
+              	</div>
+  	          </a>
+  	        </div>
+  	        <% 
+  	        }
+  	        %>              
             </div>
             <%-- 조회수 높은 게시글 종료 --%>
           </div>
         </div>
         
         <div class="row">
-        	<%-- 최신 게시글 --%>
-        	<%
+      	<%-- 최신 게시글 --%>
+      	  <%
           for(int i=0; i< relentAs.size(); i++){
           %>
           <div class="col-md-6 col-lg-4">

@@ -1,3 +1,4 @@
+<%-- 블로그 정보를 출력하는 페이지 --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <!DOCTYPE html>
 <html>

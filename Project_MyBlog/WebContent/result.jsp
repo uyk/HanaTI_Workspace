@@ -1,3 +1,6 @@
+<%--
+회원가입 성공 후 가입 정보를 보여주는 페이지
+ --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <jsp:useBean id="user" class="kr.or.kosta.blog.user.domain.User" scope="request"></jsp:useBean>
 <!DOCTYPE html>
@@ -23,11 +26,6 @@
                 <h2 class="mb-4">Thanks For Signing Up!</h2>
                 <p>회원등록이 완료되었습니다.</p>
                 <p>가입하신 회원 정보는 아래와 같습니다.</p>
-                <%--
-                <p>아이디 : <jsp:getProperty name="user" property="id"/></p>
-                <p>이름 : <jsp:getProperty name="user" property="name"/></p>
-                <p>이메일 : <jsp:getProperty name="user" property="email"/></p>
-                 --%>
                 <p>아이디 : <%= user.getId()%></p>
                 <p>이름 : <%= user.getName()%></p>
                 <p>이메일 : <%= user.getEmail()%></p>

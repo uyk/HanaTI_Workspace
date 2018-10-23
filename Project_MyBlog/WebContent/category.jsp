@@ -1,3 +1,7 @@
+<%-- 
+각 게시판에서 게시글 목록을 표시하는 페이지. 
+각 게시판 목록을 출력하는 categoryAction.jsp를 include하여 보여준다.
+ --%>
 <%@page import="kr.or.kosta.blog.board.domain.Board"%>
 <%@page import="kr.or.kosta.blog.board.dao.BoardDao"%>
 <%@page import="kr.or.kosta.blog.common.DaoFactory"%>
@@ -24,40 +28,48 @@ Board board = boardDao.read(request.getParameter("board"));
     <%--헤드 시작--%>
     <jsp:include page="/include/head.jsp"></jsp:include>
     <%--헤드 종료--%>
-    
-		<script>
-		function changeType(e) {
-			var event = e || window.event;
-			var source = event.srcElement;
-			window.s = source;
-			
-			document.getElementById("searchType").innerText = source.innerText;
-		}
-		function search() {
-			var searchType = document.getElementById("searchType").innerText;
-			var searchValue = document.getElementById("searchText").value;
-			if(searchValue == "") {
-				document.getElementById("alert").innerText = "텍스트를 입력해주세요";
-				document.getElementById("alert").style.visibility = "visible";
-				return;
-			}
-			if(searchType == "작성자") {
-				searchType = "writer";
-			}
-			else if(searchType == "글제목") {
-				searchType = "subject";
-			}
-			else if(searchType == "글내용") {
-				searchType = "content";
-			}
-			else {
-				document.getElementById("alert").innerText = "타입을 선택해주세요";
-				document.getElementById("alert").style.visibility = "visible";
-				return;
-			}
-			document.location.href='/category.jsp?board='+ <%= request.getParameter("board") %> +'&searchType='+ searchType +'&searchValue=' + searchValue; 
-		}
-		</script>
+	<script>
+		// 검색 타입 드롭다운의 아이템을 클릭하면 드롭다운의 텍스트를 클릭한 아이템의 텍스트로 변경 
+    	function changeType(e) {
+    		var event = e || window.event;
+    		var source = event.srcElement;
+    		window.s = source;
+    		
+    		document.getElementById("searchType").innerText = source.innerText;
+    	}
+		// search 버튼이 눌렸을 때 수행되는 함수
+    	function search() {
+    		var searchType = document.getElementById("searchType").innerText;
+    		var searchValue = document.getElementById("searchText").value;
+    		// 검색값을 입력하지 않았을 경우
+    		if(searchValue == "") {
+    			document.getElementById("alert").innerText = "텍스트를 입력해주세요";
+    			document.getElementById("alert").style.visibility = "visible";
+    			return;
+    		}
+    		// 작성자를 기준으로 검색
+    		if(searchType == "작성자") {
+    			searchType = "writer";
+    		}
+    		// 글제목을 기준으로 검색
+    		else if(searchType == "글제목") {
+    			searchType = "subject";
+    		}
+    		// 글내용을 기준으로 검색
+    		else if(searchType == "글내용") {
+    			searchType = "content";
+    		}
+    		// 타입이 선택되지 않았음
+    		else {
+    			// 알림 표시
+    			document.getElementById("alert").innerText = "타입을 선택해주세요";
+    			document.getElementById("alert").style.visibility = "visible";
+    			return;
+    		}
+    		// 검색 조건에 맞는 게시글 표시를 위해 현재 페이지에 인자를 주고 다시 호출
+    		document.location.href='/category.jsp?board='+ <%= request.getParameter("board") %> +'&searchType='+ searchType +'&searchValue=' + searchValue; 
+    	}
+	</script>
   </head>
   <body>
     <%--탑 메뉴 시작--%>
