@@ -1,3 +1,4 @@
+<%-- 모든 페이지에서 상단에 표시되어 블로그 이름과 네비게이션바를 출력하는 header영역 jsp파일 --%>
 <%@page import="kr.or.kosta.blog.board.domain.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.blog.board.dao.BoardDao"%>

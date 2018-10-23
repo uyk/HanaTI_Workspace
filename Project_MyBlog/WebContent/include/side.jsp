@@ -1,3 +1,4 @@
+<%-- 일부 페이지에 추가되어 사용자 정보, 인기 포스트 등의 정보를 제공하는 side 영역 jsp파일 --%>
 <%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
@@ -23,6 +24,7 @@ DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 BoardDao boardDao = factory.getBoardDao();
 ArticleDao articleDao = factory.getArticleDao();
 UserDao userDao = factory.getUserDao();
+// 가장 인기있는 게시글 상위 3가지
 int populars = 3;
 List<Board> boardList = boardDao.listAll();
 List<Article> popularAs = articleDao.listPopular(populars);

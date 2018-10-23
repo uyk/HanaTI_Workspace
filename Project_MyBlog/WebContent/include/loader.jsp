@@ -1,3 +1,4 @@
+<%-- 모든 페이지의 하단에서 js파일을 추가하는 loader jsp파일 --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214"/></svg></div>
 

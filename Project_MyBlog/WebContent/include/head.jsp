@@ -1,3 +1,4 @@
+<%-- 모든 페이지에서 css, font, 등을 설정하는 head 영역 jsp파일 --%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <title>My Blog</title>
 <meta charset="utf-8">

@@ -1,3 +1,4 @@
+<%-- 모든 페이지의 하단에 표시되는 footer 영역 jsp파일 --%>
 <%@page import="kr.or.kosta.blog.board.domain.Article"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.blog.board.dao.ArticleDao"%>
@@ -75,4 +76,3 @@ List<Article> relentAs = articleDao.listRecent(recents);
     </div>
   </div>
 </footer>
-<!-- END footer -->
