@@ -41,7 +41,7 @@ List<Article> popularAs = articleDao.listPopular(populars);
       <div class="bio-body">
         <h2><%= pageContext.getAttribute("id") %></h2>
         <p><%= userDao.read((String)pageContext.getAttribute("id")).getName() %> 님 환영합니다 <i class="far fa-smile-wink"></i></p>
-        <p><a href="#" class="btn btn-primary btn-sm">Read my bio</a></p>
+        <p><a href="/action/signInAction.jsp" class="btn btn-primary btn-sm">Logout</a></p>
       </div>
     </div>
   </div>

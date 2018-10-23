@@ -1,4 +1,12 @@
+<%@page import="kr.or.kosta.blog.user.dao.UserDao"%>
+<%@page import="kr.or.kosta.blog.common.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
+<%
+DaoFactory factory = (DaoFactory)application.getAttribute("factory");
+UserDao dao = factory.getUserDao();
+boolean idCheck = false;
+boolean emailCheck = false;
+%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -6,6 +14,7 @@
     <jsp:include page="/include/head.jsp"></jsp:include>
     <%--헤드 종료--%>
     <script type="text/javascript" src="/js/formValidation.js"></script>
+
   </head>
   <body>
     <%--탑 메뉴 시작--%>
@@ -21,7 +30,11 @@
         </div>
         <div class="row blog-entries">
           <div class="col-md-12 col-lg-8 main-content">
-            
+          <div class="row">
+            <div class="alert alert-danger col-md-12 category-alert" id="alert" role="alert" style="visibility: hidden;">
+
+            </div>
+          </div>
             <form name="signUpForm" action="/action/signUpAction.jsp" method="post">
               <!-- 아이디 입력 -->
               <div class="row">

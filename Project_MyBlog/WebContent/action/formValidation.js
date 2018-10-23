@@ -54,6 +54,7 @@ function checkCPW() {
 
 function validateId() {
 	if(document.getElementById("id").reportValidity()){
+		var id = document.getElementById("id").value;
 		// 존재하지 않는 아이디 
 	  window.open("/action/signUpAction.jsp?id="+ document.getElementById("id").value,'validateId','width=300,height=100');
 	}

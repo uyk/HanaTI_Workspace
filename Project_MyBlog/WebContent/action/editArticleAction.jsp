@@ -11,7 +11,6 @@ request.setCharacterEncoding("utf-8");
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao articleDao = factory.getArticleDao();
 int type = Integer.parseInt(request.getParameter("type"));
-System.out.println("editArticleAction" + article);
 switch(type) {
 //신규글
 case 1:

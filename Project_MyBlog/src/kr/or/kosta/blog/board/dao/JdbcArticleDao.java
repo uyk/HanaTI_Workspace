@@ -93,7 +93,6 @@ public class JdbcArticleDao implements ArticleDao {
 			pstmt.setString(6, article.getPasswd());
 			// 신규글
 			if(article.getLevelNo() == 0) {
-				System.out.println("JDBC Article Dao // create // groutNo == 0");
 				pstmt.setInt(7, 0); 			// level No
 				pstmt.setInt(8, 0);				// order No
 				pstmt.executeUpdate();
@@ -102,7 +101,6 @@ public class JdbcArticleDao implements ArticleDao {
 			else {
 				pstmt.setInt(7, article.getGroupNo());
 				pstmt.setInt(8, article.getLevelNo());
-				System.out.println("create : " + article);
 				pstmt.executeUpdate();
 			}
 		}finally {
@@ -401,6 +399,7 @@ public class JdbcArticleDao implements ArticleDao {
 					break;
 				case "content" :
 					sql += " and content LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
 					break;
 			}
 		}
@@ -544,7 +543,6 @@ public class JdbcArticleDao implements ArticleDao {
 	}
 	
 	private void increaseOrder(int groupId, int maxOrderNo) throws SQLException{
-		System.out.println("increaseOrder : " + groupId + ": " + maxOrderNo);
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		String sql =
@@ -614,10 +612,8 @@ public class JdbcArticleDao implements ArticleDao {
 			if (rs.next()) {
 				maxNo = rs.getInt("maxNo");
 			}
-			System.out.println("maxNo 1 : " + maxNo);
 			if(maxNo == 0) {
 				maxNo =  parentOrderNo + 1;
-				System.out.println("maxNo 2 : " + maxNo);
 			}
 		}finally {
 			try {

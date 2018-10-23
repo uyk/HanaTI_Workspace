@@ -10,7 +10,6 @@ request.setCharacterEncoding("utf-8");
 Enumeration e = request.getParameterNames();
 while(e.hasMoreElements()) {
 	String param = (String)(e.nextElement());
-	System.out.println( "category Action // " + param + " : " + request.getParameter(param));
 }
 DaoFactory factory = (DaoFactory)application.getAttribute("factory");
 ArticleDao dao = factory.getArticleDao();
@@ -24,14 +23,12 @@ int indexI = Integer.parseInt(index);
 //검색 요청일 경우 파라메터 수신. 없을경우 null
 String searchType = request.getParameter("searchType");
 String searchValue = request.getParameter("searchValue");
-System.out.println( "category Action 2 // " + searchType + " , " + searchValue);
 // 페이징 연산
 // 페이지당 보여지는 목록수 설정
 int listSize = 10;
 //페이징 처리에 필요한 검색 개수 DB조회
 int rowCount = 0;
 if(searchType == null || searchType.equals("") || searchType.equals("null")){
-	System.out.println( "category Action 1 // ");
   searchType = null;
   searchValue = null;
 	//rowCount = dao.countBySearch(null, null, boardId);
