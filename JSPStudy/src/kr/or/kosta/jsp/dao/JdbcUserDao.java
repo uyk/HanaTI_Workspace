@@ -13,6 +13,8 @@ import java.util.Map;
 
 import javax.sql.DataSource;
 
+import kr.or.kosta.jsp.common.web.Params;
+
 public class JdbcUserDao implements UserDao {
 	
 	private DataSource dataSource;
@@ -248,6 +250,232 @@ public class JdbcUserDao implements UserDao {
 		}
 		return list;
 	}
+
+	@Override
+	public List<User> listByPage(int page) throws Exception {
+		List<User> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="SELECT id, \r\n" + 
+					"       name, \r\n" + 
+					"       passwd, \r\n" + 
+					"       email, \r\n" + 
+					"       regdate \r\n" + 
+					"FROM   (SELECT CEIL(rownum / 10) request_page, \r\n" + 
+					"               id, \r\n" + 
+					"               name, \r\n" + 
+					"               passwd, \r\n" + 
+					"               email, \r\n" + 
+					"               regdate \r\n" + 
+					"        FROM   (SELECT id, \r\n" + 
+					"                       name, \r\n" + 
+					"                       passwd, \r\n" + 
+					"                       email, \r\n" + 
+					"                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate\r\n" + 
+					"                FROM   users \r\n" + 
+					"                ORDER  BY regdate DESC)) \r\n" + 
+					"WHERE  request_page = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, page);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<User>();
+			while(rs.next()) {
+				User user = createUser(rs);
+				list.add(user);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
+	}
+
+	@Override
+	public List<User> listByPage(int page, int listSize) throws Exception {
+		List<User> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="SELECT id, \r\n" + 
+					"       name, \r\n" + 
+					"       passwd, \r\n" + 
+					"       email, \r\n" + 
+					"       regdate \r\n" + 
+					"FROM   (SELECT CEIL(rownum / ?) request_page, \r\n" + 
+					"               id, \r\n" + 
+					"               name, \r\n" + 
+					"               passwd, \r\n" + 
+					"               email, \r\n" + 
+					"               regdate \r\n" + 
+					"        FROM   (SELECT id, \r\n" + 
+					"                       name, \r\n" + 
+					"                       passwd, \r\n" + 
+					"                       email, \r\n" + 
+					"                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate\r\n" + 
+					"                FROM   users \r\n" + 
+					"                ORDER  BY regdate DESC)) \r\n" + 
+					"WHERE  request_page = ?";
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, listSize);
+			pstmt.setInt(2, page);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<User>();
+			while(rs.next()) {
+				User user = createUser(rs);
+				list.add(user);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
+	}
+
+	@Override
+	public List<User> listByPage(int page, int listSize, String searchType, String searchValue) throws Exception {
+		List<User> list = null;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="SELECT id, \r\n" + 
+					"       name, \r\n" + 
+					"       passwd, \r\n" + 
+					"       email, \r\n" + 
+					"       regdate \r\n" + 
+					"FROM   (SELECT CEIL(rownum / ?) request_page, \r\n" + 
+					"               id, \r\n" + 
+					"               name, \r\n" + 
+					"               passwd, \r\n" + 
+					"               email, \r\n" + 
+					"               regdate \r\n" + 
+					"        FROM   (SELECT id, \r\n" + 
+					"                       name, \r\n" + 
+					"                       passwd, \r\n" + 
+					"                       email, \r\n" + 
+					"                       TO_CHAR(regdate, 'YYYY-MM-DD HH24:MI') regdate\r\n" + 
+					"                FROM   users \r\n";
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		if(searchType != null){
+			switch (searchType) {
+				case "id":
+					sql += "WHERE  id = ? \r\n";
+					break;
+				case "name":  
+					sql += " WHERE  name LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+			}
+		}
+		sql += "                ORDER BY regdate DESC)) \r\n" +
+		       "WHERE  request_page = ?";
+		
+		
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, listSize);
+			
+			// 전체검색이 아닌경우 경우
+			if(searchType != null){
+				pstmt.setString(2, searchValue);
+				pstmt.setInt(3, page);
+			}else{// 전체검색인 경우
+				pstmt.setInt(2, page);
+			}
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<User>();
+			while(rs.next()) {
+				User user = createUser(rs);
+				list.add(user);
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return list;
+	}
+
+	@Override
+	public List<User> listByPage(Params params) throws Exception {
+		return listByPage(params.getPage(), params.getListSize(),  params.getSearchType(), params.getSearchValue());
+	}
+
+	@Override
+	public int countBySearch(String searchType, String searchValue) throws Exception {
+		int count = 0;
+		
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql ="SELECT COUNT(id) count\r\n" + 
+					"FROM   users\r\n";
+		
+		// 검색 유형별 WHERE 절 동적 추가
+		if(searchType != null){
+			switch (searchType) {
+				case "id":
+					sql += "WHERE  id = ? \r\n";
+					break;
+				case "name":  
+					sql += " WHERE  name LIKE ? \r\n";
+					searchValue = "%" + searchValue + "%";
+					break;
+			}
+		}
+		
+		try {
+			con = dataSource.getConnection();
+			pstmt = con.prepareStatement(sql);
+			
+			// 전체검색이 아닌경우 경우
+			if(searchType != null){
+				pstmt.setString(1, searchValue);
+			}
+
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt("count");
+			}
+		} finally {
+			try {
+				if(rs != null)    rs.close();
+				if(pstmt != null) pstmt.close();
+				if(con != null)   con.close();
+			}catch (Exception e) {}
+		}
+		return count;
+	}
+
+	@Override
+	public int countBySearch(Params params) throws Exception {
+		return countBySearch(params.getSearchType(), params.getSearchValue());
+	}
+	
+	
 	
 }
 

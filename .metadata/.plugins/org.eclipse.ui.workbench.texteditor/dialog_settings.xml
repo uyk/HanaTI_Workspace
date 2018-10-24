@@ -20,12 +20,19 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="crea" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="syst"/>
+			<item value="upd"/>
+			<item value="dele"/>
+			<item value="sys"/>
+			<item value="syste"/>
+			<item value="cat"/>
+			<item value="s"/>
 			<item value="crea"/>
 			<item value="articleId"/>
 			<item value="col"/>
@@ -34,13 +41,6 @@
 			<item value="h2"/>
 			<item value="a .text"/>
 			<item value=".text"/>
-			<item value="text"/>
-			<item value="childr"/>
-			<item value="child"/>
-			<item value="rs"/>
-			<item value="countby"/>
-			<item value="count"/>
-			<item value="id"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>

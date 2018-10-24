@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Map;
 
+import kr.or.kosta.jsp.common.web.Params;
+
 /**
  * Dao 패턴 적용을 위한 인터페이스 선언
  * @author 김기정
@@ -24,5 +26,22 @@ public interface UserDao {
 	public User certify(String id, String passwd) throws Exception;
 	
 	public List<Map<String, String>> employeeList() throws Exception;
+	
+	/** 선택페이지에 따른 사용자 목록 반환 */	
+	public List<User> listByPage(int page) throws Exception;
+	
+	/** 선택페이지, 조회 목록개수에 따른 사용자 목록 반환 */	
+	public List<User> listByPage(int page, int listSize) throws Exception;
+	
+	/** 선택페이지, 조회 목록개수, 검색유형, 검색값에 따른 사용자 목록 반환 */	
+	public List<User> listByPage(int page, int listSize, String searchType, String searchValue) throws Exception;
+	
+	/** 선택페이지, 조회 목록개수, 검색유형, 검색값에 따른 사용자 목록 반환 */	
+	public List<User> listByPage(Params params) throws Exception;
+	
+	/** 검색유형, 검색값에 따른 사용자 개수 반환 - 페이징 처리 시 필요 */	
+	public int countBySearch(String searchType, String searchValue) throws Exception;
+	
+	public int countBySearch(Params params) throws Exception;
 	
 }

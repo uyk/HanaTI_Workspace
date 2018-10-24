@@ -1,5 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<jsp:useBean id="user" class="kr.or.kosta.jsp.dao.User" scope="request"></jsp:useBean>
+<%@page contentType="text/html; charset=utf-8" %>
+<jsp:useBean id="user" class="kr.or.kosta.jsp.dao.User" scope="request"/>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,10 +18,10 @@
       style="margin: 32px 0;">
       <h2>쌩유! 좋은 시간 보내~~~</h2>
       <h4>가입하시 정보는 아래와 같습니다.</h4>
-      <p>아이디 : <%= user.getId()%></p>
-      <p>이름 : <%= user.getName()%></p>
-      <p>이메일 : <%= user.getEmail()%></p>
-      <button type="button" class="w3-button w3-red w3-margin-top" onclick="location.href='<%= application.getContextPath()%>/index.jsp'">홈으로</button>
+      <p>아이디 : <%=user.getId() %></p>
+      <p>이름 : <%=user.getName() %></p>
+      <p>이메일 : <%=user.getEmail() %></p>
+      <button type="button" class="w3-button w3-red w3-margin-top" onclick="location.href='<%=application.getContextPath()%>/index.jsp'">홈으로</button>
     </div>
    </div>
 </body>

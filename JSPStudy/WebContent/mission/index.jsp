@@ -22,7 +22,7 @@ else if(request.getParameter("type").equals("login")) {
   request.setCharacterEncoding("utf-8");
   String id = request.getParameter("userid");
   String pw = request.getParameter("userpw");
-  id = URLEncoder.encode(id, “UTF-8”);
+  id = URLEncoder.encode(id, "UTF-8");
       
   pageContext.setAttribute("pageId", id );
   Cookie cookie = new Cookie("loginId", id);
