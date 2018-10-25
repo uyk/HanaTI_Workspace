@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,8 +18,8 @@
     <th>가입일자</th>
   </tr>
   <c:choose>
-    <c:when test="${not empty users }">
-      <c:forEach var="user" items="${users}" varStatus="status">
+    <c:when test="${not empty list }">
+      <c:forEach var="user" items="${list}" varStatus="status">
         <tr>
           <td>${staus.count}</td>
           <td>${user.id }</td>

@@ -1,6 +1,5 @@
 package kr.or.kosta.shoppingmall.user.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -42,7 +41,7 @@ public class UserListController implements Controller {
 		}
 		
 		mav.addObject("list", list);
-		mav.setView("/demo/hello.jsp");
+		mav.setView("/user/list.jsp");
 		return mav;
 	}
 

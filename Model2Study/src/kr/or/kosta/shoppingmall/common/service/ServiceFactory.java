@@ -1,18 +1,9 @@
 package kr.or.kosta.shoppingmall.common.service;
 
 import java.io.FileInputStream;
-import java.lang.reflect.Method;
 import java.util.Hashtable;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Properties;
-
-import javax.sql.DataSource;
-
-import kr.or.kosta.shoppingmall.common.dao.DaoFactory;
-import kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory;
-import kr.or.kosta.shoppingmall.user.dao.UserDao;
-import kr.or.kosta.shoppingmall.user.domain.User;
 import kr.or.kosta.shoppingmall.user.service.UserService;
 import kr.or.kosta.shoppingmall.user.service.UserServiceImpl;
 

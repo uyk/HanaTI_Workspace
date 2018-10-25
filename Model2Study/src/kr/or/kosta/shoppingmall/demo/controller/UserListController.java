@@ -14,7 +14,6 @@ public class UserListController implements Controller{
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
 		// 모델영역의 비즈니스소드 호출 및 데이터 반환
-		// String message = xxxService.bizMethod();
 		String message = "유저리스트입니다....";
 		request.getSession().setAttribute("message", message);
 		
