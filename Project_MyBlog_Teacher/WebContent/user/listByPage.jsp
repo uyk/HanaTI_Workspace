@@ -1,14 +1,17 @@
-<%@ page contentType="text/html; charset=utf-8" %>
-<%@page import="kr.or.kosta.jsp.common.web.Params"%>
-<%@page import="kr.or.kosta.jsp.dao.User"%>
 <%@page import="java.util.List"%>
+<%@page import="kr.or.kosta.jsp.dao.User"%>
 <%@page import="kr.or.kosta.jsp.dao.UserDao"%>
-<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
 <%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.jsp.common.web.PageBuilder"%>
+<%@page import="kr.or.kosta.jsp.common.web.Params"%>
+<%@ page contentType="text/html; charset=utf-8" %>
 
 <%
+request.setCharacterEncoding("utf-8");
+
 // 페이지당 보여지는 목록수 설정
-int listSize = 3;
+int listSize = 2;
 
 // 선택페이지 수신
 String requestPage = request.getParameter("page");
@@ -24,12 +27,13 @@ if(searchType == null || searchType.equals("")){
   searchValue = null;
 }
 
-DaoFactory factory = new JdbcDaoFactory();
+//DaoFactory factory = new JdbcDaoFactory();
+DaoFactory factory = (DaoFactory)application.getAttribute("daoFactory");
 UserDao dao = factory.getUserDao();
 //List<User> list = dao.listAll();
 //List<User> list = dao.listByPage(Integer.parseInt(requestPage));
 //List<User> list = dao.listByPage(Integer.parseInt(requestPage), listSize);
-List<User> list = dao.listByPage(Integer.parseInt(requestPage), listSize, searchType, searchValue);
+List<User> list = dao.listByPage(Integer.parseInt(requestPage), listSize, searchType, searchValue); 
 
 // 페이징 처리에 필요한 검색 개수 DB조회
 int rowCount = dao.countBySearch(searchType, searchValue);
@@ -38,10 +42,9 @@ int rowCount = dao.countBySearch(searchType, searchValue);
 int pageCount = (int)Math.ceil((double)rowCount / listSize);
 
 
-
 // 페이지 목록의 시작페이지번호와 마지막페이지번호 계산
 // 목록별 번호
-int pageSize = 10;
+int pageSize = 5;
 int listNo = (Integer.parseInt(requestPage) - 1) / pageSize; // 목록 식별번호
 //(1~10): 0, (11~20): 1, (21~30): 2, .....
 
@@ -83,7 +86,7 @@ if (endPage > pageCount){
       
        <%-- 검색 폼 --%>
       <div class="search">
-        <form>
+        <form method="post">
           <select name="searchType">
             <option value="">전체</option>
             <option value="id">아이디</option>

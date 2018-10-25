@@ -1,7 +1,10 @@
+<%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.jsp.dao.User"%>
 <%@page import="kr.or.kosta.jsp.dao.UserDao"%>
-<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
 <%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
+<%@page import="kr.or.kosta.jsp.common.web.PageBuilder"%>
+<%@page import="kr.or.kosta.jsp.common.web.Params"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 
 <%
@@ -13,7 +16,8 @@ if(id == null || pw == null){
 }
 
 //UserDao를 이용한 회원 가입여부 체크
-DaoFactory factory = new JdbcDaoFactory();
+//DaoFactory factory = new JdbcDaoFactory();
+DaoFactory factory = (DaoFactory)application.getAttribute("daoFactory");
 UserDao dao = factory.getUserDao();
 User user = dao.certify(id, pw);
 if(user != null){

@@ -1,8 +1,8 @@
 <%@page import="kr.or.kosta.jsp.dao.User"%>
 <%@page import="java.util.List"%>
 <%@page import="kr.or.kosta.jsp.dao.UserDao"%>
-<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
 <%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
 DaoFactory factory = new JdbcDaoFactory();
@@ -23,26 +23,16 @@ List<User> list = dao.listAll();
     <th>이메일</th>
     <th>가입일자</th>
   </tr>
-  
-  <%
-  for(User user : list){
+  <% 
+  for(User user : list) {
   %>
-    <tr>
-      <td><%=user.getId() %></td>
-      <td><%=user.getName() %></td>
-      <td><%=user.getEmail() %></td>
-      <td><%=user.getRegdate() %></td>
-    </tr>
-  <%    
-  }
-  %>
+  <tr>
+    <td><%= user.getId() %></td>
+    <td><%= user.getName() %></td>
+    <td><%= user.getEmail() %></td>
+    <td><%= user.getRegdate() %></td>
+  </tr>
+  <% }%>
 </table>
-
 </body>
 </html>
-
-
-
-
-
-

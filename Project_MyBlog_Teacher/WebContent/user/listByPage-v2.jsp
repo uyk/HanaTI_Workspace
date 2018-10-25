@@ -1,11 +1,11 @@
-<%@page contentType="text/html; charset=utf-8" %>
+<%@page import="java.util.List"%>
+<%@page import="kr.or.kosta.jsp.dao.User"%>
+<%@page import="kr.or.kosta.jsp.dao.UserDao"%>
 <%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
+<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
 <%@page import="kr.or.kosta.jsp.common.web.PageBuilder"%>
 <%@page import="kr.or.kosta.jsp.common.web.Params"%>
-<%@page import="kr.or.kosta.jsp.dao.User"%>
-<%@page import="java.util.List"%>
-<%@page import="kr.or.kosta.jsp.dao.UserDao"%>
-<%@page import="kr.or.kosta.jsp.dao.JdbcDaoFactory"%>
+<%@ page contentType="text/html; charset=utf-8" %>
 
 <%
 String loginId = null;
@@ -32,7 +32,7 @@ history.back();
 
 <%
 // 페이지당 보여지는 목록수 설정
-int listSize = 15;
+int listSize = 10;
 //페이지당 보여지는 페이지수 설정
 int pageSize = 10;
 
@@ -53,7 +53,8 @@ if(searchType == null || searchType.equals("")){
 // 요청파라메터 포장
 Params params = new Params(Integer.parseInt(requestPage), listSize, pageSize, searchType, searchValue);
 
-DaoFactory factory = new JdbcDaoFactory();
+//DaoFactory factory = new JdbcDaoFactory();
+DaoFactory factory = (DaoFactory)application.getAttribute("daoFactory");
 UserDao dao = factory.getUserDao();
 List<User> list = dao.listByPage(params);
 

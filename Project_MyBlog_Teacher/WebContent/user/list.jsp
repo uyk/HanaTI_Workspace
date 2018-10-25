@@ -5,7 +5,8 @@
 <%@page import="kr.or.kosta.jsp.dao.DaoFactory"%>
 <%@ page contentType="text/html; charset=utf-8" %>
 <%
-DaoFactory factory = new JdbcDaoFactory();
+//DaoFactory factory = new JdbcDaoFactory();
+DaoFactory factory = (DaoFactory)application.getAttribute("daoFactory");
 UserDao dao = factory.getUserDao();
 List<User> list = dao.listAll();
 %>

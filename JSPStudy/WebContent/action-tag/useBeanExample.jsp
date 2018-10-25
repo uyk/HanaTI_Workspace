@@ -1,7 +1,7 @@
 <%@page import="kr.or.kosta.jsp.Account"%>
 <%@ page contentType="text/html; charset=utf-8" %>
-<% 
-//Account account = new Account("1111-2222", "유예겸", 1111, 10000);
+<%
+	//Account account = new Account("1111-2222", "유예겸", 1111, 10000);
 //Class.forName("kr.or.kosta.jsp.Account").newInstance();
 %>
 <jsp:useBean id="account" class="kr.or.kosta.jsp.Account" scope="session"></jsp:useBean>

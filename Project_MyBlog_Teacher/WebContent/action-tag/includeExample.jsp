@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,7 +6,7 @@
 <title></title>
 </head>
 <body>
-현재 페이지에서 출력내용....<br>
-<jsp:include page="/hello.jsp"/>
+현재 페이지에서 출력 내용...<br/>
+<jsp:include page="/hello.jsp"></jsp:include>
 </body>
 </html>
