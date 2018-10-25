@@ -35,14 +35,10 @@ public class JSPView implements View {
 			String[] tokens = path.split(":", 2);
 			response.sendRedirect(tokens[1]);
 		}else{//forward
+			System.out.println(path);
 			dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 		}
-		
-		
-		
-		
-		
 		
 	}
 

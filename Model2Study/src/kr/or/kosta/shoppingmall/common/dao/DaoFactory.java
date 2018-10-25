@@ -54,5 +54,6 @@ public abstract class DaoFactory {
 
 	public abstract UserDao getUserDao();
 	
-	
+	public abstract Object getDao(String daoName);
+	public abstract Object getDao(Class cls);
 }

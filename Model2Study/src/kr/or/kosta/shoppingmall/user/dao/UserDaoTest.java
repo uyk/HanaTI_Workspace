@@ -13,7 +13,7 @@ import kr.or.kosta.shoppingmall.user.domain.User;
 public class UserDaoTest {
 
 	public static void main(String[] args) {
-		DaoFactory factory = new JdbcDaoFactory();
+		DaoFactory factory = new JdbcDaoFactory("C:/KOSTA187/workspace/Model2Study/WebContent/WEB-INF/dao-mapper.properties");
 		UserDao dao = factory.getUserDao();
 		try {
 			
