@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.or.kosta.shoppingmall.common.controller.Controller;
 import kr.or.kosta.shoppingmall.common.controller.ModelAndView;
-import kr.or.kosta.shoppingmall.common.service.ObjectFactory;
+import kr.or.kosta.shoppingmall.common.factory.XMLObjectFactory;
 import kr.or.kosta.shoppingmall.user.domain.User;
 import kr.or.kosta.shoppingmall.user.service.UserService;
 import kr.or.kosta.shoppingmall.user.service.UserServiceImpl;
@@ -23,8 +23,12 @@ public class UserListController implements Controller {
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		ModelAndView mav = new ModelAndView();
-		ObjectFactory factory = (ObjectFactory)request.getServletContext().getAttribute("objectFactory");
-		userService = (UserService)factory.getService(UserServiceImpl.class);
+//		ObjectFactory factory = (ObjectFactory)request.getServletContext().getAttribute("objectFactory");
+//		userService = (UserService)factory.getService(UserServiceImpl.class);
+		
+		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
+//		userService = (UserService)factory.getBean("userService");
+		userService = (UserService)factory.getBean(UserServiceImpl.class);
 		
 		List<User> list = null;
 		try {

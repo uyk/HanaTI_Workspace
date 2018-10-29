@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<!-- 샘플 컨트롤러 등록 -->
+	<bean type="controller" name="/hello" class="kr.or.kosta.shoppingmall.demo.controller.HelloController" />
+	<bean type="controller" name="/today" class="kr.or.kosta.shoppingmall.demo.controller.TodayController" />
+	
+	<!-- 방명록 -->
+	<bean type="controller" name="/guestbook/list" class="kr.or.kosta.shoppingmall.demo.controller.GuestbookController" />
+	
+	<!-- 회원관리 -->
+	<bean type="controller" name="/user/list" class="kr.or.kosta.shoppingmall.user.controller.UserListController" />
+	
+	<!-- ajax -->
+	<bean type="controller" name="/ajax" class="kr.or.kosta.shoppingmall.demo.controller.SimpleDataController" />
+	
+</beans>

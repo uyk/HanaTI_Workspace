@@ -18,12 +18,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User search(String id) throws Exception {
-		return null;
+		return userDao.read(id);
 	}
 
 	@Override
 	public List<User> list() throws Exception {
-		System.out.println(userDao);
 		return userDao.listAll();
 	}
 
