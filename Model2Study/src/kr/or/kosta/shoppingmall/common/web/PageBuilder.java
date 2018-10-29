@@ -1,5 +1,9 @@
 package kr.or.kosta.shoppingmall.common.web;
 
+/**
+ * 페이징 처리에 필요한 정보 연산 처리
+ * @author 김기정
+ */
 public class PageBuilder {
 	
 	// 연산에 필요한 속성들
@@ -150,5 +154,66 @@ public class PageBuilder {
 		// 조건검색이 있는 경우
 		queryString += params.getSearchType() != null ? "&searchType=" + params.getSearchType() + "&searchValue=" + params.getSearchValue()  :  "";
 		return queryString;
+	}
+	
+	
+	/** 테스트을 위한 main */
+	public static void main(String[] args) {
+		/** 사용자 선택페이지, 페이지에 출력할 행의 수, 페이지 수, 검색유형, 검색값 */
+		Params params = new Params(1, 15, 10, null, null);
+		int selectCount = 156;
+		PageBuilder pageBuilder = new PageBuilder(params, selectCount);
+		pageBuilder.build();
+		
+		System.out.println("검색된 행수: " + pageBuilder.getRowCount());
+		System.out.println("요청페이지: " + pageBuilder.getParams().getPage());
+		
+		System.out.println("전체페이지수: " + pageBuilder.getPageCount());
+		
+		System.out.println("현재목록의 시작페이지: " + pageBuilder.getStartPage());
+		System.out.println("현재목록의 끝페이지: " + pageBuilder.getEndPage());
+		
+		System.out.println("처음으로 보여주기 여부: " + pageBuilder.isShowFirst());
+		System.out.println("이전목록 보여주기 여부: " + pageBuilder.isShowPrevious());
+		
+		System.out.println("다음목록 보여주기 여부: " + pageBuilder.isShowNext());
+		System.out.println("끝으로 보여주기 여부: " + pageBuilder.isShowLast());
+		
+		// JSP에서 페이지 번호 직접 출력 시
+		if(pageBuilder.isShowFirst()) {
+			System.out.print("처음으로 ");
+		}
+		
+		if(pageBuilder.isShowPrevious()) {
+			System.out.print("이전목록 ");
+		}
+		
+		for(int i=pageBuilder.getStartPage(); i<=pageBuilder.getEndPage(); i++){
+			System.out.print(i + " | ");
+		}
+		
+		if(pageBuilder.isShowNext()) {
+			System.out.print("다음목록 ");
+		}
+		
+		if(pageBuilder.isShowLast()) {
+			System.out.print("끝으로 ");
+		}
+		
+		System.out.println();
+		
+		
+		System.out.println("-----------------------------------------------");
+		
+		// 이름으로 검색 시
+		Params searchParams = new Params(1, 15, 10, "name", "김");
+		int searchCount = 11;
+		PageBuilder pageBuilder2 = new PageBuilder(searchParams, searchCount);
+		pageBuilder2.build();
+		System.out.println("검색된 행수: " + pageBuilder2.getRowCount());
+		System.out.println("요청페이지: " + pageBuilder2.getParams().getPage());
+		
+		System.out.println("전체페이지수: " + pageBuilder2.getPageCount());
+		
 	}
 }

@@ -1,24 +1,28 @@
 package kr.or.kosta.shoppingmall.common.web;
 
+/**
+ * 여러개의 전달인자들을 포장하기 위한 Wrapper 클래스
+ * {사용자 선택페이지, 한페이지에 출력하는 행의 개수, 출력 페이지 개수, 검색유형, 검색값 등}
+ *  
+ * @author 김기정
+ */
 public class Params {
 	private int page;            /** 사용자 선택 페이지 */
 	private int listSize;        /** 조회 목록 개수 */
 	private int pageSize;        /** 출력 페이지 개수 */
-	private int boardId;
 	private String searchType;   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
 	
 	
 	public Params() {
-		this(1, 1, 15, 5, null, null);
+		this(1, 15, 5, null, null);
 	}
 	
 	public Params(int page, int listSize, String searchType, String searchValue) {
-		this(1, page, listSize, 5, null, null);
+		this(page, listSize, 5, null, null);
 	}
 	
-	public Params(int boardId, int page, int listSize, int pageSize, String searchType, String searchValue) {
-		this.boardId = boardId;
+	public Params(int page, int listSize, int pageSize, String searchType, String searchValue) {
 		this.page = page;
 		this.listSize = listSize;
 		this.pageSize = pageSize;
@@ -65,19 +69,12 @@ public class Params {
 	public void setSearchValue(String searchValue) {
 		this.searchValue = searchValue;
 	}
-	
-	
-	public int getBoardId() {
-		return boardId;
-	}
-
-	public void setBoardId(int boardId) {
-		this.boardId = boardId;
-	}
 
 	@Override
 	public String toString() {
 		return "Params [page=" + page + ", listSize=" + listSize + ", pageSize=" + pageSize + ", searchType="
 				+ searchType + ", searchValue=" + searchValue + "]";
 	}
+
+	
 }

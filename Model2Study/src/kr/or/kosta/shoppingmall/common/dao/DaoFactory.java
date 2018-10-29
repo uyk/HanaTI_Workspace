@@ -3,11 +3,7 @@
  */
 package kr.or.kosta.shoppingmall.common.dao;
 
-import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
-
-import kr.or.kosta.shoppingmall.user.dao.UserDao;
 
 /**
  * 추상 팩토리 패턴 적용을 위한 DaoFactory
@@ -21,7 +17,6 @@ import kr.or.kosta.shoppingmall.user.dao.UserDao;
  * @author 김기정
  */
 public abstract class DaoFactory {
-	
 	
 	private static final String DRIVER = "oracle.jdbc.driver.OracleDriver";
 	private static final String URL = "jdbc:oracle:thin:@localhost:1521";
@@ -52,8 +47,12 @@ public abstract class DaoFactory {
 		this.dataSource = dataSource;
 	}
 
-	public abstract UserDao getUserDao();
+//	public abstract UserDao getUserDao();
+//	public BarDao getBarDao();
+//	public FooDao getFooDao();
 	
 	public abstract Object getDao(String daoName);
 	public abstract Object getDao(Class cls);
+	
+	
 }

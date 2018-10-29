@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.kosta.shoppingmall.demo.controller.HelloController;
-import kr.or.kosta.shoppingmall.demo.controller.SimpleDataController;
+import kr.or.kosta.shoppingmall.demo.controller.TodayController;
 
 /**
  * 모든 브라우저 요청에 대한 단일 진입점 역할의 프론트 컨트롤러 서블릿(메인 컨트롤러)
@@ -53,10 +53,10 @@ public class SimpleFrontControllerServlet_V2 extends HttpServlet {
 				controller = new HelloController();
 				break;
 			case "/today":
-				controller = new SimpleDataController();
+				controller = new TodayController();
 				break;
 		}
-	
+		
 		if (controller == null) {
 			response.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return;

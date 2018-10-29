@@ -20,12 +20,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="" key="selection"/>
+		<item value="&quot;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="”"/>
+			<item value="“"/>
 			<item value="syst"/>
 			<item value="upd"/>
 			<item value="dele"/>
@@ -39,10 +41,9 @@
 			<item value="post-meta"/>
 			<item value="children"/>
 			<item value="h2"/>
-			<item value="a .text"/>
-			<item value=".text"/>
 		</list>
 		<list key="replacehistory">
+			<item value="&quot;"/>
 			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>
 			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>
 			<item value="&apos;Nanum Brush Script&apos;, cursive;"/>

@@ -9,31 +9,27 @@ import java.util.Properties;
 
 import javax.sql.DataSource;
 
-import kr.or.kosta.shoppingmall.common.controller.Controller;
-import kr.or.kosta.shoppingmall.common.controller.ControllerFactory;
+import kr.or.kosta.shoppingmall.user.dao.JdbcUserDao;
 import kr.or.kosta.shoppingmall.user.dao.UserDao;
 import kr.or.kosta.shoppingmall.user.domain.User;
 
 public class JdbcDaoFactory extends DaoFactory {
-	//private String[] daoNames = {"kr.or.kosta.jsp.dao.JdbcUserDao"};
-	private Hashtable<String, Object> daos;
 	
+	private Hashtable<String, Object> daos;
 	
 	public JdbcDaoFactory(String daoMapperLocation) {
 		daos = new Hashtable<String, Object>();
 		
-		// 매핑정보를 저장할 Properties 객체 생성
 		Properties prop = new Properties();
 		FileInputStream fis = null;
 		try {
 			fis = new FileInputStream(daoMapperLocation);
 			prop.load(fis);
 			Iterator keyIter = prop.keySet().iterator();
-			System.out.println("--- dao 생성 목록 ---");
+			System.out.println("--- DAO 생성 목록 ---");
 			while (keyIter.hasNext()) {
-				String daoName = (String)keyIter.next();
+				String daoName = (String) keyIter.next();
 				String daoClassName = prop.getProperty(daoName);
-				// dao 생성
 				Object daoObject = Class.forName(daoClassName).newInstance();
 				addDataSource(daoObject);
 				daos.put(daoClassName, daoObject);
@@ -43,20 +39,6 @@ public class JdbcDaoFactory extends DaoFactory {
 			ex.printStackTrace();
 		}
 	}
-
-	public Object getDao(String daoName) {
-		return daos.get(daoName);
-	}
-	
-	public Object getDao(Class cls) {
-		return daos.get(cls.getName());
-	}
-	
-	@Override
-	public UserDao getUserDao() {
-		return (UserDao)daos.get("kr.or.kosta.jsp.dao.JdbcUserDao");
-	}
-	
 	private void addDataSource(Object dao) {
 		Class cls = dao.getClass();
 		// 동적 메소드호출
@@ -69,14 +51,35 @@ public class JdbcDaoFactory extends DaoFactory {
 		}
 	}
 	
+	/*
+	@Override
+	public UserDao getUserDao() {
+		return (UserDao)daos.get("kr.or.kosta.jsp.dao.JdbcUserDao");
+	}
+	public BarDao getBarDao() {...};
+	public FooDao getFooDao() {...};
+	*/
+	public Object getDao(String daoName) {
+		return daos.get(daoName);		
+	}
+	
+	public Object getDao(Class cls) {
+		return getDao(cls.getName());
+	}
+	
 	public static void main(String[] args) throws Exception {
-		DaoFactory factory = new JdbcDaoFactory("C:/KOSTA187/workspace/Model2Study/WebContent/WEB-INF/dao-mapper.properties");
-		UserDao dao = factory.getUserDao();
+		String mapperLocation = "C:/KOSTA187/workspace/Model2Study/WebContent/WEB-INF/dao-mapper.properties";
+		DaoFactory factory = new JdbcDaoFactory(mapperLocation);
+//		UserDao dao = (UserDao)factory.getDao("kr.or.kosta.shoppingmall.user.dao.JdbcUserDao");
+		UserDao dao = (UserDao)factory.getDao(JdbcUserDao.class);
 		List<User> list = dao.listAll();
 		for (User user : list) {
 			System.out.println(user.toString());
 		}
-		
 	}
 
 }
+
+
+
+

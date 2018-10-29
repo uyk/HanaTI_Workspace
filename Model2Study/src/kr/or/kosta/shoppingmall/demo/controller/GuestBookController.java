@@ -21,7 +21,6 @@ public class GuestBookController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		System.out.println("2");
 		
 		ModelAndView mav = new ModelAndView();
 		// 모델영역의 비즈니스소드 호출 및 데이터 반환

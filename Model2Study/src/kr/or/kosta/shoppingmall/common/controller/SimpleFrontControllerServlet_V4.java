@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kr.or.kosta.shoppingmall.common.dao.DaoFactory;
 import kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory;
 import kr.or.kosta.shoppingmall.common.view.View;
 import kr.or.kosta.shoppingmall.common.view.ViewResolver;
@@ -21,6 +22,7 @@ import kr.or.kosta.shoppingmall.common.view.ViewResolver;
  */
 public class SimpleFrontControllerServlet_V4 extends HttpServlet {
 	private String controllerMapperLocation;
+	
 	private ControllerFactory controllerFactory;
 	private ViewResolver viewResolver;
 	
@@ -78,7 +80,7 @@ public class SimpleFrontControllerServlet_V4 extends HttpServlet {
 		if(mav == null){
 			return;
 		}
-System.out.println("1");
+
 		// request 컨텍스트 객체에 View에서 필요로 하는 결과정보 저장
 		Map<String, Object> map = mav.getModel();
 		Set<String> keySet = map.keySet();

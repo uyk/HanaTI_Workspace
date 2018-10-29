@@ -6,6 +6,7 @@ import javax.servlet.ServletContextListener;
 
 import kr.or.kosta.shoppingmall.common.dao.DaoFactory;
 import kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory;
+import kr.or.kosta.shoppingmall.common.service.ObjectFactory;
 import kr.or.kosta.shoppingmall.common.service.ServiceFactory;
 
 
@@ -22,15 +23,21 @@ public class ServletContextLoadListener implements ServletContextListener {
 	 */
 	public void contextInitialized(ServletContextEvent event)  {
 		ServletContext servletContext = event.getServletContext();
-		String serviceMapperLocation = "C:/KOSTA187/workspace/Model2Study/WebContent/WEB-INF/service-mapper.properties";
-		String daoMapperLocation = "C:/KOSTA187/workspace/Model2Study/WebContent/WEB-INF/dao-mapper.properties";
-		ServiceFactory serviceFactory = new ServiceFactory(serviceMapperLocation);
-		DaoFactory daoFactory = new JdbcDaoFactory(daoMapperLocation);
-		// 모든 서블릿, JSP들이 공유할 수 있도록 ServletContext에 DaoFactory 저장
-		servletContext.setAttribute("daoFactory", daoFactory);
-		servletContext.setAttribute("serviceFactory", serviceFactory);
 		
-		System.out.println("debug : serviceFactory, daoFactory 생성 완료");
+//		String serviceMapperLocation = servletContext.getInitParameter("serviceMapperLocation");
+//		String daoMapperLocation = servletContext.getInitParameter("daoMapperLocation");
+		String objectMapperLocation = servletContext.getInitParameter("objectMapperLocation");
+		
+//		ServiceFactory serviceFactory = new ServiceFactory(serviceMapperLocation);
+//		DaoFactory daoFactory = new JdbcDaoFactory(daoMapperLocation);
+		
+		ObjectFactory objectFactory = new ObjectFactory(objectMapperLocation);
+		
+		// 모든 서블릿, JSP들이 공유할 수 있도록 ServletContext에 DaoFactory 저장
+//		servletContext.setAttribute("serviceFactory", serviceFactory);
+//		servletContext.setAttribute("daoFactory", daoFactory);
+		servletContext.setAttribute("objectFactory", objectFactory);
+		System.out.println("[debug] : ObjectFactory 생성 완료!");
 	}
 	
 	
