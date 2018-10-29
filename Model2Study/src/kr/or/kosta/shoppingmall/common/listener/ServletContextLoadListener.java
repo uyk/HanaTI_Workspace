@@ -6,6 +6,7 @@ import javax.servlet.ServletContextListener;
 
 import kr.or.kosta.shoppingmall.common.dao.DaoFactory;
 import kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory;
+import kr.or.kosta.shoppingmall.common.factory.XMLObjectFactory;
 import kr.or.kosta.shoppingmall.common.service.ObjectFactory;
 import kr.or.kosta.shoppingmall.common.service.ServiceFactory;
 
@@ -15,7 +16,7 @@ import kr.or.kosta.shoppingmall.common.service.ServiceFactory;
  * @author 김기정
  */
 public class ServletContextLoadListener implements ServletContextListener {
-	
+	XMLOb
 	/**
 	 * ServletContext생성 이벤트 처리
      * ServletContext가 생성되면(서블릿컨테이너 초기화) 웹 애플리케이션내의
@@ -30,8 +31,15 @@ public class ServletContextLoadListener implements ServletContextListener {
 		
 //		ServiceFactory serviceFactory = new ServiceFactory(serviceMapperLocation);
 //		DaoFactory daoFactory = new JdbcDaoFactory(daoMapperLocation);
-		
-		ObjectFactory objectFactory = new ObjectFactory(objectMapperLocation);
+
+//		ObjectFactory objectFactory = new ObjectFactory(objectMapperLocation);
+		XMLObjectFactory objectFactory = null;
+		try {
+			objectFactory = new XMLObjectFactory(objectMapperLocation);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// 모든 서블릿, JSP들이 공유할 수 있도록 ServletContext에 DaoFactory 저장
 //		servletContext.setAttribute("serviceFactory", serviceFactory);
