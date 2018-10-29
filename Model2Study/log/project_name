@@ -1,0 +1,2 @@
+2018-10-29 14:37:57 [ERROR] [or.kosta.shoppingmall.log4j.SomeService:15] error 로그메시지 
+2018-10-29 14:37:57 [FATAL] [or.kosta.shoppingmall.log4j.SomeService:16] fatal 로그메시지 
