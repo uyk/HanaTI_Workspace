@@ -172,6 +172,9 @@
 	<section name="AddUnimplementedConstructorsDialog">
 		<item value="false" key="OmitCallToSuper"/>
 	</section>
+	<section name="ClasspathContainerSelectionPage">
+		<item value="7" key="index"/>
+	</section>
 	<section name="quick_assist_proposal_size">
 		<item value="1037" key="size.y"/>
 		<item value="446" key="size.x"/>

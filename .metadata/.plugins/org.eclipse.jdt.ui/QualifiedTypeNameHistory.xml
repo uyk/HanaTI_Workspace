@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.sql.ResultSetMetaData"/>
-<fullyQualifiedTypeName name="java.util.ArrayList"/>
-<fullyQualifiedTypeName name="java.lang.System"/>
-<fullyQualifiedTypeName name="java.lang.Runtime"/>
-<fullyQualifiedTypeName name="pattern.User"/>
-<fullyQualifiedTypeName name="pattern.JdbcUserDAO"/>
 <fullyQualifiedTypeName name="pattern.Employee"/>
 <fullyQualifiedTypeName name="java.util.Map"/>
 <fullyQualifiedTypeName name="pattern2.UserConnectionPool"/>
@@ -50,7 +44,6 @@
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.service.UserService"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.service.ServiceFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.service.UserServiceImpl"/>
@@ -58,6 +51,13 @@
 <fullyQualifiedTypeName name="javax.servlet.ServletException"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.dao.DaoFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory"/>
-<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.UserDao"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.JdbcUserDao"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.UserDao"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.service.UserService"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.factory.XMLObjectFactory"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.log4j.SomeService"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="org.junit.After"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="java.util.logging.Logger"/>
 </qualifiedTypeNameHistroy>
