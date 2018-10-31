@@ -1,0 +1,37 @@
+<!-- 계산 결과값을 서버에서 처리하여 출력 -->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>미션) 계산기</title>
+<script>  
+window.onload = function() {
+	document.getElementById("result").onclick = result;
+	set();
+}
+function set() {
+  var nowAddress = unescape(location.href);
+  if(nowAddress.indexOf("?") != -1) {
+    var params = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+    document.getElementsByName("num1")[0].value = params[0].split("=")[1];
+    document.getElementsByName("num2")[0].value = params[1].split("=")[1];
+    document.getElementsByName("operator")[0].value = params[2].split("=")[1];
+    document.getElementById("output").innerHTML = params[3].split("=")[1];
+  }
+}
+</script>
+</head>
+<body>
+  <input type="number" name="num1">
+  <select name="operator">
+    <option>+</option>
+    <option>-</option>
+    <option>*</option>
+    <option>/</option>
+  </select>
+  <input type="number" name="num2">
+  <span id="output"></span>
+  <input type="button" id="result" value="결과보기">
+</body>
+</html>
+

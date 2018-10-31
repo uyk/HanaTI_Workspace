@@ -1,18 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="pattern.Employee"/>
-<fullyQualifiedTypeName name="java.util.Map"/>
-<fullyQualifiedTypeName name="pattern2.UserConnectionPool"/>
-<fullyQualifiedTypeName name="java.util.HashSet"/>
-<fullyQualifiedTypeName name="java.util.Enumeration"/>
-<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
-<fullyQualifiedTypeName name="java.sql.Connection"/>
-<fullyQualifiedTypeName name="java.lang.Class"/>
-<fullyQualifiedTypeName name="java.sql.DriverManager"/>
-<fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
-<fullyQualifiedTypeName name="java.sql.ResultSet"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dao.JdbcUserDAO"/>
-<fullyQualifiedTypeName name="kr.or.kosta.dao.User"/>
 <fullyQualifiedTypeName name="java.util.Properties"/>
 <fullyQualifiedTypeName name="java.io.FileInputStream"/>
 <fullyQualifiedTypeName name="javax.servlet.RequestDispatcher"/>
@@ -42,7 +29,6 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.controller.Controller"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
-<fullyQualifiedTypeName name="java.util.List"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.service.ServiceFactory"/>
@@ -52,12 +38,26 @@
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.dao.DaoFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.dao.JdbcDaoFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.JdbcUserDao"/>
-<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.UserDao"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.service.UserService"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.factory.XMLObjectFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.log4j.SomeService"/>
-<fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="org.junit.After"/>
-<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="java.io.Reader"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.io.Resources"/>
 <fullyQualifiedTypeName name="java.util.logging.Logger"/>
+<fullyQualifiedTypeName name="org.apache.log4j.Logger"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactoryBuilder"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.MybatisTest"/>
+<fullyQualifiedTypeName name="java.util.Map"/>
+<fullyQualifiedTypeName name="java.util.HashMap"/>
+<fullyQualifiedTypeName name="java.math.BigDecimal"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.employee.domain.Employee"/>
+<fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.UserDao"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.MyBatisUserDao"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.web.Params"/>
 </qualifiedTypeNameHistroy>

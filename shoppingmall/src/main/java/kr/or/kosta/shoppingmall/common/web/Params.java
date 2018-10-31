@@ -19,7 +19,7 @@ public class Params {
 	}
 	
 	public Params(int page, int listSize, String searchType, String searchValue) {
-		this(page, listSize, 5, searchType, searchValue);
+		this(page, listSize, 5, null, null);
 	}
 	
 	public Params(int page, int listSize, int pageSize, String searchType, String searchValue) {

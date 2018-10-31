@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../js/ajax.js"></script>
+<script>
+window.onload = function() {
+	document.getElementById("send").onclick = function() {
+    	var message = document.getElementById("message").value;
+    	message = encodeURIComponent(message);
+		ajax(
+		{	method:"get",
+			url:"server.jsp",
+			param:"message=" + message,
+			callback: recieveServer
+		}
+		)		
+	};
+}
+
+function recieveServer(request) {
+	appendMessage(request.responseText);
+}
+
+function appendMessage(message) {
+	document.getElementById("messageBox").innerHTML = message;
+}
+</script>
+</head>
+<body>
+  <input type="text" id="message" name="message" size="20" value="기본데이터">
+  <input type="button" id="send" value="전송">
+  <span id="messageBox"></span>
+</body>
+</html>

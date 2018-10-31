@@ -20,12 +20,13 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="&quot;" key="selection"/>
+		<item value="" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="ems"/>
 			<item value="”"/>
 			<item value="“"/>
 			<item value="syst"/>
@@ -40,7 +41,6 @@
 			<item value="col"/>
 			<item value="post-meta"/>
 			<item value="children"/>
-			<item value="h2"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>
