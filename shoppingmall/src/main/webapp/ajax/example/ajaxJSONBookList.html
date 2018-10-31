@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title></title>
-<script src="../js/ajax.js"></script>
+<script src="../../js/ajax.js"></script>
 
 <script>
 window.onload = function(){
@@ -21,13 +21,42 @@ window.onload = function(){
         url: "jsonBookList.jsp",
         callback : function(request){
           var jsonString = request.responseText;
-          //alert(jsonString);
+          console.log(jsonString);
           // 서버로부터 수신한 JSONString을 테이블로 출력
+          printTable(jsonString)
         }
       });
       
     }
   }
+}
+
+function printTable(text) {
+    var objects = JSON.parse(text);
+    var page = objects["page"];
+    var list = objects["list"];
+    console.log(objects);
+    console.log(page);
+    console.log(list);
+    
+    var table = 	"<h3>총 페이지 수 : "+ page +"</h3>" +
+    				"<table border='1'>" + 
+					"  <tr> "+ 
+					"    <th>장르</th><th>제목</th><th>저자</th><th>출판사</th><th>가격</th>" + 
+					"  </tr>\r\n"; 
+	for ( var i in list) {
+		table +=	"  <tr>\r\n" + 
+            		"    <td>"+ list[i].kind + "</td>\r\n" + 
+            		"    <td>"+ list[i].title + "</td>\r\n" + 
+            		"    <td>"+ list[i].author + "</td>\r\n" + 
+            		"    <td>"+ list[i].publisher + "</td>\r\n" + 
+            		"    <td>"+ list[i].price + "</td>\r\n" + 
+            		"  </tr>\r\n";
+	}
+	table +=		"</table>";
+	var div = document.getElementById("view");
+	div.innerHTML = table;
+
 }
 </script>
 
