@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 조작</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 속성 추출 및 조작
+	//var src = $("img").attr("src");
+	//alert(src);
+	
+	//$("img").attr("src", "../images/img-0.png");
+	
+	/*
+	$("img").attr("src", function(index){
+		return "../images/img-" + index + ".png";		
+	}).css({
+		width : 100,
+		height : 100
+	});
+	*/
+	
+	
+	//$("img").attr("width", 200);
+	/*
+	
+	$("img").attr("width", function(index){
+		return (index + 1) * 100;		
+	});
+	*/
+	
+	
+	$("img").attr({
+		src : function(index){
+			return "../images/img-" + index + ".png";		
+		},
+		width: function(index){
+			return (index + 1) * 100;
+		},
+		height: function(index){
+			return (index + 1) * 100;
+		}
+	});
+	
+	
+	// 속성 제거
+	//$("img").removeAttr("src");
+	
+});
+</script>
+<body>
+<img />	
+<img />	
+<img />	
+<img />	
+</body>
+</html>

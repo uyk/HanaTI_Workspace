@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script>
+//var xmlSource = "http://api.duckduckgo.com/?q=StackOverflow&format=xml";
+var url = "http://www.weather.go.kr/weather/forecast/mid-term-rss3.jsp?stnId=108";
+
+var yqlURL = [ "http://query.yahooapis.com/v1/public/yql", "?q=" + encodeURIComponent("select * from xml where url='" + url + "'"), "&format=xml&callback=?" ].join("");
+
+$.getJSON(yqlURL, function(data){ 
+	alert(data);
+	for(var key in data){
+		console.log(key + " : " + data[key]);		
+	}
+	xmlContent = $(data.results[0]);
+	var language = $(xmlContent).find("language").text(); 
+	alert(language);
+});
+
+
+</script>
+</head>
+
+<body>
+테스트.....
+</body>
+</html>

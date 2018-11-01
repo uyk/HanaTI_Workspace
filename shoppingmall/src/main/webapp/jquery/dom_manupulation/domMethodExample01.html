@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 조작</title>
+
+<style type="text/css">
+.item{color: white}
+.item-0{background: red;}
+.item-1{background: green;}
+.item-2{background: blue;}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 클래스(class) 속성 추가
+	$("h1").addClass("item");
+	
+	// 클래스(class) 속성 동적 추가
+	$("h1").addClass(function(index){
+		return "item-"+index;		
+	});
+	
+	// 제거
+	/*
+	$("h1").removeClass("item");
+	
+	
+	$("h1").removeClass(function(index){
+		return "item-" + index;
+	});
+	*/
+	
+});
+</script>
+<body>
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+</body>
+</html>
+
+
+
+
+
+
+

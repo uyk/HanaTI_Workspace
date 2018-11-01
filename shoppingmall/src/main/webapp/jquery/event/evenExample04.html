@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 이벤트리스너에 전달되는 event 객체의 속성들
+	$("#canvas").on({
+		mousedown : function(event){
+			var position = $(this).offset();
+			console.log(event.pageX + ", " + position.left);
+			console.log(event.pageY + ", " + position.top);
+		},
+		mouseup : function(){
+			var position = $(this).offset();
+			console.log(event.pageX + ", " + position.left);
+			console.log(event.pageY + ", " + position.top);
+		}
+	});
+	
+});
+</script>
+<body>
+<canvas id="canvas" width="700" height="400" style="border: 3px solid black"></canvas>
+</body>
+</html>

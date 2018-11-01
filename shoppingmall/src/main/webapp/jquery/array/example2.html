@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	var array = [
+		{name : "한국소프트웨어기술진흥협회", link : "http://edu.kosta.or.kr"},
+		{name : "한빛미디어",                 link : "http://hanb.co.kr"},
+		{name : "다음",                       link : "http://www.daum.net"},
+		{name : "네이버",                     link : "http://www.naver.com"}
+	];
+	
+	// jQuery를 이용한 배열 목록을 동적 링크 처리
+	$.each(array, function(i, item) {
+		var li = "<li><a href='"+item.link+"'>"+item.name+"</a></li>";
+		$("ul").append(li);
+	});
+});
+
+</script>
+</head>
+<body>
+<ul></ul>
+</body>
+</html>
+
+
+
+
+
+
+

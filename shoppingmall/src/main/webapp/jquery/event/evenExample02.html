@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<style type="text/css">
+.reverse {
+	background: black;
+	color: white;
+	width: 150px;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 간단한 이벤트리스너 등록(이벤트타입별 등록 메소드 제공)
+	$("h1").click(function(event) {
+		alert("왜 눌러.." + event.type);
+	});
+	
+	/*
+	$("h2").mouseenter(function(){
+		$(this).addClass("reverse");
+	});
+	$("h2").mouseleave(function(){
+		$(this).removeClass("reverse");
+	});
+	*/
+
+	// 다중(mouseenter, mouseleave) 이벤트리스너 등록
+	$("h2").hover(function() {
+		$(this).addClass("reverse");
+	}, function() {
+		$(this).removeClass("reverse");
+	});
+	
+	
+	// 키이벤트
+	$("textarea").keyup(function() {
+		// 입력 글자수 체크(this는 이벤트소스)
+		var txt = $(this).val();
+		// 8자 초과 시 입력 불가능하게
+		if (txt.length > 8) {
+			alert("8자를 초과할 수 없습니다.");
+			$(this).val(txt.substring(0, 8));
+			
+			$(this).attr({
+				disabled: "disabled",
+				readonly: "readonly"
+			});
+		}
+	});
+
+});
+</script>
+<body>
+<h1>클릭</h1>
+<h2>마우스올려봐</h2>
+<textarea cols="50" rows="5"></textarea>
+<br>
+</body>
+</html>

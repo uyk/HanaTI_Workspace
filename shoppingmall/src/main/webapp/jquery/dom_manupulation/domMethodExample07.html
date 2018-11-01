@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 조작</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// DOM 객체 제거
+	$("h1:first").remove();
+	//$("h1").first().remove();
+	// DOM 객체 내부의 모든 내용 제거
+	$("div").empty();
+});
+</script>
+<body>
+<div>
+	<h1>Header-0</h1>
+	<h1>Header-1</h1>
+	<h1>Header-2</h1>
+</div>
+</body>
+</html>

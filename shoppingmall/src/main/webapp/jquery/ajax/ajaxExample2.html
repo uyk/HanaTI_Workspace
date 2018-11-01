@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	$("form").submit(function() {
+		//var name = encodeURIComponent($("#name").val());
+		//var data = "name=" + name;
+		
+
+		var data = $(this).serialize();
+		alert(data);
+		
+		
+		$.ajax("welcome2.jsp", {
+			data : data,
+			dataType: "text", //응답결과로 반환되는 데이터타입(text, html, xml, html, json)
+			success : function(data) {
+				$("#messageBox").html(data);
+			},
+		    
+			error : function(xhr, statusText){
+		    	alert("("+xhr.status+", "+statusText+")");
+		    }
+		});
+		
+		return false;// 디폴트이벤트 제거 및 이벤트 전달 방지
+	});
+});
+</script>
+</head>
+<body>
+	<form>
+	아이디 <input type="text" name="id"><br/>
+	이름 <input type="text" name="name"><br>
+	<input type="submit" value="전송">
+	<div id="messageBox"></div>
+	</form>
+</body>
+</html>

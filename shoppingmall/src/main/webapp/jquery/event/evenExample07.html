@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	
+	// 동적으로 생긴 h1 태그에 대해서는 이벤트 처리가 안됨
+
+	$("h1").on("click", function(){
+		var length = $("h1").length;
+		var html = $(this).html();
+		$("#wrap").append("<h1>"+length+"-"+html+"</h1>");
+	});
+	
+	// delegate 이벤트 처리 (이벤트 처리 범위 한정)
+	// 부모 DOM 객체에 이벤트리스너를 등록한 후 이를 하위 DOM 객체에 전달하는 방식
+	//$("#wrap").on("click", "h1", function(){
+	$(document).on("click", "h1", function(){ // 상위개념이 애매할 경우 document에...
+		var length = $("h1").length;
+		var html = $(this).html();
+		$("#wrap").append("<h1>"+length+"-"+html+"</h1>");
+		
+		// 이벤트 제거
+		//$("#wrap").off("click", "h1");
+	});
+});
+</script>
+<body>
+<div id="wrap">
+  <h1>Header</h1>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<style>
+* {	margin: 0px; padding: 0px;}
+
+div {
+	margin: 5px;
+	padding: 3px;
+	border: 3px solid black;
+	border-radius: 10px;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// $("selector", context); context: selector를 적용하는 단락 한정
+	// 이벤트 처리 시 주로 사용
+	$("div").click(function(){
+		var header = $("h1", this).text();
+		var paragraph = $("p", this).text();
+		alert(header + "\n" + paragraph);
+	});
+	
+	// find() 메소드로도 가능
+	$("div").click(function(){
+		var header = $(this).find("h1").text();
+		var paragraph = $(this).find("p").text();
+		alert(header + "\n" + paragraph);
+	});
+});
+</script>
+<body>
+	<div>
+		<h1>Header1</h1>
+		<p>Paragraph</p>
+	</div>
+	<div>
+		<h1>Header2</h1>
+		<p>Paragraph</p>
+	</div>
+	<div>
+		<h1>Header3</h1>
+		<p>Paragraph</p>
+	</div>
+</body>
+</html>

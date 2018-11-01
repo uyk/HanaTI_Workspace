@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ajax 파일 업로드</title>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+  </head>
+  <body>
+    <script>
+    	function fileUpload(){
+    		/*
+    		var formData = new FormData();
+    	    formData.append("test1", $(":text").val());
+    	    formData.append("test2", $("textarea").val());
+    	    formData.append("solo_file", $("#soloFile")[0].files[0]);	//파일 한개
+    	    //file multiple 전송시 다음과 같이 반복문으로 추가.     //파일 여러개
+			$($("#multiFile")[0].files).each(function(index, file) {
+    			formData.append("multi_file[]", file);				
+    	    });
+    	    */
+    	    
+    	    // 동적 데이터
+    		var array = [];
+        	for (var i = 0; i < 1000000; i++) {
+        		array.push(i);
+        	}
+        	alert("배열 생성 완료");
+        	var blob = new Blob(array, {
+        		"type" : "audio/mpeg"
+        	});
+        	alert("Blob 생성 완료...");
+        
+        	var formData = new FormData();
+        	formData.append("uploader", "bangry");
+        	formData.append("uploadFile", blob);
+        	alert(formData + "생성 완료..");
+        	
+        	$.ajax({
+				url: 'test.jsp',
+				type: "post",
+				processData: false,
+				contentType: false,
+				data: formData
+
+			}).done(function(data) {
+				alert(data);
+
+			});
+    	}
+    	
+    	fileUpload();
+  	</script>
+</body>
+</html>

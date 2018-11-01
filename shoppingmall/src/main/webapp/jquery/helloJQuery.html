@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("p").click(function(){
+        $(this).hide();
+    });
+});
+/*
+$(document).ready(function() {
+	alert("문서 로딩 완료");
+});
+
+$(document).ready(function() {
+	alert("문서 로딩 완료2");
+});
+*/
+$(function() {
+	alert("문서 로딩 완료2");
+	$("*").css("color", "blue");
+});
+</script>
+</head>
+<body>
+
+<p>If you click on me, I will disappear.</p>
+<p>Click me away!</p>
+<p>Click me too!</p>
+<script type="text/javascript">
+	var object = jQuery("p")
+	for ( var i in object) {
+		console.log(i + " : " + object[i]);
+	}
+	object.click(function() {
+		var object2 = jQuery(this);
+		alert("클릭됨");
+		object2.hide();
+	})
+
+</script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	$.ajax({
+		url : "students.jsp",
+		dataType : "xml",
+		success : function(xml) {
+			//alert($(xml).find("student").length);
+			
+			var output = "";
+			$(xml).find("student").each(function(index){
+				output += "<div>";
+				output += "<h1>"+$(this).find("first-name").text()+"</h1>";
+				output += "<p>"+$(this).find("street").text()+"</p>";
+				output += "</div>";
+			});
+			
+			$("#message").html(output);
+		
+		}
+	});
+	return false;
+});
+</script>
+</head>
+<body>
+<div id="message"></div>
+</body>
+</html>

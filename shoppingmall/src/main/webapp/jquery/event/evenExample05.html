@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 이벤트 강제 발생(trigger())
+	$("h1").click(function(){
+		$(this).html(function(index, html){
+			return html + "★";
+		});
+	});
+	
+	// 1초마다 클릭 이벤트 ... 강제 이니시에이팅 발생
+	setInterval(function(){
+		$("h1").last().trigger("click");
+		//$("h1").last().click();
+	}, 1000);
+	
+});
+</script>
+<body>
+<h1>Start: </h1>
+<h1>Start: </h1>
+</body>
+</html>

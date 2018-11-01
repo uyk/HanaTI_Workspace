@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script> 
+<script type="text/javascript">
+
+var xml = "";
+xml += "<friends>";
+xml += "  <friend>";
+xml += "    <name>김기정</name>";
+xml += "    <language>Java</language>";
+xml += "  </friend>";
+xml += "  <friend>";
+xml += "    <name>정희선</name>";
+xml += "    <language>Java, C, C++</language>";
+xml += "  </friend>";
+xml += "</friends>";
+
+//xhr.responseXML;
+var xmlDocument = $.parseXML(xml);
+
+$(function(){
+	var output = "";
+	$(xmlDocument).find("friend").each(function(index){
+		output += "<div>";
+		output += "<h1>"+$(this).find("name").text()+"</h1>";
+		output += "<p>"+$(this).find("language").text()+"</p>";
+		output += "</div>";
+	});
+	$("body").html(output);
+});
+
+</script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 삽입</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// $("selector").append(content), prepend(content), after(content), before(content);
+	// $("<E>").appendTo(Target), prependTo(Target), insertAfter(Target), insertBefore(Target);
+	var h1 = "<h1>Header1</h1>";
+	var h2 = "<h2>Header2</h2>";
+	
+	$("body").append(h1); // html()과 유사
+	$("body").append(h1, h2);
+	
+	var contents = [
+		{name: "윤인성", region: "서울시 강서구"},
+		{name: "윤하린", region: "서울시 강서구"},
+		{name: "윤인아", region: "서울시 강서구"}
+	];
+	
+	$("div").append(function(index){
+		var item = contents[index];
+		var output = "";
+		output += "<h1>"+item.name+"</h1>";
+		output += "<h1>"+item.region+"</h1>";
+		return output;		
+	});
+});
+</script>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>

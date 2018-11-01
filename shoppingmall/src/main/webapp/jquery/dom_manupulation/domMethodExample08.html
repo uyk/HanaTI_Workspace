@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 생성</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// DOM 객체 생성 및 특정 엘리먼트의 자식으로 추가
+	$("<h1>DOM 객체 생성</h1>").appendTo("body");
+	//$("<h1></h1>").html("DOM 객체 생성").appendTo("body");
+	
+	
+	$("<img />").attr("src", "../images/img-3.png").appendTo("body");
+	
+	$("<img />",{
+		src: "../images/img-2.png",
+		width: 350,
+		height: 350
+	}).appendTo("body");
+});
+</script>
+<body>
+</body>
+</html>

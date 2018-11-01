@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>jQuery 선택자</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+$(function() {
+	
+	$("input[type='text']").css("background", "yellow");
+	//alert($("input[type='text']").css("background"));
+	
+	alert($("input[type='text']").val());
+	//$("input[type='text']").val("김기정 바보");
+	//$("input[type~='text']").val("김기정 바보");
+	$("input[type^='p']").val("김기정 바보");
+	//$("input[type$='d']").val("김기정 바보");
+	$("input[type*='e']").val("김기정 바보");
+});
+</script>
+</head>
+<body>
+<input type="text">
+<input type="password">
+<input type="radio">
+<input type="checkbox">
+<input type="file">
+<select></select>
+<textarea rows="" cols=""></textarea>
+</body>
+</html>
+
+
+
+
+
+

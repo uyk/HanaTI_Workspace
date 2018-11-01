@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 입력폼 이벤트(change, focus, focusin, focusout, blur, select, submit, reset)
+	$("#all-check").change(function(){
+		alert($(this).prop("checked"));
+		if(this.checked){
+			//$("#check-item").children().prop("checked", true);
+			$("#check-item").find("input").prop("checked", true);
+		}else{
+			$("#check-item").children().prop("checked", false);
+		}
+	});
+});
+</script>
+<body>
+	<input type="checkbox" id="all-check" />
+	<label>All</label>
+	<div id="check-item">
+		<input type="checkbox" /><label>A Option</label>
+		<input type="checkbox" /><label>B Option</label>
+		<input type="checkbox" /><label>C Option</label>
+	</div>
+</body>
+</html>

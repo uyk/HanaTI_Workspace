@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<style>
+*{
+	margin: 5px;
+	padding: 5px;
+	border: 3px solid black;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 기본 이벤트 제거 및 이벤트 전달 방지
+	$("a").click(function(event){
+		$(this).css("background-color", "blue");
+		//event.preventDefault();
+		//event.stopPropagation();
+		return false;
+	});
+	
+	$("h1").click(function(){
+		$(this).css("background-color", "red");
+	});
+	
+});
+</script>
+<body>
+<h1>
+  <a href="http://www.naver.com">Naver</a>
+</h1>
+</body>
+</html>

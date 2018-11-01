@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ajax</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+	// Ajax 관련 유틸리티 메소드
+	$(function() {
+		$("form").submit(function(event) {
+			/*
+			var id = $("#id").val();
+			var name = $("#name").val();
+			var url = "welcome2.jsp?id="+id+"&name="+name;
+			 */
+
+			// $.param()메소드 활용
+			var id = $("#id").val();
+			var name = $("#name").val();
+			var url = "welcome2.jsp";
+			
+			
+			var data = {
+				id : id,
+				name : name
+			};
+			
+			// object -> query string
+			var params = $.param(data);
+
+			alert(params);
+
+			$("#message").load("welcome2.jsp", params);
+
+			
+			// serialize()
+			//params = $(this).serialize();
+			
+			return false;
+		});
+	});
+</script>
+</head>
+<body>
+  <form>
+    아이디 <input type="text" name="id" id="id" /><br>
+    이름 <input type="text" name="name" id="name" /><br>
+    <input type="submit"   value="전송" />
+  </form>
+  <div id="message"></div>
+</body>
+</html>

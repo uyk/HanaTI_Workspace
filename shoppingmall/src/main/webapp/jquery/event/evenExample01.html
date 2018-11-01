@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>이벤트처리</title>
+<style type="text/css">
+.reverse {
+	background: black;
+	color: white;
+	width: 100%;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// 이벤트소스에 이벤트리스너 등록
+	$("h1").on("click", function(event) {
+		alert("클릭이용~~" + event);
+		for ( var key in event) {
+			console.log(key + " : " + event[key]);			
+		}
+	});
+	
+	// 이벤트핸들러 제거
+	//$("h1").off("click");
+
+	// 이벤트소스에 다중 이벤트리스너 등록
+	$("h2").on({
+		mouseenter : function() {
+			$(this).addClass("reverse");
+		},
+		mouseleave : function() {
+			$(this).removeClass("reverse");
+		}
+	});
+
+	$("a").on("click", function(event) {
+		alert("링크클릭이요...");
+		// 디폴트이벤트핸들러 제거 및 이벤트 버블링 방지 
+		//event.preventDefault();
+		//event.stopPropagation();
+		return false;
+	});
+});
+</script>
+<body>
+	<h1>클릭</h1>
+	<h2>마우스 올려봐</h2>
+	<a href="http://www.naver.com">링크</a>
+</body>
+</html>

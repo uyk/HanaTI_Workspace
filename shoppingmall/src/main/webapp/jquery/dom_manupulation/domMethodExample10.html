@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 삽입</title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// $("selector").append(content), prepend(content), after(content), before(content);
+	// $("<E>").appendTo(Target), prependTo(Target), insertAfter(Target), insertBefore(Target);
+	
+	// 모든 이미지의 크기 동일하게
+	$("img").css("width", 200);
+	
+	// 2초단위 주기적 실행
+	setInterval(function(){
+		// 첫번째 이미지를 맨 뒤로 이동
+		$("img").first().clone().appendTo("body");
+	}, 2000);
+});
+</script>
+<body>
+	<img src="../images/img-0.png">
+	<img src="../images/img-1.png">
+	<img src="../images/img-2.png">
+	<img src="../images/img-3.png">
+</body>
+</html>

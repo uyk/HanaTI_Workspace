@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>DOM 객체 조작</title>
+<style>
+.first {color:red;}
+.second {color:green;}
+.third {color:blue;}
+</style>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script>
+$(function() {
+	// DOM 객체의 스타일 추출 및 설정
+	var color = $("h1").css("color");
+	//alert(color);
+	
+	//$("h1").css("background", "orange");
+	
+	var colors = ["yellow", "orange", "purple"];
+	
+	$("h1").css("background", function(index){
+		return colors[index];
+	});
+	
+	$("h1").css({
+		color : function(index){
+			return colors[index];
+		},
+		backgroundColor: "black",
+		width : "100px"
+	});
+	
+});
+</script>
+<body>
+<h1 class="first">헤더-0</h1>
+<h1 class="second">헤더-1</h1>
+<h1 class="third">헤더-2</h1>
+</body>
+</html>
+
+
+
+
+

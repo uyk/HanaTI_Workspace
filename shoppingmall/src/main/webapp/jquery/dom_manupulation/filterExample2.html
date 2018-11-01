@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<script type="text/javascript" src="../js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+
+$(function(){
+	/*
+	$("h3").css("background", "orange");
+	
+	$("h3").css("color", function(index) {
+		if((index % 2) == 0){
+			return "red";
+		}else{
+			return "blue";
+		}		
+	});
+	*/
+	
+	$("h3").css("background", "orange").filter(":even").css("color", "white").end().filter(":odd").css("color", "red");
+	
+	
+	//$("h3").eq(3);
+	//$("h3").first();
+	//$("h3").last();
+	
+	//$("h3").css("border", "2px solid blue").add("h2").css("float", "left");
+	
+	//$("h2").css("border", "2px solid blue");
+	
+});
+
+</script>
+</head>
+<body>
+<h3>Header-0</h3>
+<h3>Header-1</h3>
+<h3>Header-2</h3>
+<h3>Header-3</h3>
+<h3>Header-4</h3>
+<h3>Header-5</h3>
+
+<h2>헐랭이1</h2>
+<h2>헐랭이2</h2>
+</body>
+</html>
