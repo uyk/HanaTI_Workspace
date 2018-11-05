@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../bootstrap-3.3.2-dist/css/bootstrap.min.css">
+<script src="../bootstrap-3.3.2-dist/js/jquery-3.2.1.js"></script>
+<script src="../bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  $(function(){
+	  $("#input4").keyup(function(){
+		  var result=$("#input4").val();
+		  var div=$("#input4check");
+		  var span=$("#checkmessage");
+		  div.removeClass();
+		  span.html("");
+		  if(result.length<2 || result.length>6){
+			  div.addClass("form-group has-warning");
+			  span.html("2글자 이상 6글자 이하로 입력하세요.");
+		  }else if(result.trim()=="bangry"){
+			  div.addClass("form-group has-success");
+			  span.html("bangry와 일치합니다.");
+		  }else if(result.trim()=="bmker"){
+			  div.addClass("form-group has-error");
+			  span.html("No데스");
+		  }
+	  });  
+  });
+  </script>
+</head>
+<body>
+<form class="form-inline">
+<h1>Inline Form Group</h1>
+  <div class="form-group">
+    <label for="exampleInputEmail2">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword2">Password</label>
+    <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> Remember me
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">Sign in</button>
+</form>
+
+
+<form class="form-horizontal">
+<h1>Horiontal Form Group</h1>
+  <div class="form-group">
+    <label for="inputEmail1" class="col-lg-2 control-label">Email</label>
+    <div class="col-lg-10">
+<input type="email" class="form-control" id="inputEmail1" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="inputPassword1" class="col-lg-2 control-label">Password</label>
+    <div class="col-lg-10">
+      <input type="password" class="form-control" id="inputPassword1" placeholder="Password">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"> Remember me
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-lg-offset-2 col-lg-10">
+      <button type="submit" class="btn btn-default">Sign in</button>
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal">
+<h1>유효성 검사 폼</h1>
+  <div class="form-group has-success">
+    <label for="input1" class="col-lg-2 control-label">Success</label>
+    <div class="col-lg-10">
+    <input type="text" id="input1" class="form-control">
+    </div>
+  </div>
+  
+  <div class="form-group has-warning">
+    <label for="input2" class="col-lg-2 control-label">Warning</label>
+    <div class="col-lg-10">
+    <input type="text" id="input2" class="form-control">
+    </div>
+  </div>
+  
+  <div class="form-group has-error">
+    <label for="input3" class="col-lg-2 control-label">ERROR</label>
+    <div class="col-lg-10">
+    <input type="text" id="input3" class="form-control">
+    </div>
+  </div>
+ <!-- 예제 -->
+  <div class="form-group" id="input4check">
+    <label for="input4" id="checkmessage" class="col-lg-2 control-label"></label>
+    <div class="col-lg-10">
+    <input type="text" id="input4" class="form-control">
+    </div>
+  </div>
+</form>
+
+<form class="form-horizontal"> 
+<h1>체크박스 & 라디오버튼</h1> 
+  <div class="checkbox col-md-2">
+    <label>
+      <input type="checkbox" value=""/>CheckBoxSample
+    </label>
+  </div>
+
+  <div class="radio col-md-2">
+    <label>
+      <input type="radio" name="optionsRadios" id="radios1" value="option1" checked/>
+      Radio1
+    </label>
+  </div>
+  <div class="radio col-md-2">
+    <label>
+      <input type="radio" name="optionsRadios" id="radios2" value="option2" />
+      Radio2
+    </label>
+  </div>
+</form>
+
+<form class="form-horizontal col-md-4">
+<h1>셀렉트</h1> 
+  <select class="form-control">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+
+  <select multiple class="form-control">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+  </select>
+</form>
+
+<form class="form-horizontal col-sm-10">
+<h1>help-block</h1>   
+  <div class="form-group">
+<label class="col-sm-2 control-label">Mail</label>
+    <div class="col-sm-10">
+      <p class="form-control-static">gondr99@gmail.com</p>
+    </div>
+  </div>
+  
+  <div class="form-group">
+    <label for="inputName" class="col-sm-2 control-label">User Name</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" id="inputName" placeholder = "User Name">
+    </div>
+    <span class="help-block col-sm-10 col-sm-offset-2">위 입력란에는 사용자의 이름을 입력하는 것입니다.</span>
+  </div>
+</form>
+
+
+
+</body>
+</html>

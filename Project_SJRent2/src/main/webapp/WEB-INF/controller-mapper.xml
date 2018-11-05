@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<!-- 회원관리 -->
+	<bean type="controller" name="/user/list" class="kr.or.kosta.sjrent.user.controller.UserListController" />
+	<!-- 로그인 -->
+	<bean type="controller" name="/user/login" class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
+	
+</beans>

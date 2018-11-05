@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>	
+	<!-- Mybatis SqlSessionFactory 설정-->
+	<bean type="component" name="sqlSessionFactory" class="kr.or.kosta.myshoppingmall.common.factory.SqlSessionFactoryCreator">
+		<property name="configLocation" value="mybatis-config.xml"/>
+		<property name="environment" value="development"/>
+	</bean>
+	
+	<bean type="dao" name="userDao" class="kr.or.kosta.myshoppingmall.user.dao.MyBatisUserDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="userService" class="kr.or.kosta.myshoppingmall.user.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+</beans>

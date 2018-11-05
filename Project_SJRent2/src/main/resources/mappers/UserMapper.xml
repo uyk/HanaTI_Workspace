@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.user">
+
+	<resultMap type="User" id="userResultMap">
+		<result column="user_seq" 		property="seq"/>
+		<result column="user_id" 		property="id"/>
+		<result column="user_name" 		property="name"/>
+		<result column="user_email" 	property="email"/>
+		<result column="user_password" 	property="password"/>
+		<result column="user_birthday" 	property="birthday"/>
+		<result column="user_gender" 	property="gender"/>
+		<result column="user_point" 	property="point"/>
+		<result column="user_cellphone" property="cellphone"/>
+		<result column="user_is_user" 	property="isUser"/>
+		<result column="user_regdate" 	property="regdate"/>
+	</resultMap>
+
+	<!-- 회원 등록 -->
+	<insert id="insertUser" parameterType="User">
+		INSERT INTO users 
+		            (user_seq, 
+		             user_id, 
+		             user_name, 
+					<if test="email != null">user_email,</if>
+  				    <if test="password != null">user_password,</if>
+	                <if test="birthday != null">user_birthday,</if>
+	                <if test="gender != 0">user_gender,</if>
+	                <if test="point != null">user_point,</if>
+		             user_cellphone, 
+		             user_is_user) 
+		VALUES      ( user_seq.NEXTVAL, 
+	                <if test="id != null">#{id},</if>
+	                <if test="id == null">user_seq.currval,</if>
+		             #{name}, 
+	                <if test="email != null">#{email},</if>
+	                <if test="password != null">#{password},</if>
+	                <if test="birthday != null">#{birthday},</if>
+	                <if test="gender != 0">#{gender},</if>
+	                <if test="point != null">#{point},</if>
+					 #{cellphone}, 
+		             #{isUser}
+		              )
+	</insert>
+	
+	<!-- 아이디 비번으로 회원 확인 -->
+	<select id="certify" parameterType="map" resultType="User" resultMap="userResultMap">
+		SELECT user_seq, 
+       		   user_id, 
+       		   user_name, 
+       		   user_email, 
+       		   user_password, 
+       		   user_birthday, 
+        	   user_gender, 
+       		   user_point, 
+       		   user_cellphone, 
+       		   user_is_user, 
+       		   user_regdate 
+		FROM   users 
+		WHERE  user_id = #{id} 
+        AND user_password = #{password}
+	</select>
+	
+	<!-- 아이디 중복 확인 -->
+	<select id="isExistId" parameterType="String" resultType="String">
+		SELECT user_id 
+		FROM   users 
+		WHERE  user_id = #{value}
+	</select>
+	
+	<!-- 이메일 중복 확인 -->
+	<select id="isExistEmail" parameterType="String" resultType="String">
+		SELECT user_email 
+		FROM   users 
+		WHERE  user_email = #{value}
+	</select>
+	
+	<!-- 아이디로 회원 찾기 -->
+	<select id="read" parameterType="String" resultType="User" resultMap="userResultMap">
+		SELECT user_seq, 
+       		   user_id, 
+       		   user_name, 
+       		   user_email, 
+       		   user_password, 
+       		   user_birthday, 
+        	   user_gender, 
+       		   user_point, 
+       		   user_cellphone, 
+       		   user_is_user, 
+       		   user_regdate 
+		FROM   users 
+		WHERE  user_id = #{value} 
+	</select>
+	
+	<!-- 휴대폰번호로 회원 찾기 -->
+	<select id="readByCellPhone" parameterType="String" resultType="User" resultMap="userResultMap">
+		SELECT user_seq, 
+       		   user_id, 
+       		   user_name, 
+       		   user_email, 
+       		   user_password, 
+       		   user_birthday, 
+        	   user_gender, 
+       		   user_point, 
+       		   user_cellphone, 
+       		   user_is_user, 
+       		   user_regdate 
+		FROM   users 
+		WHERE  user_cellphone = #{value} 
+	</select>
+	
+	<!-- 회원정보 수정 -->
+	<update id="updateUser" parameterType="User">
+		UPDATE users
+		<set>
+	        <if test="name != null">user_name = #{name},</if>
+	        <if test="email != null">user_email = #{email},</if>
+	        <if test="password != null">user_password = #{password},</if>
+	        <if test="birthday != null">user_birthday = #{birthday},</if>
+	        <if test="gender != 0">user_gender = #{gender},</if>
+	    </set>
+	    WHERE user_id = #{id}
+	</update>
+	
+	<!-- 회원 삭제 -->
+	<delete id="deleteUser" parameterType="String">
+		DELETE FROM users
+		WHERE  user_id = #{value}
+	</delete>
+	
+	<!--회원 포인트 값 변경-->
+	<update id="addUserPoint" parameterType="map">
+		UPDATE users
+		SET user_point = user_point + #{point}
+	    WHERE user_id = #{id}
+	</update>
+	
+	<!-- 회원 포인트 값 확인 -->
+	<select id="checkUserPoint" parameterType="String" resultType="Integer">
+		SELECT user_point 
+		FROM   users 
+		WHERE  user_id = #{value}
+	</select>
+</mapper>

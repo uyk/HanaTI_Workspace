@@ -29,7 +29,6 @@
 <fullyQualifiedTypeName name="java.io.IOException"/>
 <fullyQualifiedTypeName name="java.util.Hashtable"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.service.ServiceFactory"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.service.UserServiceImpl"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.domain.User"/>
@@ -60,4 +59,5 @@
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.web.Params"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.common.controller.Controller"/>
 <fullyQualifiedTypeName name="kr.or.kosta.shoppingmall.user.dao.MyBatisUserDao"/>
+<fullyQualifiedTypeName name="javax.servlet.ServletContext"/>
 </qualifiedTypeNameHistroy>

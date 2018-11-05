@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.model">
+	<resultMap type="Model" id="modelResultMap">
+		<result column="model_name" 			property="name" />
+		<result column="model_fuel_type" 		property="fuelType" />
+		<result column="model_fuel_efficiency"	property="fuelEfficiency" />
+		<result column="model_seater" 			property="seater" />
+		<result column="model_transmission" 	property="transmission" />
+		<result column="model_navigation"		property="navigation" />
+		<result column="model_camera_rear" 		property="cameraRear" />
+		<result column="model_year" 			property="year" />
+		<result column="model_highpass" 		property="highpass" />
+		<result column="model_blackbox" 		property="blackBox" />
+		<result column="model_options" 			property="options" />
+		<result column="model_picture" 			property="picture" />
+		<result column="model_type" 			property="type" />
+		<result column="model_weekday_price" 	property="weekdayPrice" />
+		<result column="model_weenkend_price" 	property="weekendPrice" />
+		<result column="model_eval_score" 		property="evalScore" />
+	</resultMap>
+	
+	<!-- 모델명으로 모델 찾기 -->
+	<select id="read" parameterType="String" resultType="Model"
+		resultMap="modelResultMap">
+		SELECT model_name,
+		model_year,
+		model_fuel_type,
+		model_fuel_efficiency,
+		model_seater,
+		model_transmission,
+		model_navigation,
+		model_camera_rear,
+		model_highpass,
+		model_blackbox,
+		model_type,
+		model_weekday_price,
+		model_weenkend_price,
+		model_options,
+		model_picture,
+		(SELECT AVG(review_evalscore)
+		FROM review
+		WHERE model_name = #{value}) evalScore
+		FROM model
+		WHERE model_name = #{value}
+	</select>
+
+	<!-- 전체 모델 리스트 -->
+	<select id="listAll" resultType="Model"
+		resultMap="modelResultMap">
+		SELECT m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture,
+		Avg(r.review_evalscore) model_eval_score
+		FROM model m
+		left outer join review r
+		ON m.model_name = r.model_name
+		GROUP BY m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture
+	</select>
+	
+	<!-- 인기 모델 리스트 -->
+	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
+		SELECT m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture,
+		AVG(r.review_evalscore) model_eval_score
+		FROM model m
+		left outer join review r
+		ON m.model_name = r.model_name
+		WHERE ROWNUM <![CDATA[<=]]> #{value}
+		GROUP BY m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture
+	</select>
+
+</mapper>

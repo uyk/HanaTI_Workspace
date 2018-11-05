@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.insurance">
+	<resultMap type="Insurance" id="insuranceResultMap">
+		<result column="ins_num" 						property="number"/>
+		<result column="ins_name" 						property="name"/>
+		<result column="ins_price" 						property="price"/>
+		<result column="ins_compensation_limit" 		property="compensationLimit"/>
+	</resultMap>
+	
+	<!-- 보험 번호로 보험 찾기 -->
+	<select id="read" parameterType="Integer" resultType="Insurance" resultMap="insuranceResultMap">
+		SELECT ins_num,
+			   ins_name,
+			   ins_price,
+			   ins_compensation_limit
+		FROM   Insurance 
+		WHERE  ins_num = #{value} 
+	</select>
+
+	<!-- Insurance List -->
+	<select id="listAll" resultType="Insurance" resultMap="insuranceResultMap">
+		SELECT ins_num,
+			   ins_name,
+			   ins_price,
+			   ins_compensation_limit
+		FROM   Insurance 
+	</select>
+</mapper>

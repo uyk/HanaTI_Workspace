@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>그리드 기반 레이아웃</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h2>반응형 웹을 위한 그리드 기반 배치</h2>
+<div class="container">
+  <h2>Grid System Example</h2>
+  <p>Resize the browser window to see the effect.</p>
+  <div class="row">
+    <div style="background-color:lavender;">.col-sm-1</div>
+    <div style="background-color:lavender;">.col-sm-1</div>
+    <div style="background-color:lavender;">.col-sm-1</div>
+    <div style="background-color:lavender;">.col-sm-1</div>
+ </div>
+  <div class="row">
+    <!-- xs : 576 이하 -->
+    <!-- sm : 768px 이하 -->
+    <!-- md : 992px 이하 -->
+    <!-- lg : 1200px 이하 -->
+    <div class="col-sm-1 col-md-5" style="background-color:lavender;">.col-sm-1</div>
+    <div class="col-sm-1" style="background-color:lavender;">.col-sm-1</div>
+    <div class="col-sm-1" style="background-color:lavender;">.col-sm-1</div>
+    <div class="col-sm-1" style="background-color:lavender;">.col-sm-1</div>
+ </div>
+</div>
+
+<div class="container-fluid">
+  <h1>Grid System Example</h1>
+  <p>Resize the browser window to see the effect.</p>
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+    <div class="col-sm-4" style="background-color:lavenderblush;">.col-sm-4</div>
+    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <h1>Grid System Example</h1>
+  <p>Resize the browser window to see the effect.</p>
+  <div class="row">
+    <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
+    <div class="col-sm-8" style="background-color:lavenderblush;">.col-sm-4</div>
+  </div>
+</div>
+
+</body>
+</html>

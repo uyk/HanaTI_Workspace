@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.user">
+	
+	<!-- 전체회원 조회 -->
+	<select id="listAll" resultType="User" >
+		SELECT id                                        "id", 
+		       name                                      "name", 
+		       passwd                                    "passwd", 
+		       email                                     "email", 
+		       TO_CHAR(regdate, 'YYYY/MM/DD HH24:MI:SS') "regdate"
+		FROM   users 
+	</select>
+		
+</mapper>

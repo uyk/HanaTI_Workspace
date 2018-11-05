@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+	<!-- DataSource 설정 -->
+	<!-- 
+	<bean type="component" name="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521"/>
+		<property name="username" value="hr"/>
+		<property name="password" value="hr"/>
+		<property name="initialSize" value="2"/>
+		<property name="maxTotal" value="10"/>
+		<property name="maxIdle" value="5"/>
+	</bean>
+	 -->
+	<!-- Mybatis SqlSessionFactory 설정-->
+	<bean type="component" name="sqlSessionFactory" class="kr.or.kosta.sjrent.common.factory.SqlSessionFactoryCreator">
+		<property name="configLocation" value="mybatis-config.xml"/>
+		<property name="environment" value="development"/>
+	</bean>
+
+	<bean type="dao" name="faqDao" class="kr.or.kosta.sjrent.faq.dao.MybatisFAQDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="insuranceDao" class="kr.or.kosta.sjrent.insurance.dao.MybatisInsuranceDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+
+	<bean type="dao" name="modelDao" class="kr.or.kosta.sjrent.model.dao.MybatisModelDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="qnaDao" class="kr.or.kosta.sjrent.qna.dao.MybatisQnADao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="rentDao" class="kr.or.kosta.sjrent.rent.dao.MybatisRentDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="reviewDao" class="kr.or.kosta.sjrent.review.dao.MybatisReviewDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="userDao" class="kr.or.kosta.sjrent.user.dao.MybatisUserDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="dao" name="wishItemDao" class="kr.or.kosta.sjrent.wishitem.dao.MybatisWishItemDao">
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	<bean type="service" name="faqService" class="kr.or.kosta.sjrent.faq.service.FAQServiceImpl">
+		<property name="faqDao" ref="faqDao"/>
+	</bean>
+	
+	<bean type="service" name="insuranceService" class="kr.or.kosta.sjrent.insurance.service.InsuranceServiceImpl">
+		<property name="insuranceDao" ref="insuranceDao"/>
+	</bean>
+	
+	<bean type="service" name="modelService" class="kr.or.kosta.sjrent.model.service.ModelServiceImpl">
+		<property name="modelDao" ref="modelDao"/>
+	</bean>
+	
+	<bean type="service" name="qnaService" class="kr.or.kosta.sjrent.qna.service.QnAServiceImpl">
+		<property name="qnaDao" ref="qnaDao"/>
+	</bean>
+	
+	<bean type="service" name="rentService" class="kr.or.kosta.sjrent.rent.service.RentServiceImpl">
+		<property name="rentDao" ref="rentDao"/>
+	</bean>
+
+	<bean type="service" name="reviewService" class="kr.or.kosta.sjrent.review.service.ReviewServiceImpl">
+		<property name="reviewDao" ref="reviewDao"/>
+	</bean>
+	
+	<bean type="service" name="userService" class="kr.or.kosta.sjrent.user.service.UserServiceImpl">
+		<property name="userDao" ref="userDao"/>
+	</bean>
+	
+	<bean type="service" name="wishItemService" class="kr.or.kosta.sjrent.wishitem.service.WishItemServiceImpl">
+		<property name="wishItemDao" ref="wishItemDao"/>
+	</bean>
+</beans>

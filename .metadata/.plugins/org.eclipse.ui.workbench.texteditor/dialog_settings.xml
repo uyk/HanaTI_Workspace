@@ -20,12 +20,19 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="getSer" key="selection"/>
+		<item value="objectL" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="objectL"/>
+			<item value="push"/>
+			<item value=".sho"/>
+			<item value="set"/>
+			<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;"/>
+			<item value="fav"/>
+			<item value="fa"/>
 			<item value="getser"/>
 			<item value="myba"/>
 			<item value="ems"/>
@@ -34,13 +41,6 @@
 			<item value="syst"/>
 			<item value="upd"/>
 			<item value="dele"/>
-			<item value="sys"/>
-			<item value="syste"/>
-			<item value="cat"/>
-			<item value="s"/>
-			<item value="crea"/>
-			<item value="articleId"/>
-			<item value="col"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>

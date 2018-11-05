@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.myshoppingmall.user">
+	
+	<!-- 전체 사용자 조회를 위한 SQL 매핑 -->
+	<select id="listAll" resultType="User" >
+		SELECT id 													AS "id",
+			   name 												AS "name",
+			   passwd 												AS "passwd",
+			   email 												AS "email",
+			   TO_CHAR(regdate, 'YYYY/MM/DD HH24:MI:SS') 			AS "regdate"
+	    FROM   users
+	    ORDER  BY id ASC
+	</select>
+	
+	<!-- 사용자 등록 -->
+	<insert id="create" parameterType="User">
+		INSERT INTO users 
+		            (id, 
+		             name, 
+		             passwd, 
+		             email, 
+		             regdate) 
+		VALUES     (#{id}, 
+		            #{name}, 
+		            #{passwd}, 
+		            #{email}, 
+		            SYSDATE)
+	</insert>
+	
+	<!-- 아이디로 사용자 조회 -->
+	<select id="read"  parameterType="String" resultType="User">
+		SELECT id,
+			   name,
+			   passwd,
+			   email,
+			   TO_CHAR(regdate, 'YYYY/MM/DD HH24:MI:SS') AS "regdate"
+	    FROM   users
+	    WHERE  id = #{value}
+	</select>
+	
+	<!-- 사용자 정보 수정(set, if 태그를 이용한 동적 SQL) -->
+	<update id="update" parameterType="User">
+		UPDATE users
+		<set>
+	        <if test="name != null">name = #{name},</if>
+	        <if test="passwd != null">passwd = #{passwd},</if>
+	        <if test="email != null">email = #{email}</if>
+	        <!-- MyBatis는 SET절의 끝에 콤마(,)가 있으면 제거 -->
+	    </set>
+	    WHERE id = #{id}
+	</update>
+	
+	<!-- 사용자 삭제 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM users
+		WHERE  id = #{value}
+	</delete>
+	
+	<!-- 사용자 유효성 검사 -->
+	<select id="certify" parameterType="map" resultType="User">
+		SELECT id, 
+		       name, 
+		       passwd, 
+		       email, 
+		       TO_CHAR(regdate, 'YYYY/MM/DD HH24:MI:SS') AS "regdate"
+		FROM   users 
+		WHERE  id = #{id}
+		       AND passwd = #{passwd}  
+	</select>
+	
+	<!-- 페이지, 리스트 크기, 검색 타입, 검색 값에 따른 리스트 반환 -->
+	<select id="listByPage" parameterType="Params" resultType="User">
+		SELECT id, 
+		       name, 
+		       passwd, 
+		       email, 
+		       regdate 
+		FROM   (SELECT Ceil(rownum / #{listSize}) request_page, 
+		               id, 
+		               NAME, 
+		               passwd, 
+		               email, 
+		               regdate 
+		        FROM   (SELECT id, 
+		                       NAME, 
+		                       passwd, 
+		                       email, 
+		                       To_char(regdate, 'YYYY/MM/DD HH24:MI:SS') regdate 
+		                FROM   users
+                <if test="searchType != null">
+					<choose>
+						<when test="searchType == 'id'">
+						WHERE id = #{searchValue}
+						</when>
+						<when test="searchType == 'name'">
+						WHERE name LIKE #{searchValue}
+						</when>
+						<otherwise></otherwise>
+					</choose>
+				</if>
+		                ORDER  BY regdate DESC)) 
+		WHERE  request_page = #{page}
+
+	</select>
+	
+	<!-- 출력할 전체 항목 개수 반환 -->
+	<select id="countBySearch" parameterType="map" resultType="int">
+		SELECT COUNT(id) count
+		FROM   users
+		<if test="searchType != null">
+			<choose>
+				<when test="searchType == 'id'">
+				WHERE id = #{searchValue}
+				</when>
+				<when test="searchType == 'name'">
+				WHERE name LIKE #{searchValue}
+				</when>
+				<otherwise></otherwise>
+			</choose>
+		</if>
+	</select>
+	
+</mapper>

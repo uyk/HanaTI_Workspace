@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.faq">
+	<resultMap type="FAQ" id="faqResultMap">
+		<result column="FAQ_num" 		property="number"/>
+		<result column="FAQ_title" 		property="title"/>
+		<result column="FAQ_content" 	property="content"/>
+	</resultMap>
+
+	<!-- 글번호로 FAQ 찾기 -->
+	<select id="read" parameterType="Integer" resultType="FAQ" resultMap="faqResultMap">
+		SELECT FAQ_num,
+			   FAQ_title,
+			   FAQ_content
+		FROM   FAQ 
+		WHERE  FAQ_num = #{value} 
+	</select>
+
+	<!-- FAQ List -->
+	<select id="listAll" resultType="FAQ" resultMap="faqResultMap">
+		SELECT FAQ_num,
+			   FAQ_title,
+			   FAQ_content
+		FROM   FAQ 
+	</select>
+</mapper>
