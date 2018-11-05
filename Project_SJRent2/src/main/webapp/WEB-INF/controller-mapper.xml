@@ -12,4 +12,6 @@
 	
 	<!-- 모델검색 -->
 	<bean type="controller" name="/model/list" class="kr.or.kosta.sjrent.model.controller.ModelListController" />
+	<!-- 모델상세 -->
+	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
 </beans>

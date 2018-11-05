@@ -17,7 +17,7 @@ import kr.or.kosta.sjrent.model.params.ModelParams;
 import kr.or.kosta.sjrent.model.service.ModelService;
 import kr.or.kosta.sjrent.model.service.ModelServiceImpl;
 
-public class ModelListController implements Controller{
+public class ModelDetailController implements Controller{
 	private ModelService modelService;
 	private JSONObject obj;
 	private ModelAndView mav;
@@ -30,15 +30,13 @@ public class ModelListController implements Controller{
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
-		System.out.println("model List");
-		System.out.println(request.getParameter("date"));
-		System.out.println(request.getParameter("type"));
-		ModelParams modelParams = new ModelParams();
-		List<Model> list = null;
+		String modelName = request.getParameter("name");
+		System.out.println(modelName);
 		try {
-			list = modelService.listBySearch(modelParams);
-			mav.addObject("list", list);
-			mav.setView("/rent/search.jsp");
+			Model model = modelService.read(modelName);
+			mav.addObject("model", model);
+			mav.setView("/rent/search_detail.jsp");
+			System.out.println(model);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

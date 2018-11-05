@@ -7,6 +7,7 @@
 		Product Detail Start
 *************************************-->
 <div class="tg-sectionspace tg-haslayout" style="display: block; filter: alpha(opacity=50);">
+<span>${model}</span>
 	<div class="container">
 		<div class="row">
 			<div class="tg-productdetail">
