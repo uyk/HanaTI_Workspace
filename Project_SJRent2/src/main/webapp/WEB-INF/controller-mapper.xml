@@ -9,9 +9,13 @@
 	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
 	<!-- 회원가입 -->
 	<bean type="controller" name="/user/singup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
+	<!-- id로 유저반환 -->
+	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
 	
 	<!-- 모델검색 -->
 	<bean type="controller" name="/model/list" class="kr.or.kosta.sjrent.model.controller.ModelListController" />
 	<!-- 모델상세 -->
+	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	<!-- 예약 -->
 	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
 </beans>

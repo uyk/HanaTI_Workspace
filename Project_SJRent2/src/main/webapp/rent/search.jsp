@@ -90,7 +90,7 @@ function layer_popup(e){
 			Wrapper Start
 	*************************************-->
   
-    <span>-----------리스트---------- <br/>${list}</span> <button onclick="location.href='/sjrent/model/detail.rent?name=NIRO'">차종</button>
+    <span>-----------리스트---------- <br/>${list}</span> <button onclick="location.href='/sjrent/model/detail.rent?name=NIRO'">NIRO 디테일</button>
 	<div id="tg-wrapper" class="tg-wrapper tg-haslayout">
 		<!--************************************
 					Header Start
