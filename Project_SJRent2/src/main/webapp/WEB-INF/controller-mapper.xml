@@ -5,5 +5,9 @@
 	<bean type="controller" name="/user/list" class="kr.or.kosta.sjrent.user.controller.UserListController" />
 	<!-- 로그인 -->
 	<bean type="controller" name="/user/login" class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
+	<!-- 로그아웃 -->
+	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
+	<!-- 회원가입 -->
+	<bean type="controller" name="/user/singup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
 	
 </beans>

@@ -73,7 +73,6 @@ public class FrontControllerServlet extends HttpServlet {
 		View view = null;
 
 		// ControllerFactory에서 요청 uri에 대한 컨트롤러 검색
-//		controller = controllerFactory.getController(uri);
 		controller = (Controller)controllerFactory.getBean(uri);
 		
 		if(controller == null){
