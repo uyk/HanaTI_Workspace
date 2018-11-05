@@ -28,13 +28,14 @@ public class UserLoginController implements Controller {
 	private UserService userService;
 	private JSONObject obj;
 	private ModelAndView mav;
+	private XMLObjectFactory factory;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		obj = new JSONObject();
 		mav = new ModelAndView();
-		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
+		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		userService = (UserService) factory.getBean(UserServiceImpl.class);
 		
 		String id = request.getParameter("id");

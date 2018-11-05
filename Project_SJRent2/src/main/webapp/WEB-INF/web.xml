@@ -12,6 +12,7 @@
 	</welcome-file-list>
 	
 	<!-- 에러(예외) 페이지 설정 -->
+	<!-- 
 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/error/error_500.jsp</location>
@@ -24,7 +25,7 @@
 		<error-code>404</error-code>
 		<location>/error/error_404.jsp</location>
 	</error-page>
-
+ -->
 	<!-- Listener 설정 -->
 	<listener>
 		<listener-class>kr.or.kosta.sjrent.common.listener.ServletContextLoadListener</listener-class>

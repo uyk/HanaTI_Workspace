@@ -17,6 +17,7 @@ public class ModelParams {
 	private String navigation;
 	private String cameraRear;
 	private String blackBox;
+	
 	public ModelParams() {
 		// 0으로 들어오면 전체 검색 하도록 하기
 		this(1, 15, null, null, null, 0, null, null, null, null);

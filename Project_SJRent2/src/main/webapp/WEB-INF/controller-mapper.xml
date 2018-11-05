@@ -10,4 +10,6 @@
 	<!-- 회원가입 -->
 	<bean type="controller" name="/user/singup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
 	
+	<!-- 모델검색 -->
+	<bean type="controller" name="/model/list" class="kr.or.kosta.sjrent.model.controller.ModelListController" />
 </beans>
