@@ -17,8 +17,10 @@
 	
 	<!-- 예약 -->
 	<bean type="controller" name="/rent/rent" class="kr.or.kosta.sjrent.rent.controller.RentController" />
-	<!-- 예약 -->
+	<!-- 예약목록 -->
 	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
+	<!-- 예약상세-->
+	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
 	
 	<!-- 보험 -->
 	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />

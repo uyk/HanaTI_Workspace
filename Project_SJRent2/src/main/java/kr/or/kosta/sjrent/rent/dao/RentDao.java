@@ -13,7 +13,7 @@ public interface RentDao {
 	
 	public boolean create(Rent rent) throws Exception;
 	
-	public Rent read(int number) throws Exception;
+	public Rent read(int rentSeq) throws Exception;
 
 	public boolean update(Rent rent) throws Exception;
 	

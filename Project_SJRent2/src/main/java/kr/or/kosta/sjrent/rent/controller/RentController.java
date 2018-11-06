@@ -18,6 +18,12 @@ import kr.or.kosta.sjrent.user.domain.User;
 import kr.or.kosta.sjrent.user.service.UserService;
 import kr.or.kosta.sjrent.user.service.UserServiceImpl;
 
+/**
+ * 유저 id와 rent정보를 받아서 rent를 db에 생성하고 
+ * 생성한 rent를 /sjrent/rent/rentResult.jsp로 보내는 컨트롤러
+ * @author 유예겸
+ *
+ */
 public class RentController implements Controller {
 	private XMLObjectFactory factory;
 	private UserService userService;

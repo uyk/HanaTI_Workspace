@@ -24,8 +24,7 @@ public class RentServiceImpl implements RentService {
 
 	@Override
 	public Rent read(int number) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return rentDao.read(number);
 	}
 
 	@Override

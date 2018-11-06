@@ -67,12 +67,23 @@ public class RentDaoTest {
 		}
 	}
 	
-	@Test
+	//@Test
 	public void listByUser() {
 		List<Rent> list = null;
 		try {
 			list = rentDao.listByUserId("uyk");
 			System.out.println(list);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void read() {
+		Rent rent = null;
+		try {
+			rent = rentDao.read(5);
+			System.out.println(rent);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

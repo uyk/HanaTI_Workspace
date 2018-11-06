@@ -51,6 +51,23 @@
 	    WHERE rent_seq = #{value}
 	</update>
 	
+	<!-- seq로 rent 읽기 -->
+	<select id="read" parameterType="int" resultType="Rent" resultMap="rentResultMap">
+		SELECT rent_seq, 
+		       user_seq, 
+		       user_id, 
+		       ins_num, 
+		       car_num, 
+		       rent_start_date, 
+		       rent_end_date, 
+		       rent_pickup_place, 
+		       rent_paid_amount, 
+		       rent_payment_option, 
+		       rent_is_canceled 
+		FROM   rent 
+		WHERE  rent_seq = #{value}
+	</select>
+	
 	<!-- 특정 회원 rent List -->
 	<select id="listByUserId" resultType="Rent" parameterType="String" resultMap="rentResultMap">
 		SELECT rent_seq, 
