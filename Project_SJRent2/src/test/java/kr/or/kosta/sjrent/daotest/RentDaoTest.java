@@ -42,7 +42,7 @@ public class RentDaoTest {
 		
 	}
 	
-	@Test
+	//@Test
 	public void testCreat() {
 		Rent rent = new Rent();
 		rent.setUserSeq(4);
@@ -63,6 +63,17 @@ public class RentDaoTest {
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Test
+	public void listByUser() {
+		List<Rent> list = null;
+		try {
+			list = rentDao.listByUserId("uyk");
+			System.out.println(list);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}

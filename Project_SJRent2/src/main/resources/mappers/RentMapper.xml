@@ -65,6 +65,6 @@
 		       rent_payment_option, 
 		       rent_is_canceled 
 		FROM   rent 
-		WHERE  user_id = ${value}
+		WHERE  user_id = #{value}
 	</select>
 </mapper>

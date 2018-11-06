@@ -7,7 +7,7 @@
 <jsp:include page="../common/commoncss.jsp" />
 </head>
 <body>
-
+<span>${list}</span>
 	<!--************************************
 			Mobile Menu Start
 	*************************************-->
