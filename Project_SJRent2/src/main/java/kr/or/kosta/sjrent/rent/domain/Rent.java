@@ -6,13 +6,13 @@ public class Rent {
 	private int insuranceNumber;
 	private int userSeq;
 	private String userId;
-	private int carNumber;
+	private String carNumber;
 	private String startDate;
 	private String endDate;
 	private String pickupPlace;
 	private int paidAmount;
 	private String paymentOption;
-	private String isCanceled;
+	private int isCanceled;
 	
 	public Rent() {
 		super();
@@ -53,11 +53,11 @@ public class Rent {
 		this.userId = userId;
 	}
 
-	public int getCarNumber() {
+	public String getCarNumber() {
 		return carNumber;
 	}
 
-	public void setCarNumber(int carNumber) {
+	public void setCarNumber(String carNumber) {
 		this.carNumber = carNumber;
 	}
 
@@ -101,11 +101,11 @@ public class Rent {
 		this.paymentOption = paymentOption;
 	}
 
-	public String getIsCanceled() {
+	public int getIsCanceled() {
 		return isCanceled;
 	}
 
-	public void setIsCanceled(String isCanceled) {
+	public void setIsCanceled(int isCanceled) {
 		this.isCanceled = isCanceled;
 	}
 

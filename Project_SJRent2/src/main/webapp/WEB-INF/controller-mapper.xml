@@ -7,8 +7,6 @@
 	<bean type="controller" name="/user/login" class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
 	<!-- 로그아웃 -->
 	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
-	<!-- 회원가입 -->
-	<bean type="controller" name="/user/singup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
 	<!-- id로 유저반환 -->
 	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
 	
@@ -16,6 +14,12 @@
 	<bean type="controller" name="/model/list" class="kr.or.kosta.sjrent.model.controller.ModelListController" />
 	<!-- 모델상세 -->
 	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	
 	<!-- 예약 -->
-	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	<bean type="controller" name="/rent/rent" class="kr.or.kosta.sjrent.rent.controller.RentController" />
+	<!-- 예약 -->
+	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
+	
+	<!-- 보험 -->
+	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
 </beans>

@@ -7,7 +7,7 @@
 		Product Detail Start
 *************************************-->
 <div class="tg-sectionspace tg-haslayout" style="display: block; filter: alpha(opacity=50);">
-<span>${model}</span>
+<span>${model}</span><button onclick="location.href='/sjrent/rent/rent.rent'">예약</button>
 	<div class="container">
 		<div class="row">
 			<div class="tg-productdetail">

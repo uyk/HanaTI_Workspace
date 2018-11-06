@@ -5,7 +5,7 @@ import java.util.List;
 import kr.or.kosta.sjrent.rent.domain.Rent;
 
 public interface RentService {
-	public boolean create(Rent review) throws Exception;
+	public boolean create(Rent rent) throws Exception;
 	
 	public Rent read(int number) throws Exception;
 
