@@ -86,4 +86,9 @@ public class ModelServiceImpl implements ModelService {
 		return PopularModel(num);
 	}
 
+	@Override
+	public boolean changeCount(String name, int num) throws Exception {
+		return modelDao.changeCount(name, num);
+	}
+
 }

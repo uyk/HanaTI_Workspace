@@ -32,4 +32,6 @@ public interface ModelService {
 	public List<Model> PopularModel(int num) throws Exception;
 	
 	public List<Model> recommendModel(int num) throws Exception;
+	
+	public boolean changeCount(String name, int num) throws Exception;
 }
