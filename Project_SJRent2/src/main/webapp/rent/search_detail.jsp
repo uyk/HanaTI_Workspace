@@ -1,82 +1,78 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-
-
 <!--************************************
-		Product Detail Start
+		Rent_history Detail Start
 *************************************-->
-<div class="tg-sectionspace tg-haslayout" style="display: block; filter: alpha(opacity=50);">
-<span>${model}</span><button onclick="location.href='/sjrent/rent/rent.rent'">예약</button>
-	<div class="container">
-		<div class="row">
-			<div class="tg-productdetail">
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
-					<img src="../images/G70.jpg" alt="image description">
-				</div>
-				<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-					<div class="tg-productinfo">
-						<h3>차 이름</h3>
+<div class="modal-dialog modal-lg">
+	<div id = "tg-content" class="modal-content tg-content">	
+		<div class="modal-body tg-tourbookingdetail">
+		<div class="tg-tourbookingdetail">
+			<div class="tg-bookinginfo" style="margin: 10px 0">
+				<div class= "row">
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
+						<img src="../images/G70.jpg" alt="image description">
+					</div>
+					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
+						<h2>G70 (예약정보 or 과거 or 취소)</h2>
+						<div class="tg-durationrating">
+							<span class="tg-stars"><span></span></span> <em>(3 Review)</em>
+						</div>
 						<div class="tg-pricearea">
-							<h4>$2,500</h4>
+							<span>총 금액</span>
+							<h4>
+								$2,500
+							</h4>
 						</div>
 						<div class="tg-description">
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-								sed diam nonummy Etiam porta sem malesuada magna mollis euismod.
-								Maecenas sed diam eget risus varius blandit sit amet non magna.
-								Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-								auctor.</p>
-							<p>Maecenas sed diam eget risus varius blandit sit amet non
-								magna.</p>
+							<p>There’s only 5 spot left. Join 19 others at Travelu’s
+								experience this Saturday.</p>
 						</div>
-						<div class="tg-quantitycolor">
-							<form class="tg-formtheme tg-formquantity">
-								<fieldset>
-									<div class="form-group">
-										<input type="number" class="form-control" name="numbers"
-											placeholder="2">
-									</div>
-									<div class="form-group">
-										<span class="tg-select"> <select>
-												<option>Choose Color</option>
-												<option>Blue</option>
-												<option>Black</option>
-												<option>Green</option>
-												<option>Grey</option>
-												<option>White</option>
-										</select>
-										</span>
-									</div>
-									<div class="form-group">
-										<a class="tg-btnaddtocart" href="javascript:void(0);"> <i
-											class="icon-icons240"></i> <span>렌트하기</span>
-										</a>
-									</div>
-								</fieldset>
-								<fieldset>
-									<ul class="tg-likeshare">
-										<li class="tg-shareicon"><a href="javascript:void(0);"><i
-												class="icon-share-button-outline"></i><span>share</span></a>
-											<ul class="tg-share">
-												<li><a href="javascript:void(0);"><i
-														class="icon-twitter"></i></a></li>
-												<li><a href="javascript:void(0);"><i
-														class="icon-facebook"></i></a></li>
-												<li><a href="javascript:void(0);"><i
-														class="icon-pinterest"></i></a></li>
-											</ul></li>
-										<li><a href="javascript:void(0);"><i
-												class="icon-heart"></i><span>save to wish list</span></a></li>
-									</ul>
-								</fieldset>
-							</form>
-						</div>
+						<form class="tg-formtheme tg-formbookingdetail">
+							<fieldset>
+								<div class="form-group">
+								
+								
+								</div>
+								<div class="form-group">
+		
+								</div>
+							</fieldset>
+						</form>
 					</div>
 				</div>
+				<ul class="tg-tripinfo">
+					<li><span class="tg-tourduration">12 Days 11 Nights</span></li>
+					<li><span class="tg-tourduration tg-availabilty">Availability
+							May 12</span></li>
+					<li><span class="tg-tourduration tg-location">San
+							Francisco</span></li>
+					<li><span class="tg-tourduration tg-peoples">24 People
+							in Group</span></li>
+				</ul>
+				<div class="tg-refundshare">
+					<div class="tg-refund">
+						<figure>
+							<img src="../images/img-03.jpg" alt="image description">
+						</figure>
+						<div class="tg-refundinfo">
+							<h3>100% Refundable</h3>
+							<div class="tg-description">
+								<p>Cancel up to 72 days before your trip and get a full
+									refund, including service fees.</p>
+							</div>
+						</div>
+					</div>
+					<ul class="tg-likeshare">
+						<li><a href="javascript:void(0);"><i class="icon-heart"></i>save to wish list</a></li>
+						<li><a href="javascript:void(0);"><i class="icon-eye"></i>how many rented</a></li>
+					</ul>
+				</div>
 			</div>
+			<jsp:include page="car_detail.jsp"></jsp:include>
+		</div>
 		</div>
 	</div>
 </div>
 <!--************************************
-		Product Detail End
+		Rent_history Detail End
 *************************************-->

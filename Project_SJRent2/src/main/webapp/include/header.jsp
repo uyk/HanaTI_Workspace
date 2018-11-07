@@ -15,7 +15,6 @@
                         <!-- 재민 수정 끝(1/2) -->
                         <div class="dropdown tg-dropdown">
                            <!-- 로그인 되어 있는 경우 -->
-                           
                         </div>
                      </div>
                   </div>
@@ -40,7 +39,7 @@
       </header>
       
       <!-- 재민 수정 시작(2/2) -->
-<!--       로그인 화면 
+      <!--  로그인 화면  -->
       <div id="tg-loginsingup" class="tg-loginsingup" data-vide-bg="poster: images/singup-img.jpg" data-vide-options="position: 0% 50%">
       <div class="tg-contentarea tg-themescrollbar">
          <div class="tg-scrollbar">
@@ -81,4 +80,4 @@
             </div>
          </div>
       </div>
-   </div> -->
+   </div> 

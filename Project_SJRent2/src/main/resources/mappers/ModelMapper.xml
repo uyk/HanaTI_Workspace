@@ -189,8 +189,8 @@
 	<!-- 대여횟수 증가 또는 감소-->
 	<update id="changeCount" parameterType="map">
 		UPDATE model 
-		SET    model_rental_count = model_rental_count + (#{number})
-		WHERE  model_name = #{modelName} 
+		SET    model_rental_count = model_rental_count + (#{num})
+		WHERE  model_name = #{name} 
 	</update>
 
 </mapper>

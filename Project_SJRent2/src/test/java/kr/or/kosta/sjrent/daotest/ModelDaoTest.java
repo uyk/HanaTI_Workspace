@@ -60,7 +60,7 @@ public class ModelDaoTest {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testListSearch() throws Exception{
 		ModelParams modelParams = new ModelParams();
 		modelParams.setStartDate("2018-11-15");
@@ -71,7 +71,11 @@ public class ModelDaoTest {
 			logger.debug(model);
 		}
 	}
-
+	
+	@Test
+	public void testchangeCount() throws Exception{
+		logger.debug(modelDao.changeCount("K5", -1));
+	}
 }
 
 

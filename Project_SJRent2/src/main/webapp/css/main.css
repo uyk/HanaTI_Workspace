@@ -5,7 +5,7 @@
  is the file you need to edit to change the look of the
  theme.
  However we used Less script to make things easy to maintain, this is the compressed ourput, we recommend to edit the less files and then recombile the files and add the result here, if you don't like to use less you can edit this file here.
- 
+
  This files contents are outlined below.
  01.	Theme Reset Style
  02.	Global Elements
@@ -19,7 +19,7 @@
  10.	Grid
 */
 /* =============================================
-			Theme Reset Style					
+			Theme Reset Style
 ============================================= */
 @import url(https://fonts.googleapis.com/css?family=Caveat+Brush|Montserrat:300,400,500,600,700|Roboto:300,400,500,700);
 * {
@@ -241,7 +241,7 @@ p ins { color: #676767; }
 dl dd { margin-left: 20px; }
 address { font-style: italic; }
 /* =============================================
-			Theme Custom Select					
+			Theme Custom Select
 ============================================= */
 .tg-select {
 	color:#676767;
@@ -273,7 +273,7 @@ address { font-style: italic; }
 }
 .tg-select select option { color:#676767; }
 /* =============================================
-		Theme Custom CheckBox Radio				
+		Theme Custom CheckBox Radio
 ============================================= */
 .tg-radio,
 .tg-radio label,
@@ -307,7 +307,7 @@ address { font-style: italic; }
 .tg-radio input[type=radio]:checked + label:before,
 .tg-checkbox input[type=checkbox]:checked + label:before {content:'\f046';}
 /* =============================================
-			Theme Global Elements				
+			Theme Global Elements
 ============================================= */
 .tg-haslayout {
 	width:100%;
@@ -344,7 +344,6 @@ address { font-style: italic; }
 	bottom: 20px;
 	content: '';
 	height: 1px;
-	background: #fff;
 	position: absolute;
 }
 .tg-btn:hover:after {
@@ -584,7 +583,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-sectionhead .tg-description {  }
 .tg-sectionhead .tg-description p { margin: 0; }
 /* =============================================
-			Theme Pagination Style				
+			Theme Pagination Style
 ============================================= */
 .tg-pagination {
 	width:100%;
@@ -622,7 +621,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-pagination ul li.tg-prevpage a i,
 .tg-pagination ul li.tg-nextpage a i { font-size: 20px; }
 /* =============================================
-			Theme BreadCrumb Style				
+			Theme BreadCrumb Style
 ============================================= */
 .tg-breadcrumb {
 	padding: 0;
@@ -658,10 +657,10 @@ li.tg-rss a { background:#ff6600; }
 }
 .tg-breadcrumb li.tg-active{opacity:0.6;}
 /* =============================================
-			Theme Styling						
+			Theme Styling
 ============================================= */
 .tg-wrapper {
-	height:98%;
+	height:100%;
 	overflow-y: hidden;
 	position:relative;
 }
@@ -670,7 +669,7 @@ li.tg-rss a { background:#ff6600; }
 	float:left;
 }
 /* =============================================
-			Theme Header Style					
+			Theme Header Style
 ============================================= */
 .tg-header {
 	z-index: 3;
@@ -880,7 +879,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-navigationarea {
 	width: 100%;
 	float: left;
-	
+
 	padding: 0 0 0 30px;
 	text-align:center;
 	position: relative;
@@ -1134,7 +1133,7 @@ li.tg-rss a { background:#ff6600; }
 	display:block;
 }
 /* =============================================
-				Slider Style					
+				Slider Style
 ============================================= */
 .tg-bannerholder{
 	width:100%;
@@ -1320,7 +1319,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-select .dropdown-menu>.active>a:hover,
 .tg-select .dropdown-menu.inner li a:hover {color: #fff;}
 /* =============================================
-			Tour Destination Style				
+			Tour Destination Style
 ============================================= */
 .tg-toursdestinations {
 	clear: both;
@@ -1412,7 +1411,7 @@ li.tg-rss a { background:#ff6600; }
 	display: block;
 }
 .tg-tourdestination figcaption .tg-description { padding: 20px 0 0; }
-.tg-tourdestination figcaption .tg-description p { 
+.tg-tourdestination figcaption .tg-description p {
 	margin: 0;
 	font-size: 16px;
 	font-weight: 300;
@@ -1428,7 +1427,7 @@ li.tg-rss a { background:#ff6600; }
 	float:right;
 }
 /* =============================================
-			Features Style						
+			Features Style
 ============================================= */
 .tg-zerotoppadding{padding-top: 0 !important;}
 .tg-zerobottompadding{padding-bottom: 0 !important;}
@@ -1463,7 +1462,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-feature .tg-description {  }
 .tg-feature .tg-description p { margin: 0; }
 /* =============================================
-			Popular Tour Style					
+			Popular Tour Style
 ============================================= */
 .tg-parallax {
 	width: 100%;
@@ -1607,7 +1606,7 @@ li.tg-rss a { background:#ff6600; }
 	vertical-align:middle;
 }
 /* =============================================
-			Our Destination Style				
+			Our Destination Style
 ============================================= */
 .tg-ourdestination {
 	width: 100%;
@@ -1659,7 +1658,7 @@ li.tg-rss a { background:#ff6600; }
 	line-height: 16px;
 }
 /* =============================================
-			Destination Style				
+			Destination Style
 ============================================= */
 .tg-destinations {
 	width: 100%;
@@ -1720,7 +1719,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-destinationsslider .tg-btnroundprev { left: -80px; }
 .tg-destinationsslider .tg-btnroundnext { right: -80px; }
 /* =============================================
-			Call To Action Style				
+			Call To Action Style
 ============================================= */
 .tg-calltoaction {
 	color: #fff;
@@ -1744,7 +1743,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-calltoaction .tg-description { padding: 0 0 75px; }
 .tg-calltoaction .tg-description p { margin: 0; }
 /* =============================================
-			Our Guides Style					
+			Our Guides Style
 ============================================= */
 .tg-guidesslider .tg-btnroundprev,
 .tg-guidesslider .tg-btnroundnext {
@@ -1823,7 +1822,7 @@ li.tg-rss a { background:#ff6600; }
 }
 .tg-guidecontent .tg-description p { margin: 0; }
 /* =============================================
-			Partners Style						
+			Partners Style
 ============================================= */
 .tg-ourpartners {
 	width: 100%;
@@ -1868,7 +1867,7 @@ li.tg-rss a { background:#ff6600; }
 }
 .tg-partners li figure a img { display: block; }
 /* =============================================
-			Widgets Style						
+			Widgets Style
 ============================================= */
 .tg-widget {
 	width: 100%;
@@ -2173,7 +2172,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-widgetpersonprice ul li .tg-btn:hover{color:#fff;}
 .tg-widgetpersonprice ul li .tg-btn:after{display:none;}
 /* =============================================
-			Cart Style							
+			Cart Style
 ============================================= */
 .tg-cartproductdetail{
 	width:100%;
@@ -2219,7 +2218,7 @@ li.tg-rss a { background:#ff6600; }
 	line-height:25px;
 }
 /* =============================================
-			Footer Style						
+			Footer Style
 ============================================= */
 .tg-footer {
 	width: 100%;
@@ -2253,7 +2252,7 @@ li.tg-rss a { background:#ff6600; }
 	line-height: inherit;
 }
 /*======================================================================================
-									Home Version Two									
+									Home Version Two
 ======================================================================================*/
 .tg-homebannerslider {position: relative;}
 .tg-headervtwo {
@@ -2345,7 +2344,7 @@ li.tg-rss a { background:#ff6600; }
 	padding: 9px 30px
 }
 .tg-headervtwo.tg-headerfixed.scroll-to-fixed-fixed .tg-navigation > ul > li {padding: 23px 0;}
-.tg-homeslidervtwo .item figcaption { padding: 308px 0;}
+.tg-homeslidervtwo .item figcaption { padding: 312px 0; }
 .tg-homeslidervtwo .tg-slidercontent,
 .tg-homeslidervtwo .tg-slidercontent h1,
 .tg-homeslidervtwo .tg-slidercontent h2 { text-align: left; }
@@ -2763,7 +2762,7 @@ li.tg-rss a { background:#ff6600; }
 	visibility: visible;
 }
 /*======================================================================================
-									Home Version Three									
+									Home Version Three
 ======================================================================================*/
 .tg-nobackground { background: none; }
 .tg-homesliderfull .item figcaption { padding: 235px 0; }
@@ -2833,7 +2832,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-parallax .tg-featuretitle h2 span,
 .tg-parallax .tg-featuretitle h2 a { color: #fff; }
 /*======================================================================================
-									Home Version Four									
+									Home Version Four
 ======================================================================================*/
 .tg-homebanner .item figcaption { padding: 412px 0; }
 .tg-findtourvfour{position: relative;}
@@ -2881,7 +2880,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-ourpartnersvtwo li figure a img{ opacity: 0.40; }
 .tg-ourpartnersvtwo li figure:hover a img { opacity: 1; }
 /*======================================================================================
-									Home Version Five									
+									Home Version Five
 ======================================================================================*/
 .tg-homebannervtwo {  }
 .tg-homebannervtwo .item figcaption { padding: 250px 0 0; }
@@ -2909,7 +2908,7 @@ li.tg-rss a { background:#ff6600; }
 	box-shadow: 0 0 15px 2px rgba(0,0,0,0.20);
 }
 /*======================================================================================
-										About us										
+										About us
 ======================================================================================*/
 .tg-innerbanner .tg-sectionspace {
 	color: #fff;
@@ -3019,7 +3018,7 @@ li.tg-rss a { background:#ff6600; }
 }
 .tg-panelcontent .tg-description p{ margin:0; }
 /*======================================================================================
-										FAQ'S											
+										FAQ'S
 ======================================================================================*/
 .tg-content {
 	width: 100%;
@@ -3043,7 +3042,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-faqs ol li + li { padding: 20px 0 0; }
 .tg-faqs .tg-description p:last-child { margin: 0; }
 /*======================================================================================
-								Package Plans											
+								Package Plans
 ======================================================================================*/
 .tg-pkgplans {
 	width: 100%;
@@ -3109,7 +3108,7 @@ li.tg-rss a { background:#ff6600; }
 	vertical-align: top;
 }
 /*======================================================================================
-								Contact Us Style										
+								Contact Us Style
 ======================================================================================*/
 .tg-contactinfo {
 	width: 100%;
@@ -3166,7 +3165,7 @@ li.tg-rss a { background:#ff6600; }
 	padding: 15px 0 0;
 }
 /*======================================================================================
-								Blog Grid Style											
+								Blog Grid Style
 ======================================================================================*/
 .tg-blogposts{}
 .tg-posts.tg-blogposts{
@@ -3243,7 +3242,7 @@ li.tg-rss a { background:#ff6600; }
 .tg-btnreadmore:hover:before { width: 54px; }
 .tg-blogposts .tg-pagination { padding: 0 30px; }
 /*======================================================================================
-								Blog Detail Style										
+								Blog Detail Style
 ======================================================================================*/
 .tg-innerbannervtwo .tg-sectionspace{padding:550px 0 100px;}
 .tg-postmaradata{
@@ -3448,7 +3447,7 @@ blockquote{
 .tg-formleavecomment .tg-btn:hover{color:#fff;}
 .tg-formleavecomment .tg-btn:after{display:none;}
 /*======================================================================================
-								Listing Styles											
+								Listing Styles
 ======================================================================================*/
 .tg-listing {
 	width: 100%;
@@ -3624,7 +3623,7 @@ blockquote{
 .tg-listingvsix .tg-priceavailability .tg-pricearea {padding: 90px 0 68px;}
 .tg-listingvsix .tg-pagination{text-align:left;}
 /*======================================================================================
-								Shop Style												
+								Shop Style
 ======================================================================================*/
 .tg-shopgrid .tg-sectiontitle{padding: 0 0 20px;}
 .tg-product {
@@ -3748,7 +3747,7 @@ blockquote{
 .tg-btnaddtocart:hover i,
 .tg-btnaddtocart:hover span{color: #fff;}
 /*======================================================================================
-								404 Error Style											
+								404 Error Style
 ======================================================================================*/
 .tg-404errorpage{
 	background: url(../images/img-02.jpg) no-repeat center center fixed;
@@ -3817,7 +3816,7 @@ blockquote{
 	line-height:15px;
 }
 /*======================================================================================
-								Product Detail Style									
+								Product Detail Style
 ======================================================================================*/
 .tg-productdetail{
 	width:100%;
@@ -3905,14 +3904,14 @@ blockquote{
 	padding:0 0 120px;
 }
 /*======================================================================================
-								Tour Catagory Style										
+								Tour Catagory Style
 ======================================================================================*/
 .tg-tourcatagory .tg-sectiontitle h2{margin:0 0 20px;}
 .tg-tourcatagory .tg-sectiontitle{padding:0 0 45px;}
 .tg-tourcatagory .tg-sectiontitle .tg-description p{margin:0}
 .tg-bgwhite{background:#fff;}
 /*======================================================================================
-								Tour Booking Detail Style								
+								Tour Booking Detail Style
 ======================================================================================*/
 .tg-tourbookingdetail{
 	width:100%;
@@ -4332,7 +4331,7 @@ blockquote{
 .tg-bookingtabs .tg-reviewtab:before,
 .tg-bookingtabs .tg-gallerytab:before{display:none;}
 /*======================================================================================
-								Tour Payment Style										
+								Tour Payment Style
 ======================================================================================*/
 .tg-tourpaymentdetail{
 	width:100%;
@@ -4379,7 +4378,7 @@ blockquote{
 	position:absolute;
 }
 /*======================================================================================
-								Billing Detail Style									
+								Billing Detail Style
 ======================================================================================*/
 .tg-billingdetail{
 	width:100%;
@@ -4510,7 +4509,7 @@ blockquote{
 }
 .tg-formbillingdetail .tg-btn{margin:30px 0 0;}
 /*======================================================================================
-								Dashboard Style											
+								Dashboard Style
 ======================================================================================*/
 .tg-dashboard{
 	width:100%;
@@ -4703,7 +4702,7 @@ blockquote{
 .tg-imgholder .tg-btn:after{display:none;}
 .tg-imgholder .tg-btn:hover{color:#fff;}
 /*======================================================================================
-								Coming Soon Style										
+								Coming Soon Style
 ======================================================================================*/
 body.tg-comingsoonpage{
 	background: url(../images/comingsoon-bg.jpg) no-repeat center center fixed;
@@ -4859,7 +4858,7 @@ body.tg-comingsoonpage .tg-main:before{
 	-moz-transform: translate(0px, 0px) scale(1, 1);
 	-o-transform: translate(0px, 0px) scale(1, 1);
 	-ms-transform: translate(0px, 0px) scale(1, 1);
-	transform: translate(0px, 0px) scale(1, 1); 
+	transform: translate(0px, 0px) scale(1, 1);
 	opacity: 1;
 }
 .tg-search form{
