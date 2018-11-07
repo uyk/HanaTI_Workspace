@@ -1,6 +1,5 @@
 package kr.or.kosta.sjrent.model.controller;
 
-import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -21,7 +20,7 @@ import kr.or.kosta.sjrent.model.service.ModelServiceImpl;
  * @author 유예겸
  *
  */
-public class ModelListController implements Controller{
+public class ModelSearchController implements Controller{
 	private ModelService modelService;
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
@@ -32,22 +31,37 @@ public class ModelListController implements Controller{
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
-		System.out.println("model List");
+		System.out.println("ModelSearchController");
+
+//		String startDate = request.getParameter("startDate");
+//		String endDate = request.getParameter("endDate");
+//		String type = request.getParameter("type");
+		String startDate = "2018-11-15";
+		String endDate = "2018-11-17";
+		String type = "JSegment";
+		
+		if(type.equals("all") || type.equals("null")) type = null;
+		
 		// 인자로 받은 date와 type
-		System.out.println(request.getParameter("date"));
-		System.out.println(request.getParameter("type"));
+		System.out.println(startDate);
+		System.out.println(endDate);
+		System.out.println(type);
+		
 		// 검색 인자를 Params에 저장
 		ModelParams modelParams = new ModelParams();
+		modelParams.setStartDate("2018-11-15");
+		modelParams.setEndDate("2018-11-17");
+		modelParams.setType("JSegment");
+		
 		List<Model> list = null;
 		try {
 			// Params로 검색한 리스트를 list에 저장
-			// 현재 params에 관계 없이 전체 모델 리스트 저장
 			list = modelService.listBySearch(modelParams);
 			// 저장한 리스트를 mav에 추가
 			mav.addObject("list", list);
 			// rent/search.jsp로 이동
 			// 뷰에서 include로 처리하는 것이 좋을 듯
-			mav.setView("/rent/search.jsp");
+			mav.setView("/rent/search_list.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

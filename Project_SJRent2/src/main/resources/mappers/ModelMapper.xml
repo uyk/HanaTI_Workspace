@@ -43,7 +43,8 @@
 		model_picture,
 		(SELECT AVG(review_evalscore)
 		FROM review
-		WHERE model_name = #{value}) evalScore
+		WHERE model_name = #{value}) evalScore,
+		model_rental_count
 		FROM model
 		WHERE model_name = #{value}
 	</select>
@@ -66,7 +67,8 @@
 		m.model_weenkend_price,
 		m.model_options,
 		m.model_picture,
-		Avg(r.review_evalscore) model_eval_score
+		Avg(r.review_evalscore) model_eval_score,
+		m.model_rental_count
 		FROM model m
 		left outer join review r
 		ON m.model_name = r.model_name
@@ -84,8 +86,10 @@
 		m.model_weekday_price,
 		m.model_weenkend_price,
 		m.model_options,
-		m.model_picture
+		m.model_picture,
+		m.model_rental_count
 	</select>
+	
 	
 	<!-- 인기 모델 리스트 -->
 	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
@@ -104,7 +108,8 @@
 		m.model_weenkend_price,
 		m.model_options,
 		m.model_picture,
-		AVG(r.review_evalscore) model_eval_score
+		AVG(r.review_evalscore) model_eval_score,
+		m.model_rental_count
 		FROM model m
 		left outer join review r
 		ON m.model_name = r.model_name
@@ -123,7 +128,69 @@
 		m.model_weekday_price,
 		m.model_weenkend_price,
 		m.model_options,
-		m.model_picture
+		m.model_picture,
+		m.model_rental_count
 	</select>
+	
+	<!-- 검색 결과 모델 리스트 -->
+	<select id="listBySearch" parameterType="modelParams" resultType="Model"	resultMap="modelResultMap">
+		SELECT m.model_name, 
+		       m.model_year, 
+		       m.model_fuel_type, 
+		       m.model_fuel_efficiency, 
+		       m.model_seater, 
+		       m.model_transmission, 
+		       m.model_navigation, 
+		       m.model_camera_rear, 
+		       m.model_highpass, 
+		       m.model_blackbox, 
+		       m.model_type, 
+		       m.model_weekday_price, 
+		       m.model_weenkend_price, 
+		       m.model_options, 
+		       m.model_picture, 
+		       Avg(r.review_evalscore) model_eval_score,
+		       m.model_rental_count
+		FROM   (SELECT * 
+		        FROM   model 
+		        WHERE  <if test="type != null">model_type =  #{type} AND </if>
+		               model_name IN (SELECT DISTINCT model_name 
+		                              FROM   car 
+		                              WHERE  car_num NOT IN (SELECT car_num 
+		                                                     FROM   rent 
+		                                                     WHERE  #{startDate} BETWEEN 
+		                                                               rent_start_date AND rent_end_date 
+		                                                            OR #{endDate} BETWEEN 
+		                                                               rent_start_date AND rent_end_date 
+		                                                            OR rent_start_date BETWEEN 
+		                                                                #{startDate} AND  #{endDate} 
+		                                                            OR rent_end_date BETWEEN 
+		                                                                #{startDate} AND  #{endDate}))) m 
+		       LEFT OUTER JOIN review r 
+		                    ON m.model_name = r.model_name 
+		GROUP  BY m.model_name, 
+		          m.model_year, 
+		          m.model_fuel_type, 
+		          m.model_fuel_efficiency, 
+		          m.model_seater, 
+		          m.model_transmission, 
+		          m.model_navigation, 
+		          m.model_camera_rear, 
+		          m.model_highpass, 
+		          m.model_blackbox, 
+		          m.model_type, 
+		          m.model_weekday_price, 
+		          m.model_weenkend_price, 
+		          m.model_options, 
+		          m.model_picture,
+		          m.model_rental_count
+	</select>
+	
+	<!-- 대여횟수 증가 또는 감소-->
+	<update id="changeCount" parameterType="map">
+		UPDATE model 
+		SET    model_rental_count = model_rental_count + (#{number})
+		WHERE  model_name = #{modelName} 
+	</update>
 
 </mapper>

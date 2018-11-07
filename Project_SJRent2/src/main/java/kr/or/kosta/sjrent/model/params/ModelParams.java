@@ -2,7 +2,7 @@ package kr.or.kosta.sjrent.model.params;
 
 /**
  * 차량 검색을 위한 전달인자들을 포장하기 위한 Wrapper 클래스
- * {페이지, 조회 목록 개수, 시작일, 종료일, 연료 타입, 인승, 변속기, 네비게이션, 후방카메라, 블랙박스 등}
+ * {페이지, 조회 목록 개수, 시작일, 종료일, 타입(중형 대형 등), 연료 타입, 인승, 변속기, 네비게이션, 후방카메라, 블랙박스 등}
  *  
  * @author 남수현
  */
@@ -12,6 +12,7 @@ public class ModelParams {
 	private String startDate;
 	private String endDate;
 	private String fuelType;
+	private String type;
 	private int seater;
 	private String transmission;
 	private String navigation;
@@ -64,6 +65,12 @@ public class ModelParams {
 	}
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getFuelType() {
 		return fuelType;

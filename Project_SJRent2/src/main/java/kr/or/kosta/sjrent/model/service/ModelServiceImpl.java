@@ -60,7 +60,7 @@ public class ModelServiceImpl implements ModelService {
 
 	@Override
 	public List<Model> listBySearch(ModelParams modelParams) throws Exception {
-		return listAll();
+		return modelDao.listBySearch(modelParams);
 	}
 
 	@Override

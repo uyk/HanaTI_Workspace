@@ -68,14 +68,15 @@ public class MybatisModelDao implements ModelDao {
 	@Override
 	public List<Model> listBySearch(int page, int listSize, String startDate, String endDate, String fuelType,
 			int seater, String transmission, String navigation, String cameraRear, String blackBox) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public List<Model> listBySearch(ModelParams modelParams) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Model> modelList = sqlSession.selectList(NAMESPACE + "listBySearch", modelParams);
+		sqlSession.close();
+		return modelList;
 	}
 
 	@Override
@@ -105,7 +106,14 @@ public class MybatisModelDao implements ModelDao {
 		return null;
 	}
 
-	
+	@Override
+	public void changeCount(String name, int num) throws Exception {
+//		SqlSession sqlSession = sqlSessionFactory.openSession();
+//		List<Model> modelList = sqlSession.update(NAMESPACE + "popularModel", num);
+//		sqlSession.close();
+//		return modelList;
+		
+	}
 }
 
 

@@ -6,8 +6,6 @@
 <title></title>
 </head>
 <body>
-
-maven 기반 웹 프로젝트 생성 및 실행
-
+<span>${list}</span>
 </body>
 </html>

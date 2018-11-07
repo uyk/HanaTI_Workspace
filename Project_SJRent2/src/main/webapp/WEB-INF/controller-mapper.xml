@@ -11,7 +11,7 @@
 	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
 	
 	<!-- 모델검색 -->
-	<bean type="controller" name="/model/list" class="kr.or.kosta.sjrent.model.controller.ModelListController" />
+	<bean type="controller" name="/model/search" class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />
 	<!-- 모델상세 -->
 	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
 	

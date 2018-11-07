@@ -18,6 +18,8 @@
 		<typeAlias type="kr.or.kosta.sjrent.model.domain.Model"             alias="Model"/>
 		<typeAlias type="kr.or.kosta.sjrent.insurance.domain.Insurance"     alias="Insurance"/>
 		<typeAlias type="kr.or.kosta.sjrent.faq.domain.FAQ"    			    alias="FAQ"/>
+		
+		<typeAlias type="kr.or.kosta.sjrent.model.params.ModelParams"		alias="ModelParams"/>
 	</typeAliases>
 	
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->

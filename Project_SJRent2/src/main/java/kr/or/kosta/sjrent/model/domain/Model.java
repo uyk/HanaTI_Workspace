@@ -18,6 +18,7 @@ public class Model {
 	private int weekdayPrice;
 	private int weekendPrice;
 	private double evalScore;
+	private int rentalCount;
 	
 	public Model() {
 		super();
@@ -122,14 +123,22 @@ public class Model {
 	public void setEvalScore(double evalScore) {
 		this.evalScore = evalScore;
 	}
+	
+	public int getRentalCount() {
+		return rentalCount;
+	}
+	public void setRentalCount(int rentalCount) {
+		this.rentalCount = rentalCount;
+	}
 	@Override
 	public String toString() {
 		return "Model [name=" + name + ", fuelType=" + fuelType + ", fuelEfficiency=" + fuelEfficiency + ", seater="
 				+ seater + ", transmission=" + transmission + ", navigation=" + navigation + ", cameraRear="
-				+ cameraRear + ", year=" + year + ", highpass=" + highpass + ", blackBox=" + blackBox + ", option="
+				+ cameraRear + ", year=" + year + ", highpass=" + highpass + ", blackBox=" + blackBox + ", options="
 				+ options + ", picture=" + picture + ", type=" + type + ", weekdayPrice=" + weekdayPrice
-				+ ", weekendPrice=" + weekendPrice + ", evalScore=" + evalScore + "]";
+				+ ", weekendPrice=" + weekendPrice + ", evalScore=" + evalScore + ", rentalCount=" + rentalCount + "]";
 	}
+	
 	
 	
 }

@@ -14,6 +14,7 @@ import org.junit.Test;
 import kr.or.kosta.sjrent.model.dao.ModelDao;
 import kr.or.kosta.sjrent.model.dao.MybatisModelDao;
 import kr.or.kosta.sjrent.model.domain.Model;
+import kr.or.kosta.sjrent.model.params.ModelParams;
 
 public class ModelDaoTest {
 	
@@ -39,21 +40,33 @@ public class ModelDaoTest {
 		
 	}
 	
-	@Test
+//	@Test
 	public void testRead() throws Exception {
 		logger.debug(modelDao.read("NIRO"));
 	}
 	
-	@Test
+//	@Test
 	public void testListAll() throws Exception {
 		List<Model> ModelList = modelDao.listAll();
 		for (Model model : ModelList) {
 			logger.debug(model);
 		}
 	}
-	@Test
+//	@Test
 	public void testPopularModel() throws Exception{
 		List<Model> ModelList = modelDao.popularModel(5);
+		for (Model model : ModelList) {
+			logger.debug(model);
+		}
+	}
+	
+	@Test
+	public void testListSearch() throws Exception{
+		ModelParams modelParams = new ModelParams();
+		modelParams.setStartDate("2018-11-15");
+		modelParams.setEndDate("2018-11-17");
+		modelParams.setType("JSegment");
+		List<Model> ModelList = modelDao.listBySearch(modelParams);
 		for (Model model : ModelList) {
 			logger.debug(model);
 		}

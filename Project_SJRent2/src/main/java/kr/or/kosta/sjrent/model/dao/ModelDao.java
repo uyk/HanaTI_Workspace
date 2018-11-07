@@ -37,4 +37,6 @@ public interface ModelDao {
 	public List<Model> popularModel(int num) throws Exception;
 	
 	public List<Model> recommendModel(int num) throws Exception;
+	
+	public void changeCount(String name, int num) throws Exception;
 }
