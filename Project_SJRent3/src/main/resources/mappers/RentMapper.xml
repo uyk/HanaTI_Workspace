@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+                        
+<!-- 네임스페이스(사용영역) 설정 -->
+<mapper namespace="kr.or.kosta.sjrent.rent">
+	<resultMap type="Rent" id="rentResultMap">
+		<result column="rent_seq" 				property="seq" />
+		<result column="ins_num" 				property="insuranceNumber" />
+		<result column="user_seq"				property="userSeq" />
+		<result column="user_id"				property="userId" />
+		<result column="car_num" 				property="carNumber" />
+		<result column="rent_start_date" 		property="startDate" />
+		<result column="rent_end_date"			property="endDate" />
+		<result column="rent_pickup_place" 		property="pickupPlace" />
+		<result column="rent_paid_amount" 		property="paidAmount" />
+		<result column="rent_payment_option"	property="paymentOption" />
+		<result column="rent_is_canceled" 		property="isCanceled" />
+	</resultMap>
+	
+	<!-- 렌트 등록 -->
+	<insert id="insertRent" parameterType="Rent">
+	INSERT INTO rent 
+	            (rent_seq, 
+	             user_seq, 
+	             user_id, 
+	             ins_num, 
+	             car_num, 
+	             rent_start_date, 
+	             rent_end_date, 
+	             rent_pickup_place, 
+	             rent_paid_amount, 
+	             rent_payment_option, 
+	             rent_is_canceled) 
+	VALUES      ( rent_seq.NEXTVAL, 
+	             #{userSeq}, 
+	             #{userId}, 
+	             #{insuranceNumber}, 
+	             #{carNumber}, 
+	             TO_DATE(#{startDate}, 'yyyy-mm-dd'),
+   				 TO_DATE(#{endDate}, 'yyyy-mm-dd'),
+	             #{pickupPlace}, 
+	             #{paidAmount}, 
+	             #{paymentOption}, 
+	             #{isCanceled} )
+	</insert>
+	<!-- 렌트 취소 -->
+	<update id="cancelRent" parameterType="Integer">
+		UPDATE RENT
+		SET rent_is_canceled = 1
+	    WHERE rent_seq = #{value}
+	</update>
+	
+	<!-- seq로 rent 읽기 -->
+	<select id="read" parameterType="int" resultType="Rent" resultMap="rentResultMap">
+		SELECT rent_seq, 
+		       user_seq, 
+		       user_id, 
+		       ins_num, 
+		       car_num, 
+		       rent_start_date, 
+		       rent_end_date, 
+		       rent_pickup_place, 
+		       rent_paid_amount, 
+		       rent_payment_option, 
+		       rent_is_canceled 
+		FROM   rent 
+		WHERE  rent_seq = #{value}
+	</select>
+	
+	<!-- 특정 회원 rent List -->
+	<select id="listByUserId" resultType="Rent" parameterType="String" resultMap="rentResultMap">
+		SELECT rent_seq, 
+		       user_seq, 
+		       user_id, 
+		       ins_num, 
+		       car_num, 
+		       rent_start_date, 
+		       rent_end_date, 
+		       rent_pickup_place, 
+		       rent_paid_amount, 
+		       rent_payment_option, 
+		       rent_is_canceled 
+		FROM   rent 
+		WHERE  user_id = #{value}
+	</select>
+</mapper>

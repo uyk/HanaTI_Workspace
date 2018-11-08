@@ -90,48 +90,6 @@
 		m.model_rental_count
 	</select>
 	
-	
-	<!-- 인기 모델 리스트 -->
-	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
-		SELECT m.model_name,
-		m.model_year,
-		m.model_fuel_type,
-		m.model_fuel_efficiency,
-		m.model_seater,
-		m.model_transmission,
-		m.model_navigation,
-		m.model_camera_rear,
-		m.model_highpass,
-		m.model_blackbox,
-		m.model_type,
-		m.model_weekday_price,
-		m.model_weenkend_price,
-		m.model_options,
-		m.model_picture,
-		AVG(r.review_evalscore) model_eval_score,
-		m.model_rental_count
-		FROM model m
-		left outer join review r
-		ON m.model_name = r.model_name
-		WHERE ROWNUM <![CDATA[<=]]> #{value}
-		GROUP BY m.model_name,
-		m.model_year,
-		m.model_fuel_type,
-		m.model_fuel_efficiency,
-		m.model_seater,
-		m.model_transmission,
-		m.model_navigation,
-		m.model_camera_rear,
-		m.model_highpass,
-		m.model_blackbox,
-		m.model_type,
-		m.model_weekday_price,
-		m.model_weenkend_price,
-		m.model_options,
-		m.model_picture,
-		m.model_rental_count
-	</select>
-	
 	<!-- 검색 결과 모델 리스트 -->
 	<select id="listBySearch" parameterType="modelParams" resultType="Model"	resultMap="modelResultMap">
 		SELECT m.model_name, 
@@ -186,11 +144,45 @@
 		          m.model_rental_count
 	</select>
 	
-	<!-- 대여횟수 증가 또는 감소-->
-	<update id="changeCount" parameterType="map">
-		UPDATE model 
-		SET    model_rental_count = model_rental_count + (#{num})
-		WHERE  model_name = #{name} 
-	</update>
+	<!-- 인기 모델 리스트 -->
+	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
+		SELECT m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture,
+		AVG(r.review_evalscore) model_eval_score,
+		m.model_rental_count
+		FROM model m
+		left outer join review r
+		ON m.model_name = r.model_name
+		WHERE ROWNUM <![CDATA[<=]]> #{value}
+		GROUP BY m.model_name,
+		m.model_year,
+		m.model_fuel_type,
+		m.model_fuel_efficiency,
+		m.model_seater,
+		m.model_transmission,
+		m.model_navigation,
+		m.model_camera_rear,
+		m.model_highpass,
+		m.model_blackbox,
+		m.model_type,
+		m.model_weekday_price,
+		m.model_weenkend_price,
+		m.model_options,
+		m.model_picture,
+		m.model_rental_count
+	</select>
 
 </mapper>

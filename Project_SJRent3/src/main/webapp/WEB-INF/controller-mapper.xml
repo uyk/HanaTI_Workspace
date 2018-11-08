@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans>
+
+	<!-- 회원관리 -->
+	<bean type="controller" name="/user/list" class="kr.or.kosta.sjrent.user.controller.UserListController" />
+	<!-- 로그인 -->
+	<bean type="controller" name="/user/login" class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
+	<!-- 로그아웃 -->
+	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
+	<!-- id로 유저반환 -->
+	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
+	
+	<!-- 모델검색 -->
+	<bean type="controller" name="/model/search" class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />
+	<!-- 모델상세 -->
+	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	
+	<!-- 예약 -->
+	<bean type="controller" name="/rent/rent" class="kr.or.kosta.sjrent.rent.controller.RentController" />
+	<!-- 예약목록 -->
+	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
+	<!-- 예약상세-->
+	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
+	
+	<!-- 보험 -->
+	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
+</beans>

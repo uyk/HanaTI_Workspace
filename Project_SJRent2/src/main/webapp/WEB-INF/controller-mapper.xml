@@ -9,6 +9,29 @@
 	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
 	<!-- id로 유저반환 -->
 	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
+	<!-- 회원가입 -->
+   <bean type="controller" name="/user/signup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
+
+   <!-- 아이디 중복체크 -->
+   <bean type="controller" name="/user/checkId" class="kr.or.kosta.sjrent.user.controller.UserCheckIdController" />
+
+   <!-- 이메일 중복체크 -->
+   <bean type="controller" name="/user/checkEmail" class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
+
+
+   <!-- QnA list 컨트롤러 -->
+   <bean type="controller" name="/qna/qnaList" class="kr.or.kosta.sjrent.qna.controller.QnAListController" />
+
+   <!-- QnA create 컨트롤러 -->
+   <bean type="controller" name="/qna/qnaCreate" class="kr.or.kosta.sjrent.qna.controller.QnACreateController" />
+
+   <!-- QnA delete 컨트롤러 -->
+   <bean type="controller" name="/qna/qnaDelete" class="kr.or.kosta.sjrent.qna.controller.QnADeleteController" />
+
+   <!-- QnA update 컨트롤러 -->
+   <bean type="controller" name="/qna/qnaUpdate" class="kr.or.kosta.sjrent.qna.controller.QnAUpdateController" />
+	
+	
 	
 	<!-- 모델검색 -->
 	<bean type="controller" name="/model/search" class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />

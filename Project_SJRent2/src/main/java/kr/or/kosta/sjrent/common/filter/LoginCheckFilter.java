@@ -4,6 +4,7 @@ import java.io.IOException;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
@@ -14,13 +15,14 @@ import org.apache.log4j.Logger;
 
 /**
  * 사용자 로그인 여부 체크 필터
+ *
  */
 public class LoginCheckFilter implements Filter {
 	
 	private Logger logger = Logger.getLogger(LoginCheckFilter.class);
 	
 //	private String loginPage = "/user/login.jsp";
-	private String loginPage;
+	private String loginPage = "index.jsp";
 
     @Override
 	public void init(FilterConfig filterConfig) throws ServletException {
@@ -32,24 +34,23 @@ public class LoginCheckFilter implements Filter {
     	logger.debug("LoginCheckFiler 실행..");
 		boolean isLogin = false;
 		Cookie[] cookies = ((HttpServletRequest)request).getCookies();
+		String id = null;
 		if(cookies != null) {
 			for (Cookie cookie : cookies) {
 				if(cookie.getName().equals("loginId")) {
 					isLogin = true;
+					id = cookie.getValue();
 					break;
 				}
 			}
 		}
-		
+		// 회원 및 비회원 로그인 페이지 처리 
 		if(isLogin) {
 			chain.doFilter(request, response);
+			request.getServletContext().setAttribute("loginId", id);
 		}else {
-			if(loginPage == null) {
-				throw new ServletException("LoginCheckFilter에 loginPage가 설정되어 있지 않습니다.");
-			}
-			request.setAttribute("uri", ((HttpServletRequest)request).getRequestURI());
-//			((HttpServletRequest)request).getSr
-			request.getServletContext().getRequestDispatcher(loginPage).forward(request, response);
+			
+			chain.doFilter(request, response);
 		}
 	}
     
@@ -57,3 +58,22 @@ public class LoginCheckFilter implements Filter {
 	public void destroy() {}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.or.kosta.sjrent.qna.dao.QnADao;
 import kr.or.kosta.sjrent.qna.domain.QnA;
+import kr.or.kosta.sjrent.qna.paging.Params;
 
 public class QnAServiceImpl implements QnAService {
 
@@ -19,44 +20,61 @@ public class QnAServiceImpl implements QnAService {
 	}
 
 	@Override
-	public void create(QnA qna) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean create(QnA qna) throws Exception {
+		return qnaDao.create(qna);
+
 
 	}
 
 	@Override
 	public QnA read(int number) throws Exception {
-		// TODO Auto-generated method stub
+		return qnaDao.read(number);
+	}
+
+	@Override
+	public boolean update(QnA qna) throws Exception {
+		return qnaDao.update(qna);
+
+
+	}
+
+	@Override
+	public boolean delete(int number) throws Exception {
+		return qnaDao.delete(number);
+
+
+	}
+
+	@Override
+	public List<QnA> listAll() throws Exception {
+		return qnaDao.listAll();
+	}
+
+
+	
+	
+
+	@Override
+	public List<QnA> listByPage(int page, int listSize, String searchType, String searchValue) throws Exception {
+
 		return null;
 	}
 
 	@Override
-	public void update(QnA qna) throws Exception {
-		// TODO Auto-generated method stub
+	public List<QnA> listByPage(Params params) throws Exception {
 
-	}
-
-	@Override
-	public void delete(int number) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<QnA> listAll(int page, int listSize) throws Exception {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<QnA> listByPage(int page, int listSize) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public int countBySearch(String searchType, String searchValue) throws Exception {
+
+		return 0;
 	}
 
 	@Override
-	public int countListAll() throws Exception {
-		// TODO Auto-generated method stub
+	public int countBySearch(Params params) throws Exception {
+
 		return 0;
 	}
 

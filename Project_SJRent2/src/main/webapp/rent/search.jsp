@@ -230,7 +230,7 @@ $(document).ready(function(){
                   <div class="container">
                      <div class="row">
                         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                           <form id = "showCarList" class="tg-formtheme tg-formtrip">
+                           <form id = "showCarList" class="tg-formtheme tg-formtrip" action="<%=application.getContextPath()%>/model/search.rent" method="get">
                               <fieldset>
                                  <div class="row">
                                     <div class="form-group-row col-md-8">

@@ -1,4 +1,4 @@
-	<script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
+	 <script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
    <script src="<%=application.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=en"></script>
    <script src="<%=application.getContextPath()%>/js/bootstrap-select.min.js"></script>
