@@ -158,9 +158,9 @@ function setModelList(list) {
 		"                                    </div>\r\n" + 
 		"                                    <div class=\"tg-populartourfoot\">\r\n" + 
 		"                                       <div class=\"tg-durationrating\">\r\n" + 
-		"                                          <span class=\"tg-tourduration tg-availabilty\">2 Days</span>" + 
+		"                                          <span class=\"tg-tourduration tg-availabilty\"> weekday "+list[i].weekdayPrice+"<br/>weekend "+list[i].weekendPrice+"</span>" + 
 		"										   <span class=\"tg-stars\">"+
-		"											  <span style=\"width: 60%\"></span>" + 
+		"											  <span style=\"width: "+list[i].evalScore*100+"%\"></span>" + 
 		"										   </span>\r\n" + 
 		"                                          <em>(3 Review)</em>\r\n" + 
 		"                                       </div>\r\n" + 
