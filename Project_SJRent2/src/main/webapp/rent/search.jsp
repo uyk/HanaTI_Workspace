@@ -30,11 +30,10 @@
 }
 </style>
 <script type="text/javascript">
-var weekdayCount = 0;
-var weekendCount = 0;
+var rent_start_date;
+var rent_end_date;
+var date;
 $(document).ready(function(){
-    var rent_start_date;
-    var rent_end_date;
     /* DatePicker */
     $("#datepicker").datepicker({
       minDate: new Date(),
@@ -42,11 +41,11 @@ $(document).ready(function(){
           if(selectedDate.includes('~')){
              rent_start_date = new Date(selectedDate.split('~')[0]);
              rent_end_date = new Date(selectedDate.split('~')[1]);
-             var date = ((rent_end_date - rent_start_date) / (1000*60*60*24))+1; 
+             date = ((rent_end_date - rent_start_date) / (1000*60*60*24))+1; 
           }else{
              rent_start_date = selectedDate;
              rent_end_date = selectedDate;
-             var date = 1;
+             date = 1;
           }
              $('#total-time').val(date+'일 ('+date*24+'시간)'); 
              rent_start_date = formatDate(rent_start_date);
@@ -55,13 +54,14 @@ $(document).ready(function(){
    })
    
    function formatDate(date){
-       var d = new Date(date),
+    	var d = new Date(date),
         month = '' + (d.getMonth() + 1),
         day = '' + d.getDate(),
         year = d.getFullYear();
-         if (month.length < 2) month = '0' + month;
-       if (day.length < 2) day = '0' + day;
-       return [year, month, day].join('-');
+    	
+    	if (month.length < 2) month = '0' + month;
+    	if (day.length < 2) day = '0' + day;
+    	return [year, month, day].join('-');
     }
    
    
@@ -110,7 +110,6 @@ $(document).ready(function(){
             //console.log(data);
            	window.data = data;
            	setModelList(data);
-           	
          }
       });
       
@@ -120,7 +119,26 @@ $(document).ready(function(){
 });
 
 function setModelList(list) {
+	var weekday = 0;
+	var weekend = 0;
+	var startDay = new Date(rent_start_date).getDay();
+	var end = new Date(rent_end_date);
 	var output = "";
+	
+
+	for(var i = 0; i < date; i++) {
+		if(startDay == 0 || startDay == 6) {
+			weekend++;
+		}
+		else {
+			weekday++;
+		}
+		startDay++;
+		if(startDay == 7) startDay = 0;
+	}
+	
+	console.log(weekday + ", " + weekend);
+	
 	for ( var i in list) {
 		output += "" + 
 		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\">\r\n" + 
@@ -135,7 +153,7 @@ function setModelList(list) {
 		"                                          <a class=\"car_detail\">"+ list[i].name +"</a> \r\n" + 
 		"                                       </h3>\r\n" + 
 		"                                    </div>\r\n" + 
-		"                                    <div class=\"tg-description\">\r\n" + 
+		"                                    <div class=\"tg-description\" style=\"height: 150px;\">\r\n" + 
 		"                                       <p>"+ list[i].options +"</p>\r\n" + 
 		"                                    </div>\r\n" + 
 		"                                    <div class=\"tg-populartourfoot\">\r\n" + 
@@ -147,7 +165,7 @@ function setModelList(list) {
 		"                                          <em>(3 Review)</em>\r\n" + 
 		"                                       </div>\r\n" + 
 		"                                       <div class=\"tg-pricearea\">\r\n" + 
-		"                                          <h4>￦2,500</h4>\r\n" + 
+		"                                          <h4>"+ (list[i].weekdayPrice * weekday + list[i].weekendPrice * weekend)  +"</h4>\r\n" + 
 		"                                       </div>\r\n" + 
 		"                                    </div>\r\n" + 
 		"                                 </div>\r\n" + 
@@ -304,8 +322,7 @@ function setModelList(list) {
                         </div>
                         <div class="clearfix"></div>
                         <div class="row" id="carListRow">
-                           <!-- Car List 출력-->
-                           <div class="clearfix"></div>
+
                         </div>
                      </div>
                   </div>
