@@ -123,6 +123,18 @@ public class MybatisModelDao implements ModelDao {
 		}
 		
 	}
+
+	@Override
+	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception {
+		Map<String, Object> paramMap = new HashMap<String, Object>();
+		paramMap.put("startDate", startDate);
+		paramMap.put("endDate", endDate);
+		paramMap.put("modelName", modelName);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<String> result = sqlSession.selectList(NAMESPACE+"checkEnableCar",paramMap);
+		sqlSession.close();
+		return result;
+	}
 }
 
 

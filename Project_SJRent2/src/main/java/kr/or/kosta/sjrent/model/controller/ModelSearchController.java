@@ -1,5 +1,6 @@
 package kr.or.kosta.sjrent.model.controller;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -29,7 +30,7 @@ public class ModelSearchController implements Controller {
 	private ModelService modelService;
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
-	private JSONObject obj;
+	private JSONArray jsonArray;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -37,9 +38,7 @@ public class ModelSearchController implements Controller {
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
-		obj = new JSONObject();
-		System.out.println("ModelSearchController");
-
+		jsonArray = new JSONArray();
 		
 		String startDate = request.getParameter("rent_start_date");
 		String endDate = request.getParameter("rent_end_date");
@@ -50,10 +49,6 @@ public class ModelSearchController implements Controller {
 			type="all";
 		}
 		// 인자로 받은 date와 type
-		System.out.println(startDate);
-		System.out.println(endDate);
-		System.out.println(type);
-
 		if (type.equals("all"))
 			type = null;
 
@@ -65,14 +60,34 @@ public class ModelSearchController implements Controller {
 		modelParams.setType(type);
 
 		List<Model> list = null;
+
 		try {
 			// Params로 검색한 리스트를 list에 저장
 			list = modelService.listBySearch(modelParams);
-			obj.put("list", list);
-			//String string = obj.toJSONString();
-			//System.out.println(string);
-			System.out.println(obj);
-			response.getWriter().print(obj);
+			for (Model model : list) {
+				JSONObject modelObject = new JSONObject();
+				modelObject.put("name", model.getName());
+				modelObject.put("fuelType", model.getFuelType());
+				modelObject.put("fuelEfficiency", model.getFuelEfficiency());
+				modelObject.put("seater", model.getSeater());
+				modelObject.put("transmission", model.getTransmission());
+				modelObject.put("navigation", model.getNavigation());
+				modelObject.put("cameraRear", model.getCameraRear());
+				modelObject.put("year", model.getYear());
+				modelObject.put("highpass", model.getHighpass());
+				modelObject.put("blackBox", model.getBlackBox());
+				modelObject.put("options", model.getOption());
+				modelObject.put("picture", model.getPicture());
+				modelObject.put("type", model.getType());
+				modelObject.put("weekdayPrice", model.getWeekdayPrice());
+				modelObject.put("weekendPrice", model.getWeekendPrice());
+				modelObject.put("evalScore", model.getEvalScore());
+				modelObject.put("rentalCount", model.getRentalCount());
+				jsonArray.add(modelObject);
+			}
+
+			response.setCharacterEncoding("utf-8");
+			response.getWriter().print(jsonArray);
 			return null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

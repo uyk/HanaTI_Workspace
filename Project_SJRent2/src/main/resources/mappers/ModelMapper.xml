@@ -184,5 +184,27 @@
 		m.model_picture,
 		m.model_rental_count
 	</select>
+	
+		<!-- 사용 가능한 차 목록 -->
+	<select id="checkEnableCar" parameterType="map" resultType="String">
+		SELECT car_num 
+		FROM   car 
+		WHERE  model_name = 'K5' 
+		       AND car_num NOT IN(SELECT c.car_num 
+		                          FROM   rent r 
+		                                 left outer join car c 
+		                                              ON r.car_num = c.car_num 
+		                          WHERE  c.model_name = 'K5' 
+		                                 AND ( To_date('2018-11-16') BETWEEN 
+		                                       r.rent_start_date AND r.rent_end_date 
+		                                        OR To_date('2018-11-19') BETWEEN 
+		                                           r.rent_start_date AND r.rent_end_date 
+		                                        OR r.rent_start_date BETWEEN 
+		                                           To_date('2018-11-16') AND To_date( 
+		                                           '2018-11-19') 
+		                                        OR r.rent_end_date BETWEEN 
+		                                           To_date('2018-11-16') AND 
+		                                           To_date('2018-11-19') ))
+	</select>
 
 </mapper>

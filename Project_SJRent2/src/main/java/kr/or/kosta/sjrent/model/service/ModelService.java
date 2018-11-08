@@ -34,4 +34,6 @@ public interface ModelService {
 	public List<Model> recommendModel(int num) throws Exception;
 	
 	public boolean changeCount(String name, int num) throws Exception;
+	
+	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception;
 }

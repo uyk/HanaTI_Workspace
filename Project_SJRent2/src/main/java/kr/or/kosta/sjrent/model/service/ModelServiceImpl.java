@@ -91,4 +91,9 @@ public class ModelServiceImpl implements ModelService {
 		return modelDao.changeCount(name, num);
 	}
 
+	@Override
+	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception {
+		return modelDao.checkEnableCar(startDate, endDate, modelName);
+	}
+
 }

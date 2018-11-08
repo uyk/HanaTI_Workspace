@@ -90,7 +90,7 @@ public class UserSignupController implements Controller {
 		// 회원가입 성공시 응답으로 success 보냄
 		else {
 			mav.addObject("user", user);
-			mav.setView("/user/signup.jsp");
+			mav.setView("/user/regist_result.jsp");
 			obj.put("result", "success");
 		}
 		return mav;

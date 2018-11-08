@@ -47,23 +47,23 @@
 										회원 로그인 시작 
 								*************************************-->
 								<div role="tabpanel" class="tab-pane active fade in" id="user" >
-									<form class="tg-formtheme tg-formlogin">
+                
+									<form class="tg-formtheme tg-formlogin" action="/sjrent/user/login.rent" method="post">
 										<fieldset>
 											<div class="form-group">
 												<label>아이디 <sup>*</sup></label>
-												<input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
+												<input type="text" name="id" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
 											</div>
 											<div class="form-group">
 												<label>비밀번호 <sup>*</sup></label>
-												<input type="password" name="password" class="form-control" placeholder="" maxlength="10">
+												<input type="password" name="pw" class="form-control" placeholder="" maxlength="10"  style="text-transform:  none;">
 											</div>
 											
 											
 											<div class="form-group">
-												<div class="tg-checkbox">
-													<input type="checkbox" name="remember" id="rememberpass">
-													<label for="rememberpass">아이디 저장</label>
-												</div>
+												<!-- <div class="tg-checkbox"> -->
+													<input type="checkbox" name="remember" id="rememberpass"><label for="rememberpass">아이디 저장</label>
+												<!-- </div> -->
 											</div>
 											<button class="tg-btn tg-btn-lg"><span>로그인</span></button>
 										</fieldset>
@@ -76,7 +76,7 @@
 										비회원 로그인 시작
 								*************************************-->
 								<div role="tabpanel" class="tab-pane fade" id="new">
-									<form class="tg-formtheme tg-formlogin">
+									<form class="tg-formtheme tg-formlogin" action="/sjrent/user/login2.rent">
 										<fieldset>
 											<div class="form-group">
 												<label>이름 <sup>*</sup></label>
@@ -106,7 +106,8 @@
 											
 											<div class="form-group">
 												<label>핸드폰번호 <sup>*</sup></label>
-												<input type="text" name="phone" class="form-control" placeholder="e.g. 010-1234-5678" maxlength="13" style="text-transform: lowercase;">
+												<input type="text" name="cellphone" class="form-control" placeholder="e.g. 010-1234-5678" maxlength="13" style="text-transform: lowercase;">
+                        
 												<!--************************************
 															예비용 시작
 													*************************************-->
@@ -127,10 +128,11 @@
 											</div>
 											
 											
-												<button class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px"><span>로그인</span></button>
-											
+												<button type="submit" class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px"><span>로그인</span></button>
+												
 										</fieldset>
 									</form>
+                                                <button class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px" onclick="location.href='<%=application.getContextPath()%>/user/regist.jsp'"><span>회원가입</span></button>
 								</div>
 								<!--************************************
 										비회원 로그인 종료
