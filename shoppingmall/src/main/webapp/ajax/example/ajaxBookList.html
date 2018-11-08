@@ -3,6 +3,9 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+<style type="text/css">
+@import url("../../css/table.css");
+</style>
 
 <script src="../../js/ajax.js"></script>
 
@@ -22,6 +25,7 @@ window.onload = function(){
 				url: "bookList.jsp",
 				callback : function(request){
 					var xmlDocument = request.responseXML;
+					//alert(xmlDocument.documentElement.nodeName);
 					// 서버로부터 수신한 XML Document를 테이블로 출력
 					printTable(xmlDocument);
 				}
@@ -30,14 +34,38 @@ window.onload = function(){
 		}
 	}
 }
-function printTable(xmlDocument) {
-	var books = xmlDocument.getElementsByTagName("book");
-	for (var i = 0; i < books.length; i++) {
-		console.log("1 : " + books[i].getAttribute("kind"));
-		console.log("2 : " + books[i].getElementsByTagName("title").item(0).textContent);
-		console.log("3 : " + books[i].getElementsByTagName("author").item(0).textContent);
-		console.log("4 : " + books[i].getElementsByTagName("publisher").item(0).textContent);
-		console.log("5 : " + books[i].getElementsByTagName("price").item(0).textContent);
+
+function printTable(xml){
+	var table  =  "<table>";
+	    table  += "<tr>";
+	    table  += "<th>장르</th><th>제목</th><th>저자</th><th>출판사</th><th>가격</th>"; 
+	    table  += "</tr>";
+	    
+	var nodeList = xml.getElementsByTagName("book");
+	for(var i=0; i<nodeList.length; i++){
+		table  += "<tr>";
+		var book = nodeList.item(i);
+		var kind = book.getAttribute("kind");
+		table  += "<td>"+kind+"</td>";
+		
+		var childs = book.childNodes;
+		for(var j=0; j<childs.length; j++){
+			var element = childs[j];
+			if(element.nodeType == 1){
+				var value = element.firstChild.nodeValue;
+				table  += "<td>"+value+"</td>";
+			}
+		}
+		table  += "</tr>";
+	}
+	table  += "</table>";
+	    
+	 
+	    
+	    
+	var div = document.getElementById("view");
+	if(div){
+		div.innerHTML = table;
 	}
 }
 </script>

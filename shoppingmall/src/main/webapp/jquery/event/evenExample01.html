@@ -35,10 +35,11 @@ $(function() {
 	});
 
 	$("a").on("click", function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		
 		alert("링크클릭이요...");
 		// 디폴트이벤트핸들러 제거 및 이벤트 버블링 방지 
-		//event.preventDefault();
-		//event.stopPropagation();
 		return false;
 	});
 });

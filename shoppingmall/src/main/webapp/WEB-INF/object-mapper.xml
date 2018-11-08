@@ -17,7 +17,7 @@
 		<property name="environment" value="development"/>
 	</bean>
 	
-	<bean type="dao" name="userDao" class="kr.or.kosta.shoppingmall.user.dao.MyBatisUserDao">
+	<bean type="dao" name="userDao" class="kr.or.kosta.shoppingmall.user.dao.MybatisUserDao">
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	

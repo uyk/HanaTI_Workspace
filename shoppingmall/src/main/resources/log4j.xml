@@ -15,6 +15,11 @@
 	<logger name="kr.or.kosta.shoppingmall">
 		<level value="debug" />
 	</logger>
+	
+	<!-- 3rdparty 로그레벨 설정 -->
+	<logger name="org.apache.ibatis">
+		<level value="warn" />
+	</logger>
 	 
 	 
 	<!-- 루트 로거 설정 -->

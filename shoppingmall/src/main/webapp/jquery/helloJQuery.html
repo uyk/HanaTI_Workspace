@@ -9,19 +9,21 @@ $(document).ready(function(){
         $(this).hide();
     });
 });
-/*
-$(document).ready(function() {
-	alert("문서 로딩 완료");
+
+$(document).ready(function(){
+	alert("문서 로딩 완료1");
 });
 
-$(document).ready(function() {
+$(document).ready(function(){
 	alert("문서 로딩 완료2");
 });
-*/
-$(function() {
-	alert("문서 로딩 완료2");
+
+$(function(){
+	alert("문서 로딩 완료3");
 	$("*").css("color", "blue");
 });
+
+
 </script>
 </head>
 <body>
@@ -29,17 +31,18 @@ $(function() {
 <p>If you click on me, I will disappear.</p>
 <p>Click me away!</p>
 <p>Click me too!</p>
-<script type="text/javascript">
-	var object = jQuery("p")
-	for ( var i in object) {
-		console.log(i + " : " + object[i]);
-	}
-	object.click(function() {
-		var object2 = jQuery(this);
-		alert("클릭됨");
-		object2.hide();
-	})
 
+<script type="text/javascript">
+var object = jQuery("p");
+for ( var name in object) {
+	console.log(name + " : " + object[name]);
+}
+
+object.click(function(){
+	var object2 = jQuery(this);
+	object2.hide();
+});
 </script>
+
 </body>
 </html>

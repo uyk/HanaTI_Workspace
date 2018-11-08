@@ -20,7 +20,7 @@
   
   <c:choose>
     <c:when test="${not empty list}">
-      <c:forEach var="user" items="${list}" varStatus="status">
+      <c:forEach var="user" items="${list }" varStatus="status">
        <tr>
         <td>${status.count}</td>
         <td>${user.id }</td>

@@ -13,8 +13,6 @@ $(document).ready(function(){
 			layer_popup($w);
 		});
 });
-
-
 	function layer_popup(e){
 		var $e = $(e);
 		

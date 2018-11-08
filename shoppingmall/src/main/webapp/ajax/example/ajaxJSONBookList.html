@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <title></title>
+<style type="text/css">
+@import url("../../css/table.css");
+</style>
+
 <script src="../../js/ajax.js"></script>
 
 <script>
@@ -21,9 +25,9 @@ window.onload = function(){
         url: "jsonBookList.jsp",
         callback : function(request){
           var jsonString = request.responseText;
-          console.log(jsonString);
+          //alert(jsonString);
           // 서버로부터 수신한 JSONString을 테이블로 출력
-          printTable(jsonString)
+          printTable(jsonString);
         }
       });
       
@@ -31,32 +35,32 @@ window.onload = function(){
   }
 }
 
-function printTable(text) {
-    var objects = JSON.parse(text);
-    var page = objects["page"];
-    var list = objects["list"];
-    console.log(objects);
-    console.log(page);
-    console.log(list);
-    
-    var table = 	"<h3>총 페이지 수 : "+ page +"</h3>" +
-    				"<table border='1'>" + 
-					"  <tr> "+ 
-					"    <th>장르</th><th>제목</th><th>저자</th><th>출판사</th><th>가격</th>" + 
-					"  </tr>\r\n"; 
-	for ( var i in list) {
-		table +=	"  <tr>\r\n" + 
-            		"    <td>"+ list[i].kind + "</td>\r\n" + 
-            		"    <td>"+ list[i].title + "</td>\r\n" + 
-            		"    <td>"+ list[i].author + "</td>\r\n" + 
-            		"    <td>"+ list[i].publisher + "</td>\r\n" + 
-            		"    <td>"+ list[i].price + "</td>\r\n" + 
-            		"  </tr>\r\n";
+function printTable(text){
+	var object = JSON.parse(text);
+	var pageCount = object.page;
+	var list = object.list;
+		
+	var table  =  "<h3>총 페이지수 : "+pageCount+"</h3>";
+	    table  +=  "<table>";
+	    table  += "<tr>";
+	    table  += "<th>장르</th><th>제목</th><th>저자</th><th>출판사</th><th>가격</th>"; 
+	    table  += "</tr>";
+	for(var i=0; i<list.length; i++){
+		var book = list[i];
+		table  += "<tr>";
+		table  += "<td>"+book.kind+"</td>";
+		table  += "<td>"+book.title+"</td>";
+		table  += "<td>"+book.author+"</td>";
+		table  += "<td>"+book.publisher+"</td>";
+		table  += "<td>"+book.price+"</td>";
+		table  += "</tr>";
 	}
-	table +=		"</table>";
+	table  += "</table>";
+	    
 	var div = document.getElementById("view");
-	div.innerHTML = table;
-
+	if(div){
+		div.innerHTML = table;
+	}
 }
 </script>
 

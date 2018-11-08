@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>미션) 계산기</title>
+<script type="text/javascript" src="js/ajax.js"></script>
 <script type="text/javascript">
 window.onload = function(){
   var eventSource = document.getElementById("result");
@@ -17,16 +18,24 @@ function send(){
   var operator = selector.options[selector.selectedIndex].value;
   var num2 = document.getElementsByName("num2")[0].value;
   
-  var url = "calculator_action.jsp?num1="+num1+"&operator="+operator+"&num2="+num2;
-  url = encodeURI(url);
-  setResult(url);
+ // var url = "calculator_action.jsp";
+  var url = "ajax.mall";
+  var param = encodeURI("num1="+num1+"&operator="+operator+"&num2="+num2);
+  
+  ajax({
+		method: "get",
+		url: url,
+		param: param,
+		callback: setResult
+	});
 }
 
-function setResult(url){
-  var span = document.getElementById("output");
-  if(span){
-	  span.innerHTML = "<iframe style='width: 40px; height: 40px' src='"+url+"'></iframe>";
-  }
+function setResult(request){
+	var result = request.responseText;
+	var span = document.getElementById("output");
+	if(span){
+  		span.innerHTML = result;
+	}
 }
 </script>
 </head>

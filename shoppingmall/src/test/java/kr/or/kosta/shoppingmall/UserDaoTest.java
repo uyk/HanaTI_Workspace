@@ -11,7 +11,7 @@ import org.apache.log4j.Logger;
 import org.junit.Before;
 import org.junit.Test;
 
-import kr.or.kosta.shoppingmall.user.dao.MyBatisUserDao;
+import kr.or.kosta.shoppingmall.user.dao.MybatisUserDao;
 import kr.or.kosta.shoppingmall.user.dao.UserDao;
 import kr.or.kosta.shoppingmall.user.domain.User;
 
@@ -32,8 +32,8 @@ public class UserDaoTest {
 		}
 		sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader, "development");
 		logger.debug("sql Session Factory 생성 완료");
-		userDao = new MyBatisUserDao();
-		((MyBatisUserDao)userDao).setSqlSessionFactory(sqlSessionFactory);
+		userDao = new MybatisUserDao();
+		((MybatisUserDao)userDao).setSqlSessionFactory(sqlSessionFactory);
 	}
 	
 //	@Test

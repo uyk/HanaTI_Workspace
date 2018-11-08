@@ -81,7 +81,7 @@
 
 	<servlet-mapping>
 		<servlet-name>frontController</servlet-name>
-		<url-pattern>*</url-pattern>
+		<url-pattern>*.mall</url-pattern>
 		<!-- <url-pattern>/blog/*</url-pattern> -->
 	</servlet-mapping>
 </web-app>

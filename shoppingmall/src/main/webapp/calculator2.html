@@ -1,45 +1,54 @@
-<!-- 계산 결과값을 자바스크립트로 처리하여 출력 -->
 <!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>미션) 계산기</title>
-<script>
-window.onload = function() {
-	document.getElementById("result").onclick = result;
-}
-function result() {
-	var num1 = parseInt(document.getElementsByName("num1")[0].value);
-	var num2 = parseInt(document.getElementsByName("num2")[0].value);
-	var operator = document.getElementsByName("operator")[0].value;
-	var result; 
-	switch(operator) {
-	case '+':
-		result = num1 + num2;
-		break;
-	case '-':
-		result = num1 - num2;
-		break;
-	case '*':
-		result = num1 * num2;
-		break;
-	case '/':
-		result = num1 / num2;
-		break;0
+<script type="text/javascript">
+window.onload = function(){
+	var eventSource = document.getElementById("result");
+	eventSource.onclick = function(){
+		calculate();
 	}
-	document.getElementById("output").innerHTML = result;
+}
+
+function calculate(){
+	var num1 = document.getElementsByName("num1")[0].value;
+	var selector = document.getElementsByName("operator")[0];
+	var operator = selector.options[selector.selectedIndex].value;
+	var num2 = document.getElementsByName("num2")[0].value;
+
+	var result = 0;
+	/*
+	switch (operator) {
+    	case "+": result = parseInt(num1) + parseInt(num2);	break;
+    	case "-": result = num1 - num2;	break;
+    	case "*": result = num1 * num2;	break;
+    	case "/": result = num1 / num2;	break;
+	}
+	*/
+	
+	result = eval(num1+operator+num2);
+	setResult(result);
+}
+
+function setResult(result){
+	var span = document.getElementById("output");
+	if(span){
+		span.innerHTML = result;
+	}
 }
 </script>
 </head>
 <body>
-  <input type="number" name="num1">
+  <h3>JavaScript만으로 계산기 처리</h3>
+  <input type="number" name="num1" required>
   <select name="operator">
     <option>+</option>
     <option>-</option>
     <option>*</option>
     <option>/</option>
   </select>
-  <input type="number" name="num2">
+  <input type="number" name="num2" required>
   <span id="output"></span>
   <input type="button" id="result" value="결과보기">
 </body>

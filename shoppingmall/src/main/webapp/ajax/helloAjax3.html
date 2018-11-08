@@ -2,35 +2,41 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
+<title>Insert title here</title>
 <script type="text/javascript" src="../js/ajax.js"></script>
-<script>
-window.onload = function() {
-	document.getElementById("send").onclick = function() {
-    	var message = document.getElementById("message").value;
-    	message = encodeURIComponent(message);
-		ajax(
-		{	method:"get",
-			url:"server.jsp",
-			param:"message=" + message,
-			callback: recieveServer
-		}
-		)		
-	};
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("send").onclick = function(){
+		var message = document.getElementById("message").value;
+		message = encodeURIComponent(message);
+		ajax({
+			method: "get",
+			url: "server.jsp",
+			param: "message="+message,
+			callback: receiveServer
+		});
+	}
 }
 
-function recieveServer(request) {
-	appendMessage(request.responseText);
+function receiveServer(request){
+	appendMessage(request.responseText);		
 }
 
-function appendMessage(message) {
-	document.getElementById("messageBox").innerHTML = message;
+function appendMessage(message){
+	var messageBox = document.getElementById("messageBox");
+	if(messageBox){
+		messageBox.innerHTML = message;
+	}
+	
 }
 </script>
 </head>
 <body>
-  <input type="text" id="message" name="message" size="20" value="기본데이터">
-  <input type="button" id="send" value="전송">
+  <input type="text" name="message" id="message" size="20" value="기본 텍스트">
+  <input type="button" value="전송" id="send">
   <span id="messageBox"></span>
 </body>
 </html>
+
+
+

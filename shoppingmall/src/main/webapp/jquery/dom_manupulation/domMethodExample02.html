@@ -16,8 +16,8 @@ $(function() {
 	$("img").attr("src", function(index){
 		return "../images/img-" + index + ".png";		
 	}).css({
-		width : 100,
-		height : 100
+		width : 200,
+		height : 200
 	});
 	*/
 	
@@ -30,7 +30,6 @@ $(function() {
 	});
 	*/
 	
-	
 	$("img").attr({
 		src : function(index){
 			return "../images/img-" + index + ".png";		
@@ -42,7 +41,6 @@ $(function() {
 			return (index + 1) * 100;
 		}
 	});
-	
 	
 	// 속성 제거
 	//$("img").removeAttr("src");

@@ -29,6 +29,7 @@ public class ModelSearchController implements Controller {
 	private ModelService modelService;
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
+	private JSONObject obj;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,20 +37,26 @@ public class ModelSearchController implements Controller {
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
+		obj = new JSONObject();
 		System.out.println("ModelSearchController");
 
 		
 		String startDate = request.getParameter("rent_start_date");
 		String endDate = request.getParameter("rent_end_date");
 		String type = request.getParameter("model_type");
-
-		if (type.equals("all"))
-			type = null;
-
+		if(startDate == null) {
+			startDate="2018-11-12";
+			endDate="2018-11-12";
+			type="all";
+		}
 		// 인자로 받은 date와 type
 		System.out.println(startDate);
 		System.out.println(endDate);
 		System.out.println(type);
+
+		if (type.equals("all"))
+			type = null;
+
 
 		// 검색 인자를 Params에 저장
 		ModelParams modelParams = new ModelParams();
@@ -61,12 +68,12 @@ public class ModelSearchController implements Controller {
 		try {
 			// Params로 검색한 리스트를 list에 저장
 			list = modelService.listBySearch(modelParams);
-			// 저장한 리스트를 mav에 추가
-			mav.addObject("list", list);
-			// rent/search.jsp로 이동
-			// 뷰에서 include로 처리하는 것이 좋을 듯
-			mav.setView("/index.jsp");
-			System.out.println("DD");
+			obj.put("list", list);
+			//String string = obj.toJSONString();
+			//System.out.println(string);
+			System.out.println(obj);
+			response.getWriter().print(obj);
+			return null;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

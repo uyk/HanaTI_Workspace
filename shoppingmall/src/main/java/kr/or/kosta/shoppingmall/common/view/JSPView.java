@@ -34,8 +34,7 @@ public class JSPView implements View {
 		if(path.startsWith("redirect")){// redirect
 			String[] tokens = path.split(":", 2);
 			response.sendRedirect(tokens[1]);
-		}
-		else{//forward
+		}else{//forward
 			dispatcher = request.getRequestDispatcher(path);
 			dispatcher.forward(request, response);
 		}

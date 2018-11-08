@@ -61,7 +61,6 @@ public class FrontControllerServlet extends HttpServlet {
 		String contextPath = request.getContextPath();
 		uri = uri.substring(contextPath.length(), uri.lastIndexOf("."));
 		System.out.println("[Info] : 요청 URI: " + uri);
-		System.out.println(uri);
 
 		// #2. 웹 클라이언트 요청에 대한 모델 세부 컨트롤러 실행 및 응답 - Command Pattern 적용
 		Controller controller = null;

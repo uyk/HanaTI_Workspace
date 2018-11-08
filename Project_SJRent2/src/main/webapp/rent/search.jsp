@@ -97,7 +97,6 @@ $(document).ready(function(){
         year = d.getFullYear();
          if (month.length < 2) month = '0' + month;
        if (day.length < 2) day = '0' + day;
-
        return [year, month, day].join('-');
     }
    
@@ -107,7 +106,7 @@ $(document).ready(function(){
    })
    
    $('#showCarList').submit(function(e) {
-       e.preventDefault();
+//       e.preventDefault();
 //      var $e = $($(this).attr('href'));
       var model_type = $('.selectpicker').val();
       var type_name;
@@ -134,8 +133,7 @@ $(document).ready(function(){
             type_name = 'all';
             break;
       }
-//      console.log(type_name);
-      $.ajax({
+      <%-- $.ajax({
          type : "POST",
          url : "<%=application.getContextPath()%>/model/search.rent",
          data : {
@@ -148,12 +146,14 @@ $(document).ready(function(){
             
             $("#tg-main").fadeIn();
          }
-      });
+      }); --%>
+      $('#showCarList')[0].on('submit',function(e){
+    	  alert(rent_end_date); 
+      });      
+      
    });
    
 });
-
-
 </script>
 </head>
 <body>
@@ -193,7 +193,7 @@ $(document).ready(function(){
                         <div id="tg-navigation"
                            class="collapse navbar-collapse tg-navigation">
                            <ul>
-                              <li><a href="#">실시간</a></li>
+                              <li><a href="<%=application.getContextPath()%>/rent/search.jsp">실시간</a></li>
                               <li class="menu-item-has-children"><a
                                  href="javascript:void(0);">커뮤니티</a>
                                  <ul class="sub-menu">
@@ -282,7 +282,6 @@ $(document).ready(function(){
                Inner Banner End
       *************************************-->
       
-      
       <!--************************************
             Main Start
       *************************************-->
@@ -335,7 +334,7 @@ $(document).ready(function(){
                            </div>
                            </c:forEach>
                            <div class="clearfix"></div>
-                           <nav class="tg-pagination">
+                           <!-- <nav class="tg-pagination">
                               <ul>
                                  <li class="tg-active"><a href="javascript:void(0);">1</a></li>
                                  <li><a href="javascript:void(0);">2</a></li>
@@ -344,7 +343,7 @@ $(document).ready(function(){
                                  <li class="tg-nextpage"><a href="javascript:void(0);"><i
                                        class="fa fa-angle-right"></i></a></li>
                               </ul>
-                           </nav>
+                           </nav> -->
                         </div>
                      </div>
                   </div>

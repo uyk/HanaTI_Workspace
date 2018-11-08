@@ -2,51 +2,53 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title></title>
-<script>
-window.onload = function() {
-	document.getElementById("send").onclick = function() {
-    	var message = document.getElementById("message").value;
-    	encodeURIComponent(message);
-		sendServer(message);		
-	};
+<title>Insert title here</title>
+<script type="text/javascript">
+window.onload = function(){
+	document.getElementById("send").onclick = function(){
+		var message = document.getElementById("message").value;
+		message = encodeURIComponent(message);
+		sendServer(message);
+	}
 }
 
-function sendServer(message) {
+function sendServer(message){
 	var request = new XMLHttpRequest();
-	var url = "server.jsp?message=" + message;
-	request.open("get", url, true)		// 세번째인자:비동기통신으로 할지
-	request.onreadystatechange = function () {
-		if(request.readyState == 4) {
-			if(request.status == 200) {
+	var url = "server.jsp?message="+message;
+	request.open("get", url, true);
+	request.onreadystatechange = function(){
+		if(request.readyState == 4){
+			if(request.status == 200){
 				appendMessage(request.responseText);
+			}else if(request.status == 400){
+				alert("잘못된 요청입니다...");
+			}else if(request.status == 404){
+				alert("요청한 페이지를 찾을 수 없습니다...");
+			}else if(request.status == 500){
+				alert("서버가 잘못 했네....");
 			}
-			else if(request.status == 400) {
-				alert("잘못된 요청입니다");
-			}
-			else if(request.status == 404) {
-				alert("요청한 페에지를 찾을 수 없습니다.");
-			}
-			else if(request.status == 500) {
-				alert("서버 문제가 발생했습니다");
-			}
-		}
-		else {
-			console.log("서버로부터 데이터 수신중");
+		}else{
+			console.log("서버로 부터 데이터 수신중...");
 		}
 	}
 	request.send();
-	alert("메시지 수신");
 }
 
-function appendMessage(message) {
-	document.getElementById("messageBox").innerHTML = message;
+function appendMessage(message){
+	var messageBox = document.getElementById("messageBox");
+	if(messageBox){
+		messageBox.innerHTML = message;
+	}
+	
 }
 </script>
 </head>
 <body>
-  <input type="text" id="message" name="message" size="20" value="기본데이터">
-  <input type="button" id="send" value="전송">
+  <input type="text" name="message" id="message" size="20" value="기본 텍스트">
+  <input type="button" value="전송" id="send">
   <span id="messageBox"></span>
 </body>
 </html>
+
+
+

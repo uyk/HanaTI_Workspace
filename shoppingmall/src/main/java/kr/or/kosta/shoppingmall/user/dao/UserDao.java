@@ -25,6 +25,8 @@ public interface UserDao {
 	
 	public User certify(String id, String passwd) throws Exception;
 	
+	public List<Map<String, String>> employeeList() throws Exception;
+	
 	/** 선택페이지에 따른 사용자 목록 반환 */	
 	public List<User> listByPage(int page) throws Exception;
 	
