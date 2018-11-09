@@ -61,9 +61,9 @@
 											
 											
 											<div class="form-group">
-												<!-- <div class="tg-checkbox"> -->
-													<input type="checkbox" name="remember" id="rememberpass"><label for="rememberpass">아이디 저장</label>
-												<!-- </div> -->
+												<div style="text-align: left;"> 
+													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>
+												 </div> 
 											</div>
 											<button class="tg-btn tg-btn-lg"><span>로그인</span></button>
 										</fieldset>
@@ -107,7 +107,10 @@
 											<div class="form-group">
 												<label>핸드폰번호 <sup>*</sup></label>
 												<input type="text" name="cellphone" class="form-control" placeholder="e.g. 010-1234-5678" maxlength="13" style="text-transform: lowercase;">
-                        
+                        						
+                        						<div style="margin-top: 20px">
+                        						<a href="<%=application.getContextPath()%>/user/regist.jsp" style="color: grey; float: right; ">아직 회원이 아니신가요?</a>	
+												</div>
 												<!--************************************
 															예비용 시작
 													*************************************-->
@@ -128,11 +131,11 @@
 											</div>
 											
 											
-												<button type="submit" class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px"><span>로그인</span></button>
+												<button type="submit" class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 10px"><span>로그인</span></button>
 												
 										</fieldset>
 									</form>
-                                                <button class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px" onclick="location.href='<%=application.getContextPath()%>/user/regist.jsp'"><span>회원가입</span></button>
+                                                <%-- <button class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 40px" onclick="location.href='<%=application.getContextPath()%>/user/regist.jsp'"><span>회원가입</span></button> --%>
 								</div>
 								<!--************************************
 										비회원 로그인 종료

@@ -34,7 +34,10 @@ var rent_start_date;
 var rent_end_date;
 var date;
 $(document).ready(function(){
-    /* DatePicker */
+	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
+	$('#ModelDisplayRow').hide();
+	
+	/* DatePicker */
     $("#datepicker").datepicker({
       minDate: new Date(),
        onSelect: function(selectedDate){
@@ -107,8 +110,6 @@ $(document).ready(function(){
          },
          dataType: "json",
          success: function(data){
-            //console.log(data);
-           	window.data = data;
            	setModelList(data);
          }
       });
@@ -117,7 +118,7 @@ $(document).ready(function(){
    });
    
 });
-
+/** 모델 list를 html로 표시하는 메소드 */
 function setModelList(list) {
 	var weekday = 0;
 	var weekend = 0;
@@ -125,7 +126,6 @@ function setModelList(list) {
 	var end = new Date(rent_end_date);
 	var output = "";
 	
-
 	for(var i = 0; i < date; i++) {
 		if(startDay == 0 || startDay == 6) {
 			weekend++;
@@ -137,11 +137,9 @@ function setModelList(list) {
 		if(startDay == 7) startDay = 0;
 	}
 	
-	console.log(weekday + ", " + weekend);
-	
 	for ( var i in list) {
 		output += "" + 
-		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\">\r\n" + 
+		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\" id='eachModelCol' data-model-name='"+list[i].name+"'>\r\n" + 
 		"                              <div class=\"tg-populartour\"   >\r\n" + 
 		"                                 <figure>\r\n" + 
 		"                                    <a><img\r\n" + 
@@ -171,10 +169,33 @@ function setModelList(list) {
 		"                                 </div>\r\n" + 
 		"                              </div>\r\n" + 
 		"                           </div>\r\n";
-    	console.log(i);
-		console.log(list[i]);
 		$("#carListRow").html(output);
 	}	//for 끝
+	
+	$('#ModelDisplayRow').show();
+
+	/** 모델 클릭 시 모델 이름을 모달에 전달 */
+	$('#detail_show').on('show.bs.modal', function(e) {
+	    //get data-id attribute of the clicked element
+	    var modelName = $(e.relatedTarget).data('model-name');
+		console.log("modelName : " + modelName);
+		window.modal =  $(this);
+		$.ajax({
+			url:"search_detail.jsp",
+			dataType:"html",
+			type:'POST', 
+			data : {
+	             'model_name' : modelName
+	        },
+			success:function(result){
+				$(e.currentTarget).append(result);
+			}
+		});
+		//$(this).html(modalText);
+		
+	    //populate the textbox
+	    //$(e.currentTarget).find('input[name="bookId"]').val(bookId);
+	});
 }
 </script>
 </head>
@@ -309,10 +330,16 @@ function setModelList(list) {
       *************************************-->
       <main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
       <div class="container" style="width: 90%">
+         <!--************************************
+              Detail Model Start
+         *************************************-->
          <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <jsp:include page="search_detail.jsp"/>
+            
          </div>
-         <div class="row">
+         <!--************************************
+              Detail Model End
+         *************************************-->
+         <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 pull-left">
                   <div id="tg-content" class="tg-content">
@@ -321,9 +348,13 @@ function setModelList(list) {
                            <h2>렌트카</h2>
                         </div>
                         <div class="clearfix"></div>
-                        <div class="row" id="carListRow">
-
-                        </div>
+                        <!--************************************
+                               Model List Start
+                         *************************************-->
+                        <div class="row" id="carListRow"> </div>
+                        <!--************************************
+                               Model List End
+                         *************************************-->
                      </div>
                   </div>
                </div>

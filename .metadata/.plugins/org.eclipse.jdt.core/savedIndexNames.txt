@@ -19,7 +19,6 @@ INDEX VERSION 1.131+C:\KOSTA187\workspace\.metadata\.plugins\org.eclipse.jdt.cor
 1181459839.index
 2038311899.index
 2487043009.index
-1057143591.index
 2478556399.index
 2264490191.index
 3176202904.index

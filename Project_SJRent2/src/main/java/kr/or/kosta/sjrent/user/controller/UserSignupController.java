@@ -35,6 +35,7 @@ public class UserSignupController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
 		obj = new JSONObject();
 		mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
@@ -43,18 +44,24 @@ public class UserSignupController implements Controller {
 
 		String id = request.getParameter("id");
 		String name = request.getParameter("name");
-		String email = request.getParameter("email");
+		String email1 = request.getParameter("email1");
+		String email2 = request.getParameter("email2");
+		String email_select = request.getParameter("email_select");
+		String email = email1 + "@" + email2 + email_select; 
 		String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
-		int point = 0;
+		int point = 10000;
 		int gender = Integer.parseInt(request.getParameter("gender"));
-		String cellphone = request.getParameter("cellphone");
+		String cellphone1 = request.getParameter("cellphone1");
+		String cellphone2 = request.getParameter("cellphone2");
+		String cellphone3 = request.getParameter("cellphone3");
+		String cellphone = cellphone1 + cellphone2 + cellphone3; 
 		int isUser = 1;
 		
 
 		User user = new User();
 		boolean isCreate = false;
-		
+				
 		user.setId(id);
 		user.setName(name);
 		user.setEmail(email);
@@ -66,7 +73,7 @@ public class UserSignupController implements Controller {
 		user.setPoint(point);
 
 
-		//System.out.println(user);
+		System.out.println("회원가입: "+user);
 		
 		try {
 			isCreate = userService.create(user);
@@ -89,9 +96,15 @@ public class UserSignupController implements Controller {
 		}
 		// 회원가입 성공시 응답으로 success 보냄
 		else {
+<<<<<<< HEAD
+=======
 			mav.addObject("user", user);
-			mav.setView("/user/regist_result.jsp");
+			mav.setView("/user/signup.jsp");
+>>>>>>> e5d5b770465aa56a83976178ffd56ab0b473b0af
 			obj.put("result", "success");
+			mav.addObject("user", user);
+			mav.setView("/index.jsp");
+			
 		}
 		return mav;
 	}

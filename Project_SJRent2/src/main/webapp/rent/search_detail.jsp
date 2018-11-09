@@ -1,5 +1,9 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+System.out.println(request.getParameter("model_name"));
+%>
+<span>Model Name  : ${model_name}</span>
 <!--************************************
 		Rent_history Detail Start
 *************************************-->

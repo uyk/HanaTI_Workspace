@@ -56,7 +56,7 @@ public class ModelSearchController implements Controller {
 		// 검색 인자를 Params에 저장
 		ModelParams modelParams = new ModelParams();
 		modelParams.setStartDate(startDate);
-		modelParams.setEndDate(startDate);
+		modelParams.setEndDate(endDate);
 		modelParams.setType(type);
 
 		List<Model> list = null;
