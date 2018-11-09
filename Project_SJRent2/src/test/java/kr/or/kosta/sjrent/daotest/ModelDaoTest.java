@@ -45,7 +45,7 @@ public class ModelDaoTest {
 		logger.debug(modelDao.read("NIRO"));
 	}
 	
-	@Test
+//	@Test
 	public void testListAll() throws Exception {
 		List<Model> ModelList = modelDao.listAll();
 		for (Model model : ModelList) {
@@ -72,7 +72,7 @@ public class ModelDaoTest {
 		}
 	}
 	
-//	@Test
+	@Test
 	public void testchangeCount() throws Exception{
 		logger.debug(modelDao.changeCount("K5", -1));
 	}

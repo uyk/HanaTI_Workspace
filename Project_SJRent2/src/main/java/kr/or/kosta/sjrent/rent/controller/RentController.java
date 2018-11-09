@@ -94,6 +94,7 @@ public class RentController implements Controller {
             	  temp.put("endDate", endDates[i]);
             	  temp.put("pickupPlace", pickupPlaces[i]);
                   resultRents.add(temp);
+                  modelService.changeCount(modelNames[i], 1);
                }else{
                   mav.addObject("result", "fail");
                   mav.addObject("message", rent.toString()+": 렌트 등록을 할 수 없습니다.");

@@ -93,8 +93,10 @@ public class MybatisReviewDao implements ReviewDao {
 
 	@Override
 	public int countByModel(String modelName) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countByModelName", modelName);
+		sqlSession.close();
+		return count;
 	}
 
 }

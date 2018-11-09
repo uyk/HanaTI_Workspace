@@ -19,63 +19,37 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
-	public void create(Review review) throws Exception {
-		// TODO Auto-generated method stub
+	public boolean create(Review review) throws Exception {
+		return reviewDao.create(review);
 	}
 
 	@Override
 	public Review read(int number) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return reviewDao.read(number);
 	}
 
 	@Override
-	public void update(Review review) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean update(Review review) throws Exception {
+		return reviewDao.update(review);
 	}
 
 	@Override
-	public void delete(int number) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean delete(int number) throws Exception {
+		return reviewDao.delete(number);
 	}
 
 	@Override
-	public List<Review> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Review> listByModel(String modelName) throws Exception {
+		return reviewDao.listByModel(modelName);
 	}
 
 	@Override
-	public List<Review> listByPage(int page, int listSize) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Review> listByUser(int page, int listSize, String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Review> listByModel(int page, int listSize, String modelName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countByUser(String User) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Review> listByModelByPage(int page, int listSize, String modelName) throws Exception {
+		return reviewDao.listByModelByPage(page, listSize, modelName);
 	}
 
 	@Override
 	public int countByModel(String modelName) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return reviewDao.countByModel(modelName);
 	}
-
-
 }

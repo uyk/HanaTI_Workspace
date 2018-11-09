@@ -5,13 +5,13 @@ import java.util.List;
 import kr.or.kosta.sjrent.review.domain.Review;
 
 public interface ReviewService {
-	public void create(Review review) throws Exception;
+	public boolean create(Review review) throws Exception;
 	
 	public Review read(int number) throws Exception;
 
-	public void update(Review review) throws Exception;
+	public boolean update(Review review) throws Exception;
 	
-	public void delete(int number) throws Exception;
+	public boolean delete(int number) throws Exception;
 
 	public List<Review> listByModel(String modelName) throws Exception;
 	

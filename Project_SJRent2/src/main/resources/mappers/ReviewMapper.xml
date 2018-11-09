@@ -116,4 +116,11 @@
 	    </set>
 	    WHERE review_seq = #{review_seq}
 	</update>
+	
+		<!-- 특정 모델 Review Count -->
+	<select id="countByModelName" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+		SELECT Count(review_seq) 
+		FROM   review 
+		WHERE  model_name = #{value}
+	</select>
 </mapper>
