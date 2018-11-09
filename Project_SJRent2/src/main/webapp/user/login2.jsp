@@ -65,7 +65,7 @@
 													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>
 												 </div> 
 											</div>
-											<button class="tg-btn tg-btn-lg"><span>로그인</span></button>
+											<button type="submit" class="tg-btn tg-btn-lg"><span>로그인</span></button>
 										</fieldset>
 									</form>
 								</div>

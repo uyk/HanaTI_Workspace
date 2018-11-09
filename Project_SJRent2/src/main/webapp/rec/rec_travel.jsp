@@ -101,7 +101,7 @@
 									Content 시작
 							*************************************-->
 							
-							<img alt="여행선택지" src="../images/rec_travel2.JPG">
+							<img alt="여행선택지" src="../images/rec/rec_travel2.JPG">
 							<button class="btn left">선택</button>
 							<button class="btn right">선택</button>
 							

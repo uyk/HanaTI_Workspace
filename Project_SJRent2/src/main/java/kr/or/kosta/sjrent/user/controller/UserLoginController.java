@@ -42,10 +42,11 @@ public class UserLoginController implements Controller {
 		String pw = request.getParameter("pw");
 		String remember = request.getParameter("remember");
 
+
 		User user = null;
 		try {
 			user = userService.certify(id, pw);
-			System.out.println("넘어온 user : " + user);
+			System.out.println("넘어온 user다다다 : " + user);
 
 		} catch (Exception e) {
 			e.printStackTrace();

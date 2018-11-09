@@ -1,9 +1,11 @@
+<%@page import="kr.or.kosta.sjrent.model.domain.Model"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-System.out.println(request.getParameter("model_name"));
+<% 
+Model model = (Model)request.getAttribute("model");
+String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
 %>
-<span>Model Name  : ${model_name}</span>
+<span>model  : ${model}</span>
 <!--************************************
 		Rent_history Detail Start
 *************************************-->
@@ -14,34 +16,32 @@ System.out.println(request.getParameter("model_name"));
 			<div class="tg-bookinginfo" style="margin: 10px 0">
 				<div class= "row">
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
-						<img src="../images/G70.jpg" alt="image description">
+						<img src='<%=imagePath %>' alt="image description">
 					</div>
 					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-						<h2>G70 (예약정보 or 과거 or 취소)</h2>
+						<h2>${model.name}</h2>
 						<div class="tg-durationrating">
-							<span class="tg-stars"><span></span></span> <em>(3 Review)</em>
+							<span class='tg-stars'>
+                              <span style='width: ${model.evalScore * 100}%'></span> 
+                            </span>
+                            <em>(3 Review)</em> 
 						</div>
 						<div class="tg-pricearea">
 							<span>총 금액</span>
 							<h4>
-								$2,500
+								&#8361 ${model.weekdayPrice * weekday + model.weekendPrice * weekend }
 							</h4>
 						</div>
 						<div class="tg-description">
 							<p>There’s only 5 spot left. Join 19 others at Travelu’s
 								experience this Saturday.</p>
 						</div>
-						<form class="tg-formtheme tg-formbookingdetail">
-							<fieldset>
-								<div class="form-group">
-								
-								
-								</div>
-								<div class="form-group">
-		
-								</div>
-							</fieldset>
-						</form>
+                        <div class="tg-description">
+                          <ul class="my-tg-likeshare" >
+                            <li><a href="javascript:void(0);"><i class="icon-heart"></i>save to wish list</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-eye"></i>how many rented</a></li>
+                          </ul>
+                        </div>
 					</div>
 				</div>
 				<ul class="tg-tripinfo">
@@ -66,10 +66,6 @@ System.out.println(request.getParameter("model_name"));
 							</div>
 						</div>
 					</div>
-					<ul class="tg-likeshare">
-						<li><a href="javascript:void(0);"><i class="icon-heart"></i>save to wish list</a></li>
-						<li><a href="javascript:void(0);"><i class="icon-eye"></i>how many rented</a></li>
-					</ul>
 				</div>
 			</div>
 			<jsp:include page="car_detail.jsp"></jsp:include>

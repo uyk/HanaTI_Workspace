@@ -33,6 +33,9 @@
 var rent_start_date;
 var rent_end_date;
 var date;
+var weekday = 0;
+var weekend = 0;
+
 $(document).ready(function(){
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
 	$('#ModelDisplayRow').hide();
@@ -120,8 +123,6 @@ $(document).ready(function(){
 });
 /** 모델 list를 html로 표시하는 메소드 */
 function setModelList(list) {
-	var weekday = 0;
-	var weekend = 0;
 	var startDay = new Date(rent_start_date).getDay();
 	var end = new Date(rent_end_date);
 	var output = "";
@@ -156,7 +157,7 @@ function setModelList(list) {
 		"                                    </div>\r\n" + 
 		"                                    <div class=\"tg-populartourfoot\">\r\n" + 
 		"                                       <div class=\"tg-durationrating\">\r\n" + 
-		"                                          <span class=\"tg-tourduration tg-availabilty\"> weekday "+list[i].weekdayPrice+"<br/>weekend "+list[i].weekendPrice+"</span>" + 
+		"                                          <span class=\"tg-tourduration tg-availabilty\"> weekday "+list[i].weekdayPrice+"&#8361<br/>weekend "+list[i].weekendPrice+"&#8361</span>" + 
 		"										   <span class=\"tg-stars\">"+
 		"											  <span style=\"width: "+list[i].evalScore*100+"%\"></span>" + 
 		"										   </span>\r\n" + 
@@ -180,21 +181,19 @@ function setModelList(list) {
 	    var modelName = $(e.relatedTarget).data('model-name');
 		console.log("modelName : " + modelName);
 		window.modal =  $(this);
-		$.ajax({
-			url:"search_detail.jsp",
+		$.ajax({	
+			url:"<%=application.getContextPath()%>/model/detail.rent",
 			dataType:"html",
 			type:'POST', 
 			data : {
-	             'model_name' : modelName
+	             'model_name' : modelName,
+	             'weekday' : weekday,
+	             'weekend' : weekend
 	        },
 			success:function(result){
-				$(e.currentTarget).append(result);
+				$(e.currentTarget).html(result);
 			}
 		});
-		//$(this).html(modalText);
-		
-	    //populate the textbox
-	    //$(e.currentTarget).find('input[name="bookId"]').val(bookId);
 	});
 }
 </script>

@@ -5287,3 +5287,42 @@ body.tg-hidescroll{overflow:hidden;}
 	50%{top: -5px;}
 	100% {top:0; }
 }
+
+.my-tg-likeshare{
+	font-size:13px;
+	list-style:none;
+	line-height:15px;
+	text-transform:uppercase;
+	margin-bottom:20px;
+}
+.my-tg-likeshare > li{
+	padding:0 8px;
+	position:relative;
+	list-style-type:none;
+}
+.my-tg-likeshare li a{
+	color:#868686;
+	display:block;
+}
+.my-tg-likeshare > li:hover > a > i,
+.my-tg-likeshare > li:hover > a{color:#000;}
+.my-tg-likeshare > li > a > i{
+	font-size:18px;
+	margin:0 8px 0 0;
+	line-height:18px;
+}
+.my-tg-likeshare > li > a > i,
+.my-tg-likeshare > li > a > span{
+	display:inline-block;
+	vertical-align:middle;
+}
+
+.my-tg-likeshare li:hover .tg-share{
+	opacity:1;
+	visibility:visible;
+}
+
+.tg-productinfo my-tg-likeshare{
+	float:left;
+	padding:30px 0 0;
+}

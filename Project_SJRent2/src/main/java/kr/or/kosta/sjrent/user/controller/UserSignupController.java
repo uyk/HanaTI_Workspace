@@ -55,7 +55,7 @@ public class UserSignupController implements Controller {
 		String cellphone1 = request.getParameter("cellphone1");
 		String cellphone2 = request.getParameter("cellphone2");
 		String cellphone3 = request.getParameter("cellphone3");
-		String cellphone = cellphone1 + cellphone2 + cellphone3; 
+		String cellphone = cellphone1 + "-" + cellphone2 + "-" + cellphone3; 
 		int isUser = 1;
 		
 
@@ -73,7 +73,7 @@ public class UserSignupController implements Controller {
 		user.setPoint(point);
 
 
-		System.out.println("회원가입: "+user);
+		System.out.println("회원가입요청: "+user);
 		
 		try {
 			isCreate = userService.create(user);
@@ -86,7 +86,8 @@ public class UserSignupController implements Controller {
 		if (isCreate == false) {
 			obj.put("result", "fail");
 			try {
-				response.getWriter().print(obj);
+				response.sendRedirect("/sjrent/user/regist.jsp");
+				//response.getWriter().print(obj);
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -96,14 +97,12 @@ public class UserSignupController implements Controller {
 		}
 		// 회원가입 성공시 응답으로 success 보냄
 		else {
-<<<<<<< HEAD
-=======
-			mav.addObject("user", user);
-			mav.setView("/user/signup.jsp");
->>>>>>> e5d5b770465aa56a83976178ffd56ab0b473b0af
 			obj.put("result", "success");
-			mav.addObject("user", user);
-			mav.setView("/index.jsp");
+			mav.addObject("id", id);
+			mav.addObject("email", email);
+			mav.addObject("cellphone", cellphone);
+
+			mav.setView("/user/regist_result.jsp");
 			
 		}
 		return mav;

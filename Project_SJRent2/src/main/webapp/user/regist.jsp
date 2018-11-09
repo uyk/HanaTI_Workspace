@@ -24,11 +24,10 @@
 		}
 	}
 
-	
-	function checkId(){
-		
-		// /user/checkId.rent로 보내야함
-	}
+function mykeydown(){
+	// 키누를 때마다 이벤트 처리
+}
+
 	
 	
 	
@@ -82,8 +81,8 @@
                            <fieldset>
                               <div class="form-group">
                                  <h4>아이디<sup>*</sup></h4>
-                                 <input type="text" name="id" onkeydown="checkId()"class="form-control" placeholder="" maxlength="10" style="text-transform: none;">
-                                 <span id=checkMsg></span>
+                                 <input type="text" name="id" class="form-control" onkeydown="mykeydown()" maxlength="10" style="text-transform: none;">
+                                 <span id="idSpan"></span>
                               </div>
                               
                               <div class="form-group">

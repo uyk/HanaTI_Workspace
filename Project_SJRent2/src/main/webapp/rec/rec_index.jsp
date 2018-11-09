@@ -92,7 +92,7 @@
 									Content 시작
 							*************************************-->
 							
-							<img alt="게임시작화면" src="../images/rec_index화면1.jpg">
+							<img alt="게임시작화면" src="../images/rec/rec_index화면1.jpg">
 							<button class="button"
 								style=" ">
 								START

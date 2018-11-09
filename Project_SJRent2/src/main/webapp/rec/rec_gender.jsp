@@ -101,7 +101,7 @@
 									Content 시작
 							*************************************-->
 							
-							<img alt="성별" src="../images/rec_gender1.JPG">
+							<img alt="성별" src="../images/rec/rec_gender1.JPG">
 							<button class="btn left">선택</button>
 							<button class="btn right">선택</button>
 							
