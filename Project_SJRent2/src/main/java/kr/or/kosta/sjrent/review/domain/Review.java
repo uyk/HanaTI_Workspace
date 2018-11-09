@@ -5,10 +5,12 @@ public class Review {
 	private int number;
 	private String modelName;
 	private int userNumber;
+	private String userId;
 	private String title;
 	private String content;
 	private String picture;
 	private String date;
+	private int evalScore;
 	
 	public Review() {
 		super();
@@ -36,6 +38,15 @@ public class Review {
 
 	public void setUserNumber(int userNumber) {
 		this.userNumber = userNumber;
+	}
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -68,6 +79,15 @@ public class Review {
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+
+	public int getEvalScore() {
+		return evalScore;
+	}
+
+	public void setEvalScore(int evalScore) {
+		this.evalScore = evalScore;
 	}
 
 	@Override

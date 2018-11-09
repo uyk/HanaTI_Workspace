@@ -4,7 +4,8 @@ public class WishItem {
 	
 	private int number;
 	private int userNumber;
-	private String model;
+	private int userId;
+	private String modelName;
 	private String startDate;
 	private String endDate;
 	
@@ -28,12 +29,20 @@ public class WishItem {
 		this.userNumber = userNumber;
 	}
 
-	public String getModel() {
-		return model;
+	public int getUserId() {
+		return userId;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getModelName() {
+		return modelName;
+	}
+
+	public void setModelName(String modelName) {
+		this.modelName = modelName;
 	}
 
 	public String getStartDate() {
@@ -54,7 +63,7 @@ public class WishItem {
 
 	@Override
 	public String toString() {
-		return "WishItem [number=" + number + ", userNumber=" + userNumber + ", model=" + model + ", startDate="
+		return "WishItem [number=" + number + ", userNumber=" + userNumber + ", model=" + modelName + ", startDate="
 				+ startDate + ", endDate=" + endDate + "]";
 	}
 

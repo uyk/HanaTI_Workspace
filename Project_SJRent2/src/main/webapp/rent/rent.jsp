@@ -71,7 +71,7 @@
                                           <h3>결제 정보</h3>
                                        </div>
                                        <div class="clearfix"></div>
-                                       <input type="hidden" value = "" name="modelName">
+                                       <input type="hidden" value = "K5" name="modelName">
                                        <div class="row">
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
@@ -100,19 +100,19 @@
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>시작날짜</label>
-                                                <input type="text" name="startDate" class="form-control" value="2018-11-10" readonly>
+                                                <input type="text" name="startDate" class="form-control" value="2018-11-16" readonly>
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>종료날짜 </label>
-                                                <input type="text" name="endDate" class="form-control" readonly>
+                                                <input type="text" name="endDate" class="form-control" value="2018-11-19" readonly>
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>차량금액 </label>
-                                                <input type="text" name="paidAmount" class="form-control" readonly="readonly">
+                                                <input type="text" name="paidAmount" class="form-control" value="300000" readonly="readonly">
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

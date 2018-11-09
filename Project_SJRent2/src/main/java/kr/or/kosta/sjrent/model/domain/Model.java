@@ -19,6 +19,7 @@ public class Model {
 	private int weekendPrice;
 	private double evalScore;
 	private int rentalCount;
+	private int reviewCount;
 	
 	public Model() {
 		super();
@@ -115,20 +116,23 @@ public class Model {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	
 	public double getEvalScore() {
 		return evalScore;
 	}
 	public void setEvalScore(double evalScore) {
 		this.evalScore = evalScore;
 	}
-	
 	public int getRentalCount() {
 		return rentalCount;
 	}
 	public void setRentalCount(int rentalCount) {
 		this.rentalCount = rentalCount;
+	}
+	public int getReviewCount() {
+		return reviewCount;
+	}
+	public void setReviewCount(int reviewCount) {
+		this.reviewCount = reviewCount;
 	}
 	@Override
 	public String toString() {
@@ -136,9 +140,8 @@ public class Model {
 				+ seater + ", transmission=" + transmission + ", navigation=" + navigation + ", cameraRear="
 				+ cameraRear + ", year=" + year + ", highpass=" + highpass + ", blackBox=" + blackBox + ", options="
 				+ options + ", picture=" + picture + ", type=" + type + ", weekdayPrice=" + weekdayPrice
-				+ ", weekendPrice=" + weekendPrice + ", evalScore=" + evalScore + ", rentalCount=" + rentalCount + "]";
+				+ ", weekendPrice=" + weekendPrice + ", evalScore=" + evalScore + ", rentalCount=" + rentalCount
+				+ ", reviewCount=" + reviewCount + "]";
 	}
-	
-	
 	
 }

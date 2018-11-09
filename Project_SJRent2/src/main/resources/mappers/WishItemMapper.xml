@@ -4,4 +4,60 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="kr.or.kosta.sjrent.wishitem">
+	<resultMap type="WishItem" id="wishItemResultMap">
+		<result column="wishitem_seq" 			property="number" />
+		<result column="user_seq"  				property="userNumber" />
+		<result column="user_id" 				property="userId" />
+		<result column="model_name" 			property="modelName" />
+		<result column="wish_start_date" 		property="startDate" />
+		<result column="wish_end_date" 			property="endDate" />
+	</resultMap>
+	
+	<!-- WishItem 추가 -->
+	<insert id="add" parameterType="WishItem">
+		INSERT INTO wishitem 
+		            (wishitem_seq, 
+		             user_seq, 
+		             user_id, 
+		             model_name, 
+		             wish_start_date, 
+		             wish_end_date) 
+		VALUES      ( wishitem_seq.NEXTVAL, 
+		             #{userNumber}, 
+		             #{userId}', 
+		             #{modelName}, 
+		             To_date(#{startDate}, 'YYYY-MM-DD'), 
+		             To_date(#{endDate}, 'YYYY-MM-DD') )
+	</insert>
+	
+	<!-- WishItem 삭제 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM wishitem 
+		WHERE  wishitem_seq = #{value} 
+	</delete>
+
+	<!--  위시 아이템 번호로 위시 아이템 읽기 -->
+	<select id="read" parameterType="Integer" resultType="WishItem" resultMap="wishItemResultMap">
+		SELECT wishitem_seq, 
+		       user_seq, 
+		       user_id, 
+		       model_name, 
+		       wish_start_date, 
+		       wish_end_date 
+		FROM   wishitem 
+		WHERE  wishitem_seq = #{value} 
+	</select>
+	
+	<!-- 특정 회원 wishItem List -->
+	<select id="listByUserId" resultType="WishItem" parameterType="String" resultMap="wishItemResultMap">
+		SELECT wishitem_seq, 
+		       user_seq, 
+		       user_id, 
+		       model_name, 
+		       wish_start_date, 
+		       wish_end_date 
+		FROM   wishitem 
+		WHERE  user_id = #{value}
+	</select>
+	
 </mapper>

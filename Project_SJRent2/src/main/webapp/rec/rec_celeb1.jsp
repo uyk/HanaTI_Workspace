@@ -24,13 +24,52 @@
    <link rel="stylesheet" href="<%=application.getContextPath()%>/css/color.css">
    <link rel="stylesheet" href="<%=application.getContextPath()%>/css/responsive.css">
    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+   
+   <style type="text/css">
+   .btn {
+    border: none;
+    color: white;
+    padding: 14px 28px;
+    font-size: 20px;
+    cursor: pointer;
+    
+    position: absolute;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	border: none;
+	text-align: center;
+	border-radius: 2px;
+	}	
+	
+	.left {
+	background-color: #005580;
+	top: 68%;
+	left: 37%;
+	} 
+	
+	.left:hover {
+	background-color: lightgray;
+	}
+	
+	.right {
+	background-color: #005580;
+	top: 68%;
+	left: 61%;
+	} 
+	
+	.right:hover {
+	background-color: lightgray;
+	}
+	
+	
+   </style>
 </head>
 <body class="tg-home tg-homevone">
 
 <!--************************************
 			Nav 시작
 	*************************************-->
-<jsp:include page="../include/nav.jsp" />
+<jsp:include page="../include/nav.jsp"/>
 <!--************************************
 			Nav 종료
 	*************************************-->
@@ -40,93 +79,53 @@
 	*************************************-->
 <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
 
-<!--************************************
-			Header 시작
-*************************************-->
-<jsp:include page="../include/header.jsp" />
-<!--************************************
-			Header 종료
-*************************************-->
 
 <!--************************************
-			Main 시작
+		Header 시작
 *************************************-->
-<main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
-	<div class="container">
-		<div class="row">
-			<div class="tg-homebannerslider tg-homebannerslider tg-haslayout">
-				<div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
-					<div class="container">
-						<div class="tg-tabcontent tab-content" style="padding: 0px 350px 0;">
-							<div role="tabpanel" class="tab-pane active fade in" id="home">
-								<div style="text-align: center; margin: 50px 0px;">
-									<h2>결제 완료</h2>
-								</div>
+<jsp:include page="../include/header.jsp"/>
+<!--************************************
+		Header 종료
+*************************************-->
+    
+<!--************************************
+		Main 시작
+*************************************-->
+	<main id="tg-main" class="tg-main tg-sectionspace tg-haslayout">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 300px">
+					<div class="tg-pkgplan" style="padding: 0px">
+						
+						<!--************************************
+									Content 시작
+							*************************************-->
+							
+							<img alt="여행선택지" src="../images/rec/rec_celeb2.JPG">
+							<button class="btn left" >선택</button>
+							<button class="btn right">선택</button>
+							
+							
+						<!--************************************
+									Content 종료
+							*************************************-->
 
-									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">예약자 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="id" style="border: none;"
-									maxlength="10">
-										</div>
-									</div>
 
-									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">차이름 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="email" style="border: none;"
-									maxlength="10">
-										</div>
-									</div>
-									
-									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">날 짜 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="phone" style="border: none;"
-									maxlength="10">
-										</div>
-									</div>
-
-								<form class="tg-formtheme tg-formlogin">
-									<div style="margin: 50px 0px; text-align: center;">
-										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
-												<span style="font-size: 14pt; width: 30%">홈으로</span>
-											</button>
-										</div>
-										
-										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
-												<span style="font-size: 14pt; width: 10%">결제내역</span>
-											</button>
-										</div>
-									</div>
-								</form>
-						</div>
+							
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-</main>
+	</main>
 <!--************************************
 		Main 종료
 *************************************-->
-
 <!--************************************
 		Wrapper 종료
 *************************************-->
-</div>
-
-
-	<script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
+</div>               
+         
+   <script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
    <script src="<%=application.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=en"></script>
    <script src="<%=application.getContextPath()%>/js/bootstrap-select.min.js"></script>

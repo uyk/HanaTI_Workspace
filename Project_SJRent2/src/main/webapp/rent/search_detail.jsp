@@ -38,8 +38,8 @@ String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
 						</div>
                         <div class="tg-description">
                           <ul class="my-tg-likeshare" >
-                            <li><a href="javascript:void(0);"><i class="icon-heart"></i>save to wish list</a></li>
-                            <li><a href="javascript:void(0);"><i class="icon-eye"></i>how many rented</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-heart"></i>Wish List</a></li>
+                            <li><a href="javascript:void(0);"><i class="icon-eye"></i>Reserve</a></li>
                           </ul>
                         </div>
 					</div>

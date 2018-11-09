@@ -13,15 +13,9 @@ public interface ReviewService {
 	
 	public void delete(int number) throws Exception;
 
-	public List<Review> listAll() throws Exception;
-
-	public List<Review> listByPage(int page, int listSize) throws Exception;
-
-	public List<Review> listByUser(int page, int listSize, String userId) throws Exception;
-
-	public List<Review> listByModel(int page, int listSize, String modelName) throws Exception;
-
-	public int countByUser(String User) throws Exception;
+	public List<Review> listByModel(String modelName) throws Exception;
 	
+	public List<Review> listByModelByPage(int page, int listSize, String modelName) throws Exception;
+
 	public int countByModel(String modelName) throws Exception;
 }

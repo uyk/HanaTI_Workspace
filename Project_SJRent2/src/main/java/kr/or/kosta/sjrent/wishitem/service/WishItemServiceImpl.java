@@ -18,33 +18,23 @@ public class WishItemServiceImpl implements WishItemService {
 	}
 
 	@Override
-	public void create(WishItem wishItem) throws Exception {
-		// TODO Auto-generated method stub
-
+	public boolean create(WishItem wishItem) throws Exception {
+		return wishItemDao.create(wishItem);
 	}
 
 	@Override
 	public WishItem read(int wishItemNumber) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return wishItemDao.read(wishItemNumber);
 	}
 
 	@Override
-	public void update(WishItem wishItem) throws Exception {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void delete(int wishItemNumber) throws Exception {
-		// TODO Auto-generated method stub
-
+	public boolean delete(int wishItemNumber) throws Exception {
+		return wishItemDao.delete(wishItemNumber);
 	}
 
 	@Override
 	public List<WishItem> listByUser(String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return wishItemDao.listByUser(userId);
 	}
 
 }

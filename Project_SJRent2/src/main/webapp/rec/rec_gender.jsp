@@ -38,27 +38,28 @@
 	-ms-transform: translate(-50%, -50%);
 	border: none;
 	text-align: center;
+	border-radius: 2px;
 	
 	}	
 	
 	.left {
-	background-color: #034f84;
+	background-color: #005580;
 	top: 68%;
 	left: 37%;
 	} 
 	
 	.left:hover {
-	background-color: #92a8d1;
+	background-color: lightgray;
 	}
 	
 	.right {
-	background-color: #034f84;
+	background-color: #005580;
 	top: 68%;
 	left: 61%;
 	} 
 	
 	.right:hover {
-	background-color: #92a8d1;
+	background-color: lightgray;
 	}
 	
 	

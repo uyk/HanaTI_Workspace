@@ -9,19 +9,26 @@
 
 
 
+
 <script type="text/javascript">
 
 
 	// 선택한 메일 유지 메소드 아직 완성xxxx
 	function checkemailaddy() {
-		if (form.email_select.value == '1') {
+		/* if (form.email_select.value == '1') {
 			form.email2.readonly = false;
 			form.email2.value = '';
 			form.email2.focus();
 		} else {
 			form.email2.readonly = true;
 			form.email2.value = form.email_select.value;
-		}
+		} */
+		var selectBox = document.getElementById("selectBox");
+		document.getElementById("selectedAddress").value = selectBox.options[selectBox.selectedIndex].text;  
+		//selectedAddress.innerHTML = 'd';
+		
+		//alert(selectedAddress); 
+		//document.getElementById("selectedAddress").innerHTML = "!!!!"; 
 	}
 
 function mykeydown(){
@@ -29,8 +36,11 @@ function mykeydown(){
 }
 
 	
+	/** 이메일 선택 값 가져오기 */
 	
 	
+	
+		
 </script>
 
 
@@ -107,15 +117,15 @@ function mykeydown(){
                               <div class="form-group">
                                  <h4>이메일<sup>*</sup></h4>
                                  <input type="text" name="email1" maxlength="10" size="12" style="text-transform: none;"> @ 
-                                 <input type="text" name="email2" maxlength="10" size="12" style="text-transform: none;">  
+                                 <input type="text" name="email2" maxlength="10" size="12" style="text-transform: none;" id="selectedAddress">  
 
-                                 <select name="email_select" style="text-transform: lowercase;" class="box" id="email_select" onChange="checkemailaddy();">
-                                  <option value="" selected>선택하세요</option>
-                                  <option value="naver.com">naver.com</option>
-                                  <option value="hotmail.com">hotmail.com</option>  
-                                  <option value="hanmail.com">hanmail.com</option>
-                                  <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                  <option value="1">직접입력</option>
+                                 <select name="email_select" style="text-transform: lowercase;" class="box" id="selectBox" onChange="checkemailaddy();">
+                                  <option value="" selected >선택하세요</option>
+                                  <option value="naver.com" >naver.com</option>
+                                  <option value="hotmail.com" id="hotmail">hotmail.com</option>  
+                                  <option value="hanmail.com" id="hanmail">hanmail.com</option>
+                                  <option value="yahoo.co.kr" id="yahoo">yahoo.co.kr</option>
+                                  <option >직접입력</option>
                                  </select>
                               </div>
                                  
@@ -123,11 +133,11 @@ function mykeydown(){
                                  <h4>핸드폰번호<sup>*</sup></h4>
                                  <div style="display: inline-block;">
                                     <select style="width: 110px" name="cellphone1">
-                                       <option> 0 1 0 
-                                       <option> 0 1 1
-                                       <option> 0 1 7
-                                       <option> 0 1 8
-                                       <option> 0 1 9
+                                       <option> 010 
+                                       <option> 011
+                                       <option> 017
+                                       <option> 018
+                                       <option> 019
                                     </select>  -  
                                     <input type="text" size="11" maxlength="4"  name="cellphone2">  -  
                                     <input type="text" size="11" maxlength="4"  name="cellphone3">

@@ -281,6 +281,7 @@
 								</li>
 							</ul>
 						</fieldset>
+                        <!-- 리뷰남기기 시작 -->
 						<fieldset class="tg-formleavereview">
 							<div class="tg-leavereviewhead">
 								<h2>Leave your Comment</h2>
@@ -306,6 +307,7 @@
 								</div>
 							</div>
 						</fieldset>
+                        <!-- 리뷰남기기 끝 -->
 					</form>
 				</div>
 			</div>

@@ -47,4 +47,8 @@
 	
 	<!-- 보험 -->
 	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
+	
+	<!-- WishItem 목록 -->
+	<bean type="controller" name="/wishitem/list" class="kr.or.kosta.sjrent.wishitem.controller.WishItemListController" />
+	
 </beans>

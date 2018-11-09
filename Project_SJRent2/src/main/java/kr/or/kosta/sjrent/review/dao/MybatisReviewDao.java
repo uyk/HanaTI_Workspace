@@ -2,11 +2,13 @@ package kr.or.kosta.sjrent.review.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import kr.or.kosta.sjrent.rent.domain.Rent;
 import kr.or.kosta.sjrent.review.domain.Review;
 
 public class MybatisReviewDao implements ReviewDao {
@@ -24,57 +26,69 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
-	public void create(Review review) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean create(Review review) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.insert(NAMESPACE + "write", review);
+		sqlSession.close();
+		if(result==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
 	public Review read(int number) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		Review review = sqlSession.selectOne(NAMESPACE + "read", number);
+		sqlSession.close();
+		return review;
 	}
 
 	@Override
-	public void update(Review review) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean update(Review review) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.update(NAMESPACE + "updateReview", review);
+		sqlSession.close();
+		if(result==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
-	public void delete(int number) throws Exception {
-		// TODO Auto-generated method stub
-		
+	public boolean delete(int number) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		int result = sqlSession.delete(NAMESPACE + "delete", number);
+		sqlSession.close();
+		if(result==1) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 
 	@Override
-	public List<Review> listByPage(int page, int listSize) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Review> listByModel(String modelName) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Review> reviewList = sqlSession.selectList(NAMESPACE + "listByModelName", modelName);
+		sqlSession.close();
+		return reviewList;
 	}
 
 	@Override
-	public List<Review> listAll() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Review> listByUser(int page, int listSize, String userId) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Review> listByModel(int page, int listSize, String modelName) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countByUser(String User) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public List<Review> listByModelByPage(int page, int listSize, String modelName) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>();
+		int startNum = ((listSize*(page-1))+1);
+		int endNum = (listSize*(page));
+		map.put("modelName", modelName);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Review> reviewList = sqlSession.selectList(NAMESPACE + "listByModelNameByPage", map);
+		sqlSession.close();
+		return reviewList;
 	}
 
 	@Override
@@ -83,14 +97,6 @@ public class MybatisReviewDao implements ReviewDao {
 		return 0;
 	}
 
-	@Override
-	public double evalPointByModel(String modelName) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	
 }
 
 

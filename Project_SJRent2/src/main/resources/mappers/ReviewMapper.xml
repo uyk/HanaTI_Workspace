@@ -4,4 +4,116 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="kr.or.kosta.sjrent.review">
+	<resultMap type="Review" id="reviewResultMap">
+		<result column="review_seq" 			property="number" />
+		<result column="model_name"  			property="modelName" />
+		<result column="user_seq" 				property="userNumber" />
+		<result column="user_id" 				property="userId" />
+		<result column="review_title" 			property="title" />
+		<result column="review_content" 		property="content" />
+		<result column="review_picture" 		property="picture" />
+		<result column="review_date" 			property="date" />
+		<result column="review_evalscore" 		property="evalScore" />
+	</resultMap>
+	
+	<!-- Review 쓰기 -->
+	<insert id="write" parameterType="Review">
+		INSERT INTO review 
+		            (review_seq, 
+		             model_name, 
+		             user_seq, 
+		             user_id, 
+		             review_title, 
+		             review_content,
+		             <if test="picture != null">review_picture,</if> 
+		             review_evalscore) 
+		VALUES      ( review_seq.NEXTVAL, 
+		             #{modelName}, 
+		             #{userNumber}, 
+		             #{userId}, 
+		             #{title}, 
+					 #{content}, 
+		             <if test="picture != null">#{picture},</if> 
+					 #{evalScore})
+	</insert>
+	
+	<!-- Review 삭제 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM REVIEW 
+		WHERE  review_seq = #{value} 
+	</delete>
+	
+	<!-- 특정 모델 Review List -->
+	<select id="listByModelName" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+		SELECT review_seq, 
+		       model_name, 
+		       user_seq, 
+		       user_id, 
+		       review_title, 
+		       review_content, 
+		       review_picture, 
+		       review_evalscore 
+		FROM   review 
+		WHERE  model_name = #{value} 
+	</select>
+	
+	<!-- 특정 모델 Review List page 선택 -->
+	<select id="listByModelNameByPage" resultType="Review" parameterType="map" resultMap="reviewResultMap">
+		SELECT X.review_seq, 
+		       X.model_name, 
+		       X.user_seq, 
+		       X.user_id, 
+		       X.review_title, 
+		       X.review_content, 
+		       X.review_picture, 
+		       X.review_evalscore 
+		FROM   (SELECT ROWNUM AS rnum, 
+		               A.review_seq, 
+		               A.model_name, 
+		               A.user_seq, 
+		               A.user_id, 
+		               A.review_title, 
+		               A.review_content, 
+		               A.review_picture, 
+		               A.review_evalscore 
+		        FROM   (SELECT review_seq, 
+		                       model_name, 
+		                       user_seq, 
+		                       user_id, 
+		                       review_title, 
+		                       review_content, 
+		                       review_picture, 
+		                       review_evalscore 
+		                FROM   review 
+		                WHERE  model_name = #{modelName} 
+		                ORDER  BY review_seq) A 
+		        WHERE  ROWNUM <![CDATA[<=]]> #{endNum}) X 
+		WHERE  X.rnum <![CDATA[>=]]> #{startNum}
+	</select>
+	
+	<!-- 특정 Review 읽기 -->
+	<select id="read" resultType="Review" parameterType="Integer" resultMap="reviewResultMap">
+		SELECT review_seq, 
+		       model_name, 
+		       user_seq, 
+		       user_id, 
+		       review_title, 
+		       review_content, 
+		       review_picture, 
+		       review_evalscore 
+		FROM   review 
+		WHERE  review_seq = #{value} 
+	</select>
+	
+	<!-- 리뷰 수정 -->
+	<update id="updateReview" parameterType="Review">
+		UPDATE REVIEW
+		<set>
+	        <if test="title != null">review_title = #{title},</if>
+	        <if test="content != null">review_content = #{content},</if>
+	        <if test="picture != null">review_picture = #{picture},</if>
+	        <if test="evalScore != null">review_evalscore = #{evalScore},</if>
+	    </set>
+	    WHERE review_seq = #{review_seq}
+	</update>
 </mapper>

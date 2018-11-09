@@ -38,7 +38,7 @@ public class MybatisRentDao implements RentDao {
 
 	@Override
 	public Rent read(int rentSeq) throws Exception {
-		SqlSession sqlSession = sqlSessionFactory.openSession(true);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
 		Rent rent = sqlSession.selectOne(NAMESPACE + "read", rentSeq);
 		sqlSession.close();
 		return rent;
