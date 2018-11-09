@@ -360,7 +360,8 @@ function setModelList(list) {
                <!--************************************
                      Ranking Start
                *************************************-->
-               <jsp:include page="rank_list.jsp"></jsp:include>
+               <jsp:include page="rank_list.jsp">
+               </jsp:include>
                <!--************************************
                      Ranking End
                *************************************-->

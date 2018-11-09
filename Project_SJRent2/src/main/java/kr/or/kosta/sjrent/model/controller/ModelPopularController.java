@@ -13,21 +13,21 @@ import kr.or.kosta.sjrent.common.controller.Controller;
 import kr.or.kosta.sjrent.common.controller.ModelAndView;
 import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
 import kr.or.kosta.sjrent.model.domain.Model;
-import kr.or.kosta.sjrent.model.params.ModelParams;
 import kr.or.kosta.sjrent.model.service.ModelService;
 import kr.or.kosta.sjrent.model.service.ModelServiceImpl;
 
 /**
- * 검색된 모델 목록을 뷰로 보내는 컨트롤러
+ * 대여가 가장 많이 된 상위 searchNum개 모델을 가져오는 컨트롤러
  * 
  * @author 유예겸
  *
  */
-public class ModelSearchController implements Controller {
+public class ModelPopularController implements Controller {
 	private ModelService modelService;
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
 	private JSONArray jsonArray;
+	private static final int searchNum = 5;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,31 +36,11 @@ public class ModelSearchController implements Controller {
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
 		jsonArray = new JSONArray();
-		
-		String startDate = request.getParameter("rent_start_date");
-		String endDate = request.getParameter("rent_end_date");
-		String type = request.getParameter("model_type");
-		if(startDate == null) {
-			startDate="2018-11-12";
-			endDate="2018-11-12";
-			type="all";
-		}
-		// 인자로 받은 date와 type
-		if (type.equals("all"))
-			type = null;
-
-
-		// 검색 인자를 Params에 저장
-		ModelParams modelParams = new ModelParams();
-		modelParams.setStartDate(startDate);
-		modelParams.setEndDate(endDate);
-		modelParams.setType(type);
 
 		List<Model> list = null;
 
 		try {
-			// Params로 검색한 리스트를 list에 저장
-			list = modelService.listBySearch(modelParams);
+			list = modelService.PopularModel(searchNum);
 			for (Model model : list) {
 				JSONObject modelObject = new JSONObject();
 				modelObject.put("name", model.getName());
@@ -83,7 +63,6 @@ public class ModelSearchController implements Controller {
 				modelObject.put("reviewCount", model.getReviewCount());
 				jsonArray.add(modelObject);
 			}
-
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(jsonArray);
 			return null;

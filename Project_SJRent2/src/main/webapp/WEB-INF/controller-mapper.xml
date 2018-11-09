@@ -37,6 +37,8 @@
 	<bean type="controller" name="/model/search" class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />
 	<!-- 모델상세 -->
 	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	<!-- 인기모델 -->
+	<bean type="controller" name="/model/popular" class="kr.or.kosta.sjrent.model.controller.ModelPopularController" />
 	
 	<!-- 예약 -->
 	<bean type="controller" name="/rent/rent" class="kr.or.kosta.sjrent.rent.controller.RentController" />

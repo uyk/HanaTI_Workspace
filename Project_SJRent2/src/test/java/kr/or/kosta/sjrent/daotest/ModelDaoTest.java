@@ -72,9 +72,18 @@ public class ModelDaoTest {
 		}
 	}
 	
-	@Test
+//	@Test
 	public void testchangeCount() throws Exception{
 		logger.debug(modelDao.changeCount("K5", -1));
+	}
+	
+	@Test
+	public void testpop() throws Exception{
+		List<Model> ModelList = modelDao.popularModel(5);
+		for (Model model : ModelList) {
+			logger.debug(model);
+			
+		}
 	}
 }
 

@@ -20,6 +20,7 @@
 		<result column="model_type" 			property="type" />
 		<result column="model_weekday_price" 	property="weekdayPrice" />
 		<result column="model_weenkend_price" 	property="weekendPrice" />
+		<result column="model_rental_count" 	property="rentalCount" />
 		<result column="model_eval_score" 		property="evalScore" />
 		<result column="model_review_count" 	property="reviewCount" />
 	</resultMap>
@@ -166,43 +167,63 @@
 	
 	<!-- 인기 모델 리스트 -->
 	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
-		SELECT m.model_name,
-		m.model_year,
-		m.model_fuel_type,
-		m.model_fuel_efficiency,
-		m.model_seater,
-		m.model_transmission,
-		m.model_navigation,
-		m.model_camera_rear,
-		m.model_highpass,
-		m.model_blackbox,
-		m.model_type,
-		m.model_weekday_price,
-		m.model_weenkend_price,
-		m.model_options,
-		m.model_picture,
-		AVG(r.review_evalscore) model_eval_score,
-		m.model_rental_count
-		FROM model m
-		left outer join review r
-		ON m.model_name = r.model_name
-		WHERE ROWNUM <![CDATA[<=]]> #{value}
-		GROUP BY m.model_name,
-		m.model_year,
-		m.model_fuel_type,
-		m.model_fuel_efficiency,
-		m.model_seater,
-		m.model_transmission,
-		m.model_navigation,
-		m.model_camera_rear,
-		m.model_highpass,
-		m.model_blackbox,
-		m.model_type,
-		m.model_weekday_price,
-		m.model_weenkend_price,
-		m.model_options,
-		m.model_picture,
-		m.model_rental_count
+	SELECT model_name, 
+	       model_year, 
+	       model_fuel_type, 
+	       model_fuel_efficiency, 
+	       model_seater, 
+	       model_transmission, 
+	       model_navigation, 
+	       model_camera_rear, 
+	       model_highpass, 
+	       model_blackbox, 
+	       model_type, 
+	       model_weekday_price, 
+	       model_weenkend_price, 
+	       model_options, 
+	       model_picture, 
+	       model_rental_count, 
+	       model_eval_score, 
+	       model_review_count 
+	FROM   (SELECT m.model_name, 
+	               m.model_year, 
+	               m.model_fuel_type, 
+	               m.model_fuel_efficiency, 
+	               m.model_seater, 
+	               m.model_transmission, 
+	               m.model_navigation, 
+	               m.model_camera_rear, 
+	               m.model_highpass, 
+	               m.model_blackbox, 
+	               m.model_type, 
+	               m.model_weekday_price, 
+	               m.model_weenkend_price, 
+	               m.model_options, 
+	               m.model_picture, 
+	               m.model_rental_count, 
+	               Avg(r.review_evalscore) model_eval_score, 
+	               Count(r.review_seq)     model_review_count 
+	        FROM   model m 
+	               LEFT OUTER JOIN review r 
+	                            ON m.model_name = r.model_name 
+	        GROUP  BY m.model_name, 
+	                  m.model_year, 
+	                  m.model_fuel_type, 
+	                  m.model_fuel_efficiency, 
+	                  m.model_seater, 
+	                  m.model_transmission, 
+	                  m.model_navigation, 
+	                  m.model_camera_rear, 
+	                  m.model_highpass, 
+	                  m.model_blackbox, 
+	                  m.model_type, 
+	                  m.model_weekday_price, 
+	                  m.model_weenkend_price, 
+	                  m.model_options, 
+	                  m.model_picture, 
+	                  m.model_rental_count 
+	        ORDER  BY model_review_count DESC) 
+	WHERE  rownum <![CDATA[<=]]> #{value}
 	</select>
 	
 	<!-- 대여횟수 증가 또는 감소-->

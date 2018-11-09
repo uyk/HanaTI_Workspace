@@ -60,7 +60,7 @@ String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
 						</figure>
 						<div class="tg-refundinfo">
 							<h3>100% Refundable</h3>
-							<div class="tg-description">
+							<div class="tg-description"> 
 								<p>Cancel up to 72 days before your trip and get a full
 									refund, including service fees.</p>
 							</div>
