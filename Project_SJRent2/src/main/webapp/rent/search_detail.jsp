@@ -37,9 +37,6 @@ String picture = model.getPicture();
 String type = model.getType();
 String fuelType = model.getFuelType();
 
-if(request.getAttribute("loginId") == null) {
-  
-}
 %>
 <!--************************************
 		Rent_history Detail Start
@@ -73,8 +70,16 @@ if(request.getAttribute("loginId") == null) {
 						</div>
                         <div class="tg-description">
                           <ul class="my-tg-likeshare" >
-                            <li><a  onclick="addToWishList('<%=modelName%>', '<%=startDate%>', '<%=endDate%>', '<%=amountMoney%>', '<%=picture%>', '<%=type%>', '<%=fuelType%>')"><i class="icon-heart"></i>Wish List</a></li>
+                          <%
+                          // 로그인일때의 wish, reserver 버튼
+                          if(request.getAttribute("loginId")!= null ) { %> 
+                            <li><a onclick="addToWishList('<%=modelName%>', '<%=startDate%>', '<%=endDate%>', '<%=amountMoney%>', '<%=picture%>', '<%=type%>', '<%=fuelType%>')" id="wishListAnchor"><i class="icon-heart"></i>Wish List</a></li>
                             <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
+                          <% }
+                          // 로그아웃일때의 reserver 버튼(wish 없음)
+                          else { %> 
+                            <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
+                          <% } %>
                           </ul>
                         </div>
 					</div>

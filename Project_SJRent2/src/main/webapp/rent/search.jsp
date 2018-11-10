@@ -366,13 +366,22 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
       <main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
       <div class="container" style="width: 90%">
          <!--************************************
-              Detail Model Start
+              Detail Modal Start
          *************************************-->
          <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            
+            <jsp:include page=""></jsp:include>
          </div>
          <!--************************************
-              Detail Model End
+              Detail Modal End
+         *************************************-->
+         
+         <!--************************************
+              Login Modal Start
+         *************************************-->
+         <div id = "login_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+         </div>
+         <!--************************************
+              Login Modal End
          *************************************-->
          <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
@@ -411,7 +420,7 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
    <!--************************************
                Login method
    *************************************--> 
-   
+   <!-- 
    <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
       <div class="tg-contentarea tg-themescrollbar">
          <div class="tg-scrollbar">
@@ -450,5 +459,6 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
          </div>
       </div>
    </div>
+   -->
 </body>
 </html>
