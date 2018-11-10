@@ -84,4 +84,40 @@
 		FROM   rent 
 		WHERE  user_id = #{value}
 	</select>
+	
+	<!-- 특정 회원 취소 여부에 따른 rent List -->
+	<select id="listByUserIdByIsCanceled" resultType="Rent" parameterType="map" resultMap="rentResultMap">
+		SELECT rent_seq, 
+		       user_seq, 
+		       user_id, 
+		       ins_num, 
+		       car_num, 
+		       rent_start_date, 
+		       rent_end_date, 
+		       rent_pickup_place, 
+		       rent_paid_amount, 
+		       rent_payment_option, 
+		       rent_is_canceled 
+		FROM   rent 
+		WHERE  user_id = #{userId}
+		AND    rent_is_canceled = #{isCanceled}
+	</select>
+	<!-- 특정 회원 지난 rent List -->
+	<select id="pastListByUserId" resultType="Rent" parameterType="String" resultMap="rentResultMap">
+		SELECT rent_seq, 
+		       user_seq, 
+		       user_id, 
+		       ins_num, 
+		       car_num, 
+		       rent_start_date, 
+		       rent_end_date, 
+		       rent_pickup_place, 
+		       rent_paid_amount, 
+		       rent_payment_option, 
+		       rent_is_canceled 
+		FROM   rent 
+		WHERE  user_id = #{userId}
+		AND RENT_END_DATE <![CDATA[<]]> SYSDATE
+		AND    rent_is_canceled = 0
+	</select>
 </mapper>

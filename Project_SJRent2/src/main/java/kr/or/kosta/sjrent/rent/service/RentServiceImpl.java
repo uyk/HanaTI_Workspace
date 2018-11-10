@@ -55,4 +55,19 @@ public class RentServiceImpl implements RentService {
 		return rentDao.cancel(number);
 	}
 
+	@Override
+	public List<Rent> CancellistByUser(String userId) throws Exception {
+		return rentDao.listByUserId(userId, 1);
+	}
+
+	@Override
+	public List<Rent> UncancellistByUser(String userId) throws Exception {
+		return rentDao.listByUserId(userId, 0);
+	}
+
+	@Override
+	public List<Rent> pastListByUser(String userId) throws Exception {
+		return rentDao.pastListByUserId(userId);
+	}
+
 }

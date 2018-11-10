@@ -17,6 +17,13 @@
 			}
 		}
 	}
+    // 초기화면 아이디 null시
+    if(id == null){
+      id = "";
+    }
+    
+    
+    
 %>
 
 
@@ -72,7 +79,7 @@
 											</div>
 											<div class="form-group">
 												<label>비밀번호 <sup>*</sup></label>
-												<input type="password" name="pw" class="form-control" placeholder="" maxlength="10"  style="text-transform:  none;" required>
+ 								                <input type="password" name="pw" class="form-control" placeholder="" maxlength="10"  style="text-transform:  none;" required>
 											</div>
 											<div class="form-group">
 													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>

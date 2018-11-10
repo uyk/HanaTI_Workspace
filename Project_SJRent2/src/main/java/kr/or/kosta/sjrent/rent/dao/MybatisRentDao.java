@@ -2,6 +2,7 @@ package kr.or.kosta.sjrent.rent.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.session.SqlSession;
@@ -80,6 +81,25 @@ public class MybatisRentDao implements RentDao {
 		}else {
 			return false;
 		}	
+	}
+
+	@Override
+	public List<Rent> listByUserId(String userId, int isCanceled) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("userId", userId);
+		map.put("isCanceled", isCanceled);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Rent> rentList = sqlSession.selectList(NAMESPACE + "listByUserIdByIsCanceled", map);
+		sqlSession.close();
+		return rentList;
+	}
+
+	@Override
+	public List<Rent> pastListByUserId(String userId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Rent> rentList = sqlSession.selectList(NAMESPACE + "pastListByUserId", userId);
+		sqlSession.close();
+		return rentList;
 	}
 	
 }

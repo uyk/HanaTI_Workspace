@@ -48,13 +48,13 @@
 		       w.user_seq, 
 		       w.user_id, 
 		       w.model_name, 
-		       w.wish_start_date, 
-		       w.wish_end_date, 
+        	   to_char(w.wish_start_date, 'yyyy-mm-dd') wish_start_date,
+			   to_char(w.wish_end_date, 'yyyy-mm-dd') wish_end_date, 
 		       w.amount_money, 
 		       m.model_picture, 
 		       m.model_type, 
 		       m.model_fuel_type 
-		FROM   wishitem w 
+		FROM   wishitem w xxxxxxxxxxxxxxxc
 		       left outer join model m 
 		                    ON w.model_name = m.model_name 
 		WHERE  wishitem_seq = #{value} 

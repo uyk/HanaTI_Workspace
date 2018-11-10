@@ -16,6 +16,12 @@ public interface RentService {
 	public List<Rent> listAll(int page, int listSize) throws Exception;
 
 	public List<Rent> listByUser(String userId) throws Exception;
+
+	public List<Rent> CancellistByUser(String userId) throws Exception;
+
+	public List<Rent> UncancellistByUser(String userId) throws Exception;
+
+	public List<Rent> pastListByUser(String userId) throws Exception;
 	
 	public boolean cancel(int number) throws Exception;
 }

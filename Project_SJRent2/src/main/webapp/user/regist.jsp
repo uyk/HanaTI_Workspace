@@ -12,27 +12,27 @@
 <script type="text/javascript">
 
 
-	// 선택한 메일 유지 메소드 아직 완성xxxx
-	function checkemailaddy() {
-		if (form.email_select.value == '1') {
-			form.email2.readonly = false;
-			form.email2.value = '';
-			form.email2.focus();
-		} else {
-			form.email2.readonly = true;
-			form.email2.value = form.email_select.value;
-		}
-	}
+var checkFirst = false;
+var lastKeyword = '';
+var loopSendKeyword = false;
 
-function mykeydown(){
-	// 키누를 때마다 이벤트 처리
+function checkId() {
+
+	location.href="/sjrent/user/checkId.rent";
+	
+	
+	if (checkFirst == false) {
+	//0.5초 후에 sendKeyword()함수 실행
+
+  setTimeout("sendId();", 500);
+  loopSendKeyword = true;
+ }
+ checkFirst = true;
 }
 
 	
-	
-	
-</script>
 
+</script>
 
 
 
@@ -81,41 +81,41 @@ function mykeydown(){
                            <fieldset>
                               <div class="form-group">
                                  <h4>아이디<sup>*</sup></h4>
-                                 <input type="text" name="id" class="form-control" onkeydown="mykeydown()" maxlength="10" style="text-transform: none;">
-                                 <span id="idSpan"></span>
+                                 <input type="text" name="id" class="form-control" onkeydown="checkId()" maxlength="10" style="text-transform: none;" required>
+                                 <div id="checkMsg">아이디를 입력하세요.</div>
                               </div>
                               
                               <div class="form-group">
                                  <h4>비밀번호<sup>*</sup></h4>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10" style="text-transform: none;">
+                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10" style="text-transform: none;" required>
                               </div>
                               
                               <div class="form-group">
                                  <h4>이름<sup>*</sup></h4>
-                                 <input type="text" name="name" class="form-control" placeholder="" maxlength="10" style="text-transform: none;">
+                                 <input type="text" name="name" class="form-control" placeholder="" maxlength="10" style="text-transform: none;" required>
                               </div>
                                  
                               <div class="form-group">
                                  <h4>생년월일<sup>*</sup></h4>
                                  <div>
-                                    <input style="display: inline-block; text-transform: lowercase;" name="birthday" type="text" size="15" maxlength="6" placeholder="e.g. 910101" > -   
-                                    <input style="display: inline-block;" type="text" name="gender" size="1" maxlength="1">
+                                    <input style="display: inline-block; text-transform: lowercase;" name="birthday" type="text" size="15" maxlength="6" placeholder="e.g. 910101" required> -   
+                                    <input style="display: inline-block;" type="text" name="gender" size="1" maxlength="1" required>
                                     xxxxxx
                                  </div>
                               </div>
                               
-                              <div class="form-group">
+                               <div class="form-group">
                                  <h4>이메일<sup>*</sup></h4>
                                  <input type="text" name="email1" maxlength="10" size="12" style="text-transform: none;"> @ 
-                                 <input type="text" name="email2" maxlength="10" size="12" style="text-transform: none;">  
+                                 <input type="text" name="email2" maxlength="10" size="12" style="text-transform: none;" id="selectedAddress">  
 
-                                 <select name="email_select" style="text-transform: lowercase;" class="box" id="email_select" onChange="checkemailaddy();">
-                                  <option value="" selected>선택하세요</option>
-                                  <option value="naver.com">naver.com</option>
-                                  <option value="hotmail.com">hotmail.com</option>  
-                                  <option value="hanmail.com">hanmail.com</option>
-                                  <option value="yahoo.co.kr">yahoo.co.kr</option>
-                                  <option value="1">직접입력</option>
+                                 <select name="email_select" style="text-transform: lowercase;" class="box" id="selectBox" onChange="checkemailaddy();">
+                                  <option value="" selected >선택하세요</option>
+                                  <option value="naver.com" >naver.com</option>
+                                  <option value="hotmail.com" id="hotmail">hotmail.com</option>  
+                                  <option value="hanmail.com" id="hanmail">hanmail.com</option>
+                                  <option value="yahoo.co.kr" id="yahoo">yahoo.co.kr</option>
+                                  <option >직접입력</option>
                                  </select>
                               </div>
                                  
@@ -123,11 +123,11 @@ function mykeydown(){
                                  <h4>핸드폰번호<sup>*</sup></h4>
                                  <div style="display: inline-block;">
                                     <select style="width: 110px" name="cellphone1">
-                                       <option> 0 1 0 
-                                       <option> 0 1 1
-                                       <option> 0 1 7
-                                       <option> 0 1 8
-                                       <option> 0 1 9
+                                       <option> 010 
+                                       <option> 011
+                                       <option> 017
+                                       <option> 018
+                                       <option> 019
                                     </select>  -  
                                     <input type="text" size="11" maxlength="4"  name="cellphone2">  -  
                                     <input type="text" size="11" maxlength="4"  name="cellphone3">

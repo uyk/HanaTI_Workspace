@@ -130,7 +130,6 @@ $(document).ready(function(){
    });
    
 });
-
 /** list의 모델들을 html로 추가하는 함수 */
 function setModelList(list) {
 	var startDay = new Date(rent_start_date).getDay();
@@ -195,7 +194,7 @@ function setModelList(list) {
 			dataType:"html",
 			type:'POST', 
 			data : {
-	             'model_name' : modelName,
+	             'modelName' : modelName,
 	             'weekday' : weekday,
 	             'weekend' : weekend
 	        },

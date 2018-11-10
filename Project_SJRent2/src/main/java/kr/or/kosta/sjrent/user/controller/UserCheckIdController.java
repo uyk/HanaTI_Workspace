@@ -59,6 +59,8 @@ public class UserCheckIdController implements Controller {
 			obj.put("result", "success");
 			try {
 				response.getWriter().print(obj);
+				
+				mav.addObject("isExistId", isExistId);
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

@@ -23,5 +23,9 @@ public interface RentDao {
 
 	public List<Rent> listByUserId(String userId) throws Exception;
 
+	public List<Rent> listByUserId(String userId, int isCanceled) throws Exception;
+
+	public List<Rent> pastListByUserId(String userId) throws Exception;
+
 	public boolean cancel(int number) throws Exception;
 }

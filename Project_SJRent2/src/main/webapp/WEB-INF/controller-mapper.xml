@@ -46,11 +46,17 @@
 	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
 	<!-- 예약상세-->
 	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
-	
+	<!-- 예약취소-->
+	<bean type="controller" name="/rent/cancel" class="kr.or.kosta.sjrent.rent.controller.RentCancelController" />
+
 	<!-- 보험 -->
 	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
 	
 	<!-- WishItem 목록 -->
 	<bean type="controller" name="/wishitem/list" class="kr.or.kosta.sjrent.wishitem.controller.WishItemListController" />
+	<!-- WishItem 추가 -->
+	<bean type="controller" name="/wishitem/add" class="kr.or.kosta.sjrent.wishitem.controller.AddWishItemController" />
+	<!-- WishItem 삭제 -->
+	<bean type="controller" name="/wishitem/delete" class="kr.or.kosta.sjrent.wishitem.controller.DeleteWishItemController" />
 	
 </beans>
