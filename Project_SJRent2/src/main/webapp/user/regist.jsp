@@ -12,7 +12,7 @@
 <script type="text/javascript">
 
 
-var checkFirst = false;
+/* var checkFirst = false;
 var lastKeyword = '';
 var loopSendKeyword = false;
 
@@ -24,11 +24,13 @@ function checkId() {
 	if (checkFirst == false) {
 	//0.5초 후에 sendKeyword()함수 실행
 
-  setTimeout("sendId();", 500);
+  setTimeout("sendId();", 1000);
   loopSendKeyword = true;
  }
+	
+	
  checkFirst = true;
-}
+} */
 
 	
 

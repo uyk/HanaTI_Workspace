@@ -36,7 +36,7 @@ String endDate = (String)request.getAttribute("endDate");
 String picture = model.getPicture();
 String type = model.getType();
 String fuelType = model.getFuelType();
-
+System.out.println("Search Detail s , e : " + startDate +"," + endDate);
 %>
 <!--************************************
 		Rent_history Detail Start

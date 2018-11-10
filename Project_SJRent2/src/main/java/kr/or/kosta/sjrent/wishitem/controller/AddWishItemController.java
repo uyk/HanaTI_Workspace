@@ -85,6 +85,7 @@ public class AddWishItemController implements Controller {
 	    	  }
 	    	  
 	      } catch (Exception e) {
+	    	  e.printStackTrace();
 	    	out.println("fail");
 	      }
 		return null;

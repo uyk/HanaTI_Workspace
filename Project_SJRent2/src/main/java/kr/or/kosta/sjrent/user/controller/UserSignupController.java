@@ -43,15 +43,15 @@ public class UserSignupController implements Controller {
 		userService = (UserService) factory.getBean(UserServiceImpl.class);
 
 		
-		System.out.println("넘어오냐??");
-		
 		User user = new User();
 		boolean isCreate = false;
-		
+
 		
 		// 회원가입시에 들어오는 param
 		if(request.getParameter("id") != null) {
 			
+			
+					
 			String id = request.getParameter("id");
 			String name = request.getParameter("name");
 			String email1 = request.getParameter("email1");
@@ -117,48 +117,113 @@ public class UserSignupController implements Controller {
 		// 비회원일때 들어오는 param
 		else {
 			
+			
+			
 			String name_non = request.getParameter("name_non");
 			String email_non = request.getParameter("email_non");
 			String cellphone_non = request.getParameter("cellphone_non");
 			int isUser = 0;
 			
+		
 			
-			user.setName(name_non);
-			user.setEmail(email_non);
-			user.setCellphone(cellphone_non);
-			user.setIsUser(isUser);
-			
-			
+			//비회원 이메일 유무 체크
 			try {
-				isCreate = userService.create(user);
+				user = userService.readByCellphone(cellphone_non);
+				System.out.println("비회원"+user);
+				// 유저가 DB에 없을때 create 
+				if(user == null) {
+					
+					user = new User();
+					user.setName(name_non);
+					user.setEmail(email_non);
+					user.setCellphone(cellphone_non);
+					user.setIsUser(isUser);
+					
+					System.out.println("비회원 정보"+user);					
+					isCreate = userService.create(user);
+					
+					System.out.println(isCreate);
+					
+					
+					// 비회원이 잘 만들어진 경우, index.jsp
+					if (isCreate == true) {
+						
+						obj.put("result", "success");
+						mav.addObject("loginId", name_non);
+						mav.setView("/index.jsp");
+						return mav;
+					}
+					// 비회원 생성이 실패시 login2.jsp
+					else {
+						
+						obj.put("result", "fail");
+						try {
+							response.sendRedirect("/sjrent/user/login2.jsp");
+							//response.getWriter().print(obj);
+							return null;
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}		
+				}
+				
+				
+				// 유저가 DB에 있을때 update
+				else {
+					boolean isUpdate = false;
+					
+					user.setName(name_non);
+					user.setEmail(email_non);
+									
+					isUpdate = userService.update(user);
+
+					// user_seq를 가져와서 해당 update
+					if(isUpdate) {
+						obj.put("result", "success");
+						mav.addObject("loginId", name_non);
+						mav.setView("/index.jsp");
+						return mav;
+					}
+					// 실패하면 login2.jsp로 보내
+					else {
+						
+						obj.put("result", "fail");
+						try {
+							response.sendRedirect("/sjrent/user/login2.jsp");
+							//response.getWriter().print(obj);
+							return null;
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					}
+				}
+				
+				
+
+				/*
+				// 쿠키에 userId 올리기
+				String userId = user.getId();
+				String userName = user.getName();
+	
+				Cookie cookie = null;
+				cookie = new Cookie("userId", userId);
+				cookie.setMaxAge(60*60*24*30);
+				cookie.setPath("/");
+				response.addCookie(cookie);
+				
+				request.setAttribute("loginId", userName);
+				
+				mav.addObject("loginId", userName);
+				mav.setView("/index.jsp");
+				*/
+				
+				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
-			// 비회원 로그인 실패시 응답으로 fail 보냄
-			if (isCreate == false) {
-				obj.put("result", "fail");
-				try {
-					response.sendRedirect("/sjrent/user/login2.jsp");
-					//response.getWriter().print(obj);
-					return null;
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-
-			}
-			// 비회원 로그인 성공시 응답으로 success 보냄
-			else {
-				obj.put("result", "success");
-				mav.addObject("name", name_non);
-				mav.setView("/index.jsp");
-				
-			}
-					
-			
-			
 		}
 
 		return mav;

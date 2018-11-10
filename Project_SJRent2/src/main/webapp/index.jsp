@@ -56,6 +56,7 @@ if(request.getAttribute("loginId") != null){ //로그인 된 경우
 		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>위시리스트</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/wish/wish_list.jsp"><span>예약확인</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/user/logout.rent"><span>로그아웃</span></a>
+
 	</div>
     </div>
 <%

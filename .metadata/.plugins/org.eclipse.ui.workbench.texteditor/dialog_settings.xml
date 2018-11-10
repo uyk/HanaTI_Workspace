@@ -20,12 +20,19 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="objectL" key="selection"/>
+		<item value="remember" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="remember"/>
+			<item value="checkbox"/>
+			<item value="include"/>
+			<item value="  model.setReviewCount(5);"/>
+			<item value="tg-widgettitle"/>
+			<item value="inclu"/>
+			<item value="jsp"/>
 			<item value="objectL"/>
 			<item value="push"/>
 			<item value=".sho"/>
@@ -34,13 +41,6 @@
 			<item value="fav"/>
 			<item value="fa"/>
 			<item value="getser"/>
-			<item value="myba"/>
-			<item value="ems"/>
-			<item value="”"/>
-			<item value="“"/>
-			<item value="syst"/>
-			<item value="upd"/>
-			<item value="dele"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>

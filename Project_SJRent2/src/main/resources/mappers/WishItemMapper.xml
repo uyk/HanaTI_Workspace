@@ -29,11 +29,11 @@
 		             amount_money) 
 		VALUES      ( wishitem_seq.NEXTVAL, 
 		             #{userNumber}, 
-		             #{userId}', 
+		             #{userId}, 
 		             #{modelName}, 
 		             To_date(#{startDate}, 'YYYY-MM-DD'), 
 		             To_date(#{endDate}, 'YYYY-MM-DD'),
-		             amountMoney)
+		             #{amountMoney})
 	</insert>
 	
 	<!-- WishItem 삭제 -->
@@ -54,7 +54,7 @@
 		       m.model_picture, 
 		       m.model_type, 
 		       m.model_fuel_type 
-		FROM   wishitem w xxxxxxxxxxxxxxxc
+		FROM   wishitem w 
 		       left outer join model m 
 		                    ON w.model_name = m.model_name 
 		WHERE  wishitem_seq = #{value} 

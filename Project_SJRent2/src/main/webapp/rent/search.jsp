@@ -36,7 +36,7 @@ var date;
 var weekday = 0;
 var weekend = 0;
 $(document).ready(function(){
-	console.log('id : ' + '<%=request.getAttribute("logindId")%>');
+	console.log('id : ' + '<%=request.getAttribute("loginId")%>');
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
 	$('#ModelDisplayRow').hide();
 	
@@ -197,7 +197,9 @@ function setModelList(list) {
 			data : {
 	             'modelName' : modelName,
 	             'weekday' : weekday,
-	             'weekend' : weekend
+	             'weekend' : weekend,
+	             'startDate' : rent_start_date,
+	             'endDate' : rent_end_date
 	        },
 			success:function(result){
 				$(e.currentTarget).html(result);
