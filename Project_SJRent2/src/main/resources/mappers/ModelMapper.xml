@@ -222,7 +222,7 @@
 	                  m.model_options, 
 	                  m.model_picture, 
 	                  m.model_rental_count 
-	        ORDER  BY model_review_count DESC) 
+	        ORDER  BY model_rental_count DESC) 
 	WHERE  rownum <![CDATA[<=]]> #{value}
 	</select>
 	
