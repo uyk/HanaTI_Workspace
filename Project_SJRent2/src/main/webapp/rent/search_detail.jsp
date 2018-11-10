@@ -1,6 +1,7 @@
 <%@page import="kr.or.kosta.sjrent.model.domain.Model"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <%-- Model정보를 출력하는 jsp (search.jsp에 include됨)
      컨트롤러로 부터 받은 정보 : model, startDate, endDate, weekday, weekend
@@ -29,70 +30,17 @@ else {
                   model.getWeekendPrice() * (Integer)request.getAttribute("weekend");
 }
 String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
-%>
-<script>
-function a() {
-	console.log(1);
-}
+String modelName = model.getName();
+String startDate = (String)request.getAttribute("startDate");
+String endDate = (String)request.getAttribute("endDate");
+String picture = model.getPicture();
+String type = model.getType();
+String fuelType = model.getFuelType();
 
-</script>
-<script>	
-		
-/** 위시리스트에 저장 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
-	Controller로부터 받은 데이터를 검사한다.
-*/
-function addToWishList() {
-	$.ajax({	
-		url:"<%=application.getContextPath()%>/wishitem/add.rent",
-		dataType:"text",
-		type:'POST', 
-		data : {
-	  		modelName : <%=model.getName()%>,
-	  		startDate : <%=request.getAttribute("startDate")%>,
-	  		endDate : <%=request.getAttribute("endDate")%>,
-	  		amountMoney : <%=amountMoney%>,
-	  		picture : <%=model.getPicture()%>,
-	  		type : <%=model.getType()%>,
-	  		fuelType : <%=model.getFuelType()%>
-        },
-		success:function(result){
-			// result 값에 따라 위시리스트에 저장했다고 알려주기
-			console.log(result);
-		}
-	});
+if(request.getAttribute("loginId") == null) {
+  
 }
-/** 위시리스트에 저장 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
-Controller로부터 받은 데이터를 검사한다.
-*/
-function addToWishListForm() {
-	/** 로그인중인지 검사*/
-    var form = document.createElement("form");
-    form.setAttribute("method", "post");
-    form.setAttribute("action", '<%=application.getContextPath()%>/wishitem/add.rent');
- 
-    var params = {
-  		modelName : <%=model.getName()%>,
-  		startDate : <%=request.getAttribute("startDate")%>,
-  		endDate : <%=request.getAttribute("endDate")%>,
-  		amountMoney : <%=amountMoney%>,
-  		picture : <%=model.getPicture()%>,
-  		type : <%=model.getType()%>,
-  		fuelType : <%=model.getFuelType()%>
-    }
-    
-    //히든으로 값을 주입시킨다.
-    for(var key in params) {
-        var hiddenField = document.createElement("input");
-        hiddenField.setAttribute("type", "hidden");
-        hiddenField.setAttribute("name", key);
-        hiddenField.setAttribute("value", params[key]);
-        form.appendChild(hiddenField);
-    }
- 
-    document.body.appendChild(form);
-    form.submit();
-}
-</script>
+%>
 <!--************************************
 		Rent_history Detail Start
 *************************************-->
@@ -125,7 +73,7 @@ function addToWishListForm() {
 						</div>
                         <div class="tg-description">
                           <ul class="my-tg-likeshare" >
-                            <li><a><i class="icon-heart"></i>Wish List</a></li>
+                            <li><a  onclick="addToWishList('<%=modelName%>', '<%=startDate%>', '<%=endDate%>', '<%=amountMoney%>', '<%=picture%>', '<%=type%>', '<%=fuelType%>')"><i class="icon-heart"></i>Wish List</a></li>
                             <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
                           </ul>
                         </div>

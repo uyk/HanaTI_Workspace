@@ -204,6 +204,34 @@ function setModelList(list) {
 		});
 	});
 }
+
+
+/** <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
+	Controller로부터 받은 데이터를 검사한다.
+*/
+function addToWishList(modelName, startDate, endDate, amountMoney, picture, type, fuelType) {
+	console.log("Addd");
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/wishitem/add.rent",
+		dataType:"text",
+		type:'POST', 
+		data : {
+	  		modelName : modelName,
+	  		startDate : startDate,
+	  		endDate : endDate,
+	  		amountMoney : amountMoney,
+	  		picture : picture,
+	  		type : type,
+	  		fuelType : fuelType
+        },
+		success:function(result){
+			// result 값에 따라 위시리스트에 저장했다고 알려주기
+			console.log(result);
+		}
+	});
+}
+
+
 </script>
 </head>
 <body>

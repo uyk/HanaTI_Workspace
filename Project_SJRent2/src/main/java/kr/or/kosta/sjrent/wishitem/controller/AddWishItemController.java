@@ -41,6 +41,7 @@ public class AddWishItemController implements Controller {
 	      String modelName = request.getParameter("modelName");
 	      String startDate = request.getParameter("startDate");
 	      String endDate = request.getParameter("endDate");
+	      String amountMoney = request.getParameter("amountMoney");
 	      String picture = request.getParameter("picture");
 	      String type = request.getParameter("type");
 	      String fuelType = request.getParameter("fuelType");
