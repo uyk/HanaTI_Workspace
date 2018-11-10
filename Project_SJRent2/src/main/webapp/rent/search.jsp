@@ -230,6 +230,8 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
 		success:function(result){
 			// result 값에 따라 위시리스트에 저장했다고 알려주기
 			console.log(result);
+			$("#myModal").html=result;
+			$("#myModal").modal();
 		}
 	});
 }
@@ -385,6 +387,15 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
          </div>
          <!--************************************
               Login Modal End
+         *************************************-->
+         
+         <!--************************************
+              Wish Result Modal Start
+         *************************************-->
+         <div id = "wish_result_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+         </div>
+         <!--************************************
+              Wish Result Modal End
          *************************************-->
          <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
