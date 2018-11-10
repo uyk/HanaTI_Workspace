@@ -55,6 +55,10 @@
 	}
    </style>
 </head>
+
+
+
+
 <body class="tg-home tg-homevone">
 
 <!--************************************
@@ -94,16 +98,8 @@
 							*************************************-->
 							
 							<img alt="게임시작화면" src="../images/rec/rec_index화면1.jpg">
-<<<<<<< HEAD
-							<button class="button" onclick="alert('ddd')"> START  </button>
+							<button class="button" onclick="location = '<%=application.getContextPath()%>/rec/rec_gender.jsp'"> START  </button>
 							
-=======
-							<button class="button"
-								style=" ">
-								START
-						    </button>
-
->>>>>>> 7e2e015d3150e5996ba3291cbf41dcd59b9f1527
 							<!--************************************
 									Content 종료
 							*************************************-->							

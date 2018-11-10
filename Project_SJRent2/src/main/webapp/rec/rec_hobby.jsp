@@ -102,8 +102,8 @@
 							*************************************-->
 							
 							<img alt="여행선택지" src="../images/rec/rec_hobby.JPG">
-							<button class="btn left">선택</button>
-							<button class="btn right">선택</button>
+							<button class="btn left"  >선택</button>
+							<button class="btn right" >선택</button>
 							
 							
 						<!--************************************

@@ -103,8 +103,8 @@
 							*************************************-->
 							
 							<img alt="성별" src="../images/rec/rec_gender1.JPG">
-							<button class="btn left">선택</button>
-							<button class="btn right">선택</button>
+							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb1.jsp'">선택</button>
+							<button class="btn right" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb2.jsp'">선택</button>
 							
 							
 						<!--************************************

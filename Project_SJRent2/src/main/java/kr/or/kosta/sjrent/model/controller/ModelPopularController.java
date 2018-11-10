@@ -26,7 +26,6 @@ public class ModelPopularController implements Controller {
 	private ModelService modelService;
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
-	private JSONArray jsonArray;
 	private static final int searchNum = 5;
 
 	@Override
@@ -35,37 +34,12 @@ public class ModelPopularController implements Controller {
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
-		jsonArray = new JSONArray();
-
 		List<Model> list = null;
 
 		try {
 			list = modelService.PopularModel(searchNum);
-			for (Model model : list) {
-				JSONObject modelObject = new JSONObject();
-				modelObject.put("name", model.getName());
-				modelObject.put("fuelType", model.getFuelType());
-				modelObject.put("fuelEfficiency", model.getFuelEfficiency());
-				modelObject.put("seater", model.getSeater());
-				modelObject.put("transmission", model.getTransmission());
-				modelObject.put("navigation", model.getNavigation());
-				modelObject.put("cameraRear", model.getCameraRear());
-				modelObject.put("year", model.getYear());
-				modelObject.put("highpass", model.getHighpass());
-				modelObject.put("blackBox", model.getBlackBox());
-				modelObject.put("options", model.getOption());
-				modelObject.put("picture", model.getPicture());
-				modelObject.put("type", model.getType());
-				modelObject.put("weekdayPrice", model.getWeekdayPrice());
-				modelObject.put("weekendPrice", model.getWeekendPrice());
-				modelObject.put("evalScore", model.getEvalScore());
-				modelObject.put("rentalCount", model.getRentalCount());
-				modelObject.put("reviewCount", model.getReviewCount());
-				jsonArray.add(modelObject);
-			}
-			response.setCharacterEncoding("utf-8");
-			response.getWriter().print(jsonArray);
-			return null;
+			mav.addObject("list", list);
+			mav.setView("/rent/rank_list.jsp");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

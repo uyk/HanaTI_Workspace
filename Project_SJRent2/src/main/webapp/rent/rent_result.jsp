@@ -4,26 +4,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <meta charset="utf-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <title>SJ 렌트카</title>
-   <meta name="description" content="">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <link rel="apple-touch-icon" href="apple-touch-icon.png">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/bootstrap.min.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/normalize.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/font-awesome.min.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/icomoon.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/owl.carousel.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/bootstrap-select.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/scrollbar.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/jquery.mmenu.all.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/prettyPhoto.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/transitions.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/main.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/color.css">
-   <link rel="stylesheet" href="<%=application.getContextPath()%>/css/responsive.css">
-   <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
+   <jsp:include page="../common/commoncss.jsp" />
+   <jsp:include page="../common/commonjs.jsp" />
+   <script type="text/javascript">
+   $(document).ready(function(){
+	   function initMap(clat, clng, name) {
+//	        var myLatLng = {lat: clat, lng: clng};
+	        var myLatLng = {lat: 37.5665, lng: 126.9780};
+
+	        // Create a map object and specify the DOM element
+	        // for display.
+	        var map = new google.maps.Map(document.getElementById("map0"), {
+	          center: myLatLng,
+	          zoom: 12
+	        });
+
+	        // Create a marker and set its position.
+	        var marker = new google.maps.Marker({
+	          map: map,
+	          position: myLatLng,
+	          title: 'Hello World!'
+	        });
+	      }
+   });
+   </script>
 </head>
 <body class="tg-home tg-homevone">
 
@@ -65,34 +69,35 @@
 
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">예약자 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="id" style="border: none;"
-									maxlength="10">
+											<h4 style="width: 100px">예약자 :</h4>
+										</div>
+										<div style="display: inline-block">
+											<input type="text" name="id" style="border: none;"
+											maxlength="10">
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">차이름 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="email" style="border: none;"
-									maxlength="10">
+											<h4 style="width: 100px">차이름 :</h4>
+										</div>
+										<div style="display: inline-block">
+											<input type="text" name="email" style="border: none;"
+											maxlength="10">
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">날 짜 :</h4>
-									</div>
-									<div style="display: inline-block">
-									<input type="text" name="phone" style="border: none;"
-									maxlength="10">
+											<h4 style="width: 100px">날 짜 :</h4>
+										</div>
+										<div style="display: inline-block">
+											<input type="text" name="phone" style="border: none;"
+											maxlength="10">
 										</div>
 									</div>
-
+									<!-- 수령장소 지도 -->
+									<div id="map0" onload="initMap('11', '22', this);" style=""></div>
 								<form class="tg-formtheme tg-formlogin">
 									<div style="margin: 50px 0px; text-align: center;">
 										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
@@ -124,22 +129,5 @@
 		Wrapper 종료
 *************************************-->
 </div>
-
-
-	<script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
-   <script src="<%=application.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
-   <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=en"></script>
-   <script src="<%=application.getContextPath()%>/js/bootstrap-select.min.js"></script>
-   <script src="<%=application.getContextPath()%>/js/jquery-scrolltofixed.js"></script>
-   <script src="<%=application.getContextPath()%>/js/owl.carousel.min.js"></script>
-   <script src="<%=application.getContextPath()%>/js/jquery.mmenu.all.js"></script>
-   <script src="<%=application.getContextPath()%>/js/packery.pkgd.min.js"></script>
-   <script src="<%=application.getContextPath()%>/js/jquery.vide.min.js"></script>
-   <script src="<%=application.getContextPath()%>/js/scrollbar.min.js"></script>
-   <script src="<%=application.getContextPath()%>/js/prettyPhoto.js"></script>
-   <script src="<%=application.getContextPath()%>/js/countdown.js"></script>
-   <script src="<%=application.getContextPath()%>/js/parallax.js"></script>
-   <script src="<%=application.getContextPath()%>/js/gmap3.js"></script>
-   <script src="<%=application.getContextPath()%>/js/main.js"></script>
 </body>
 </html>

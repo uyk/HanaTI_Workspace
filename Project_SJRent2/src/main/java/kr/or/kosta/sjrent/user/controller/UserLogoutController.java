@@ -33,6 +33,18 @@ public class UserLogoutController implements Controller {
 		mav = new ModelAndView();
 		
 		// 쿠키에서 로그인 id 제거
+	/*	Cookie[] cookies = request.getCookies();
+		for (int i = 0; i < cookies.length; i++) {
+			if (cookies[i].getName().equals("loginId")) {
+				cookies[i].setPath("/");
+				cookies[i].setMaxAge(0);
+				response.addCookie(cookies[i]);
+			}
+		}*/
+	
+		
+		
+		
 		Cookie[] cookies = request.getCookies();
 		if (cookies != null) {
 			for (Cookie cookie : cookies) {
@@ -40,12 +52,13 @@ public class UserLogoutController implements Controller {
 					cookie.setPath("/");
 					cookie.setMaxAge(0);
 					response.addCookie(cookie);
-					request.getServletContext().removeAttribute("loginId");
+					request.removeAttribute("loginId");
 				}
 			}
 		}
-		System.out.println(1);
-		mav.setView("redirect:/sjrent/login.jsp");
+		
+		System.out.println("로그아웃 잘 되었음 ...........");
+		mav.setView("redirect:/sjrent/index.jsp");
 		return mav;
 	}
 

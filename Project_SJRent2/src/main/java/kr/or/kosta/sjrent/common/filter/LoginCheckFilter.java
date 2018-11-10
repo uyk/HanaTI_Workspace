@@ -10,8 +10,6 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.log4j.Logger;
 
 
@@ -33,29 +31,28 @@ public class LoginCheckFilter implements Filter {
 
     @Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-
-    	System.out.println("LoginCheckFiler 실행..");
+    	//logger.debug("LoginCheckFiler 실행..");
 		boolean isLogin = false;
 		Cookie[] cookies = ((HttpServletRequest)request).getCookies();
-
 		String id = null;
+		
 		if(cookies != null) {
 			for (Cookie cookie : cookies) {
 				if(cookie.getName().equals("loginId")) {
 					isLogin = true;
 					id = cookie.getValue();
+					logger.debug("filter 거친 id : " + id);
 					break;
 				}
 			}
 		}
+		
 		// 회원 및 비회원 로그인 페이지 처리 
 		if(isLogin) {
 			chain.doFilter(request, response);
 			request.setAttribute("loginId", id);
 		}else {
-			
 			chain.doFilter(request, response);
-			
 		}
 	}
     

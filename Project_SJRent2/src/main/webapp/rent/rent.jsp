@@ -76,7 +76,7 @@
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>이름</label>
-                                                <input type="text" value="호진" name="user_name" class="form-control" placeholder="" required readonly>
+                                                <input type="text" value="호진" name="user_name" class="form-control" required readonly>
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

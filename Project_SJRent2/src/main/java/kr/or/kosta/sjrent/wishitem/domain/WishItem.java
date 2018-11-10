@@ -4,10 +4,14 @@ public class WishItem {
 	
 	private int number;
 	private int userNumber;
-	private int userId;
+	private String userId;
 	private String modelName;
 	private String startDate;
 	private String endDate;
+	private int amountMoney;
+	private String picture;
+	private String type;
+	private String fuelType;
 	
 	public WishItem() {
 		super();
@@ -29,11 +33,11 @@ public class WishItem {
 		this.userNumber = userNumber;
 	}
 
-	public int getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(int userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 
@@ -60,12 +64,46 @@ public class WishItem {
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
+	
+	
+	
+	public int getAmountMoney() {
+		return amountMoney;
+	}
 
-	@Override
-	public String toString() {
-		return "WishItem [number=" + number + ", userNumber=" + userNumber + ", model=" + modelName + ", startDate="
-				+ startDate + ", endDate=" + endDate + "]";
+	public void setAmountMoney(int amountMoney) {
+		this.amountMoney = amountMoney;
+	}
+
+	public String getPicture() {
+		return picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
 	}
 
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getFuelType() {
+		return fuelType;
+	}
+
+	public void setFuelType(String fuelType) {
+		this.fuelType = fuelType;
+	}
+
+	@Override
+	public String toString() {
+		return "WishItem [number=" + number + ", userNumber=" + userNumber + ", userId=" + userId + ", modelName="
+				+ modelName + ", startDate=" + startDate + ", endDate=" + endDate + ", amountMoney=" + amountMoney
+				+ ", picture=" + picture + ", type=" + type + ", fuelType=" + fuelType + "]";
+	}
 }

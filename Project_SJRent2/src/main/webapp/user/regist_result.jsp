@@ -46,41 +46,44 @@
 
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">아이디 :</h4>
+									<h4 style="width: 100px">아이디 : ${id} </h4>
 									</div>
 									<div style="display: inline-block">
-									<input type="text" name="id" style="border: none;" maxlength="10">
+									<!-- <input type="text" name="id" style="border: none;"
+									maxlength="10"> -->
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">이메일 :</h4>
+									<h4 style="width: 100px">이메일 : ${email }</h4>
 									</div>
 									<div style="display: inline-block">
-									<input type="text" name="email" style="border: none;" maxlength="10">
+									<<!-- input type="text" name="email" style="border: none;"
+									maxlength="10"> -->
 										</div>
 									</div>
 									
 									<div class="form-group">
 										<div style="display: inline-block;">
-									<h4 style="width: 100px">휴대폰 :</h4>
+									<h4 style="width: 100px">휴대폰 : ${cellphone }</h4>
 									</div>
 									<div style="display: inline-block">
-									<input type="text" name="phone" style="border: none;" maxlength="10">
+									<!-- <input type="text" name="phone" style="border: none;"
+									maxlength="10"> -->
 										</div>
 									</div>
 
 								<form class="tg-formtheme tg-formlogin">
 									<div style="margin: 50px 0px; text-align: center;">
 										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
+											<button type="button" onclick="location.href='/sjrent/user/login2.jsp' " class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
 												<span style="font-size: 14pt; width: 30%">로그인</span>
 											</button>
 										</div>
 										
 										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
+											<button type="button" onclick="location.href='/sjrent/index.jsp' " class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
 												<span style="font-size: 14pt; width: 10%">홈으로</span>
 											</button>
 										</div>

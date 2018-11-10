@@ -11,6 +11,10 @@
 		<result column="model_name" 			property="modelName" />
 		<result column="wish_start_date" 		property="startDate" />
 		<result column="wish_end_date" 			property="endDate" />
+		<result column="amount_money" 			property="amountMoney" />
+		<result column="model_picture" 			property="picture" />
+		<result column="model_type" 			property="type" />
+		<result column="model_fuel_type" 		property="fuelType" />
 	</resultMap>
 	
 	<!-- WishItem 추가 -->
@@ -21,13 +25,15 @@
 		             user_id, 
 		             model_name, 
 		             wish_start_date, 
-		             wish_end_date) 
+		             wish_end_date,
+		             amount_money) 
 		VALUES      ( wishitem_seq.NEXTVAL, 
 		             #{userNumber}, 
 		             #{userId}', 
 		             #{modelName}, 
 		             To_date(#{startDate}, 'YYYY-MM-DD'), 
-		             To_date(#{endDate}, 'YYYY-MM-DD') )
+		             To_date(#{endDate}, 'YYYY-MM-DD'),
+		             amountMoney)
 	</insert>
 	
 	<!-- WishItem 삭제 -->
@@ -38,25 +44,37 @@
 
 	<!--  위시 아이템 번호로 위시 아이템 읽기 -->
 	<select id="read" parameterType="Integer" resultType="WishItem" resultMap="wishItemResultMap">
-		SELECT wishitem_seq, 
-		       user_seq, 
-		       user_id, 
-		       model_name, 
-		       wish_start_date, 
-		       wish_end_date 
-		FROM   wishitem 
+		SELECT w.wishitem_seq, 
+		       w.user_seq, 
+		       w.user_id, 
+		       w.model_name, 
+		       w.wish_start_date, 
+		       w.wish_end_date, 
+		       w.amount_money, 
+		       m.model_picture, 
+		       m.model_type, 
+		       m.model_fuel_type 
+		FROM   wishitem w 
+		       left outer join model m 
+		                    ON w.model_name = m.model_name 
 		WHERE  wishitem_seq = #{value} 
 	</select>
 	
 	<!-- 특정 회원 wishItem List -->
 	<select id="listByUserId" resultType="WishItem" parameterType="String" resultMap="wishItemResultMap">
-		SELECT wishitem_seq, 
-		       user_seq, 
-		       user_id, 
-		       model_name, 
-		       wish_start_date, 
-		       wish_end_date 
-		FROM   wishitem 
+		SELECT w.wishitem_seq, 
+		       w.user_seq, 
+		       w.user_id, 
+		       w.model_name, 
+		       TO_CHAR(w.wish_start_date,'yyyy-MM-dd') wish_start_date, 
+		       TO_CHAR(w.wish_end_date,'yyyy-MM-dd') wish_end_date, 
+		       w.amount_money, 
+		       m.model_picture, 
+		       m.model_type, 
+		       m.model_fuel_type 
+		FROM   wishitem w 
+		       left outer join model m 
+		                    ON w.model_name = m.model_name 
 		WHERE  user_id = #{value}
 	</select>
 	

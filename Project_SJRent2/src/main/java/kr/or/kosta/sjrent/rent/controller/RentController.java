@@ -47,7 +47,7 @@ public class RentController implements Controller {
       
       User user = null;
       try {
-         user = userService.read((String)request.getAttribute("loginId"));
+//         user = userService.read((String)request.getAttribute("loginId"));
          user = userService.read("gloomycloud");
       } catch (Exception e) {
          mav.addObject("result", "fail");
@@ -96,18 +96,21 @@ public class RentController implements Controller {
                   resultRents.add(temp);
                   modelService.changeCount(modelNames[i], 1);
                }else{
+            	   System.out.println("test1");
                   mav.addObject("result", "fail");
                   mav.addObject("message", rent.toString()+": 렌트 등록을 할 수 없습니다.");
                   mav.setView("/rent/search.jsp");
                   return mav;
                }
             } catch (Exception e) {
+            System.out.println("test2");
                mav.addObject("result", "fail");
                mav.addObject("message", rent.toString()+" : "+e);
                mav.setView("/rent/search.jsp");
                return mav;
             }
          }else {
+        	 System.out.println("test3");
             mav.addObject("result", "fail");
             mav.addObject("message", modelNames[i]+"모델은 이용 가능한 차가 없습니다.");
             mav.setView("/rent/search.jsp");

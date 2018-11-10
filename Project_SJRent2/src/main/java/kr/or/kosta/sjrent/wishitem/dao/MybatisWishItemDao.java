@@ -68,7 +68,7 @@ public class MybatisWishItemDao implements WishItemDao {
 	@Override
 	public List<WishItem> listByUser(String userId) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<WishItem> wishItemList = sqlSession.selectList(NAMESPACE + "delete", userId);
+		List<WishItem> wishItemList = sqlSession.selectList(NAMESPACE + "listByUserId", userId);
 		sqlSession.close();
 		return wishItemList;
 	}

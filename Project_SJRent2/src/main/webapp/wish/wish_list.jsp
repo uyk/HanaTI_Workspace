@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="context" value="${pageContext.request.contextPath}" />
@@ -5,7 +6,7 @@
 <html>
 <head>
   <jsp:include page="../common/commoncss.jsp" />
-   
+   <jsp:include page="../common/commonjs.jsp" />
    <style type="text/css">
    
    .tg-cartproductdetail table tr{
@@ -45,7 +46,7 @@
 <main id="tg-main" class="tg-main tg-haslayout tg-bglight">
    <div class="container">
       <div class="row">
-         <div style="text-align: center; margin: 50px 0px"><h2>위시리스트</h2></div>
+         <div style="text-align: center; margin: 100px 0px"><h2>위시리스트</h2></div>
             <div id="tg-twocolumns" class="tg-twocolumns">
                <form class="tg-formtheme tg-formcart">
                   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -67,8 +68,10 @@
                            </tr>
                            <tbody>
                            <!--************************************
-                                 첫 번째 행 시작
+                                 차 리스트 보여주기
                               *************************************-->
+                              <% if (request.getAttribute("list") != null && (!((ArrayList)request.getAttribute("list")).isEmpty())){ %> 
+                              <c:forEach var="item" items="${list}" varStatus="status">
                               <tr>
                                  <td style="vertical-align: middle;">
                                     <input type="checkbox" >
@@ -76,52 +79,37 @@
                                  <td>
                                     <div class="tg-tourname" style="border-bottom: none;" > 
                                        <figure >
-                                          <a href="javascript:void(0);"><img src="../images/cars/대형/2017GRANDEUR.jpg" style="width: 100px; height: 100px; margin-right: 15px" alt="image 2017GRANDEUR"></a>
+                                       		<!-- 사진 필요 -->
+                                       		 <a><img src="<%=application.getContextPath() %>/images/cars/${item.type}/${item.picture}" style="width: 100px; height: 100px; margin-right: 15px" alt="${item.modelName}"></a>
                                        </figure>
                                        <div class="tg-populartourcontent">
                                           <div class="tg-populartourtitle">
-                                             <h3 style="vertical-align: middle; text-align: left; margin-bottom: 10px"><a href="javascript:void(0);">2017 그렌저</a></h3>
-                                             <span style="text-align: left; ">네비게이션, 흡연, 전방카메라</span>
+                                             <h3 style="vertical-align: middle; text-align: left; margin-bottom: 10px"><a class="modelName" href="javascript:void(0);">${item.modelName}</a></h3>
+                                          		 <span style="text-align: left; ">연료 : ${item.fuelType }</span>
                                           </div>
                                        </div>
                                     </div>
                                  </td>
-                                 <td  style="vertical-align: middle;"><span>2012-12-31</span></td>
-                                 <td  style="vertical-align: middle;"><span>2014-09-30</span></td>
-                                 <td style="vertical-align: middle;">30,000</td>
+                                 <td class="startDate" style="vertical-align: middle;"><span>${item.startDate}</span></td>
+                                 <td class="endDate"   style="vertical-align: middle;"><span>${item.endDate}</span></td>
+                                 <td class="amountMoney" style="vertical-align: middle;">${item.amountMoney}</td>
                               </tr>
-                              <!--************************************
-                                 첫 번째 행 종료
-                              *************************************-->
-                              <!--************************************
-                                 두 번째 행 시작
-                              *************************************-->
+                              </c:forEach>
+                              <%}else{ %>
                               <tr>
-                                 <td style="vertical-align: middle;">
-                                    <input type="checkbox" >
-                                 </td>
-                                 <td>
-                                    <div class="tg-tourname" style="border-bottom: none;" > 
-                                       <figure >
-                                          <a href="javascript:void(0);"><img src="../images/cars/대형/2017GRANDEUR.jpg" style="width: 100px; height: 100px; margin-right: 15px" alt="image 2017GRANDEUR"></a>
-                                       </figure>
-                                       <div class="tg-populartourcontent">
-                                          <div class="tg-populartourtitle">
-                                             <h3 style="vertical-align: middle; text-align: left; margin-bottom: 10px"><a href="javascript:void(0);">2017 그렌저</a></h3>
-                                             <span style="text-align: left; ">네비게이션, 흡연, 전방카메라</span>
-                                          </div>
-                                       </div>
-                                    </div>
-                                 </td>
-                                 <td  style="vertical-align: middle;"><span>2012-12-31</span></td>
-                                 <td  style="vertical-align: middle;"><span>2014-09-30</span></td>
-                                 <td style="vertical-align: middle;">30,000</td>
+                              	<td colspan="5" style="height: 100px; vertical-align: middle;">위시리스트가 존재하지 않습니다.</td>
                               </tr>
+                              <%}%>
                               <!--************************************
-                                 두 번째 행 종료
+                                 차 리스트 종료
                               *************************************-->
                            </tbody>
                         </table>
+                        <% if (request.getAttribute("list") != null && (!((ArrayList)request.getAttribute("list")).isEmpty())){ %> 
+                       	 <fieldset>
+                           	<button id="rentCarButton" type="submit" style="float: right" class="tg-btn">렌트하기</button>
+                         </fieldset>	
+                        <%} %> 
                      </div>
                   </div>
             </form>
@@ -136,9 +124,5 @@
       Wrapper 종료
    *************************************-->
    </div>
-
-   
-   
-   <jsp:include page="../common/commonjs.jsp" />
 </body>
 </html>

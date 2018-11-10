@@ -102,8 +102,8 @@
 							*************************************-->
 							
 							<img alt="여행선택지" src="../images/rec/rec_celeb2.JPG">
-							<button class="btn left" >선택</button>
-							<button class="btn right">선택</button>
+							<button class="btn left"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
+							<button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
 							
 							
 						<!--************************************

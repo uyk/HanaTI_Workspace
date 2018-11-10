@@ -26,44 +26,39 @@
    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
    
    <style type="text/css">
-   .btn {
-    border: none;
-    color: white;
-    padding: 14px 28px;
-    font-size: 20px;
-    cursor: pointer;
-    
-    position: absolute;
+   .button{
+   	position: absolute;
+   	top: 65%;
+	left: 50%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
+	background-color: #d64161;
+	color: white;
+	font: bold; 
+	font-size: 32px;
+	padding: 50px 24px;
 	border: none;
+	cursor: pointer;
+	box-shadow: 0 9px #999;
+	border-radius: 50%;
 	text-align: center;
-	border-radius: 2px;
-	}	
-	
-	.left {
-	background-color: #005580;
-	top: 68%;
-	left: 37%;
-	} 
-	
-	.left:hover {
-	background-color: lightgray;
+}
+   .button:active {
+	  background-color: #c94c4c;
+	  box-shadow: 0 5px #666;
+	  /* transform: translateY(4px); */
 	}
 	
-	.right {
-	background-color: #005580;
-	top: 68%;
-	left: 61%;
-	} 
-	
-	.right:hover {
-	background-color: lightgray;
+	.button:hover {
+	/* background-color: #c94c4c */
+	background-color: #ff8080;
 	}
-	
-	
    </style>
 </head>
+
+
+
+
 <body class="tg-home tg-homevone">
 
 <!--************************************
@@ -96,22 +91,71 @@
 			<div class="row">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 300px">
 					<div class="tg-pkgplan" style="padding: 0px">
+							
+							
+							<!--************************************
+									Content 시작
+							*************************************-->
+							
+							<img alt="게임시작화면" src="../images/rec/rec_index화면1.jpg">
+							
+							
+							<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#my80sizeCenterModal">
+  80%size Center
+</button>
+							
+							
+							
+							
+							
+							
+							
+ 							<!-- Modal -->
+<div class="modal fade" id="rec_gender" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+
+
+
+	<main id="tg-main" class="tg-main tg-sectionspace tg-haslayout">
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0px 300px">
+					<div class="tg-pkgplan" style="padding: 0px">
 						
 						<!--************************************
 									Content 시작
 							*************************************-->
 							
-							<img alt="여행선택지" src="../images/rec/rec_celeb1.JPG">
-							<button class="btn left"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
-							<button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
+							<img alt="성별" src="../images/rec/rec_gender1.JPG">
+							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb1.jsp'">선택</button>
+							<button class="btn right" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb2.jsp'">선택</button>
 							
 							
 						<!--************************************
 									Content 종료
-							*************************************-->
+							*************************************-->					
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
 
-
+      </div>
+    </div>
+				
 							
+										
+							
+							
+							
+							
+							
+							
+							
+							<!--************************************
+									Content 종료
+							*************************************-->							
 					</div>
 				</div>
 			</div>

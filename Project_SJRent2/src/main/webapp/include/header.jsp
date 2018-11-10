@@ -21,15 +21,16 @@
                   <nav id="tg-nav" class="tg-nav">
                      <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
                         <ul>
-                           <li><a href="#">실시간</a></li>
+                           <li><a href="<%=application.getContextPath()%>/rent/search.jsp">실시간</a></li>
                            <li class="menu-item-has-children"><a
                               href="javascript:void(0);">커뮤니티</a>
                               <ul class="sub-menu">
-                                 <li><a href="#">Q&A</a></li>
-                                 <li><a href="#">FAQ</a></li>
-                                 <li><a href="#">공지사항</a></li>
+                                 <li><a href="<%=application.getContextPath()%>/community/community.jsp">Q&A</a></li>
+                                 <li><a href="<%=application.getContextPath()%>/community/community.jsp">FAQ</a></li>
+                                 <li><a href="<%=application.getContextPath()%>/community/community.jsp">공지사항</a></li>
                               </ul></li>
-                           <li><a href="#">예약확인</a></li>
+                           <li><a href="<%=application.getContextPath()%>/wishitem/list.rent">위시리스트</a></li>
+                           <li><a href="<%=application.getContextPath()%>/rent/list.rent">예약확인</a></li>
                         </ul>
                      </div>
                   </nav>

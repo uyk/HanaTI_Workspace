@@ -5,7 +5,23 @@
 Model model = (Model)request.getAttribute("model");
 String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
 %>
-<span>model  : ${model}</span>
+<script>
+$(document).ready(function(){
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/model/detail.rent",
+		dataType:"html",
+		type:'POST', 
+		data : {
+             'model_name' : modelName,
+             'weekday' : weekday,
+             'weekend' : weekend
+        },
+		success:function(result){
+			$(e.currentTarget).html(result);
+		}
+	});
+}
+</script>
 <!--************************************
 		Rent_history Detail Start
 *************************************-->
@@ -24,7 +40,7 @@ String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
 							<span class='tg-stars'>
                               <span style='width: ${model.evalScore * 100}%'></span> 
                             </span>
-                            <em>(3 Review)</em> 
+                            <em>(${model.reviewCount} Review)</em> 
 						</div>
 						<div class="tg-pricearea">
 							<span>총 금액</span>
