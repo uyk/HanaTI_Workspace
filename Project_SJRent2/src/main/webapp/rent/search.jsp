@@ -36,6 +36,7 @@ var date;
 var weekday = 0;
 var weekend = 0;
 $(document).ready(function(){
+	console.log('id : ' + '<%=request.getAttribute("logindId")%>');
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
 	$('#ModelDisplayRow').hide();
 	
@@ -369,7 +370,7 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
               Detail Modal Start
          *************************************-->
          <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <jsp:include page=""></jsp:include>
+            <!--<jsp:include page=""></jsp:include>-->
          </div>
          <!--************************************
               Detail Modal End
@@ -420,7 +421,7 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
    <!--************************************
                Login method
    *************************************--> 
-   <!-- 
+   <!--  -->
    <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
       <div class="tg-contentarea tg-themescrollbar">
          <div class="tg-scrollbar">
