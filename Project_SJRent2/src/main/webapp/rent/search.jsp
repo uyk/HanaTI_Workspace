@@ -6,6 +6,7 @@
 <head>
 <jsp:include page="../common/commoncss.jsp" />
 <jsp:include page="../common/commonjs.jsp" />
+
 <!-- datePicker -->
 <link rel="stylesheet" href="<%=application.getContextPath()%>/css/datepicker.min.css" type="text/css">
 <script src="<%=application.getContextPath()%>/js/datepicker.min.js"></script>
@@ -58,18 +59,6 @@ $(document).ready(function(){
              rent_end_date = formatDate(rent_end_date);
        }
    })
-   
-   function formatDate(date){
-    	var d = new Date(date),
-        month = '' + (d.getMonth() + 1),
-        day = '' + d.getDate(),
-        year = d.getFullYear();
-    	
-    	if (month.length < 2) month = '0' + month;
-    	if (day.length < 2) day = '0' + day;
-    	return [year, month, day].join('-');
-    }
-   
    
    $("#datepicker").keydown(function (event) {
        event.preventDefault();
@@ -131,6 +120,18 @@ $(document).ready(function(){
    });
    
 });
+/** datepicker에서 선택된 날짜를 필요한 형식으로 변환하는 함수 */
+function formatDate(date){
+ 	var d = new Date(date),
+     month = '' + (d.getMonth() + 1),
+     day = '' + d.getDate(),
+     year = d.getFullYear();
+ 	
+ 	if (month.length < 2) month = '0' + month;
+ 	if (day.length < 2) day = '0' + day;
+ 	return [year, month, day].join('-');
+ }
+ 
 /** list의 모델들을 html로 추가하는 함수 */
 function setModelList(list) {
 	var startDay = new Date(rent_start_date).getDay();
@@ -213,7 +214,6 @@ function setModelList(list) {
 	Controller로부터 받은 데이터를 검사한다.
 */
 function addToWishList(modelName, startDate, endDate, amountMoney, picture, type, fuelType) {
-	console.log("Addd");
 	$.ajax({	
 		url:"<%=application.getContextPath()%>/wishitem/add.rent",
 		dataType:"text",
@@ -229,14 +229,20 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
         },
 		success:function(result){
 			// result 값에 따라 위시리스트에 저장했다고 알려주기
-			console.log(result);
-			$("#myModal").html=result;
-			$("#myModal").modal();
+			if($.trim(result) == 'success') {
+				$('#wish_result_modal_body').html('위시리스트에 담았습니다. 위시리스트로 이동하겠습니까?');
+			}
+			else {
+				$('#wish_result_modal_body').html('위시리스트에 담지 못했습니다. 위시리스트로 이동하겠습니까?');
+			}
+			$("#wish_result_modal").modal('show');
 		}
 	});
 }
 
-
+function wishResultHide() {
+	$("#wish_result_modal").modal('hide');
+}
 </script>
 </head>
 <body>
@@ -255,48 +261,7 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
       <!--************************************
                Header Start
          *************************************-->
-      <header id="tg-header"
-         class="tg-header tg-headervtwo tg-headerfixed tg-haslayout">
-         <div class="container-fluid">
-            <div class="row">
-               <strong class="tg-logo"><a
-                  href="<%=application.getContextPath()%>/index.jsp"><img
-                     src="<%=application.getContextPath()%>/images/logo2.png"
-                     alt="shoppingmall logo"></a></strong>
-               <nav class="tg-infonav">
-                  <ul>
-                     <!-- 로그인 화면 띄우자 -->
-                     <li><a id="tg-btnsignin" href="#tg-loginsingup">로그인</a></li>
-                     <!-- 로그인 되어 있는 경우 -->
-                  </ul>
-               </nav>
-               <div class="tg-navigationarea">
-                  <div class="tg-navigationholder">
-                     <nav id="tg-nav" class="tg-nav">
-                        <div id="tg-navigation"
-                           class="collapse navbar-collapse tg-navigation">
-                           <ul>
-                              <li><a href="<%=application.getContextPath()%>/rent/search.jsp">실시간</a></li>
-                              <li class="menu-item-has-children"><a
-                                 href="javascript:void(0);">커뮤니티</a>
-                                 <ul class="sub-menu">
-                                    <li><a href="<%=application.getContextPath()%>/community/community.jsp">Q&A</a></li>
-                                    <li><a href="#">FAQ</a></li>
-                                    <li><a href="#">공지사항</a></li>
-                                 </ul></li>
-                              <li><a href="#">예약확인</a></li>
-                           </ul>
-                        </div>
-                     </nav>
-                     <ul class="tg-socialicons">
-                        <li><a href="javascript:void(0);"><i
-                              class="icon-facebook-logo-outline"></i></a></li>
-                     </ul>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
+      <jsp:include page="/rent/search_include/search_header.jsp"/>
       <!--************************************
                Header End
          *************************************-->
@@ -374,26 +339,15 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
               Detail Modal Start
          *************************************-->
          <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            <!--<jsp:include page=""></jsp:include>-->
          </div>
          <!--************************************
               Detail Modal End
          *************************************-->
          
          <!--************************************
-              Login Modal Start
-         *************************************-->
-         <div id = "login_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-         </div>
-         <!--************************************
-              Login Modal End
-         *************************************-->
-         
-         <!--************************************
               Wish Result Modal Start
          *************************************-->
-         <div id = "wish_result_modal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-         </div>
+         <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
          <!--************************************
               Wish Result Modal End
          *************************************-->
@@ -434,45 +388,7 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
    <!--************************************
                Login method
    *************************************--> 
-   <!--  -->
-   <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
-      <div class="tg-contentarea tg-themescrollbar">
-         <div class="tg-scrollbar">
-            <button type="button" class="close">x</button>
-            <div class="tg-logincontent">
-               <div class="tg-themetabs">
-                  <ul style= "text-align: center;">
-                     <li style="list-style: none;"><h2>로그인</h2></li>
-                  </ul>
-                  <div class="tg-tabcontent tab-content">
-                     <div role="tabpanel" class="tab-pane active fade in" id="home">
-                        <form class="tg-formtheme tg-formlogin">
-                           <fieldset>
-                              <div class="form-group">
-                                 <label>아이디 <sup>*</sup></label>
-                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
-                              </div>
-                              <div class="form-group">
-                                 <label>비밀번호 <sup>*</sup></label>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10">
-                              </div>
-                              <div class="form-group">
-                                 <div class="tg-checkbox">
-                                    <input type="checkbox" name="remember" id="rememberpass">
-                                    <label for="rememberpass">아이디 저장</label>
-                                 </div>
-                              </div>
-                              <button class="tg-btn tg-btn-lg"><span>로그인</span></button>
-                           </fieldset>
-                        </form>
-                     </div>
-                     
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   -->
+   <jsp:include page="/rent/search_include/search_login.jsp"/>
+
 </body>
 </html>

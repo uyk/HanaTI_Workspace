@@ -1,7 +1,6 @@
 <%@page import="kr.or.kosta.sjrent.model.domain.Model"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <%-- Model정보를 출력하는 jsp (search.jsp에 include됨)
      컨트롤러로 부터 받은 정보 : model, startDate, endDate, weekday, weekend
