@@ -99,6 +99,28 @@ public class MybatisReviewDao implements ReviewDao {
 		return count;
 	}
 
+	@Override
+	public List<Review> listByUserByPage(int page, int listSize, String userId) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>();
+		int startNum = ((listSize*(page-1))+1);
+		int endNum = (listSize*(page));
+		map.put("userId", userId);
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Review> reviewList = sqlSession.selectList(NAMESPACE + "listByUserByPage", map);
+		sqlSession.close();
+		return reviewList;
+	}
+
+	@Override
+	public int countByUser(String userId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countByUser", userId);
+		sqlSession.close();
+		return count;
+	}
+
 }
 
 

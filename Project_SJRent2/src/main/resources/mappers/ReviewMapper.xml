@@ -91,6 +91,40 @@
 		WHERE  X.rnum <![CDATA[>=]]> #{startNum}
 	</select>
 	
+		<!-- 특정 유저 Review List page 선택 -->
+	<select id="listByUserByPage" resultType="Review" parameterType="map" resultMap="reviewResultMap">
+		SELECT X.review_seq, 
+		       X.model_name, 
+		       X.user_seq, 
+		       X.user_id, 
+		       X.review_title, 
+		       X.review_content, 
+		       X.review_picture, 
+		       X.review_evalscore 
+		FROM   (SELECT ROWNUM AS rnum, 
+		               A.review_seq, 
+		               A.model_name, 
+		               A.user_seq, 
+		               A.user_id, 
+		               A.review_title, 
+		               A.review_content, 
+		               A.review_picture, 
+		               A.review_evalscore 
+		        FROM   (SELECT review_seq, 
+		                       model_name, 
+		                       user_seq, 
+		                       user_id, 
+		                       review_title, 
+		                       review_content, 
+		                       review_picture, 
+		                       review_evalscore 
+		                FROM   review 
+		                WHERE  user_id = #{userId} 
+		                ORDER  BY review_seq) A 
+		        WHERE  ROWNUM <![CDATA[<=]]> #{endNum}) X 
+		WHERE  X.rnum <![CDATA[>=]]> #{startNum}
+	</select>
+	
 	<!-- 특정 Review 읽기 -->
 	<select id="read" resultType="Review" parameterType="Integer" resultMap="reviewResultMap">
 		SELECT review_seq, 
@@ -114,13 +148,19 @@
 	        <if test="picture != null">review_picture = #{picture},</if>
 	        <if test="evalScore != null">review_evalscore = #{evalScore},</if>
 	    </set>
-	    WHERE review_seq = #{review_seq}
+	    WHERE review_seq = #{number}
 	</update>
 	
-		<!-- 특정 모델 Review Count -->
+	<!-- 특정 모델 Review Count -->
 	<select id="countByModelName" resultType="Review" parameterType="String" resultMap="reviewResultMap">
 		SELECT Count(review_seq) 
 		FROM   review 
 		WHERE  model_name = #{value}
+	</select>
+	<!-- 특정 유저 Review Count -->
+	<select id="countByUser" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+		SELECT Count(review_seq) 
+		FROM   review 
+		WHERE  user_id = #{value}
 	</select>
 </mapper>

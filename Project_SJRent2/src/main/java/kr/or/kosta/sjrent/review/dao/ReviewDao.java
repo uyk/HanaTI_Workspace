@@ -24,4 +24,8 @@ public interface ReviewDao {
 
 	public int countByModel(String modelName) throws Exception;
 	
+	public List<Review> listByUserByPage(int page, int listSize, String userId) throws Exception;
+	
+	public int countByUser(String userId) throws Exception;
+	
 }

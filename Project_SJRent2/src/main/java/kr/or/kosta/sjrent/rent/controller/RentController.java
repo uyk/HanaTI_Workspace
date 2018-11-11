@@ -26,7 +26,7 @@ import kr.or.kosta.sjrent.user.service.UserServiceImpl;
 /**
  * 유저 id와 rent정보를 받아서 rent를 db에 생성하고 
  * 생성한 rent를 /sjrent/rent/rentResult.jsp로 보내는 컨트롤러
- * @author 유예겸
+ * @author 유예겸, 남수현
  *
  */
 public class RentController implements Controller {
@@ -64,6 +64,7 @@ public class RentController implements Controller {
       String[] modelNames = request.getParameterValues("modelName");
 
       List<Map<String,String>> resultRents = new ArrayList<Map<String,String>>();
+      List<Map<String,String>> failRents = new ArrayList<Map<String,String>>();
       for(int i = 0; i < modelNames.length; i++) {
          List<String> enableCarList = null;
          try {
@@ -96,28 +97,32 @@ public class RentController implements Controller {
                   resultRents.add(temp);
                   modelService.changeCount(modelNames[i], 1);
                }else{
-            	   System.out.println("test1");
-                  mav.addObject("result", "fail");
-                  mav.addObject("message", rent.toString()+": 렌트 등록을 할 수 없습니다.");
-                  mav.setView("/rent/search.jsp");
-                  return mav;
+             	  Map<String, String> temp = new HashMap<String,String>();
+             	  temp.put("modelName", modelNames[i]);
+             	  temp.put("startDate", startDates[i]);
+             	  temp.put("endDate", endDates[i]);
+             	  temp.put("pickupPlace", pickupPlaces[i]);
+             	  failRents.add(temp);
                }
             } catch (Exception e) {
-            System.out.println("test2");
-               mav.addObject("result", "fail");
-               mav.addObject("message", rent.toString()+" : "+e);
-               mav.setView("/rent/search.jsp");
-               return mav;
+           	  Map<String, String> temp = new HashMap<String,String>();
+           	  temp.put("modelName", modelNames[i]);
+           	  temp.put("startDate", startDates[i]);
+           	  temp.put("endDate", endDates[i]);
+           	  temp.put("pickupPlace", pickupPlaces[i]);
+           	  failRents.add(temp);
             }
          }else {
-        	 System.out.println("test3");
-            mav.addObject("result", "fail");
-            mav.addObject("message", modelNames[i]+"모델은 이용 가능한 차가 없습니다.");
-            mav.setView("/rent/search.jsp");
-            return mav;
+        	 Map<String, String> temp = new HashMap<String,String>();
+        	 temp.put("modelName", modelNames[i]);
+        	 temp.put("startDate", startDates[i]);
+        	 temp.put("endDate", endDates[i]);
+        	 temp.put("pickupPlace", pickupPlaces[i]);
+        	 failRents.add(temp);
          }
       }
       mav.addObject("resultRents", resultRents);
+      mav.addObject("failRents", failRents);
       mav.setView("/rent/rent_result.jsp");
       return mav;
    }

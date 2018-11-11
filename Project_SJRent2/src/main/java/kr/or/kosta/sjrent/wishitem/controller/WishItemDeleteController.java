@@ -24,7 +24,7 @@ import kr.or.kosta.sjrent.wishitem.service.WishItemServiceImpl;
  * @author 남수현
  */
 
-public class DeleteWishItemController implements Controller {
+public class WishItemDeleteController implements Controller {
 	private XMLObjectFactory factory;
 	private WishItemService wishItemService;
 	private UserService userService;

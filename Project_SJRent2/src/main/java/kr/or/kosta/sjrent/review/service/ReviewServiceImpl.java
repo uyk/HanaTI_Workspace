@@ -52,4 +52,14 @@ public class ReviewServiceImpl implements ReviewService {
 	public int countByModel(String modelName) throws Exception {
 		return reviewDao.countByModel(modelName);
 	}
+
+	@Override
+	public List<Review> listByUserByPage(int page, int listSize, String userId) throws Exception {
+		return reviewDao.listByUserByPage(page, listSize, userId);
+	}
+
+	@Override
+	public int countByUser(String userId) throws Exception {
+		return reviewDao.countByUser(userId);
+	}
 }

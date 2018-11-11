@@ -1,3 +1,9 @@
+<%
+String loginId = (String)request.getAttribute("loginId"); 
+//System.out.println("header에 넘어온 loginId : " + loginId);
+
+%>
+
 <%@ page contentType="text/html; charset=utf-8"%>
       <header id="tg-header" class="tg-header tg-haslayout">
          <div class="container-fluid">
@@ -10,11 +16,23 @@
                      </ul>
                      <div class="tg-userbox">
                         <!-- 로그인 화면 띄우자 -->
+                        <%
+                        if(loginId != null){//로그인
+                        //System.out.println("loginId : "+loginId);
+                        %>
+                        <a id="tg-btnsignin" class="tg-btn" href="/sjrent/user/logout.rent"><span style="size: 15pt">로그아웃</span></a>
+                        
+                        <%	
+                        }else{
+                        %>	
+                            <a id="tg-btnsignin" class="tg-btn" href="#tg-loginsingup"><span style="size: 15pt">로그인</span></a>                        	
+                        <%
+                        }
+                        %>
                          <!-- 재민 수정 시작(1/2) -->
-                        <a id="tg-btnsignin" class="tg-btn" href="#tg-loginsingup"><span style="size: 15pt">로그인</span></a>
                         <!-- 재민 수정 끝(1/2) -->
                         <div class="dropdown tg-dropdown">
-                           <!-- 로그인 되어 있는 경우 -->
+                         <!-- 로그인 되어 있는 경우 -->
                         </div>
                      </div>
                   </div>
