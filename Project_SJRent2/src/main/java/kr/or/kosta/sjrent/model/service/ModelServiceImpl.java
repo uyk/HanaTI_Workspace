@@ -2,6 +2,9 @@ package kr.or.kosta.sjrent.model.service;
 
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
 import kr.or.kosta.sjrent.model.dao.ModelDao;
 import kr.or.kosta.sjrent.model.domain.Model;
 import kr.or.kosta.sjrent.model.params.ModelParams;
@@ -94,6 +97,18 @@ public class ModelServiceImpl implements ModelService {
 	@Override
 	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception {
 		return modelDao.checkEnableCar(startDate, endDate, modelName);
+	}
+
+	@Override
+	public Model recommend(String result) throws Exception {
+		String test = "man,수수,모험,독서";
+		String[] choosed = test.split(",");
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setIgnoringElementContentWhitespace(true);
+		
+		DocumentBuilder parser = factory.newDocumentBuilder();
+		
+		return null;
 	}
 
 }

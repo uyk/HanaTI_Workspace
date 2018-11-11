@@ -1548,7 +1548,7 @@ li.tg-rss a { background:#ff6600; }
 }
 .tg-durationrating { float: left; }
 .tg-tourduration {
-	width: 100%;
+	/*width: 100%;*/
 	float: left;
 	color: #676767;
 	margin: 0 0 12px;
@@ -4233,7 +4233,7 @@ blockquote{
 	color:#676767;
 	font-size:13px;
 	margin:0 0 8px;
-	line-height:17px;
+	/*line-height:17px;*/
 }
 .tg-authorinfo .tg-stars{margin:0;}
 .tg-reviewcontent{overflow:hidden;}

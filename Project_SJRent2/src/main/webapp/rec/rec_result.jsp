@@ -101,11 +101,14 @@
 						<!--************************************
 									Content 시작
 							*************************************-->
-							
+							<%
+				                System.out.println(request.getParameter("hidden")+","+request.getParameter("click"));			
+                            %>
+                            <!-- 
 							<img alt="여행선택지" src="../images/rec/rec_travel2.JPG">
 							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_hobby.jsp'">선택</button>
 							<button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_hobby.jsp'">선택</button>
-							
+					 -->		
 							
 						<!--************************************
 									Content 종료

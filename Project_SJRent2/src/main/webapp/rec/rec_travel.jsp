@@ -103,9 +103,14 @@
 							*************************************-->
 							
 							<img alt="여행선택지" src="../images/rec/rec_travel2.JPG">
-							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_hobby.jsp'">선택</button>
+                            <form action="<%=application.getContextPath()%>/rec/rec_hobby.jsp" method="post">
+                              <input type="hidden" name="hidden" value=<%=request.getParameter("hidden")+","+request.getParameter("click")%> class="btn"/>
+                              <input type="submit" name="click" value="모험" class="btn left" />
+                              <input type="submit" name="click" value="편안" class="btn right" />
+                            </form>
+<!--  							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_hobby.jsp'">선택</button>
 							<button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_hobby.jsp'">선택</button>
-							
+		-->					
 							
 						<!--************************************
 									Content 종료

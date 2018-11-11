@@ -17,6 +17,7 @@ import org.json.simple.JSONObject;
 
 import kr.or.kosta.sjrent.common.controller.Controller;
 import kr.or.kosta.sjrent.common.controller.ModelAndView;
+import kr.or.kosta.sjrent.common.converter.ObjectToJson;
 import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
 import kr.or.kosta.sjrent.review.domain.Review;
 import kr.or.kosta.sjrent.review.service.ReviewService;
@@ -28,10 +29,9 @@ import kr.or.kosta.sjrent.review.service.ReviewServiceImpl;
  */
 public class ReviewListController implements Controller {
 	private XMLObjectFactory factory;
-	private ModelAndView mav;
-	private Review review;
 	private ReviewService reviewService;
 	private JSONArray jsonArray;
+	private ObjectToJson otj;
 	
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -39,6 +39,7 @@ public class ReviewListController implements Controller {
       factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
       reviewService = (ReviewService)factory.getBean(ReviewServiceImpl.class);
       jsonArray = new JSONArray();
+      otj = new ObjectToJson();
       String modelName = request.getParameter("modelName");
       String userId = request.getParameter("userId");
       String pageS = request.getParameter("page");
@@ -66,17 +67,7 @@ public class ReviewListController implements Controller {
 		}
       }
       for(Review review : reviewList) {
-    	  JSONObject reviewObject = new JSONObject();
-    	  reviewObject.put("number", review.getNumber());
-    	  reviewObject.put("modelName", review.getModelName());
-    	  reviewObject.put("userNumber", review.getUserNumber());
-    	  reviewObject.put("userId", review.getUserId());
-    	  reviewObject.put("title", review.getTitle());
-    	  reviewObject.put("content", review.getContent());
-    	  reviewObject.put("picutre", review.getPicture());
-    	  reviewObject.put("date", review.getPicture());
-    	  reviewObject.put("evalScore", review.getEvalScore());
-    	  jsonArray.add(reviewObject);
+    	  jsonArray.add(otj.ObjectToJsonObject(review));
       }
       response.setCharacterEncoding("utf-8");
       try {

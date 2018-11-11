@@ -151,7 +151,7 @@ function setModelList(list) {
 	
 	for ( var i in list) {
 		output += "" + 
-		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\" id='eachModelCol' data-model-name='"+list[i].name+"'>\r\n" + 
+		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\" data-model-name='"+list[i].name+"'>\r\n" + 
 		"                              <div class=\"tg-populartour\"   >\r\n" + 
 		"                                 <figure>\r\n" + 
 		"                                    <a><img\r\n" + 
@@ -275,9 +275,46 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
 function wishResultHide() {
 	$("#wish_result_modal").modal('hide');
 }
+
+/** 
+ * 리뷰 리스트를 가져오는 함수.
+ * 
+ */
+function getReviewList(modelName, page, listSize) {
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/review/list.rent",
+		dataType:"json",
+		type:'POST', 
+		data : {
+	  		modelName : modelName,
+	  		page : page,
+	  		listSzie : listSize
+        },
+		success:function(result){
+			console.log("ok review list \n" + result);
+			setReviewList(result);
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
+}
+
+/**
+ * 리뷰 리스트를 화면에 출력하는 함수 
+ */
+function setReviewList(list) {
+	for ( var i in list) {
+		var a = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each_sample.jsp", { review : list[i] });
+		$("#each_review_ul").append(a);
+		console.log(i + " : " + list[i].modelName);
+	}
+	//$('#each_review_ul')
+}
 </script>
 </head>
 <body>
+<button onclick='getReviewList("NIRO", 1, 10)'>리뷰</button>
    <!--************************************
          Mobile Menu Start
    *************************************-->
@@ -299,6 +336,7 @@ function wishResultHide() {
       <!--************************************
                Inner Banner Start
          *************************************-->
+         
       <div class="tg-homebannerslider"
          class="tg-homebannerslider tg-haslayout">
          <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
