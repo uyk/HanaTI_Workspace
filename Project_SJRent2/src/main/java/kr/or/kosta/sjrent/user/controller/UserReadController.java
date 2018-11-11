@@ -37,18 +37,27 @@ public class UserReadController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		userService = (UserService)factory.getBean(UserServiceImpl.class);
 	
-		String id = (String)request.getServletContext().getAttribute("loginId");
+		String id = (String)request.getAttribute("loginId");
+		//System.out.println("받아오나??????? "+id);
 		User user = null;
 		try {
 			user = userService.read(id);
+			//System.out.println("user : 찍어본다 "+user);
+			mav.addObject("user", user);
+			mav.setView("/mypage/update.jsp");
+
+			return mav;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
-		obj.put("name", user.getName());
-		obj.put("email", user.getEmail());
-		obj.put("phone", user.getCellphone());
+		//obj.put("name", user.getName());
+		//obj.put("email", user.getEmail());
+		//obj.put("phone", user.getCellphone());
+		
+		
+		
 		
 		// 응답으로 json 객체 보내고 컨트롤러 종료
 		try {

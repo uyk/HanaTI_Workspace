@@ -76,25 +76,7 @@ String loginId = (String)request.getAttribute("loginId");
 						<!--************************************
                                     회원탈퇴 시작 
                               *************************************-->
-						<div class="modal" tabindex="-1" role="dialog">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <h5 class="modal-title">회원 탈퇴</h5>
-						        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						          <span aria-hidden="true">&times;</span>
-						        </button>
-						      </div>
-						      <div class="modal-body">
-						        <p>정말 탈퇴 하시겠습니까?</p>
-						      </div>
-						      <div class="modal-footer">
-						        <button type="button" class="btn btn-secondary" >예</button>
-						        <button type="button" class="btn btn-primary" data-dismiss="modal">아니오</button>
-						      </div>
-						    </div>
-						  </div>
-						</div>
+						
 						
 						
 						

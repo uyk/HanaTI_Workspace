@@ -42,8 +42,8 @@ String loginId = (String)request.getAttribute("loginId");
            <div class="tg-homebannerslider" class="tg-homebannerslider tg-haslayout">
               <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
                     <div class="container"> 
-		                  <div class="tg-tabcontent tab-content" style="padding: 0px 350px ;">
-		                     <div role="tabpanel" class="tab-pane active fade in" id="home">
+		                  <div class="tg-tabcontent tab-content" style="padding: 0px 350px ; ">
+		                     <div role="tabpanel" class="tab-pane active fade in" id="home" >
 		                        <!--************************************
 		                                    Title 시작
 		                           *************************************-->
@@ -59,11 +59,21 @@ String loginId = (String)request.getAttribute("loginId");
                               *************************************-->
                               <div>
                                <p style="text-align: center; ">
-                              <%=loginId %>님 환영합니다. 
+                              <%=loginId %>님 환영합니다.<br> 
                               </p> 
                               </div>
-                              <input type="hidden" value="<%=loginId%>">
                               
+                              <%-- <input type="hidden" value="<%=loginId%>"> --%>
+
+
+								<div style="background-color: white; border: thick; width: 25%; font-size: 15pt; margin-left: 38%; margin-bottom: 20%;text-align: center; float: left;">
+								원하는 메뉴를 선택해주세요
+								</div>                        
+								
+								
+								<!-- <div>
+								<input type="text" value="먹어라ㅠㅠㅠㅠㅠㅠ" style="margin-bottom: 20%; background-color: red; margin-left:20%">
+								</div>    -->   
 
 							<!--************************************
                                  Content 종료
@@ -90,7 +100,7 @@ String loginId = (String)request.getAttribute("loginId");
 <!--************************************
          Wrapper 종료
 *************************************-->
-   </div> 
+</div> 
     <jsp:include page="../common/commonjs.jsp" />
 </body>
 </html>

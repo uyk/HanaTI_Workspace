@@ -24,7 +24,7 @@ import kr.or.kosta.sjrent.user.service.UserServiceImpl;
  *
  */
 
-public class LoginController implements Controller {
+public class UpdateController implements Controller {
 	private UserService userService;
 	private JSONObject obj;
 	private ModelAndView mav;

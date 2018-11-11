@@ -5,6 +5,7 @@
 <html>
 <head>
    <jsp:include page="../common/commoncss.jsp" />
+   <title>SJ렌트카</title>
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="tg-home tg-homevone">
