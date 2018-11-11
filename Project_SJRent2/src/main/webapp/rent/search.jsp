@@ -305,16 +305,21 @@ function getReviewList(modelName, page, listSize) {
  */
 function setReviewList(list) {
 	for ( var i in list) {
-		var a = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each_sample.jsp", { review : list[i] });
-		$("#each_review_ul").append(a);
-		console.log(i + " : " + list[i].modelName);
+		var params = {
+			imgPath : '/sjrent/images/review/image1.jpg',
+			userId : list[i].userId,
+			evalScore : list[i].evalScore,
+			date : list[i].date,
+			content : list[i].content
+		};
+		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each_sample.jsp", params);
+		$("#each_review_ul").append(review);
+		console.log(i + " : " + list[i].date);
 	}
-	//$('#each_review_ul')
 }
 </script>
 </head>
 <body>
-<button onclick='getReviewList("NIRO", 1, 10)'>리뷰</button>
    <!--************************************
          Mobile Menu Start
    *************************************-->
