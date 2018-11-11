@@ -185,15 +185,15 @@ function setModelList(list) {
 	}	//for 끝
 	
 	$('#ModelDisplayRow').show();
+	
 	/** 모델 클릭 시 모델 이름을 모달에 전달 */
 	$('#detail_show').on('show.bs.modal', function(e) {
-	    //get data-id attribute of the clicked element
-	    var modelName = $(e.relatedTarget).data('model-name');
+		var modelName = $(e.relatedTarget).data('model-name');
 		console.log("modelName : " + modelName);
-		window.modal =  $(this);
+		window.e = $(e.currentTarget);
 		$.ajax({	
 			url:"<%=application.getContextPath()%>/model/detail.rent",
-			dataType:"html",
+			dataType:"json",
 			type:'POST', 
 			data : {
 	             'modelName' : modelName,
@@ -203,12 +203,24 @@ function setModelList(list) {
 	             'endDate' : rent_end_date
 	        },
 			success:function(result){
-				$(e.currentTarget).html(result);
-			}
+				//$(e.currentTarget).html(result);
+				console.log(result);
+				setDetailModal(result);
+			},
+	        error : function(result) {
+	        	console.log(result);
+	        }
 		});
 	});
 }
-
+function setDetailModal(model) {
+	var amountMoney = model.weekdayPrice * weekday + 
+					  model.weekendPrice * weekend;
+	var imagePath = "../images/cars/"+model.type+"/"+model.picture;
+	console.log(amountMoney);
+	console.log(imagePath);
+	$('#model-detail-img').attr('src',imagePath);
+}
 
 /** <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
 	Controller로부터 받은 데이터를 검사한다.
@@ -246,7 +258,6 @@ function wishResultHide() {
 </script>
 </head>
 <body>
-
    <!--************************************
          Mobile Menu Start
    *************************************-->
@@ -338,8 +349,7 @@ function wishResultHide() {
          <!--************************************
               Detail Modal Start
          *************************************-->
-         <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-         </div>
+         <jsp:include page="/rent/search_detail.jsp" />
          <!--************************************
               Detail Modal End
          *************************************-->
