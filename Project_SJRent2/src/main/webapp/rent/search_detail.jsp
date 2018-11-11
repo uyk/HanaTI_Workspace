@@ -4,40 +4,8 @@
 
 <%-- Model정보를 출력하는 jsp (search.jsp에 include됨)
      컨트롤러로 부터 받은 정보 : model, startDate, endDate, weekday, weekend
-     위시리스트로 넘길 정보 :  model(name,picture,type,fueltype), startDate, endDate, amountMoney
-     예약화면으로 넘길 정보 :  model, startDate, endDate, amountMoney, location
- --%>
- 
-<% 
-Model model = (Model)request.getAttribute("model");
-int amountMoney = 0;
-if(model == null) {
-  System.out.println("null model"); 
-  model = new Model();
-  model.setEvalScore(10.0);
-  model.setFuelType("testFT");
-  model.setName("testName");
-  model.setPicture("NIRO.jpg");
-  model.setReviewCount(5);
-  model.setType("JSegment");
-  model.setWeekdayPrice(50000);
-  model.setWeekendPrice(100000);
-  
-}
-else {
-  amountMoney = model.getWeekdayPrice() * (Integer)request.getAttribute("weekday") + 
-                  model.getWeekendPrice() * (Integer)request.getAttribute("weekend");
-}
-String imagePath = "../images/cars/"+model.getType()+"/"+model.getPicture();
-String modelName = model.getName();
-String startDate = (String)request.getAttribute("startDate");
-String endDate = (String)request.getAttribute("endDate");
-String picture = model.getPicture();
-String type = model.getType();
-String fuelType = model.getFuelType();
-System.out.println("Search Detail s , e : " + startDate +"," + endDate);
-%>
 
+ --%>
 <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-lg">
   	<div id = "tg-content" class="modal-content tg-content">	
@@ -46,20 +14,20 @@ System.out.println("Search Detail s , e : " + startDate +"," + endDate);
   			<div class="tg-bookinginfo" style="margin: 10px 0">
   				<div class= "row">
   					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
-  						<img src='<%=imagePath %>' alt="image description" id='model-detail-img'>
+  						<img src='' alt="image description" id='detail-img'>
   					</div>
   					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-  						<h2 id="model-detail-name">${model.name}</h2>
+  						<h2 id="detail-name">model name filed</h2>
   						<div class="tg-durationrating">
   							<span class='tg-stars'>
-                                <span style='width: ${model.evalScore * 100}%'></span> 
+                                <span id='detail-star'></span> 
                               </span>
-                              <em>(${model.reviewCount} Review)</em> 
+                              <em id='detail-review-count'>model review count filed</em> 
   						</div>
   						<div class="tg-pricearea">
   							<span>총 금액</span>
-  							<h4>
-  								&#8361 <%=amountMoney %>
+  							<h4 id='detail-amount-money'>
+  								model amountMoney filed
   							</h4>
   						</div>
   						<div class="tg-description">
@@ -71,7 +39,7 @@ System.out.println("Search Detail s , e : " + startDate +"," + endDate);
                             <%
                             // 로그인일때의 wish, reserver 버튼
                             if(request.getAttribute("loginId")!= null ) { %> 
-                              <li><a onclick="addToWishList('<%=modelName%>', '<%=startDate%>', '<%=endDate%>', '<%=amountMoney%>', '<%=picture%>', '<%=type%>', '<%=fuelType%>')" id="wishListAnchor"><i class="icon-heart"></i>Wish List</a></li>
+                              <li><a href="#" id="wish-list-anchor"><i class="icon-heart"></i>Wish List</a></li>
                               <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
                             <% }
                             // 로그아웃일때의 reserver 버튼(wish 없음)

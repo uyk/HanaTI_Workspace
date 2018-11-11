@@ -170,7 +170,7 @@ function setModelList(list) {
 		"                                       <div class=\"tg-durationrating\">\r\n" + 
 		"                                          <span class=\"tg-tourduration tg-availabilty\"> weekday "+list[i].weekdayPrice+"&#8361<br/>weekend "+list[i].weekendPrice+"&#8361</span>" + 
 		"										   <span class=\"tg-stars\">"+
-		"											  <span style=\"width: "+list[i].evalScore*100+"%\"></span>" + 
+		"											  <span style=\"width: "+list[i].evalScore*10+"%\"></span>" + 
 		"										   </span>\r\n" + 
 		"                                          <em>(3 Review)</em>\r\n" + 
 		"                                       </div>\r\n" + 
@@ -189,7 +189,6 @@ function setModelList(list) {
 	/** 모델 클릭 시 모델 이름을 모달에 전달 */
 	$('#detail_show').on('show.bs.modal', function(e) {
 		var modelName = $(e.relatedTarget).data('model-name');
-		console.log("modelName : " + modelName);
 		window.e = $(e.currentTarget);
 		$.ajax({	
 			url:"<%=application.getContextPath()%>/model/detail.rent",
@@ -204,27 +203,44 @@ function setModelList(list) {
 	        },
 			success:function(result){
 				//$(e.currentTarget).html(result);
-				console.log(result);
 				setDetailModal(result);
 			},
 	        error : function(result) {
-	        	console.log(result);
+	        	console.log('error in openning detail show' + result);
 	        }
 		});
 	});
 }
+
+/**
+ * 모델 디테일 정보를 표시하는 모달 setDetailModal의 정보를 model객체에서 가져와 설정하는 함수.
+ * 위시리스트로 넘길 정보 :  model(name,picture,type,fueltype), startDate, endDate, amountMoney
+ * 예약화면으로 넘길 정보 :  model, startDate, endDate, amountMoney, location
+ */
 function setDetailModal(model) {
 	var amountMoney = model.weekdayPrice * weekday + 
 					  model.weekendPrice * weekend;
 	var imagePath = "../images/cars/"+model.type+"/"+model.picture;
-	console.log(amountMoney);
-	console.log(imagePath);
-	$('#model-detail-img').attr('src',imagePath);
+	$('#detail-img').attr('src',imagePath);
+	$('#detail-name').html(model.name);
+	$('#detail-star').css('width', model.evalScore * 10 + '%');
+	$('#detail-review-count').html('(' + model.reviewCount + ' Review)');
+	$('#detail-amount-money').html('&#8361 '+ amountMoney);
+	if('<%=request.getAttribute("loginId")%>' == 'null') {
+		console.log('id null');
+	}
+	else {
+		console.log('<%=request.getAttribute("loginId")%>');
+		$('#wish-list-anchor').on('click', function(e) {
+			e.stopPropagation();
+			e.currentTarget.onclick = addToWishList(model.name, rent_start_date, rent_end_date, amountMoney, model.picture, model.type, model.fuelType);
+		})
+	}
 }
-
-/** <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
-	Controller로부터 받은 데이터를 검사한다.
-*/
+/** 
+ * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
+ *	Controller로부터 받은 데이터를 검사한다.
+ */
 function addToWishList(modelName, startDate, endDate, amountMoney, picture, type, fuelType) {
 	$.ajax({	
 		url:"<%=application.getContextPath()%>/wishitem/add.rent",
@@ -252,6 +268,10 @@ function addToWishList(modelName, startDate, endDate, amountMoney, picture, type
 	});
 }
 
+/** 
+ * 위시리스트 추가 결과 모달을 숨기는 함수.
+ * 위시리스트 추가 결과 모달에서 'not now' 버튼을 누르면 실행
+ */
 function wishResultHide() {
 	$("#wish_result_modal").modal('hide');
 }
@@ -373,7 +393,8 @@ function wishResultHide() {
                         <!--************************************
                                Model List Start
                          *************************************-->
-                        <div class="row" id="carListRow"> </div>
+                        <div class="row" id="carListRow">
+                        </div>
                         <!--************************************
                                Model List End
                          *************************************-->

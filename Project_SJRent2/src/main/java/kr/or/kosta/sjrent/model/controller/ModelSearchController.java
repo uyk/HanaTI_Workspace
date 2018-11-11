@@ -11,6 +11,7 @@ import org.json.simple.JSONObject;
 
 import kr.or.kosta.sjrent.common.controller.Controller;
 import kr.or.kosta.sjrent.common.controller.ModelAndView;
+import kr.or.kosta.sjrent.common.converter.ObjectToJson;
 import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
 import kr.or.kosta.sjrent.model.domain.Model;
 import kr.or.kosta.sjrent.model.params.ModelParams;
@@ -28,6 +29,7 @@ public class ModelSearchController implements Controller {
 	private ModelAndView mav;
 	private XMLObjectFactory factory;
 	private JSONArray jsonArray;
+	private ObjectToJson otj;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
@@ -36,6 +38,7 @@ public class ModelSearchController implements Controller {
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
 		jsonArray = new JSONArray();
+		otj = new ObjectToJson();
 		
 		String startDate = request.getParameter("rent_start_date");
 		String endDate = request.getParameter("rent_end_date");
@@ -62,26 +65,7 @@ public class ModelSearchController implements Controller {
 			// Params로 검색한 리스트를 list에 저장
 			list = modelService.listBySearch(modelParams);
 			for (Model model : list) {
-				JSONObject modelObject = new JSONObject();
-				modelObject.put("name", model.getName());
-				modelObject.put("fuelType", model.getFuelType());
-				modelObject.put("fuelEfficiency", model.getFuelEfficiency());
-				modelObject.put("seater", model.getSeater());
-				modelObject.put("transmission", model.getTransmission());
-				modelObject.put("navigation", model.getNavigation());
-				modelObject.put("cameraRear", model.getCameraRear());
-				modelObject.put("year", model.getYear());
-				modelObject.put("highpass", model.getHighpass());
-				modelObject.put("blackBox", model.getBlackBox());
-				modelObject.put("options", model.getOption());
-				modelObject.put("picture", model.getPicture());
-				modelObject.put("type", model.getType());
-				modelObject.put("weekdayPrice", model.getWeekdayPrice());
-				modelObject.put("weekendPrice", model.getWeekendPrice());
-				modelObject.put("evalScore", model.getEvalScore());
-				modelObject.put("rentalCount", model.getRentalCount());
-				modelObject.put("reviewCount", model.getReviewCount());
-				jsonArray.add(modelObject);
+				jsonArray.add(otj.ObjectToJsonObject(model));
 			}
 
 			response.setCharacterEncoding("utf-8");

@@ -102,9 +102,14 @@
 							*************************************-->
 							
 							<img alt="여행선택지" src="../images/rec/rec_celeb2.JPG">
-							<button class="btn left"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
-							<button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
-							
+                            <form action="<%=application.getContextPath()%>/rec/rec_travel.jsp" method="post">
+                              <input type="hidden" name="gender" value="man" class="btn"/>
+                              <input type="submit" name="click" value="화려" class="btn left" />
+                              <input type="submit" name="click" value="수수" class="btn right" />
+<!-- 							 <button class="btn left"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
+							 <button class="btn right"  onclick="location='<%=application.getContextPath()%>/rec/rec_travel.jsp'">선택</button>
+ -->
+							</form>
 							
 						<!--************************************
 									Content 종료

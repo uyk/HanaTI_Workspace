@@ -101,11 +101,9 @@
 						<!--************************************
 									Content 시작
 							*************************************-->
-							
 							<img alt="성별" src="../images/rec/rec_gender1.JPG">
 							<button class="btn left" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb1.jsp'">선택</button>
 							<button class="btn right" onclick="location='<%=application.getContextPath()%>/rec/rec_celeb2.jsp'">선택</button>
-							
 							
 						<!--************************************
 									Content 종료
@@ -125,7 +123,6 @@
 		Wrapper 종료
 *************************************-->
 </div>               
-         
    <script src="<%=application.getContextPath()%>/js/vendor/jquery-library.js"></script>
    <script src="<%=application.getContextPath()%>/js/vendor/bootstrap.min.js"></script>
    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCR-KEWAVCn52mSdeVeTqZjtqbmVJyfSus&language=en"></script>

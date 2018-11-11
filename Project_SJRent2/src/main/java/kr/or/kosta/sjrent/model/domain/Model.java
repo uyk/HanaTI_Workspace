@@ -85,11 +85,11 @@ public class Model {
 	public void setBlackBox(int blackBox) {
 		this.blackBox = blackBox;
 	}
-	public String getOption() {
+	public String getOptions() {
 		return options;
 	}
-	public void setOption(String option) {
-		this.options = option;
+	public void setOptions(String options) {
+		this.options = options;
 	}
 	public String getPicture() {
 		return picture;
