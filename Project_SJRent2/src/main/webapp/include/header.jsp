@@ -40,6 +40,7 @@ String loginId = (String)request.getAttribute("loginId");
                      <div id="tg-navigation" class="collapse navbar-collapse tg-navigation">
                         <ul>
                            <li><a href="<%=application.getContextPath()%>/rent/search.jsp">실시간</a></li>
+                           <li><a class="tg-btn" href="<%=application.getContextPath()%>/rec/rec_index.jsp">추천 예약</a></li>
                            <li class="menu-item-has-children"><a
                               href="javascript:void(0);">커뮤니티</a>
                               <ul class="sub-menu">
@@ -73,15 +74,15 @@ String loginId = (String)request.getAttribute("loginId");
                   </ul>
                   <div class="tg-tabcontent tab-content">
                      <div role="tabpanel" class="tab-pane active fade in" id="home">
-                        <form class="tg-formtheme tg-formlogin">
+                        <form class="tg-formtheme tg-formlogin" action="/sjrent/user/login.rent" method="post">
                            <fieldset>
                               <div class="form-group">
                                  <label>아이디 <sup>*</sup></label>
-                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
+                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
                               </div>
                               <div class="form-group">
                                  <label>비밀번호 <sup>*</sup></label>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10">
+                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
                               </div>
                               <div class="form-group">
                                  <div class="tg-checkbox">

@@ -76,20 +76,20 @@
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>이름</label>
-                                                <input type="text" value="호진" name="user_name" class="form-control" required readonly>
+                                                <input type="text" value="호진" name="user_name" class="form-control" style="text-transform:  none;" required readonly>
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>핸드폰</label>
-                                                <input type="Number" name="user_cellphone" class="form-control" required readonly>
+                                                <input type="Number" name="user_cellphone" class="form-control"  required readonly>
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
                                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                                 <div class="form-group">
                                                    <label>이메일 </label>
-                                                   <input type="email" name="user_email" class="form-control"  required readonly>
+                                                   <input type="email" name="user_email" class="form-control" style="text-transform:  none;" required readonly>
                                                 </div>
                                              </div>
                                              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -112,7 +112,7 @@
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
                                                 <label>차량금액 </label>
-                                                <input type="text" name="paidAmount" class="form-control" value="300000" readonly="readonly">
+                                                <input type="number" name="paidAmount" class="form-control" value="300000" readonly="readonly">
                                              </div>
                                           </div>
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
@@ -156,7 +156,7 @@
                                        </div>
                                        <div class="form-group">
                                           <label>추가 정보 기입</label>
-                                          <textarea placeholder="추가적으로 필요한 것을 적어주세요"></textarea>
+                                          <textarea placeholder="추가적으로 필요한 것을 적어주세요" style="text-transform:  none;"></textarea>
                                        </div>
                                     </div>
                                     <div class="tg-box tg-yourorder">

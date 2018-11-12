@@ -1,6 +1,8 @@
 package kr.or.kosta.sjrent.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.kosta.sjrent.model.domain.Model;
 import kr.or.kosta.sjrent.model.params.ModelParams;
@@ -41,4 +43,6 @@ public interface ModelDao {
 	public boolean changeCount(String name, int num) throws Exception;
 	
 	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception;
+	
+	public List<Map<String,Object>> periodByModelName(String modelName) throws Exception;
 }

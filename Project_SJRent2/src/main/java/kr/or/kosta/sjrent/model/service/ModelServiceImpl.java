@@ -1,6 +1,11 @@
 package kr.or.kosta.sjrent.model.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -142,4 +147,75 @@ public class ModelServiceImpl implements ModelService {
 		return modelDao.read(modelName);
 	}
 
+	@Override
+	public Map<String, HashMap<String, ArrayList<String>>> periodByModelName(String modelName) throws Exception {
+		Map<String, HashMap<String, ArrayList<String>>> last = new HashMap<String, HashMap<String, ArrayList<String>>>();
+		List<Map<String, Object>> ModelList = modelDao.periodByModelName(modelName);
+		for(Map<String, Object> map : ModelList) {
+			if(!last.containsKey(map.get("CAR_NUM"))) {
+				last.put((String)map.get("CAR_NUM"), new HashMap<String, ArrayList<String>>());
+			}
+			String startDate = (String)map.get("RENT_START_DATE");
+			String endDate = (String)map.get("RENT_END_DATE");
+			String[] resultDays = getDiffDays(startDate, endDate);
+			for(int i = 0; i < resultDays.length; i++) {
+				System.out.print(resultDays[i]);
+				if(!last.get((String)map.get("CAR_NUM")).containsKey(resultDays[i].substring(0, 6))) {
+					last.get((String)map.get("CAR_NUM")).put(resultDays[i].substring(0, 6), new ArrayList<String>());
+				}
+				last.get((String)map.get("CAR_NUM")).get(resultDays[i].substring(0, 6)).add(resultDays[i].substring(6, 8));
+			}
+		}
+		return last;
+	}
+	
+	public static String[] getDiffDays(String fromDate, String toDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+
+		Calendar cal = Calendar.getInstance();
+
+		try {
+		cal.setTime(sdf.parse(fromDate));
+		} catch (Exception e) {
+		}
+
+		int count = getDiffDayCount(fromDate, toDate);
+
+		// 시작일부터
+		cal.add(Calendar.DATE, -1);
+
+		// 데이터 저장
+		ArrayList<String> list = new ArrayList<String>();
+
+		for (int i = 0; i <= count; i++) {
+		cal.add(Calendar.DATE, 1);
+
+		list.add(sdf.format(cal.getTime()));
+		}
+
+		String[] result = new String[list.size()];
+
+		list.toArray(result);
+
+		return result;
+		}
+		/**
+		* 두날짜 사이의 일수를 리턴
+		* 
+		* @param fromDate
+		* yyyyMMdd 형식의 시작일
+		* @param toDate
+		* yyyyMMdd 형식의 종료일
+		* @return 두날짜 사이의 일수
+		*/
+		public static int getDiffDayCount(String fromDate, String toDate) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	
+		try {
+		return (int) ((sdf.parse(toDate).getTime() - sdf.parse(fromDate)
+		.getTime()) / 1000 / 60 / 60 / 24);
+		} catch (Exception e) {
+		return 0;
+		}
+		}
 }

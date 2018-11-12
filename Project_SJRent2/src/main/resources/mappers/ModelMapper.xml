@@ -256,5 +256,18 @@
 		                                           To_date(#{startDate}) AND 
 		                                           To_date(#{endDate})))
 	</select>
-
+	<!-- 모델 별로 사용 가능한 차와 기간-->
+	<select id="periodByModelName" parameterType="String" resultType="map" >
+			SELECT c.car_num, 
+			       TO_CHAR(r.rent_start_date, 'YYYYMMDD') rent_start_date, 
+				   TO_CHAR(r.rent_end_date, 'YYYYMMDD') rent_end_date
+			FROM   model m 
+			       left outer join car c 
+			                    ON m.model_name = c.model_name 
+			       left outer join rent r 
+			                    ON c.car_num = r.car_num 
+			WHERE  m.model_name = #{value} 
+			       AND rent_end_date <![CDATA[>]]> SYSDATE 
+			       AND rent_start_date <![CDATA[<]]> Last_day(Add_months(SYSDATE, +1))
+	</select>
 </mapper>

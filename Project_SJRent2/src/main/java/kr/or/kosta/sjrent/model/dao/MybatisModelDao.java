@@ -135,6 +135,14 @@ public class MybatisModelDao implements ModelDao {
 		sqlSession.close();
 		return result;
 	}
+
+	@Override
+	public List<Map<String,Object>> periodByModelName(String modelName) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Map<String, Object>> result = sqlSession.selectList(NAMESPACE+"periodByModelName",modelName);
+		sqlSession.close();
+		return result;
+	}
 }
 
 

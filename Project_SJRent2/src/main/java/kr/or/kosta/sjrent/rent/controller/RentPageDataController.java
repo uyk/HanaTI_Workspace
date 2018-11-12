@@ -12,6 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.kosta.sjrent.common.controller.Controller;
 import kr.or.kosta.sjrent.common.controller.ModelAndView;
 import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
+import kr.or.kosta.sjrent.insurance.domain.Insurance;
+import kr.or.kosta.sjrent.insurance.service.InsuranceService;
+import kr.or.kosta.sjrent.insurance.service.InsuranceServiceImpl;
 import kr.or.kosta.sjrent.user.domain.User;
 import kr.or.kosta.sjrent.user.service.UserService;
 import kr.or.kosta.sjrent.user.service.UserServiceImpl;
@@ -24,6 +27,7 @@ import kr.or.kosta.sjrent.user.service.UserServiceImpl;
 public class RentPageDataController implements Controller{
 	private XMLObjectFactory factory;
 	private UserService userService;
+	private InsuranceService insuranceService;
 	private ModelAndView mav;
 
    @Override
@@ -31,6 +35,7 @@ public class RentPageDataController implements Controller{
          throws ServletException {
       factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
       userService = (UserService) factory.getBean(UserServiceImpl.class);
+      insuranceService = (InsuranceService) factory.getBean(InsuranceServiceImpl.class);
       mav = new ModelAndView();
       List<Map<String,String>> dataMapList = new ArrayList<Map<String,String>>();
       User user = null;
@@ -61,12 +66,19 @@ public class RentPageDataController implements Controller{
     	  temp.put("picture", picture[i]);
     	  dataMapList.add(temp);
       }
+      List<Insurance> insuranceList = new ArrayList<Insurance>();
+      try {
+		insuranceList = insuranceService.listAll();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+      mav.addObject("insuranceList", insuranceList);
       mav.addObject("resultMap", dataMapList);
       mav.addObject("userName", user.getName());
       mav.addObject("userCellphone", user.getCellphone());
       mav.addObject("userEmail", user.getEmail());
       mav.setView("/rent/rent.jsp");
-      
       return mav;
    }
 }

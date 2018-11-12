@@ -1,6 +1,9 @@
 package kr.or.kosta.sjrent.model.service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import kr.or.kosta.sjrent.model.domain.Model;
 import kr.or.kosta.sjrent.model.params.ModelParams;
@@ -38,4 +41,6 @@ public interface ModelService {
 	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception;
 	
 	public Model recommend(String result) throws Exception;
+	
+	public Map<String, HashMap<String, ArrayList<String>>> periodByModelName(String modelName) throws Exception;
 }

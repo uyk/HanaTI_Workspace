@@ -20,7 +20,7 @@
 
 <%
     String loginId = (String)request.getAttribute("loginId"); 
-    System.out.println("request에 넣은 아이디 값 : "+loginId);
+    //System.out.println("request에 넣은 아이디 값 : "+loginId);
 
 %>
 
@@ -52,9 +52,10 @@ if(request.getAttribute("loginId") != null){ //로그인 된 경우
 	<h2 style="text-transform:  none;"><%=request.getAttribute("loginId") %>님의 방문을 환영합니다.</h2>
 	<div class="row justify-content-around" >
 		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/search.jsp"><span>실시간 예약</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/rec/rec_index.jsp"><span>추천 예약</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>커뮤니티</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>위시리스트</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/wish/wish_list.jsp"><span>예약확인</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/wishitem/list.rent"><span>위시리스트</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/list.rent"><span>예약확인</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/user/logout.rent"><span>로그아웃</span></a>
 	</div>
     </div>
@@ -66,9 +67,10 @@ if(request.getAttribute("loginId") != null){ //로그인 된 경우
 	<h2 style="text-transform:  none;">방문을 환영합니다.</h2>
 	<div class="row justify-content-around" >
 		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/search.jsp"><span>실시간 예약</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/rec/rec_index.jsp"><span>추천 예약</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>커뮤니티</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>위시리스트</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/wish/wish_list.jsp"><span>예약확인</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/wishitem/list.rent"><span>위시리스트</span></a>
+		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/list.rent"><span>예약확인</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/user/login2.jsp"><span>로그인</span></a>
 	</div>
     </div>
