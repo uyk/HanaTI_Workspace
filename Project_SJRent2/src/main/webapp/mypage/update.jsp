@@ -79,16 +79,16 @@ String loginId = (String)request.getAttribute("loginId");
                                     회원정보수정 시작 
                               *************************************-->
                        <div role="tabpanel" class="tab-pane active fade in" id="home" style="width: 50%; margin-left: 350px">
-						<form class="tg-formtheme tg-formlogin" action="/sjrent/user/signup.rent" method="post" >
+						<form class="tg-formtheme tg-formlogin" action="/sjrent/mypage/update.rent" method="post" >
                            <fieldset>
                               <div class="form-group">
                                  <h4>아이디<sup>*</sup></h4>
-                                 <input type="text" name="id" class="form-control" maxlength="10" style="text-transform: none;" placeholder="<%=loginId%>" readonly>
+                                 <input type="text" name="id" class="form-control" maxlength="10" style="text-transform: none;" placeholder="${user.id }" readonly>
                               </div>
-                              
+                              <%-- <%=loginId%> --%>
                               <div class="form-group">
                                  <h4>비밀번호<sup>*</sup></h4>
-                                 <input type="text" name="password" class="form-control" placeholder="${user.password }" maxlength="10" style="text-transform: none;" required>
+                                 <input type="password" name="password" class="form-control" placeholder="${user.password }" maxlength="10" style="text-transform: none;" required>
                               </div>
                               
                               <div class="form-group">
@@ -107,13 +107,13 @@ String loginId = (String)request.getAttribute("loginId");
                               
                               <div class="form-group">
 									<label>이메일 <sup>*</sup></label>
-									<input type="text" name="email_non" class="form-control" placeholder="${user.email }" maxlength="30" style="text-transform: lowercase;" required>
+									<input type="text" name="email" class="form-control" placeholder="${user.email }" maxlength="30" style="text-transform: lowercase;" required>
 							  </div>
 											
 											
 							<div class="form-group">
 								<label>핸드폰번호 <sup>*</sup></label>
-								<input type="text" name="cellphone_non" class="form-control" placeholder="${user.cellphone }" maxlength="13" style="text-transform: lowercase;" required>
+								<input type="text" name="cellphone" class="form-control" placeholder="${user.cellphone }" maxlength="13" style="text-transform: lowercase;" required>
 							</div>
 			                          
                                

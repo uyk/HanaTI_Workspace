@@ -5,10 +5,14 @@ import java.util.List;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import kr.or.kosta.sjrent.common.listener.ServletContextLoadListener;
 import kr.or.kosta.sjrent.model.dao.ModelDao;
 import kr.or.kosta.sjrent.model.domain.Model;
 import kr.or.kosta.sjrent.model.params.ModelParams;
-import kr.or.kosta.sjrent.review.dao.ReviewDao;
 
 public class ModelServiceImpl implements ModelService {
 
@@ -101,14 +105,41 @@ public class ModelServiceImpl implements ModelService {
 
 	@Override
 	public Model recommend(String result) throws Exception {
-		String test = "man,수수,모험,독서";
-		String[] choosed = test.split(",");
+		String[] choosed = result.split(",");
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setIgnoringElementContentWhitespace(true);
-		
 		DocumentBuilder parser = factory.newDocumentBuilder();
-		
-		return null;
+		String WEBINFpath = ServletContextLoadListener.class.getResource("").getPath();
+		WEBINFpath = WEBINFpath.substring(0,WEBINFpath.indexOf("/WEB-INF"))+"/WEB-INF/";
+		Document xmlDoc = parser.parse(WEBINFpath+"recommend.xml");
+		Element rootElement = xmlDoc.getDocumentElement();
+		NodeList genderNL = rootElement.getElementsByTagName("gender");
+		String modelName = "";
+		for(int i = 0; i < genderNL.getLength(); i++) {
+			Element element = (Element)genderNL.item(i);
+			if(element.getAttribute("value").equals(choosed[0])) {
+				NodeList celebNL = element.getElementsByTagName("celeb");
+				for(int j = 0; j < celebNL.getLength(); j++) {
+					element = (Element)celebNL.item(j);
+					if(element.getAttribute("value").equals(choosed[1])) {
+						NodeList travelNL = element.getElementsByTagName("travel");
+						for(int k = 0; k < travelNL.getLength(); k++) {
+							element = (Element)travelNL.item(k);
+							if(element.getAttribute("value").equals(choosed[2])) {
+								NodeList hobbyNL = element.getElementsByTagName("hobby");
+								for(int l = 0; l < hobbyNL.getLength(); l++) {
+									element = (Element)hobbyNL.item(l);
+									if(element.getAttribute("value").equals(choosed[3])) {
+										modelName = element.getTextContent();
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		return modelDao.read(modelName);
 	}
 
 }

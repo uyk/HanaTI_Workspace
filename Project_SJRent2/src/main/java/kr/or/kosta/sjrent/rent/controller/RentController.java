@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -47,8 +48,7 @@ public class RentController implements Controller {
       
       User user = null;
       try {
-//         user = userService.read((String)request.getAttribute("loginId"));
-         user = userService.read("gloomycloud");
+         user = userService.read((String)request.getAttribute("loginId"));
       } catch (Exception e) {
          mav.addObject("result", "fail");
          mav.setView("/rent/search.jsp");
@@ -120,6 +120,16 @@ public class RentController implements Controller {
         	 temp.put("pickupPlace", pickupPlaces[i]);
         	 failRents.add(temp);
          }
+      }
+      if(user.getIsUser()==0) {
+    	  Cookie[] cookies = request.getCookies();
+    	  for(Cookie cookie : cookies) {
+    		  if(cookie.getName().equals("loginId")){
+    			  cookie.setMaxAge(0);
+    			  cookie.setPath("/");
+    			  response.addCookie(cookie);
+    		  }
+    	  }
       }
       mav.addObject("resultRents", resultRents);
       mav.addObject("failRents", failRents);

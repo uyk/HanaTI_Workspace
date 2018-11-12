@@ -119,6 +119,7 @@
 	        <if test="name != null">user_name = #{name},</if>
 	        <if test="email != null">user_email = #{email},</if>
 	        <if test="password != null">user_password = #{password},</if>
+	        <if test="cellphone != null">user_cellphone = #{cellphone},</if>
 	        <if test="birthday != null">user_birthday = #{birthday},</if>
 	        <if test="gender != 0">user_gender = #{gender},</if>
 	    </set>

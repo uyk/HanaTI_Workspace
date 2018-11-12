@@ -22,6 +22,8 @@ public interface RentService {
 	public List<Rent> UncancellistByUser(String userId) throws Exception;
 
 	public List<Rent> pastListByUser(String userId) throws Exception;
+
+	public List<Rent> upComingListByUser(String userId) throws Exception;
 	
 	public boolean cancel(int number) throws Exception;
 }

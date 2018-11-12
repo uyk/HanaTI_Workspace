@@ -52,6 +52,7 @@
 		       review_title, 
 		       review_content, 
 		       review_picture, 
+		       review_date,
 		       review_evalscore 
 		FROM   review 
 		WHERE  model_name = #{value} 
@@ -65,7 +66,8 @@
 		       X.user_id, 
 		       X.review_title, 
 		       X.review_content, 
-		       X.review_picture, 
+		       X.review_picture,
+		       X.review_date, 
 		       X.review_evalscore 
 		FROM   (SELECT ROWNUM AS rnum, 
 		               A.review_seq, 
@@ -74,7 +76,8 @@
 		               A.user_id, 
 		               A.review_title, 
 		               A.review_content, 
-		               A.review_picture, 
+		               A.review_picture,
+		               A.review_date, 
 		               A.review_evalscore 
 		        FROM   (SELECT review_seq, 
 		                       model_name, 
@@ -82,7 +85,8 @@
 		                       user_id, 
 		                       review_title, 
 		                       review_content, 
-		                       review_picture, 
+		                       review_picture,
+		                       review_date, 
 		                       review_evalscore 
 		                FROM   review 
 		                WHERE  model_name = #{modelName} 
@@ -99,7 +103,8 @@
 		       X.user_id, 
 		       X.review_title, 
 		       X.review_content, 
-		       X.review_picture, 
+		       X.review_picture,
+		       X.review_date, 
 		       X.review_evalscore 
 		FROM   (SELECT ROWNUM AS rnum, 
 		               A.review_seq, 
@@ -108,7 +113,8 @@
 		               A.user_id, 
 		               A.review_title, 
 		               A.review_content, 
-		               A.review_picture, 
+		               A.review_picture,
+		               A.review_date 
 		               A.review_evalscore 
 		        FROM   (SELECT review_seq, 
 		                       model_name, 
@@ -117,6 +123,7 @@
 		                       review_title, 
 		                       review_content, 
 		                       review_picture, 
+		                       review_date,
 		                       review_evalscore 
 		                FROM   review 
 		                WHERE  user_id = #{userId} 
@@ -133,7 +140,8 @@
 		       user_id, 
 		       review_title, 
 		       review_content, 
-		       review_picture, 
+		       review_picture,
+		       review_date, 
 		       review_evalscore 
 		FROM   review 
 		WHERE  review_seq = #{value} 

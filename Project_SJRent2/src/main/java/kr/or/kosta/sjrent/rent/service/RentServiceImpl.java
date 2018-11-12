@@ -70,4 +70,9 @@ public class RentServiceImpl implements RentService {
 		return rentDao.pastListByUserId(userId);
 	}
 
+	@Override
+	public List<Rent> upComingListByUser(String userId) throws Exception {
+		return rentDao.upComingListByUserId(userId);
+	}
+
 }

@@ -42,13 +42,14 @@ public class UserCheckIdController implements Controller {
 
 
 		String id = request.getParameter("id");
-
+		//System.out.println("넘어왓냐???????" + id);
+		
 		boolean isExistId = false;
 		
 		try {
 			isExistId = userService.isExistId(id);
 			
-			System.out.println(isExistId);
+			//System.out.println("아이디중복여부"+isExistId);
 		} catch (Exception e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -56,12 +57,8 @@ public class UserCheckIdController implements Controller {
 
 		// 중복아이디 없을시 success 보냄
 		if (isExistId == false) {
-			obj.put("result", "success");
 			try {
-				response.getWriter().print(obj);
-				
-				mav.addObject("isExistId", isExistId);
-				
+				response.getWriter().print("success");	
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -71,10 +68,8 @@ public class UserCheckIdController implements Controller {
 		}
 		// 중복아이디 존재시 fail 보냄
 		else {
-
-			obj.put("result", "fail");
 			try {
-				response.getWriter().print(obj);
+				response.getWriter().print("fail");
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

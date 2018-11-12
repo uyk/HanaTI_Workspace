@@ -56,8 +56,7 @@ public class UserSignupController implements Controller {
 			String name = request.getParameter("name");
 			String email1 = request.getParameter("email1");
 			String email2 = request.getParameter("email2");
-			String email_select = request.getParameter("email_select");
-			String email = email1 + "@" + email2 + email_select; 
+			String email = email1 + "@" + email2; 
 			String password = request.getParameter("password");
 			String birthday = request.getParameter("birthday");
 			int point = 10000;
@@ -108,6 +107,7 @@ public class UserSignupController implements Controller {
 				mav.addObject("id", id);
 				mav.addObject("email", email);
 				mav.addObject("cellphone", cellphone);
+				mav.addObject("name", name);
 
 				mav.setView("/user/regist_result.jsp");
 				

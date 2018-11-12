@@ -4,39 +4,155 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+\
 <jsp:include page="../common/commoncss.jsp" />
+
+
+<style type="text/css">
+.buttonEmail{
+     position: relative;
+     top: 470px;
+     left: 450px; 
+     /* transform: translate(-50%, -50%);
+     -ms-transform: translate(-50%, -50%);  */
+}
+
+.buttonId{
+     position: relative;
+     top: 75px;
+     left: 370px; 
+     /* transform: translate(-50%, -50%);
+     -ms-transform: translate(-50%, -50%);  */
+}
+</style>
+
 
 
 
 <script type="text/javascript">
 
 
-/* var checkFirst = false;
-var lastKeyword = '';
-var loopSendKeyword = false;
 
-function checkId() {
+	function checkId() {
 
-	location.href="/sjrent/user/checkId.rent";
+		var id = $('#id').val();
+		//console.log("넣은아이디" + id);
+
+		$.ajax({
+			url : '/sjrent/user/checkId.rent',
+			type : 'post',
+			data : {
+				id : id
+			},
+			success : function(data) {
+				if($.trim(data) != null){
+					if ($.trim(data) == "success") {
+						$('#checkMsg').html(
+								"<p style='COLOR: blue'>사용가능한 아이디입니다.</p>");
+					} else if($.trim(data) == "fail"){
+						$('#checkMsg').html(
+								"<p style='COLOR: red'>이미 사용중인 아이디입니다.</p>");
+				}else{
+					
+					$('#checkMsg').html(
+					"<p style='COLOR: green'>입력값없음.....</p>");
+				}
+				}
+				
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+
+	}
 	
 	
-	if (checkFirst == false) {
-	//0.5초 후에 sendKeyword()함수 실행
+	/* function checkEmail() {
 
-  setTimeout("sendId();", 1000);
-  loopSendKeyword = true;
- }
+		var email1 = $('#email1').val();
+		console.log("넣은email1" + email1);
+
+		var email2 = $('#email2').val();
+		console.log("넣은email2" + email2);
+
+		var email = email1 + email2;
+		
+		console.log("넣은이메일" + email);
+
+		$.ajax({
+			url : '/sjrent/user/checkEmail.rent',
+			type : 'post',
+			data : {
+				email : email
+			},
+			success : function(data) {
+				if ($.trim(data) == "success") {
+					$('#checkMsg2').html(
+							"<p style='COLOR: blue'>사용가능한 이메일입니다.</p>");
+				} else{
+					$('#checkMsg2').html(
+					"<p style='COLOR: red'>이미 사용중인 이메일입니다.</p>");
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+
+	} */
 	
 	
- checkFirst = true;
-} */
 
+	function emailSelect() {
+		//alert('dddd');
+		var emailSelectBox = document.getElementById("emailSelectBox");
+		var email2 = document.getElementById("email2");
+
+		email2.value = emailSelectBox.options[emailSelectBox.selectedIndex].value;
+
+	}
 	
+	function emailCheck() {
+		//alert('g');
+		var email1 = $('#email1').val();
+		var email2 = $('#email2').val();
+		var email = email1 + "@" + email2; 
+		//alert(email);
+		
 
+		$.ajax({
+			url : '/sjrent/user/checkEmail.rent',
+			type : 'post',
+			data : {
+				email : email
+			},
+			success : function(data) {
+				if ($.trim(data) == "success") {
+					$('#checkMsg2').html(
+							"<p style='COLOR: blue'>사용가능한 이메일입니다.</p>");
+				} else{
+					$('#checkMsg2').html(
+					"<p style='COLOR: red'>이미 사용중인 이메일입니다.</p>");
+				}
+			},
+			error : function() {
+				alert("에러입니다");
+			}
+		});
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	function idCheck() {
+		alert('e');
+	}
 </script>
-
-
 
 
 </head>
@@ -78,18 +194,37 @@ function checkId() {
                <div class="tg-tabcontent tab-content" style="padding: 0px 350px 0;">
                   <div role="tabpanel" class="tab-pane active fade in" id="home">
                      <div style="text-align: center; margin: 70px 0px"><h2>회원가입</h2></div>
-  
+                     <div>
+                     <button type="button" class="btn buttonEmail " style="height: 40px; margin-left: 10px; " onclick="emailCheck()" >중복확인 </button>
+                     <button type="button" class="btn buttonId " style="height: 40px; " onclick="idCheck()" >중복확인 </button>
+                     </div>
                         <form class="tg-formtheme tg-formlogin" action="/sjrent/user/signup.rent" method="post" >
                            <fieldset>
+                             <!--  <div class="form-group">
+                                 <div style="vertical-align: middle;">
+                                 <h4 style="display: inline-block;">아이디<sup>*</sup></h4>
+                                 
+                                 <div style="display: inline-block;">
+                                 <button type="button" class="btn btn-outline-success" style="height: 40px; margin-left: 10px; " onclick="emailCheck()" >중복확인 </button>
+                                 </div> 
+                                 </div>
+                                 <div style="vertical-align: middle;">
+                                 <input type="text" name="id" id="id" class="form-control" oninput="checkId()" maxlength="10" style="text-transform: none; display:  inline-block;" required placeholder="최대 10자 입력 가능">
+                                 </div>
+                              </div> -->
+                              
+                              
+                              
                               <div class="form-group">
                                  <h4>아이디<sup>*</sup></h4>
-                                 <input type="text" name="id" class="form-control" onkeydown="checkId()" maxlength="10" style="text-transform: none;" required>
-                                 <div id="checkMsg">아이디를 입력하세요.</div>
+                                 <input type="text" name="id" class="form-control" maxlength="10" style="text-transform: none;" required placeholder="최대 10자 입력 가능">
+                                 <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg"></div>
                               </div>
+                              
                               
                               <div class="form-group">
                                  <h4>비밀번호<sup>*</sup></h4>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10" style="text-transform: none;" required>
+                                 <input type="password" name="password" class="form-control" maxlength="10" style="text-transform: none;" required placeholder="최대 10자 입력 가능">
                               </div>
                               
                               <div class="form-group">
@@ -107,32 +242,41 @@ function checkId() {
                               </div>
                               
                                <div class="form-group">
-                                 <h4>이메일<sup>*</sup></h4>
-                                 <input type="text" name="email1" maxlength="10" size="12" style="text-transform: none;"> @ 
-                                 <input type="text" name="email2" maxlength="10" size="12" style="text-transform: none;" id="selectedAddress">  
-
-                                 <select name="email_select" style="text-transform: lowercase;" class="box" id="selectBox" onChange="checkemailaddy();">
-                                  <option value="" selected >선택하세요</option>
-                                  <option value="naver.com" >naver.com</option>
-                                  <option value="hotmail.com" id="hotmail">hotmail.com</option>  
-                                  <option value="hanmail.com" id="hanmail">hanmail.com</option>
-                                  <option value="yahoo.co.kr" id="yahoo">yahoo.co.kr</option>
-                                  <option >직접입력</option>
+                               <div style="vertical-align: middle;">
+                                 <h4 style="display: inline-block;" >이메일<sup>*</sup></h4>
+                                 
+                                </div>
+                               <div style="vertical-align: middle;">
+                                  <input type="text" name="email1" id="email1" maxlength="10" size="12" style="text-transform: none;" required> @ 
+                                  <input type="text" name="email2" id="email2" maxlength="10" size="12" style="text-transform: none;" required  oninput="checkEmail()">  
+                                 
+                                 <select name="emailSelectBox" style="text-transform: lowercase;" class="box" id="emailSelectBox" onchange="emailSelect()" >
+                                    <option value="" selected >선택하세요</option>
+                                    <option value="naver.com" >naver.com</option>
+                                    <option value="hotmail.com" id="hotmail">hotmail.com</option>   
+                                    <option value="hanmail.com" id="hanmail">hanmail.com</option>
+                                    <option value="yahoo.co.kr" id="yahoo">yahoo.co.kr</option>
+                                    <option value="">직접입력</option>
                                  </select>
+                                 <!-- <div style="display: inline-block;">
+                                 <button type="button" class="btn btn-outline-success" style="height: 40px; margin-left: 10px; " onclick="emailCheck()" >중복확인 </button>
+                                 </div> -->
+                              </div>
+                              <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg2"></div>
                               </div>
                                  
                               <div class="form-group">
                                  <h4>핸드폰번호<sup>*</sup></h4>
                                  <div style="display: inline-block;">
-                                    <select style="width: 110px" name="cellphone1">
+                                    <select style="width: 140px" name="cellphone1">
                                        <option> 010 
                                        <option> 011
                                        <option> 017
                                        <option> 018
                                        <option> 019
                                     </select>  -  
-                                    <input type="text" size="11" maxlength="4"  name="cellphone2">  -  
-                                    <input type="text" size="11" maxlength="4"  name="cellphone3">
+                                    <input type="text" size="12" maxlength="4"  name="cellphone2">  -  
+                                    <input type="text" size="12" maxlength="4"  name="cellphone3">
                                  </div>
                               </div>
                            </fieldset>

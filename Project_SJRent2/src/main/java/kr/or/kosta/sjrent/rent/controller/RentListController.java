@@ -32,7 +32,7 @@ public class RentListController implements Controller {
 
 		String id = request.getParameter("id");
 		
-		//list 출력 타입에 따라 분기. all은 해당 유저 전체 예약, cancel은 취소 된 예약, uncancel은 취소하지 않느 예약 past는 과거 예약
+		//list 출력 타입에 따라 분기. all은 해당 유저 전체 예약, cancel은 취소 된 예약, uncancel은 취소하지 않느 예약 past는 과거 예약, upComing은 사용 가능한 예약
 		String type = request.getParameter("type");
 		System.out.println("RentListController id : " + id);
 		List<Rent> list = null;
@@ -59,6 +59,13 @@ public class RentListController implements Controller {
 				try {
 					list = rentService.pastListByUser(id);
 				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}else if(type.equals("upComing")) {
+				try {
+					rentService.upComingListByUser(id);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

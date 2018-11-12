@@ -101,6 +101,14 @@ public class MybatisRentDao implements RentDao {
 		sqlSession.close();
 		return rentList;
 	}
+
+	@Override
+	public List<Rent> upComingListByUserId(String userId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Rent> rentList = sqlSession.selectList(NAMESPACE + "upComingListByUserId", userId);
+		sqlSession.close();
+		return rentList;
+	}
 	
 }
 

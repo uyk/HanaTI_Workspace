@@ -54,9 +54,8 @@ public class UserCheckEmailController implements Controller {
 
 		// 중복이메일 없을시 success 보냄
 		if (isExistEmail == false) {
-			obj.put("result", "success");
 			try {
-				response.getWriter().print(obj);
+				response.getWriter().print("success");
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -66,9 +65,8 @@ public class UserCheckEmailController implements Controller {
 		}
 		// 중복이메일 존재시 fail 보냄
 		else {
-			obj.put("result", "fail");
 			try {
-				response.getWriter().print(obj);
+				response.getWriter().print("fail");
 				return null;
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

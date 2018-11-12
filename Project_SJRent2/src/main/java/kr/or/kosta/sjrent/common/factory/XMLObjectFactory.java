@@ -52,7 +52,6 @@ public class XMLObjectFactory{
 				String beanClassName = bean.getAttribute("class");
 				Object beanObject = Class.forName(beanClassName).newInstance();
 				objectList.put(beanName, beanObject);
-				
 				if(beanType.equals("component") && beanName.equals("dataSource")) {
 					NodeList propertyList = bean.getChildNodes();
 					String driverClassName = null;

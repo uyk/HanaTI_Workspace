@@ -44,29 +44,42 @@
 									<h2>회원가입 완료</h2>
 								</div>
 
-									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">아이디 : ${id} </h4>
-									</div>
-									<div style="display: inline-block">
-									<!-- <input type="text" name="id" style="border: none;"
-									maxlength="10"> -->
-										</div>
-									</div>
+                  
+                                    <div class="form-group">
+                                      <div style="display: inline-block;">
+                                        <h4 style="width: 300px; text-transform: none;">아이디
+                                          :&nbsp ${id}</h4>
+                                      </div>
+                                      <div style="display: inline-block">
+                                        <!-- <input type="text" name="id" style="border: none;"
+                                    maxlength="10"> -->
+                                      </div>
+                                    </div>
 
-									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">이메일 : ${email }</h4>
+                                    <div class="form-group">
+                                      <div style="display: inline-block;">
+                                        <h4 style="width: 300px; text-transform: none;">이 &nbsp 름
+                                          :&nbsp ${name}</h4>
+                                      </div>
+                                      <div style="display: inline-block">
+                                        <!-- <input type="text" name="id" style="border: none;"
+                                    maxlength="10"> -->
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+										<div style="display: inline-block; ">
+									<h4 style="width: 300px; text-transform: none;">이메일 :&nbsp ${email }</h4>
 									</div>
 									<div style="display: inline-block">
-									<<!-- input type="text" name="email" style="border: none;"
+									<!-- input type="text" name="email" style="border: none;"
 									maxlength="10"> -->
 										</div>
 									</div>
 									
 									<div class="form-group">
-										<div style="display: inline-block;">
-									<h4 style="width: 100px">휴대폰 : ${cellphone }</h4>
+									<div style="display: inline-block;">
+									<h4 style="width: 300px">휴대폰 :&nbsp ${cellphone }</h4>
 									</div>
 									<div style="display: inline-block">
 									<!-- <input type="text" name="phone" style="border: none;"

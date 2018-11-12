@@ -122,6 +122,7 @@ $(document).ready(function(){
    });
    
 });
+
 /** datepicker에서 선택된 날짜를 필요한 형식으로 변환하는 함수 */
 function formatDate(date){
  	var d = new Date(date),
@@ -134,6 +135,7 @@ function formatDate(date){
  	return [year, month, day].join('-');
  }
  
+
 /** list의 모델들을 html로 추가하는 함수 */
 function setModelList(list) {
 	var startDay = new Date(rent_start_date).getDay();
@@ -197,7 +199,7 @@ function setModelList(list) {
 			dataType:"json",
 			type:'POST', 
 			data : {
-	             'modelName' : modelName,
+	             'model_name' : modelName,
 	             'weekday' : weekday,
 	             'weekend' : weekend,
 	             'startDate' : rent_start_date,
@@ -222,6 +224,7 @@ function setModelList(list) {
 	  	});
 	});
 }
+
 
 /**
  * 모델 디테일 정보를 표시하는 모달 setDetailModal의 정보를 model객체에서 가져와 설정하는 함수.
@@ -460,8 +463,15 @@ function setReviewList(list) {
       <main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
       <div class="container" style="width: 90%">
          <!--************************************
-              Detail Modal Start
+              Detail Model Start
          *************************************-->
+
+         <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+            
+         </div>
+         <!--************************************
+              Detail Model End
+
          <jsp:include page="/rent/search_detail.jsp" />
          <!--************************************
               Detail Modal End
@@ -473,6 +483,7 @@ function setReviewList(list) {
          <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
          <!--************************************
               Wish Result Modal End
+
          *************************************-->
          <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
@@ -512,7 +523,49 @@ function setReviewList(list) {
    <!--************************************
                Login method
    *************************************--> 
+
+   
+   <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
+      <div class="tg-contentarea tg-themescrollbar">
+         <div class="tg-scrollbar">
+            <button type="button" class="close">x</button>
+            <div class="tg-logincontent">
+               <div class="tg-themetabs">
+                  <ul style= "text-align: center;">
+                     <li style="list-style: none;"><h2>로그인</h2></li>
+                  </ul>
+                  <div class="tg-tabcontent tab-content">
+                     <div role="tabpanel" class="tab-pane active fade in" id="home">
+                        <form class="tg-formtheme tg-formlogin">
+                           <fieldset>
+                              <div class="form-group">
+                                 <label>아이디 <sup>*</sup></label>
+                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
+                              </div>
+                              <div class="form-group">
+                                 <label>비밀번호 <sup>*</sup></label>
+                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10">
+                              </div>
+                              <div class="form-group">
+                                 <div class="tg-checkbox">
+                                    <input type="checkbox" name="remember" id="rememberpass">
+                                    <label for="rememberpass">아이디 저장</label>
+                                 </div>
+                              </div>
+                              <button class="tg-btn tg-btn-lg"><span>로그인</span></button>
+                           </fieldset>
+                        </form>
+                     </div>
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
    <jsp:include page="/rent/search_include/search_login.jsp"/>
+
 
 </body>
 </html>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<choosed>
+		<gender value="man">
+			<celeb value="화려">
+				<travel value="모험">
+					<hobby value="맥주">MOHAVI</hobby>
+					<hobby value="독서">QM6</hobby>
+				</travel>
+				<travel value="편안">
+					<hobby value="맥주">AUDI_A6</hobby>
+					<hobby value="독서">BMW_520d</hobby>
+				</travel>
+			</celeb>
+			<celeb value="수수">
+				<travel value="모험">
+					<hobby value="맥주">2018SORENTO</hobby>
+					<hobby value="독서">2017SANTAFE</hobby>
+				</travel>
+				<travel value="편안">
+					<hobby value="맥주">2017GRANDEUR</hobby>
+					<hobby value="독서">2018K3</hobby>
+				</travel>
+			</celeb>
+		</gender>
+		<gender value="woman">
+			<celeb value="화려">
+				<travel value="모험">
+					<hobby value="맥주">2018SORENTO</hobby>
+					<hobby value="독서">QM3</hobby>
+				</travel>
+				<travel value="편안">
+					<hobby value="맥주">G70</hobby>
+					<hobby value="독서">MINI</hobby>
+				</travel>
+			</celeb>
+			<celeb value="수수">
+				<travel value="모험">
+					<hobby value="맥주">TIVOLI</hobby>
+					<hobby value="독서">RAY</hobby>
+				</travel>
+				<travel value="편안">
+					<hobby value="맥주">2018K3</hobby>
+					<hobby value="독서">2018MORNING</hobby>
+				</travel>
+			</celeb>
+		</gender>
+	</choosed>
