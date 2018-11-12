@@ -17,7 +17,6 @@
   						<img src='' alt="image description" id='detail-img'>
   					</div>
   					<div class="col-xs-12 col-sm-6 col-md-6 col-lg-7">
-           <button onclick='getReviewList("NIRO", 1, 10)'>리뷰</button>
   						<h2 id="detail-name">model name filed</h2>
   						<div class="tg-durationrating">
   							<span class='tg-stars'>

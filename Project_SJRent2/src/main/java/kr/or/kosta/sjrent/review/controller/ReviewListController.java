@@ -72,6 +72,7 @@ public class ReviewListController implements Controller {
       }
       response.setCharacterEncoding("utf-8");
       try {
+    	  System.out.println(jsonArray);
 		response.getWriter().print(jsonArray);
 	} catch (IOException e) {
 		e.printStackTrace();

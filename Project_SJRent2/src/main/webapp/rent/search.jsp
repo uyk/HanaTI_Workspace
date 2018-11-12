@@ -36,6 +36,10 @@ var rent_end_date;
 var date;
 var weekday = 0;
 var weekend = 0;
+
+/**
+ * search.jsp가 로드될 때 실행되는 함수
+ */
 $(document).ready(function(){
 	console.log('id : ' + '<%=request.getAttribute("loginId")%>');
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
@@ -108,15 +112,13 @@ $(document).ready(function(){
       });
       
       /** 랭킹 목록을 불러오는 poularController로 요청 전달. html로 받아서 표시*/
-    	$.ajax({	
-    		url:"<%=application.getContextPath()%>/model/popular.rent",
-    		dataType:"html",
-    		type:'GET', 
-    		success:function(result){
-    			$("#rank-list").html(result);
-    		}
-    	});
-      
+      $.ajax({
+    	  url:"<%=application.getContextPath()%>/model/popular.rent",
+    	  type:'GET', 
+    	  success:function(result){
+    		  $("#rank-list").html(result);
+    		  }
+  	  });
    });
    
 });
@@ -186,7 +188,7 @@ function setModelList(list) {
 	
 	$('#ModelDisplayRow').show();
 	
-	/** 모델 클릭 시 모델 이름을 모달에 전달 */
+	/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
 	$('#detail_show').on('show.bs.modal', function(e) {
 		var modelName = $(e.relatedTarget).data('model-name');
 		window.e = $(e.currentTarget);
@@ -209,12 +211,16 @@ function setModelList(list) {
 	        	console.log('error in openning detail show' + result);
 	        }
 		});
+	  	/** 리뷰 탭 클릭시 getReviewList 시작 */
+	  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+	  		//e.target // newly activated tab
+	  		//e.relatedTarget // previous active tab
+	  		console.log(e.target.getAttribute('aria-controls'));
+	  		if(e.target.getAttribute('aria-controls') == 'review') {
+	  			getReviewList(modelName, 1, 10)
+	  		}
+	  	});
 	});
-	
-	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-		  e.target // newly activated tab
-		  //e.relatedTarget // previous active tab
-	})
 }
 
 /**
@@ -289,7 +295,9 @@ function wishResultHide() {
  * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
  */
  function goToReserve(startDate, endDate, amountMoney, pickupPlace) {
+	// 로그인 중
 	if( '<%=request.getAttribute("loginId")%>' != 'null'){
+		// post로 데이터 전달
 	    var form = document.createElement("form");
 	    form.setAttribute("method", "post");
 	    form.setAttribute("action", '<%=application.getContextPath()%>/rent/page.rent');
@@ -345,6 +353,7 @@ function getReviewList(modelName, page, listSize) {
  * 리뷰 리스트를 화면에 출력하는 함수 
  */
 function setReviewList(list) {
+	$("#each_review_ul").html("");
 	for ( var i in list) {
 		var params = {
 			imgPath : '/sjrent/images/review/image1.jpg',
@@ -353,7 +362,7 @@ function setReviewList(list) {
 			date : list[i].date,
 			content : list[i].content
 		};
-		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each_sample.jsp", params);
+		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each.jsp", params);
 		$("#each_review_ul").append(review);
 		console.log(i + " : " + list[i].date);
 	}
