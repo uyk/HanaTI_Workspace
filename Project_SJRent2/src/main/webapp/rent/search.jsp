@@ -364,8 +364,6 @@ function setReviewList(list) {
 </script>
 </head>
 <body>
-<button data-toggle='modal'
-  data-target='#login_modal'>로그인모달</button>
    <!--************************************
          Mobile Menu Start
    *************************************-->
