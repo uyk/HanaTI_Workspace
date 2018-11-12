@@ -1,4 +1,4 @@
-package kr.or.kosta.sjrent.mypage.controller;
+package kr.or.kosta.sjrent.user.mypage.controller;
 
 import java.io.IOException;
 import java.util.List;

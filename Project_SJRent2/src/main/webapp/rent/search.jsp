@@ -199,7 +199,7 @@ function setModelList(list) {
 			dataType:"json",
 			type:'POST', 
 			data : {
-	             'model_name' : modelName,
+	             'modelName' : modelName,
 	             'weekday' : weekday,
 	             'weekend' : weekend,
 	             'startDate' : rent_start_date,
@@ -213,7 +213,11 @@ function setModelList(list) {
 	        	console.log('error in openning detail show' + result);
 	        }
 		});
+		
+		getReviewList(modelName, 1, 10);
+		
 	  	/** 리뷰 탭 클릭시 getReviewList 시작 */
+	  	/** 
 	  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 	  		//e.target // newly activated tab
 	  		//e.relatedTarget // previous active tab
@@ -222,6 +226,7 @@ function setModelList(list) {
 	  			getReviewList(modelName, 1, 10)
 	  		}
 	  	});
+	  	*/
 	});
 }
 
@@ -465,16 +470,9 @@ function setReviewList(list) {
          <!--************************************
               Detail Model Start
          *************************************-->
-
-         <div id = "detail_show" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-            
-         </div>
+          <jsp:include page="/rent/search_detail.jsp" />
          <!--************************************
               Detail Model End
-
-         <jsp:include page="/rent/search_detail.jsp" />
-         <!--************************************
-              Detail Modal End
          *************************************-->
          
          <!--************************************
@@ -523,46 +521,6 @@ function setReviewList(list) {
    <!--************************************
                Login method
    *************************************--> 
-
-   
-   <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
-      <div class="tg-contentarea tg-themescrollbar">
-         <div class="tg-scrollbar">
-            <button type="button" class="close">x</button>
-            <div class="tg-logincontent">
-               <div class="tg-themetabs">
-                  <ul style= "text-align: center;">
-                     <li style="list-style: none;"><h2>로그인</h2></li>
-                  </ul>
-                  <div class="tg-tabcontent tab-content">
-                     <div role="tabpanel" class="tab-pane active fade in" id="home">
-                        <form class="tg-formtheme tg-formlogin">
-                           <fieldset>
-                              <div class="form-group">
-                                 <label>아이디 <sup>*</sup></label>
-                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
-                              </div>
-                              <div class="form-group">
-                                 <label>비밀번호 <sup>*</sup></label>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10">
-                              </div>
-                              <div class="form-group">
-                                 <div class="tg-checkbox">
-                                    <input type="checkbox" name="remember" id="rememberpass">
-                                    <label for="rememberpass">아이디 저장</label>
-                                 </div>
-                              </div>
-                              <button class="tg-btn tg-btn-lg"><span>로그인</span></button>
-                           </fieldset>
-                        </form>
-                     </div>
-                     
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
 
    <jsp:include page="/rent/search_include/search_login.jsp"/>
 
