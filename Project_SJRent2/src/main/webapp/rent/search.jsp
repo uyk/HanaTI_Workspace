@@ -248,6 +248,17 @@ function setDetailModal(model) {
 	$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
 	$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
 	$('#detail-reserve-count').html(' ' + model.rentalCount + ' Times Reserved');
+	$('#about-this-model').html('<p>'+ model.name +' 모델 차량은 '+ model.fuelType +' 타입연료를 사용하는 차량으로 최대 '+model.seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
+			'<p>'+ model.name +'의 주중 가격은 '+model.weekdayPrice+' 원입니다. 주말 가격은 '+model.weekendPrice+'원 입니다.</p>');
+	
+	var optionsHTML = '<p>주요 옵션은 아래와 같습니다.</p> <ul class="tg-liststyle">';
+	optionsHTML += '<li><span>연비 : ' + model.fuelEfficiency + '</span></li>';
+	if(model.navigation == 1) {
+		optionsHTML += '<li><span>연비 : ' + model.fuelEfficiency + '</span></li>';
+		
+	}
+	optionsHTML += '</ul>';
+	$('#important-options').html(optionsHTML);
 	if('<%=request.getAttribute("loginId")%>' == 'null') {
 		console.log('id null');
 	}

@@ -33,11 +33,13 @@
 <div role="tabpanel" class="tab-pane tg-reviewtab" id="review" >
   <div class="tg-reviewsarea">
     <form class="tg-formtheme tg-formreviews">
+    <%-- 리뷰 개수, 필터 
       <fieldset class="tg-filterby">
         <div class="tg-durationrating">
           <em id='review-list-count'></em>
         </div>
-        <span class="tg-select"> <select>
+        <span class="tg-select">
+        <select>
             <option>Filter by</option>
             <option>Rating</option>
             <option>New</option>
@@ -45,8 +47,9 @@
         </select>
         </span>
       </fieldset>
+    --%>
       <fieldset class="tg-reviews">
-        <ul id='each_review_ul'>
+        <ul id='each_review_ul' style='margin-botton: 30px;'>
 
         </ul>
       </fieldset>
