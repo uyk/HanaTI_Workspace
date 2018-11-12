@@ -117,7 +117,7 @@ $(document).ready(function(){
     	  type:'GET', 
     	  success:function(result){
     		  $("#rank-list").html(result);
-    		  }
+  		  }
   	  });
    });
    
@@ -139,9 +139,10 @@ function formatDate(date){
 /** list의 모델들을 html로 추가하는 함수 */
 function setModelList(list) {
 	var startDay = new Date(rent_start_date).getDay();
-	var end = new Date(rent_end_date);
-	var output = "";
+	var end = new Date(rent_end_date).getDay();
+	$("#carListRow").html("");
 	
+	// 주말, 주중 계산
 	for(var i = 0; i < date; i++) {
 		if(startDay == 0 || startDay == 6) {
 			weekend++;
@@ -154,38 +155,19 @@ function setModelList(list) {
 	}
 	
 	for ( var i in list) {
-		output += "" + 
-		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" style=\"margin-bottom: 1em;\" data-toggle=\"modal\" data-target=\"#detail_show\" data-model-name='"+list[i].name+"'>\r\n" + 
-		"                              <div class=\"tg-populartour\"   >\r\n" + 
-		"                                 <figure>\r\n" + 
-		"                                    <a><img\r\n" + 
-		"                                       src=\"../images/cars/"+list[i].type+"/"+list[i].picture+"\" alt=\"image destinations\"></a>\r\n" + 
-		"                                 </figure>\r\n" + 
-		"                                 <div class=\"tg-populartourcontent\">\r\n" + 
-		"                                    <div class=\"tg-populartourtitle\">\r\n" + 
-		"                                       <h3>\r\n" + 
-		"                                          <a class=\"car_detail\">"+ list[i].name +"</a> \r\n" + 
-		"                                       </h3>\r\n" + 
-		"                                    </div>\r\n" + 
-		"                                    <div class=\"tg-description\" style=\"height: 150px;\">\r\n" + 
-		"                                       <p>"+ list[i].options +"</p>\r\n" + 
-		"                                    </div>\r\n" + 
-		"                                    <div class=\"tg-populartourfoot\">\r\n" + 
-		"                                       <div class=\"tg-durationrating\">\r\n" + 
-		"                                          <span class=\"tg-tourduration tg-availabilty\"> weekday "+list[i].weekdayPrice+"&#8361<br/>weekend "+list[i].weekendPrice+"&#8361</span>" + 
-		"										   <span class=\"tg-stars\">"+
-		"											  <span style=\"width: "+list[i].evalScore*10+"%\"></span>" + 
-		"										   </span>\r\n" + 
-		"                                          <em>(3 Review)</em>\r\n" + 
-		"                                       </div>\r\n" + 
-		"                                       <div class=\"tg-pricearea\">\r\n" + 
-		"                                          <h4>"+ (list[i].weekdayPrice * weekday + list[i].weekendPrice * weekend)  +"</h4>\r\n" + 
-		"                                       </div>\r\n" + 
-		"                                    </div>\r\n" + 
-		"                                 </div>\r\n" + 
-		"                              </div>\r\n" + 
-		"                           </div>\r\n";
-		$("#carListRow").html(output);
+		var params = {
+			imgPath : '/sjrent/images/cars/'+list[i].type+'/'+list[i].picture,
+			modelName : list[i].name,
+			options : list[i].options,
+			weekday : weekday,
+			weekend : weekend,
+			weekdayPrice : list[i].weekdayPrice,
+			weekendPrice : list[i].weekendPrice,
+			starPercent : list[i].evalScore * 10,
+			reviewCount : list[i].reviewCount
+		};
+		var model = $('<div></div>').load("<%=application.getContextPath()%>/rent/search_include/search_each.jsp", params);
+		$("#carListRow").append(model);
 	}	//for 끝
 	
 	$('#ModelDisplayRow').show();
@@ -261,7 +243,6 @@ function setDetailModal(model) {
 	getReviewList(model.name, 1, 10);
 	// 리뷰탭 리뷰 개수, 별 css 설정
 	$('#review-list-count').html('(' + model.reviewCount + ' Review)');
-	$('#review-list-star').css('width', model.evalScore * 10 + '%');
 }
 /** 
  * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
@@ -485,7 +466,6 @@ function setReviewList(list) {
          <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
          <!--************************************
               Wish Result Modal End
-
          *************************************-->
          <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
