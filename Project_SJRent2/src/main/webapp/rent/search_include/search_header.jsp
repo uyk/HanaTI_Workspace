@@ -1,4 +1,7 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%
+String loginId = (String)request.getAttribute("loginId"); 
+%>
 <header id="tg-header"
          class="tg-header tg-headervtwo tg-headerfixed tg-haslayout">
          <div class="container-fluid">
@@ -9,9 +12,19 @@
                      alt="shoppingmall logo"></a></strong>
                <nav class="tg-infonav">
                   <ul>
-                     <!-- 로그인 화면 띄우자 -->
-                     <li><a id="tg-btnsignin" href="#tg-loginsingup">로그인</a></li>
-                     <!-- 로그인 되어 있는 경우 -->
+                     <!-- 로그인 체크 -->
+                      <%
+                        if(loginId != null){
+                        %>
+	                     		<!-- 로그인 되어 있는 경우 -->
+                       		 <li><a id="tg-btnsignin" href="/sjrent/user/logout.rent">로그아웃</a></li>
+                        <%	
+                        }else{
+                        %>	
+                    		 <li><a id="tg-btnsignin" href="#tg-loginsingup">로그인</a></li>
+                        <%
+                        }
+                        %>
                   </ul>
                </nav>
                <div class="tg-navigationarea">
@@ -32,10 +45,6 @@
                            </ul>
                         </div>
                      </nav>
-                     <ul class="tg-socialicons">
-                        <li><a href="javascript:void(0);"><i
-                              class="icon-facebook-logo-outline"></i></a></li>
-                     </ul>
                   </div>
                </div>
             </div>

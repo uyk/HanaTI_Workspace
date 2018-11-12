@@ -101,7 +101,7 @@
 									Content 시작
 							*************************************-->
 							
-							<img alt="여행선택지" src="../images/rec/rec_celeb1.JPG">
+							<img alt="연예인" src="../images/rec/rec_celeb1.JPG">
                             <form action="<%=application.getContextPath()%>/rec/rec_travel.jsp" method="post">
                               <input type="hidden" name="hidden" value="woman" class="btn"/>
                               <input type="submit" name="click" value="화려" class="btn left" />

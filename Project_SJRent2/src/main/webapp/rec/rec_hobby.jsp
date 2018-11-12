@@ -101,7 +101,7 @@
 									Content 시작
 							*************************************-->
 							
-							<img alt="여행선택지" src="../images/rec/rec_hobby.JPG">
+							<img alt="취미" src="../images/rec/rec_hobby.JPG">
                             <form action="<%=application.getContextPath()%>/rec/rec_result.jsp" method="post">
                               <input type="hidden" name="hidden" value=<%=request.getParameter("hidden")+","+request.getParameter("click")%> class="btn"/>
                               <input type="submit" name="click" value="맥주" class="btn left" />

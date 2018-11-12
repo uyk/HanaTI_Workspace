@@ -23,44 +23,36 @@ import kr.or.kosta.sjrent.qna.service.QnAServiceImpl;
 
 /**
  * QnA 수정 컨트롤러
- * 
- * @author 윤형철
- *
+ * @author 윤형철, 남수현
  */
 
 public class QnAUpdateController implements Controller {
 	private QnAService qnaService;
-	private JSONObject obj;
 	private ModelAndView mav;
 
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		obj = new JSONObject();
 		mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnAService) factory.getBean(QnAServiceImpl.class);
-
-
-		int qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
-		String id = request.getParameter("id");
+		int qna_seq = 0;
+		if(request.getParameter("qna_seq")!=null) {
+			qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
+		}else {
+			mav.setView("/qna/qnaList.jsp");
+			return mav;
+		}
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
-		String date = request.getParameter("date");
-		
-		
-		
 
 		QnA qna = new QnA();
 		boolean isUpdate = false;
 		
 		
 		qna.setNumber(qna_seq);
-		qna.setUserId(id);;
 		qna.setTitle(title);
 		qna.setContent(content);
-		qna.setDate(date);
-
 		System.out.println(qna);
 		
 		try {
@@ -72,21 +64,22 @@ public class QnAUpdateController implements Controller {
 
 		// QnA 수정 실패시 응답으로 fail 보냄
 		if (isUpdate == false) {
-			obj.put("result", "fail");
 			try {
-				response.getWriter().print(obj);
+				response.getWriter().print("fail");
 				return null;
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
 		// QnA 수정 성공시 응답으로 success 보냄
 		else {
 			mav.addObject("qna", qna);
-			mav.setView("/qna/qnaUpdate.jsp");
-			obj.put("result", "success");
+			mav.setView("/qna/qnaList.jsp");
+			try {
+				response.getWriter().print("sucess");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 		return mav;
 	}

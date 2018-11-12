@@ -19,18 +19,15 @@ import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
 import kr.or.kosta.sjrent.qna.domain.QnA;
 import kr.or.kosta.sjrent.qna.service.QnAService;
 import kr.or.kosta.sjrent.qna.service.QnAServiceImpl;
-import kr.or.kosta.sjrent.user.domain.User;
-import kr.or.kosta.sjrent.user.service.UserService;
-import kr.or.kosta.sjrent.user.service.UserServiceImpl;
 
 
 /**
- * qna 생성 컨트롤러
- * 
+ * QnA 답글 달기 컨트롤러
+ * @author 남수현
  */
-public class QnACreateController implements Controller {
+
+public class QnAAnswerController implements Controller {
 	private QnAService qnaService;
-	private UserService userService;
 	private ModelAndView mav;
 
 	@Override
@@ -39,59 +36,46 @@ public class QnACreateController implements Controller {
 		mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnAService) factory.getBean(QnAServiceImpl.class);
-		userService = (UserService) factory.getBean(UserServiceImpl.class);
-		
-		String loginId = (String) request.getAttribute("loginId");
-		User user = new User();
-		int userSeq = 0;
-		try {
-			user = userService.read(loginId);
-		} catch (Exception e2) {
-			mav.addObject("message", "needLogin");
-			mav.setView("/qna/qnaList.jsp");
-		}
-		if(user!=null) {
-			userSeq = user.getSeq();
+		int qna_seq = 0;
+		if(request.getParameter("qna_seq")!=null) {
+			qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
 		}else {
-			mav.addObject("message", "needLogin");
 			mav.setView("/qna/qnaList.jsp");
+			return mav;
 		}
-		String id = request.getParameter("id");
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
 		String answer = request.getParameter("answer");
+
 		QnA qna = new QnA();
-		qna.setUserSeq(userSeq);
-		qna.setUserId(loginId);
-		qna.setTitle(title);
-		qna.setContent(content);
+		boolean isUpdate = false;
+		
+		
+		qna.setNumber(qna_seq);
 		qna.setAnswer(answer);
-		boolean isCreate = false;
 		System.out.println(qna);
+		
 		try {
-			isCreate = qnaService.create(qna);
+			isUpdate = qnaService.update(qna);
 		} catch (Exception e1) {
+			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
-		// QnA 생성 실패시 응답으로 fail 보냄
-		if (isCreate == false) {
+		// QnA 수정 실패시 응답으로 fail 보냄
+		if (isUpdate == false) {
 			try {
 				response.getWriter().print("fail");
 				return null;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-
 		}
-		// QnA 생성 성공시 응답으로 success 보냄
+		// QnA 수정 성공시 응답으로 success 보냄
 		else {
 			mav.addObject("qna", qna);
 			mav.setView("/qna/qnaList.jsp");
 			try {
-				response.getWriter().print("success");
+				response.getWriter().print("sucess");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

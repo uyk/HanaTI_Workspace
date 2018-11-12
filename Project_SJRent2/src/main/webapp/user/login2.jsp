@@ -12,7 +12,7 @@
 	Cookie[] cookies = request.getCookies();
 	if (cookies != null) {
 		for (Cookie cookie : cookies) {
-			if (cookie.getName().equals("saveId")) {//아이디 저장 클릭한 경우 아이디 저장하기 위해 
+			if (cookie.getName().equals("saveId")) { 
 				id = cookie.getValue();
 			}
 		}
@@ -59,7 +59,7 @@
 	<div class="container">
 		<div class="row">
 				<div class="tg-homeslider tg-homeslidervtwo tg-haslayout" >
-						<h2 style="text-align: center; margin-bottom: 50px">로그인</h2>
+						<h2 style="text-align: center; margin-bottom: 50px">결제로그인</h2>
 						<div class="tg-themetabs" style="padding: 0px 150px">
 							<ul class="tg-navtbs" role="tablist">
 								<li role="presentation" class="active"><a href="#user" data-toggle="tab">회원</a></li>
@@ -75,7 +75,7 @@
 										<fieldset>
 											<div class="form-group">
 												<label>아이디 <sup>*</sup></label>
-												<input type="text" name="id" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;" required value=<%=id %> >
+												<input type="text" name="id" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;" required value="${id }" >
 											</div>
 											<div class="form-group">
 												<label>비밀번호 <sup>*</sup></label>
@@ -85,7 +85,8 @@
 													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>
 											</div>
 											<button type="submit" class="tg-btn tg-btn-lg"><span>로그인</span></button>
-										</fieldset>
+					                        <input type="hidden" name="login" value="login"/>					
+                                         </fieldset>
 									</form>
 								</div>
 								<!--************************************
@@ -95,7 +96,7 @@
 										비회원 로그인 시작
 								*************************************-->
 								<div role="tabpanel" class="tab-pane fade" id="new">
-									<form class="tg-formtheme tg-formlogin" action="/sjrent/user/signup.rent">
+									<form class="tg-formtheme tg-formlogin" action="/sjrent/user/signup.rent" method="post">
 										<fieldset>
 											<div class="form-group">
 												<label>이름 <sup>*</sup></label>

@@ -57,7 +57,8 @@ public class UserSignupController implements Controller {
 			String email1 = request.getParameter("email1");
 			String email2 = request.getParameter("email2");
 			String email = email1 + "@" + email2; 
-			String password = request.getParameter("password");
+			String password = request.getParameter("password1");
+			
 			String birthday = request.getParameter("birthday");
 			int point = 10000;
 			int gender = Integer.parseInt(request.getParameter("gender"));
@@ -79,13 +80,13 @@ public class UserSignupController implements Controller {
 			user.setPoint(point);
 			
 			
-			System.out.println("회원가입요청: "+user);
+			System.out.println("회원가입요청: " + user);
 			
 			try {
 				isCreate = userService.create(user);
 			} catch (Exception e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				
 			}
 
 			// 회원가입 실패시 응답으로 fail 보냄
@@ -109,27 +110,23 @@ public class UserSignupController implements Controller {
 				mav.addObject("cellphone", cellphone);
 				mav.addObject("name", name);
 
-				mav.setView("/user/regist_result.jsp");
+				mav.setView("/user/regist_result.jsp");	
 				
+				return mav;
 			}
 			
 		}
 		// 비회원일때 들어오는 param
 		else {
 			
-			
-			
 			String name_non = request.getParameter("name_non");
 			String email_non = request.getParameter("email_non");
 			String cellphone_non = request.getParameter("cellphone_non");
 			int isUser = 0;
 			
-		
-			
 			//비회원 이메일 유무 체크
 			try {
-				user = userService.readByCellphone(cellphone_non);
-				System.out.println("비회원"+user);
+				user = userService.readByEmail(email_non);
 				// 유저가 DB에 없을때 create 
 				if(user == null) {
 					
@@ -139,11 +136,7 @@ public class UserSignupController implements Controller {
 					user.setCellphone(cellphone_non);
 					user.setIsUser(isUser);
 					
-					System.out.println("비회원 정보"+user);					
 					isCreate = userService.create(user);
-					
-					System.out.println(isCreate);
-					
 					
 					// 비회원이 잘 만들어진 경우, index.jsp
 					if (isCreate == true) {
@@ -151,7 +144,7 @@ public class UserSignupController implements Controller {
 						obj.put("result", "success");
 						mav.addObject("loginId", name_non);
 						mav.setView("/index.jsp");
-						return mav;
+						//return mav;
 					}
 					// 비회원 생성이 실패시 login2.jsp
 					else {
@@ -175,6 +168,7 @@ public class UserSignupController implements Controller {
 					
 					user.setName(name_non);
 					user.setEmail(email_non);
+					user.setCellphone(cellphone_non);
 									
 					isUpdate = userService.update(user);
 
@@ -183,7 +177,7 @@ public class UserSignupController implements Controller {
 						obj.put("result", "success");
 						mav.addObject("loginId", name_non);
 						mav.setView("/index.jsp");
-						return mav;
+						//return mav;
 					}
 					// 실패하면 login2.jsp로 보내
 					else {
@@ -202,23 +196,25 @@ public class UserSignupController implements Controller {
 				
 				
 
-				/*
-				// 쿠키에 userId 올리기
-				String userId = user.getId();
-				String userName = user.getName();
-	
+				
+				// 쿠키에 longinId 올리기
+				String loginId = user.getId();
+				
+				System.out.println("seq나와라!!!!!!!"+loginId);
+				
 				Cookie cookie = null;
-				cookie = new Cookie("userId", userId);
+				cookie = new Cookie("loginId", loginId);
 				cookie.setMaxAge(60*60*24*30);
 				cookie.setPath("/");
 				response.addCookie(cookie);
 				
-				request.setAttribute("loginId", userName);
 				
-				mav.addObject("loginId", userName);
-				mav.setView("/index.jsp");
-				*/
+				// 결제시 비회원id, seq 보내줘야할 정보
+				//request.setAttribute("loginId", userName);			
+				mav.addObject("loginId", loginId);
+				mav.setView("/sjrent/rent/rent.jsp");
 				
+				return mav;
 				
 			} catch (Exception e1) {
 				// TODO Auto-generated catch block

@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-   <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-bg="poster: ../images/singup-img.jpg" data-vide-options="position: 0% 50%">
+   <div id="tg-loginsingup" class="tg-loginsingup col-6 " data-vide-options="position: 0% 50%">
       <div class="tg-contentarea tg-themescrollbar">
          <div class="tg-scrollbar">
             <button type="button" class="close">x</button>
@@ -14,7 +14,7 @@
                            <fieldset>
                               <div class="form-group">
                                  <label>아이디 <sup>*</sup></label>
-                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10">
+                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
                               </div>
                               <div class="form-group">
                                  <label>비밀번호 <sup>*</sup></label>

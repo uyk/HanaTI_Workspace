@@ -1,6 +1,5 @@
 package kr.or.kosta.sjrent.user.controller;
 
-
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -17,58 +16,48 @@ import kr.or.kosta.sjrent.user.service.UserService;
 import kr.or.kosta.sjrent.user.service.UserServiceImpl;
 
 /**
- * id로 user를 검색하는 컨트롤러
  * 
- * @author 유예겸
+ * 회원정보 삭제 역할을 수행하는 컨트롤러
+ * 
+ * @author 윤형철
  *
  */
 
-public class UserReadController implements Controller {
+public class UserDeleteController implements Controller {
 	private ModelAndView mav;
 	private UserService userService;
 	private JSONObject obj;
 
-	
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
 		obj = new JSONObject();
 		mav = new ModelAndView();
-		XMLObjectFactory factory = (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
-		userService = (UserService)factory.getBean(UserServiceImpl.class);
-	
-		String id = (String)request.getAttribute("loginId");
-		User user = null;
+		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
+		userService = (UserService) factory.getBean(UserServiceImpl.class);
+
+		String id = (String) request.getAttribute("loginId");
+		System.out.println("삭제할 ID임돠 : " + id);
+		boolean isDelete = false;
 
 		try {
-			user = userService.read(id);
-			//System.out.println("user : 찍어본다 "+user);
+			isDelete = userService.delete(id);
+			System.out.println(isDelete);
 
-			mav.addObject("user", user);
-			mav.setView("/mypage/updateUser.jsp");
-
+			if (isDelete == true) {
+//					response.getWriter().print("success");
+				mav.setView("/index.jsp");
+			} else {
+				mav.setView("/sjrent/mypage/myPageLoginOK.jsp");
+			}
 			return mav;
-		} catch (Exception e) {
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 
-		//obj.put("name", user.getName());
-		//obj.put("email", user.getEmail());
-		//obj.put("phone", user.getCellphone());
-		
-		
-		
-		
-		// 응답으로 json 객체 보내고 컨트롤러 종료
-		try {
-			response.getWriter().print(obj);
-			return null;
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
 		return mav;
+
 	}
 
 }

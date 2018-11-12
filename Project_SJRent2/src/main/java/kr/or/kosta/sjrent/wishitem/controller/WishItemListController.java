@@ -39,20 +39,15 @@ public class WishItemListController implements Controller {
 		wishItemService = (WishItemService) factory.getBean(WishItemServiceImpl.class);
 		
 		List<WishItem> list = null;
-//		if((String)request.getAttribute("loginId")!=null) {
-//			try {
-//				list = wishItemService.listByUser((String)request.getAttribute("loginId"));
-//			} catch (Exception e) {
-//				throw new ServletException("wishItemService.list() 예외 발생", e);
-//			}			
-//		}else {
-//			mav.setView("/user/login2.jsp");
-//			return mav;
-//		}
-		try {
-			list = wishItemService.listByUser("gloomycloud");
-		} catch (Exception e) {
-			throw new ServletException("wishItemService.list() 예외 발생", e);
+		if((String)request.getAttribute("loginId")!=null) {
+			try {
+				list = wishItemService.listByUser((String)request.getAttribute("loginId"));
+			} catch (Exception e) {
+				throw new ServletException("wishItemService.list() 예외 발생", e);
+			}			
+		}else {
+			mav.setView("/user/login2.jsp");
+			return mav;
 		}
 		mav.addObject("list", list);
 		mav.setView("/wish/wish_list.jsp");

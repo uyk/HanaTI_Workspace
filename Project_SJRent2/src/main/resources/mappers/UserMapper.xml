@@ -112,6 +112,25 @@
 		WHERE  user_cellphone = #{value} 
 	</select>
 	
+	
+	<!-- 이메일로 회원 찾기 -->
+	<select id="readByEmail" parameterType="String" resultType="User" resultMap="userResultMap">
+		SELECT user_seq, 
+       		   user_id, 
+       		   user_name, 
+       		   user_email, 
+       		   user_password, 
+       		   user_birthday, 
+        	   user_gender, 
+       		   user_point, 
+       		   user_cellphone, 
+       		   user_is_user, 
+       		   user_regdate 
+		FROM   users 
+		WHERE  user_email = #{value} 
+	</select>
+	
+	
 	<!-- 회원정보 수정 -->
 	<update id="updateUser" parameterType="User">
 		UPDATE users

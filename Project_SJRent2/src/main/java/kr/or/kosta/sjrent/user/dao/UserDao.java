@@ -14,7 +14,9 @@ public interface UserDao {
 	public User read(String id) throws Exception;
 
 	public User readByCellphone(String cellphone) throws Exception;
-
+	
+	public User readByEmail(String email) throws Exception;
+	
 	public boolean update(User user) throws Exception;
 	
 	public boolean delete(String id) throws Exception;

@@ -2,16 +2,44 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 String loginId = (String)request.getAttribute("loginId");
-//System.out.println("나와랏...................! : "+request.getAttribute("user"));
-
-
-
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
-   <jsp:include page="../common/commoncss.jsp" />
+<jsp:include page="../common/commoncss.jsp" />
+   
+<script type="text/javascript">
+   
+function emailCheck() {
+
+	var email = $('#email').val();
+
+	console.log("email"+email);
+	$.ajax({
+		url : '/sjrent/user/checkEmail.rent',
+		type : 'post',
+		data : {
+			email : email
+		},
+		success : function(data) {
+			if ($.trim(data) == "success") {
+				$('#checkMsg2').html(
+						"<p style='COLOR: blue'>사용가능한 이메일입니다.</p>");
+			} else{
+				$('#checkMsg2').html(
+				"<p style='COLOR: red'>이미 사용중인 이메일입니다.</p>");
+			}
+		},
+		error : function() {
+			alert("관리자에게 문의해주세요.");
+		}
+	});
+	
+}   
+   
+</script>
+   
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="tg-home tg-homevone">
@@ -83,9 +111,9 @@ String loginId = (String)request.getAttribute("loginId");
                            <fieldset>
                               <div class="form-group">
                                  <h4>아이디<sup>*</sup></h4>
-                                 <input type="text" name="id" class="form-control" maxlength="10" style="text-transform: none;" placeholder="${user.id }" readonly>
+                                 <input type="text" name="id" class="form-control" placeholder="${user.id }" maxlength="10" style="text-transform: none;" required readonly>
                               </div>
-                              <%-- <%=loginId%> --%>
+                              <%-- <%=loginId%>  ${user.id }--%>
                               <div class="form-group">
                                  <h4>비밀번호<sup>*</sup></h4>
                                  <input type="password" name="password" class="form-control" placeholder="${user.password }" maxlength="10" style="text-transform: none;" required>
@@ -107,9 +135,14 @@ String loginId = (String)request.getAttribute("loginId");
                               
                               <div class="form-group">
 									<label>이메일 <sup>*</sup></label>
-									<input type="text" name="email" class="form-control" placeholder="${user.email }" maxlength="30" style="text-transform: lowercase;" required>
+									<input type="text" name="email" id="email" class="form-control" placeholder="${user.email }" maxlength="30" style="text-transform: lowercase;" required>
+                                    
 							  </div>
-											
+                
+         <!-- 버튼 위치 수정해야함 -->
+         <button type="button" class="btn buttonEmail " style="height: 40px; margin-left: 10px; " onclick="emailCheck()" >중복확인 </button>
+         <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg2"></div>
+     
 											
 							<div class="form-group">
 								<label>핸드폰번호 <sup>*</sup></label>

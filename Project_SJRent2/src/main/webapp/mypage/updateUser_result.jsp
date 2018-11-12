@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <jsp:include page="../common/commoncss.jsp" />  
+   <jsp:include page="../common/commoncss.jsp" />
 </head>
 <body class="tg-home tg-homevone">
 
@@ -44,7 +44,7 @@
 									
                                   <!-- 회원가입결과 / 회원수정결과 나누어서 innerHtml
                                        updateController쪽에서 obj 리턴값 확인-->
-                                  <h2>회원가입결과</h2>
+                                  <h2>회원정보수정결과</h2>
 								</div>
 
                   
@@ -94,7 +94,7 @@
 									<div style="margin: 50px 0px; text-align: center;">
 										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
 											<button type="button" onclick="location.href='/sjrent/user/login.jsp' " class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
-												<span style="font-size: 14pt; width: 30%">로그인</span>
+												<span style="font-size: 14pt; width: 30%">재로그인</span>
 											</button>
 										</div>
 										

@@ -42,9 +42,7 @@ public class UserLoginController implements Controller {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String remember = request.getParameter("remember");
-		
-		//System.out.println("[Debug] Controller에서 받은 아이디 : "+id);
-
+		String where = request.getParameter("login"); 
 		
 		User user = null;
 		Cookie cookie = null; 
@@ -53,7 +51,6 @@ public class UserLoginController implements Controller {
 			try {
 				// 회원가입여부 확인 
 				user = userService.certify(id, pw);
-				//System.out.println("[Debug] 서버에서 넘어온 user : " + user);
 				
 				if (user != null) {// 회원인 경우 
 					cookie = new Cookie("loginId", id);
@@ -64,21 +61,33 @@ public class UserLoginController implements Controller {
 					request.setAttribute("loginId", id);
 					
 					mav.addObject("user", user);
-					mav.setView("/index.jsp");
+					
+					// hidden 처리한 요청 페이지별 처리
+					if(where.equals("myPage")) {
+						mav.setView("/mypage/myPageLoginOK.jsp");
+						
 					//System.out.println(mav);
+					}else {
+						mav.setView("/index.jsp");
+					}
 					
-					
-				}else {//회원이 아닌 경우 
-					response.sendRedirect("/sjrent/user/login2.jsp");
-					return null;
 				}
-				
+				//회원이 아닌 경우 
+				else {
+					
+					// hidden 처리한 요청 페이지별 처리
+					if(where.equals("myPage")) {
+						mav.setView("/mypage/myPage.jsp");
+						
+					//System.out.println(mav);
+					}else {
+						mav.setView("/index.jsp");
+					return null;
+					}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				
 				}	
-			
-			
 			}
 			
 	

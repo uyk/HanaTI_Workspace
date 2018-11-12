@@ -8,6 +8,7 @@ String loginId = (String)request.getAttribute("loginId");
 <html>
 <head>
    <jsp:include page="../common/commoncss.jsp" />
+   
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="tg-home tg-homevone">
@@ -47,7 +48,7 @@ String loginId = (String)request.getAttribute("loginId");
                         <!--************************************
                                     Title 시작
                            *************************************-->
-                         <div style="text-align: center; "><h2>마이페이지</h2></div>
+                         <div style="text-align: center; "><h2>회원탈퇴</h2></div>
                         <!--************************************
                                     Title 종료
                            *************************************-->   
@@ -62,13 +63,13 @@ String loginId = (String)request.getAttribute("loginId");
                               *************************************-->
 						<div>
                                <p style="text-align: center; ">
-                              <%=loginId%>님 환영합니다. 
+                              <%=loginId%>님
                               </p> 
                               </div>
 						<!--************************************
                                     MenuBar 시작 
                               *************************************-->
-						<jsp:include page="menuBar.jsp" />
+						<%-- <jsp:include page="menuBar.jsp" /> --%>
 						<!--************************************
                                     MenuBar 종료 
                               *************************************-->
@@ -78,13 +79,20 @@ String loginId = (String)request.getAttribute("loginId");
                               *************************************-->
 						
 						
-						
+        <div style="text-align: center; ">
+        <h5>회원 탈퇴</h5>
+        <p>정말 탈퇴 하시겠습니까?</p>
+
+        <button type="button" class="btn btn-secondary" onclick="location.href='/sjrent/mypage/delete.rent'">예</button>
+        <button type="button" class="btn btn-primary" onclick="location.href='/sjrent/mypage/myPageLoginOK.jsp'">아니오</button>
+
+        </div>
+            
+            
 						
 						<!--************************************
                                     회원탈퇴 종료 
                               *************************************-->
-												
-						
 						
 
 							<!--************************************

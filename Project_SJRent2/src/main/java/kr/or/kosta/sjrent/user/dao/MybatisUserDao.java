@@ -44,7 +44,7 @@ public class MybatisUserDao implements UserDao {
 		sqlSession.close();
 		return user;
 	}
-
+	
 	@Override
 	public User readByCellphone(String cellphone) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
@@ -53,6 +53,14 @@ public class MybatisUserDao implements UserDao {
 		return user;
 	}
 
+	@Override
+	public User readByEmail(String email) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		User user = sqlSession.selectOne(NAMESPACE + "readByEmail", email);
+		sqlSession.close();
+		return user;
+	}
+	
 	@Override
 	public boolean update(User user) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
@@ -134,6 +142,7 @@ public class MybatisUserDao implements UserDao {
 		sqlSession.close();
 		return result;
 	}
+
 }
 
 

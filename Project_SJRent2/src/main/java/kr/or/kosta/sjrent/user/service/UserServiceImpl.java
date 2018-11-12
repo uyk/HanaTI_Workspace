@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+	public User readByEmail(String email) throws Exception {
+		return userDao.readByEmail(email);
+	}
+	
+	@Override
 	public boolean update(User user) throws Exception {
 		return userDao.update(user);
 	}

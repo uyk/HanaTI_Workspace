@@ -248,17 +248,41 @@ function setDetailModal(model) {
 	$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
 	$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
 	$('#detail-reserve-count').html(' ' + model.rentalCount + ' Times Reserved');
-	$('#about-this-model').html('<p>'+ model.name +' 모델 차량은 '+ model.fuelType +' 타입연료를 사용하는 차량으로 최대 '+model.seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
-			'<p>'+ model.name +'의 주중 가격은 '+model.weekdayPrice+' 원입니다. 주말 가격은 '+model.weekendPrice+'원 입니다.</p>');
+	$('#about-this-model').html('<p>'+ model.name +' 모델 차량은 '+ model.fuelType +' 타입 연료를 사용하는 차량으로 최대 '+model.seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
+			'<p>'+ model.name +' 모델의 주중 가격은 '+model.weekdayPrice+' 원입니다. 주말 가격은 '+model.weekendPrice+'원 입니다.</p>');
 	
 	var optionsHTML = '<p>주요 옵션은 아래와 같습니다.</p> <ul class="tg-liststyle">';
 	optionsHTML += '<li><span>연비 : ' + model.fuelEfficiency + '</span></li>';
+	optionsHTML += '<li><span>기어 : ' + model.transmission + '</span></li>';
+	optionsHTML += '<li><span>연식 : ' + model.year + '</span></li>';
 	if(model.navigation == 1) {
-		optionsHTML += '<li><span>연비 : ' + model.fuelEfficiency + '</span></li>';
-		
+		optionsHTML += '<li><span>네비게이션</span></li>';
+	}
+	if(model.cameraRear == 1) {
+		optionsHTML += '<li><span>후방카메라</span></li>';
+	}
+	if(model.highpass == 1) {
+		optionsHTML += '<li><span>하이패스</span></li>';
+	}
+	if(model.blackBox == 1) {
+		optionsHTML += '<li><span>블랙박스</span></li>';
 	}
 	optionsHTML += '</ul>';
 	$('#important-options').html(optionsHTML);
+	
+	var otherOptionsHTML = "";
+	if(model.options == null || model.options == "" || model.options.length == 0){
+		otherOptionsHTML += '<li><span>기타 옵션이 없습니다.</span></li>';
+	}
+	else {
+		var jbSplit = model.options.split(',');
+		for ( var i in jbSplit ) {
+			otherOptionsHTML += '<li><span>'+jbSplit[i]+'</span></li>'
+		}
+	}
+	$('#car-detail-others').html(otherOptionsHTML);
+	
+	
 	if('<%=request.getAttribute("loginId")%>' == 'null') {
 		console.log('id null');
 	}

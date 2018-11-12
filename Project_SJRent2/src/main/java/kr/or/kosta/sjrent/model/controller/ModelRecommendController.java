@@ -34,6 +34,7 @@ public class ModelRecommendController implements Controller {
 		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
 		obj = new JSONObject();
 		String result = request.getParameter("result");
+		//System.out.println("여기까지 들어온다222222");
 		Model resultModel = null;
 		try {
 			resultModel = modelService.recommend(result);
@@ -43,6 +44,7 @@ public class ModelRecommendController implements Controller {
 		if(resultModel!=null) {
 			obj.put("modelName", resultModel.getName());
 			obj.put("picture", resultModel.getPicture());
+			obj.put("type", resultModel.getType());
 		}
 		try {
 			response.getWriter().print(obj);

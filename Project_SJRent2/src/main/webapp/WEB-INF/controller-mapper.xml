@@ -2,46 +2,71 @@
 <beans>
 
 	<!-- 회원관리 -->
-	<bean type="controller" name="/user/list" class="kr.or.kosta.sjrent.user.controller.UserListController" />
+	<bean type="controller" name="/user/list"
+		class="kr.or.kosta.sjrent.user.controller.UserListController" />
+		
 	<!-- 로그인 -->
-	<bean type="controller" name="/user/login" class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
+	<bean type="controller" name="/user/login"
+		class="kr.or.kosta.sjrent.user.controller.UserLoginController" />
+		
 	<!-- 로그아웃 -->
-	<bean type="controller" name="/user/logout" class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
+	<bean type="controller" name="/user/logout"
+		class="kr.or.kosta.sjrent.user.controller.UserLogoutController" />
+		
 	<!-- id로 유저반환 -->
-	<bean type="controller" name="/user/read" class="kr.or.kosta.sjrent.user.controller.UserReadController" />
+	<bean type="controller" name="/user/read"
+		class="kr.or.kosta.sjrent.user.controller.UserReadController" />
+		
 	<!-- 회원가입 -->
-   <bean type="controller" name="/user/signup" class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
+	<bean type="controller" name="/user/signup"
+		class="kr.or.kosta.sjrent.user.controller.UserSignupController" />
+		
+	<!-- 회원정보수정 -->
+	<bean type="controller" name="/mypage/update"
+		class="kr.or.kosta.sjrent.user.controller.UserUpdateController" />
+		
+	<!-- 회원삭제 -->
+	<bean type="controller" name="/mypage/delete"
+		class="kr.or.kosta.sjrent.user.controller.UserDeleteController" />
 
-   <!-- 아이디 중복체크 -->
-   <bean type="controller" name="/user/checkId" class="kr.or.kosta.sjrent.user.controller.UserCheckIdController" />
+	<!-- 아이디 중복체크 -->
+	<bean type="controller" name="/user/checkId"
+		class="kr.or.kosta.sjrent.user.controller.UserCheckIdController" />
 
-   <!-- 이메일 중복체크 -->
-   <bean type="controller" name="/user/checkEmail" class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
-   
-   	<!-- 마이페이지 로그인 -->
-	<bean type="controller" name="/mypage/login" class="kr.or.kosta.sjrent.user.mypage.controller.LoginController" />
-	<!-- 마이페이지 회원정보수정 -->
-	<bean type="controller" name="/mypage/update" class="kr.or.kosta.sjrent.user.mypage.controller.UpdateController" />
+	<!-- 이메일 중복체크 -->
+	<bean type="controller" name="/user/checkEmail"
+		class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
 
-   <!-- QnA list 컨트롤러 -->
-   <bean type="controller" name="/qna/qnaList" class="kr.or.kosta.sjrent.qna.controller.QnAListController" />
 
-   <!-- QnA create 컨트롤러 -->
-   <bean type="controller" name="/qna/qnaCreate" class="kr.or.kosta.sjrent.qna.controller.QnACreateController" />
+	<!-- QnA list 컨트롤러 -->
+	<bean type="controller" name="/qna/qnaList"
+		class="kr.or.kosta.sjrent.qna.controller.QnAListController" />
 
-   <!-- QnA delete 컨트롤러 -->
-   <bean type="controller" name="/qna/qnaDelete" class="kr.or.kosta.sjrent.qna.controller.QnADeleteController" />
+	<!-- QnA create 컨트롤러 -->
+	<bean type="controller" name="/qna/qnaCreate"
+		class="kr.or.kosta.sjrent.qna.controller.QnACreateController" />
 
-   <!-- QnA update 컨트롤러 -->
-   <bean type="controller" name="/qna/qnaUpdate" class="kr.or.kosta.sjrent.qna.controller.QnAUpdateController" />
-	
-	
-	
+	<!-- QnA delete 컨트롤러 -->
+	<bean type="controller" name="/qna/qnaDelete"
+		class="kr.or.kosta.sjrent.qna.controller.QnADeleteController" />
+
+	<!-- QnA update 컨트롤러 -->
+	<bean type="controller" name="/qna/qnaUpdate"
+		class="kr.or.kosta.sjrent.qna.controller.QnAUpdateController" />
+
+
+
 	<!-- 모델검색 -->
-	<bean type="controller" name="/model/search" class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />
+	<bean type="controller" name="/model/search"
+		class="kr.or.kosta.sjrent.model.controller.ModelSearchController" />
 	<!-- 모델상세 -->
-	<bean type="controller" name="/model/detail" class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
+	<bean type="controller" name="/model/detail"
+		class="kr.or.kosta.sjrent.model.controller.ModelDetailController" />
 	<!-- 인기모델 -->
+
+	<bean type="controller" name="/model/popular"
+		class="kr.or.kosta.sjrent.model.controller.ModelPopularController" />
+
 	<bean type="controller" name="/model/popular" class="kr.or.kosta.sjrent.model.controller.ModelPopularController" />
 	<!-- 모델추천 -->
 	<bean type="controller" name="/model/recommend" class="kr.or.kosta.sjrent.model.controller.ModelRecommendController" />
@@ -49,36 +74,54 @@
 	<bean type="controller" name="/model/detailperiod" class="kr.or.kosta.sjrent.model.controller.ModelPeriodController" />
 
 	
+
 	<!-- 예약 -->
-	<bean type="controller" name="/rent/rent" class="kr.or.kosta.sjrent.rent.controller.RentController" />
+	<bean type="controller" name="/rent/rent"
+		class="kr.or.kosta.sjrent.rent.controller.RentController" />
 	<!-- 예약목록 -->
-	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
-	<!-- 예약상세-->
-	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
-	<!-- 예약취소-->
-	<bean type="controller" name="/rent/cancel" class="kr.or.kosta.sjrent.rent.controller.RentCancelController" />
+
+	<bean type="controller" name="/rent/list"
+		class="kr.or.kosta.sjrent.rent.controller.RentListController" />
+	<!-- 예약상세 -->
+	<bean type="controller" name="/rent/detail"
+		class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
+	<!-- 예약취소 -->
+	<bean type="controller" name="/rent/cancel" 
+		class="kr.or.kosta.sjrent.rent.controller.RentCancelController"/>
+
+	
 	<!-- 예약페이지로 데이터 전달-->
-	<bean type="controller" name="/rent/page" class="kr.or.kosta.sjrent.rent.controller.RentPageDataController" />
+	<bean type="controller" name="/rent/page" 
+		class="kr.or.kosta.sjrent.rent.controller.RentPageDataController" />
 
 	<!-- 보험 -->
-	<bean type="controller" name="/insurance/list" class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
-	
+	<bean type="controller" name="/insurance/list"
+		class="kr.or.kosta.sjrent.insurance.controller.InsuranceListController" />
+
 	<!-- WishItem 목록 -->
-	<bean type="controller" name="/wishitem/list" class="kr.or.kosta.sjrent.wishitem.controller.WishItemListController" />
+	<bean type="controller" name="/wishitem/list"
+		class="kr.or.kosta.sjrent.wishitem.controller.WishItemListController" />
 	<!-- WishItem 추가 -->
-	<bean type="controller" name="/wishitem/add" class="kr.or.kosta.sjrent.wishitem.controller.WishItemAddController" />
+	<bean type="controller" name="/wishitem/add"
+		class="kr.or.kosta.sjrent.wishitem.controller.WishItemAddController" />
 	<!-- WishItem 삭제 -->
-	<bean type="controller" name="/wishitem/delete" class="kr.or.kosta.sjrent.wishitem.controller.WishItemDeleteController" />
+	<bean type="controller" name="/wishitem/delete"
+		class="kr.or.kosta.sjrent.wishitem.controller.WishItemDeleteController" />
 
 	<!-- 리뷰 목록 -->
-	<bean type="controller" name="/review/list" class="kr.or.kosta.sjrent.review.controller.ReviewListController" />
-	<!-- 리뷰 Count-->
-	<bean type="controller" name="/review/count" class="kr.or.kosta.sjrent.review.controller.ReviewCountController" />
+	<bean type="controller" name="/review/list"
+		class="kr.or.kosta.sjrent.review.controller.ReviewListController" />
+	<!-- 리뷰 Count -->
+	<bean type="controller" name="/review/count"
+		class="kr.or.kosta.sjrent.review.controller.ReviewCountController" />
 	<!-- 리뷰 추가 -->
-	<bean type="controller" name="/review/add" class="kr.or.kosta.sjrent.review.controller.ReviewAddController" />
+	<bean type="controller" name="/review/add"
+		class="kr.or.kosta.sjrent.review.controller.ReviewAddController" />
 	<!-- 리뷰 삭제 -->
-	<bean type="controller" name="/review/delete" class="kr.or.kosta.sjrent.review.controller.ReviewDeleteController" />
+	<bean type="controller" name="/review/delete"
+		class="kr.or.kosta.sjrent.review.controller.ReviewDeleteController" />
 	<!-- 리뷰 수정 -->
-	<bean type="controller" name="/review/update" class="kr.or.kosta.sjrent.review.controller.ReviewUpdateController" />
-		
+	<bean type="controller" name="/review/update"
+		class="kr.or.kosta.sjrent.review.controller.ReviewUpdateController" />
+
 </beans>
