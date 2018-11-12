@@ -155,7 +155,7 @@ function setModelList(list) {
 	
 	for ( var i in list) {
 		output += "" + 
-		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" data-toggle=\"modal\" data-target=\"#detail_show\" data-model-name='"+list[i].name+"'>\r\n" + 
+		"                           <div class=\"col-xs-6 col-sm-6 col-md-4 col-lg-4\" style=\"margin-bottom: 1em;\" data-toggle=\"modal\" data-target=\"#detail_show\" data-model-name='"+list[i].name+"'>\r\n" + 
 		"                              <div class=\"tg-populartour\"   >\r\n" + 
 		"                                 <figure>\r\n" + 
 		"                                    <a><img\r\n" + 
@@ -213,9 +213,6 @@ function setModelList(list) {
 	        	console.log('error in openning detail show' + result);
 	        }
 		});
-		
-		getReviewList(modelName, 1, 10);
-		
 	  	/** 리뷰 탭 클릭시 getReviewList 시작 */
 	  	/** 
 	  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
@@ -257,8 +254,14 @@ function setDetailModal(model) {
 	}
 	$('#go-reserve-anchor').on('click', function(e) {
 		e.stopPropagation();
-		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, '방문수령');
+		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, '방문수령', model.type, model.picture);
 	})
+	
+	// 리뷰 목록 가져와서 설정
+	getReviewList(model.name, 1, 10);
+	// 리뷰탭 리뷰 개수, 별 css 설정
+	$('#review-list-count').html('(' + model.reviewCount + ' Review)');
+	$('#review-list-star').css('width', model.evalScore * 10 + '%');
 }
 /** 
  * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
@@ -302,7 +305,7 @@ function wishResultHide() {
 /**
  * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
  */
- function goToReserve(startDate, endDate, amountMoney, pickupPlace) {
+ function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
 	// 로그인 중
 	if( '<%=request.getAttribute("loginId")%>' != 'null'){
 		// post로 데이터 전달
@@ -314,7 +317,9 @@ function wishResultHide() {
 		  		startDate : startDate,
 		  		endDate : endDate,
 		  		amountMoney : amountMoney,
-		  		pickupPlace : pickupPlace
+		  		pickupPlace : pickupPlace,
+		  		type : type,
+		  		picture : picture
 	    }
 	    
 	    //히든으로 값을 주입시킨다.
@@ -372,7 +377,6 @@ function setReviewList(list) {
 		};
 		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each.jsp", params);
 		$("#each_review_ul").append(review);
-		console.log(i + " : " + list[i].date);
 	}
 }
 </script>

@@ -4,7 +4,7 @@
 		<form class="tg-formtheme tg-formreviews">
 			<fieldset class="tg-filterby">
 				<div class="tg-durationrating">
-					<em>(3 Review)</em> <span class="tg-stars"><span></span></span>
+					<em id='review-list-count'></em> <span class="tg-stars"><span id='review-list-star'></span></span>
 				</div>
 				<span class="tg-select"> <select>
 						<option>Filter by</option>
