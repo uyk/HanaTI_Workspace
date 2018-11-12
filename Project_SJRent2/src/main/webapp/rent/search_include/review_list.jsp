@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
-<div role="tabpanel" class="tab-pane tg-reviewtab" id="review">
+<div role="tabpanel" class="tab-pane tg-reviewtab" id="review" on>
 	<div class="tg-reviewsarea">
 		<form class="tg-formtheme tg-formreviews">
 			<fieldset class="tg-filterby">

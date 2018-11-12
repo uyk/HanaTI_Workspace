@@ -191,5 +191,14 @@
             Main End
       *************************************-->
    </div>
+   
+   
+   <span>1 ${startDate}</span>
+   <span>2 ${endDate}</span>
+   <span>3 ${pickupPlace}</span>
+   <span>4 ${amountMoney}</span>
+   <span>5 ${userName}</span>
+   <span>6 ${userCellphone}</span>
+   <span>7 ${userEmail}</span>
 </body>
 </html>

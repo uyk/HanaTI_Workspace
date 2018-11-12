@@ -210,6 +210,11 @@ function setModelList(list) {
 	        }
 		});
 	});
+	
+	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+		  e.target // newly activated tab
+		  //e.relatedTarget // previous active tab
+	})
 }
 
 /**
@@ -236,9 +241,13 @@ function setDetailModal(model) {
 			e.currentTarget.onclick = addToWishList(model.name, rent_start_date, rent_end_date, amountMoney, model.picture, model.type, model.fuelType);
 		})
 	}
+	$('#go-reserve-anchor').on('click', function(e) {
+		e.stopPropagation();
+		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, '방문수령');
+	})
 }
 /** 
- * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보낸다.
+ * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
  *	Controller로부터 받은 데이터를 검사한다.
  */
 function addToWishList(modelName, startDate, endDate, amountMoney, picture, type, fuelType) {
@@ -276,8 +285,40 @@ function wishResultHide() {
 	$("#wish_result_modal").modal('hide');
 }
 
+/**
+ * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
+ */
+ function goToReserve(startDate, endDate, amountMoney, pickupPlace) {
+	if( '<%=request.getAttribute("loginId")%>' != 'null'){
+	    var form = document.createElement("form");
+	    form.setAttribute("method", "post");
+	    form.setAttribute("action", '<%=application.getContextPath()%>/rent/page.rent');
+	 
+	    var params = {
+		  		startDate : startDate,
+		  		endDate : endDate,
+		  		amountMoney : amountMoney,
+		  		pickupPlace : pickupPlace
+	    }
+	    
+	    //히든으로 값을 주입시킨다.
+	    for(var key in params) {
+	        var hiddenField = document.createElement("input");
+	        hiddenField.setAttribute("type", "hidden");
+	        hiddenField.setAttribute("name", key);
+	        hiddenField.setAttribute("value", params[key]);
+	        form.appendChild(hiddenField);
+	    }
+	    document.body.appendChild(form);
+	    form.submit();
+	}
+	else {
+		alert('로그인필요');
+	}
+}
+	
 /** 
- * 리뷰 리스트를 가져오는 함수.
+ * 리뷰 리스트를 컨트롤러에 요청하여 가져오는 함수.
  * 
  */
 function getReviewList(modelName, page, listSize) {

@@ -41,11 +41,11 @@
                             // 로그인일때의 wish, reserver 버튼
                             if(request.getAttribute("loginId")!= null ) { %> 
                               <li><a href="#" id="wish-list-anchor"><i class="icon-heart"></i>Wish List</a></li>
-                              <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
+                              <li><a href="#" id="go-reserve-anchor"><i class="icon-eye"></i>Reserve</a></li>
                             <% }
                             // 로그아웃일때의 reserver 버튼(wish 없음)
                             else { %> 
-                              <li><a href="<%=application.getContextPath()%>/rent/rent.jsp"><i class="icon-eye"></i>Reserve</a></li>
+                              <li><a href=# id="go-reserve-anchor"><i class="icon-eye"></i>Reserve</a></li>
                             <% } %>
                             </ul>
                           </div>
