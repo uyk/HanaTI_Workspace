@@ -315,7 +315,8 @@ function wishResultHide() {
 	    form.submit();
 	}
 	else {
-		alert('로그인필요');
+		//alert('로그인필요');
+		$("#login_modal").modal('show');
 	}
 }
 	
@@ -363,6 +364,8 @@ function setReviewList(list) {
 </script>
 </head>
 <body>
+<button data-toggle='modal'
+  data-target='#login_modal'>로그인모달</button>
    <!--************************************
          Mobile Menu Start
    *************************************-->
@@ -453,11 +456,11 @@ function setReviewList(list) {
       <main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
       <div class="container" style="width: 90%">
          <!--************************************
-              Detail Model Start
+              Detail Model Modal Start
          *************************************-->
           <jsp:include page="/rent/search_detail.jsp" />
          <!--************************************
-              Detail Model End
+              Detail Model Modal End
          *************************************-->
          
          <!--************************************
@@ -467,6 +470,15 @@ function setReviewList(list) {
          <!--************************************
               Wish Result Modal End
          *************************************-->
+         
+         <!--************************************
+              Search Login Modal Start
+         *************************************-->
+         <jsp:include page="/rent/search_include/search_login_modal.jsp" />
+         <!--************************************
+              Search Login Modal End
+         *************************************-->
+         
          <div class="row" id="ModelDisplayRow">
             <div id="tg-twocolumns" class="tg-twocolumns">
                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 pull-left">
