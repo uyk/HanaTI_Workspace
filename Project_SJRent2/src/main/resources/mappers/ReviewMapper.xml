@@ -160,13 +160,13 @@
 	</update>
 	
 	<!-- 특정 모델 Review Count -->
-	<select id="countByModelName" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+	<select id="countByModelName" resultType="Integer" parameterType="String">
 		SELECT Count(review_seq) 
 		FROM   review 
 		WHERE  model_name = #{value}
 	</select>
 	<!-- 특정 유저 Review Count -->
-	<select id="countByUser" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+	<select id="countByUser" resultType="Integer" parameterType="String">
 		SELECT Count(review_seq) 
 		FROM   review 
 		WHERE  user_id = #{value}

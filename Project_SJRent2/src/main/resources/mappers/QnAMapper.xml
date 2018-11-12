@@ -4,4 +4,94 @@
                         
 <!-- 네임스페이스(사용영역) 설정 -->
 <mapper namespace="kr.or.kosta.sjrent.qna">
+	<resultMap type="QnA" id="qnaResultMap">
+		<result column="qna_seq" 				property="number" />
+		<result column="user_seq"  				property="userSeq" />
+		<result column="user_id"  				property="userId" />
+		<result column="qna_title" 				property="title" />
+		<result column="qna_content" 			property="content" />
+		<result column="qna_date" 				property="date" />
+		<result column="qna_answer" 			property="answer" />
+	</resultMap>
+	
+	<!-- QnA 쓰기 -->
+	<insert id="write" parameterType="QnA">
+		INSERT INTO qna 
+		            (qna_seq, 
+		             user_seq, 
+		             user_id, 
+		             qna_title,
+		             qna_content) 
+		VALUES     ( qna_seq.NEXTVAL, 
+		            #{userSeq}, 
+		            #{userId}, 
+		            #{title}', 
+		            #{content})
+	</insert>
+	
+	<!-- QnA 삭제 -->
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM QnA 
+		WHERE  qna_seq = #{value} 
+	</delete>
+	
+	<!-- QnA 수정 -->
+	<update id="update" parameterType="QnA">
+		UPDATE QNA
+		<set>
+	        <if test="title != null">qna_title = #{title},</if>
+	        <if test="content != null">qna_content = #{content},</if>
+	        <if test="answer != null">qna_answer = #{answer},</if>
+	    </set>
+	    WHERE qna_seq = #{number}
+	</update>
+	
+	<!-- 특정 QnA 읽기 -->
+	<select id="read" resultType="QnA" parameterType="Integer" resultMap="qnaResultMap">
+		SELECT qna_seq, 
+		       user_seq, 
+		       user_id, 
+		       qna_title, 
+		       qna_content, 
+		       qna_date, 
+		       qna_answer 
+		FROM   qna 
+		WHERE  qna_seq = #{value} 
+	</select>
+	
+	<!-- 전체 QnA Count -->
+	<select id="count" resultType="Integer" resultMap="reviewResultMap">
+		SELECT Count(qna_seq) 
+		FROM   QnA 
+	</select>
+	
+	<!-- 특정 모델 Review List page 선택 -->
+	<select id="listByPage" resultType="QnA" parameterType="map" resultMap="qnaResultMap">
+		SELECT X.qna_seq, 
+		       X.user_seq, 
+		       X.user_id, 
+		       X.qna_title, 
+		       X.qna_content, 
+		       X.qna_date, 
+		       X.qna_answer 
+		FROM   (SELECT ROWNUM AS rnum, 
+		               A.qna_seq, 
+		               A.user_seq, 
+		               A.user_id, 
+		               A.qna_title, 
+		               A.qna_content, 
+		               A.qna_date, 
+		               A.qna_answer 
+		        FROM   (SELECT qna_seq, 
+		                       user_seq, 
+		                       user_id, 
+		                       qna_title, 
+		                       qna_content, 
+		                       qna_date, 
+		                       qna_answer 
+		                FROM   qna 
+		                ORDER  BY qna_seq) A 
+		        WHERE  ROWNUM <![CDATA[<=]]> #{endNum}) X 
+		WHERE  X.rnum <![CDATA[>=]]> #{startNum} 
+	</select>
 </mapper>

@@ -2,9 +2,9 @@ package kr.or.kosta.sjrent.qna.domain;
 
 public class QnA {
 
-	private int qna_seq;
-	private int user_seq;
-	private String id;
+	private int number;
+	private int userSeq;
+	private String userId;
 	private String title;
 	private String content;
 	private String date;
@@ -14,28 +14,28 @@ public class QnA {
 		super();
 	}
 
-	public int getQna_seq() {
-		return qna_seq;
+	public int getNumber() {
+		return number;
 	}
 
-	public void setQna_seq(int qna_seq) {
-		this.qna_seq = qna_seq;
+	public void setNumber(int number) {
+		this.number = number;
 	}
 
-	public int getUser_seq() {
-		return user_seq;
+	public int getUserSeq() {
+		return userSeq;
 	}
 
-	public void setUser_seq(int user_seq) {
-		this.user_seq = user_seq;
+	public void setUserSeq(int userSeq) {
+		this.userSeq = userSeq;
 	}
 
-	public String getId() {
-		return id;
+	public String getUserId() {
+		return userId;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public String getTitle() {
@@ -72,10 +72,11 @@ public class QnA {
 
 	@Override
 	public String toString() {
-		return "QnA [qna_seq=" + qna_seq + ", user_seq=" + user_seq + ", id=" + id + ", title=" + title + ", content="
-				+ content + ", date=" + date + ", answer=" + answer + "]";
+		return "QnA [number=" + number + ", userSeq=" + userSeq + ", userId=" + userId + ", title=" + title
+				+ ", content=" + content + ", date=" + date + ", answer=" + answer + "]";
 	}
-
+	
+	
 	
 
 }

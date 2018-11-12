@@ -7,6 +7,7 @@ package kr.or.kosta.sjrent.qna.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import kr.or.kosta.sjrent.qna.domain.QnA;
 import kr.or.kosta.sjrent.qna.paging.Params;
+import kr.or.kosta.sjrent.review.domain.Review;
 
 public class MybatisQnADao implements QnADao {
 	
@@ -33,20 +35,19 @@ public class MybatisQnADao implements QnADao {
 	@Override
 	public boolean create(QnA qna) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int result = sqlSession.insert(NAMESPACE + "insertQnA", qna);
+		int result = sqlSession.insert(NAMESPACE + "write", qna);
 		sqlSession.close();
 		if(result ==1) {
 			return true;
 		}else {
 			return false;	
-		}		
+		}
 	}
 
 	@Override
 	public QnA read(int seq) throws Exception {
-		
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		QnA qna = sqlSession.selectOne(NAMESPACE + "readQnA", seq);
+		QnA qna = sqlSession.selectOne(NAMESPACE + "read", seq);
 		sqlSession.close();
 		return qna;
 	}
@@ -54,7 +55,7 @@ public class MybatisQnADao implements QnADao {
 	@Override
 	public boolean update(QnA qna) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int result = sqlSession.update(NAMESPACE + "updateQnA", qna);
+		int result = sqlSession.update(NAMESPACE + "update", qna);
 		sqlSession.close();
 		if(result==1) {
 			return true;
@@ -66,50 +67,34 @@ public class MybatisQnADao implements QnADao {
 	@Override
 	public boolean delete(int seq) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession(true);
-		int result = sqlSession.delete(NAMESPACE + "deleteQnA", seq);
+		int result = sqlSession.delete(NAMESPACE + "delete", seq);
 		sqlSession.close();
 		if(result==1) {
 			return true;
 		}else {
 			return false;
 		}
-		
 	}
 
 	@Override
-	public List<QnA> listAll() throws Exception {
+	public List<QnA> listByPage(int page, int listSize) throws Exception {
+		Map<String, Object> map = new HashMap<String,Object>();
+		int startNum = ((listSize*(page-1))+1);
+		int endNum = (listSize*(page));
+		map.put("startNum", startNum);
+		map.put("endNum", endNum);
 		SqlSession sqlSession = sqlSessionFactory.openSession();
-		List<QnA> qnaList = sqlSession.selectList(NAMESPACE + "listAll");
+		List<QnA> qnaList = sqlSession.selectList(NAMESPACE + "listByPage", map);
 		sqlSession.close();
 		return qnaList;
 	}
 
-
-	
-	
-
 	@Override
-	public List<QnA> listByPage(int page, int listSize, String searchType, String searchValue) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<QnA> listByPage(Params params) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countBySearch(String searchType, String searchValue) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int countBySearch(Params params) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+	public int countAll() throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "count");
+		sqlSession.close();
+		return count;
 	}
 
 
