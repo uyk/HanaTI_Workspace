@@ -133,6 +133,7 @@
             <%--
                 Review 탭 시작
              --%>
+             <%--<div id="review_tab_div"></div> --%>
             <jsp:include page="/rent/search_include/review_list.jsp"></jsp:include>
 		</div>
 	</div>

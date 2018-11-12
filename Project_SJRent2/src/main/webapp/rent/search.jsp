@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="<%=application.getContextPath()%>/css/datepicker.min.css" type="text/css">
 <script src="<%=application.getContextPath()%>/js/datepicker.min.js"></script>
 <script src="<%=application.getContextPath()%>/js/datepicker.en.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 <style type="text/css">
 .in {
    background: rgba(0, 0, 0, 0.8);
@@ -31,8 +32,8 @@
 }
 </style>
 <script type="text/javascript">
-var rent_start_date;
-var rent_end_date;
+var rent_start_date = null;
+var rent_end_date = null;
 var date;
 var weekday = 0;
 var weekend = 0;
@@ -71,6 +72,10 @@ $(document).ready(function(){
    /** 검색버튼이 클릭됨 */
    $('#showCarList').submit(function(e) {
        e.preventDefault();
+	   if(rent_start_date == null) {
+		   alert('날짜를 선택해주세요');
+		   return;
+	   }
       var model_type = $('.selectpicker').val();
       var type_name;
       switch (model_type) {
@@ -187,9 +192,11 @@ function setModelList(list) {
 	             'startDate' : rent_start_date,
 	             'endDate' : rent_end_date
 	        },
-			success:function(result){
+			success:function(model){
 				//$(e.currentTarget).html(result);
-				setDetailModal(result);
+				setDetailModal(model);
+				// detail패널의 car_detail의 review 탭 설정
+				setReviewTab(model.name, model.reviewCount);
 			},
 	        error : function(result) {
 	        	console.log('error in openning detail show' + result);
@@ -209,6 +216,19 @@ function setModelList(list) {
 	});
 }
 
+function setReviewTab(name, reviewCount, page) {
+	$('#new_review_tab').remove();
+	var params = {
+		page : page,
+		reviewCount : reviewCount
+	};
+	var reviewTab = $('<div id="new_review_tab"></div>').load("<%=application.getContextPath()%>/rent/search_include/review_list.jsp", params);
+	$("#review_tab_div").append(reviewTab);
+	// 리뷰탭 리뷰 개수, 별 css 설정
+	$('#review-list-count').html('(' + reviewCount + ' Review)');
+	// 리뷰 목록 가져와서 설정
+	getReviewList(name, 1, 10);
+}
 
 /**
  * 모델 디테일 정보를 표시하는 모달 setDetailModal의 정보를 model객체에서 가져와 설정하는 함수.
@@ -224,6 +244,10 @@ function setDetailModal(model) {
 	$('#detail-star').css('width', model.evalScore * 10 + '%');
 	$('#detail-review-count').html('(' + model.reviewCount + ' Review)');
 	$('#detail-amount-money').html('&#8361 '+ amountMoney);
+	$('#detail-weekday-price').html(' ' + model.weekdayPrice + ' on Weekday');
+	$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
+	$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
+	$('#detail-reserve-count').html(' ' + model.rentalCount + ' Times Reserved');
 	if('<%=request.getAttribute("loginId")%>' == 'null') {
 		console.log('id null');
 	}
@@ -238,11 +262,6 @@ function setDetailModal(model) {
 		e.stopPropagation();
 		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, '방문수령', model.type, model.picture);
 	})
-	
-	// 리뷰 목록 가져와서 설정
-	getReviewList(model.name, 1, 10);
-	// 리뷰탭 리뷰 개수, 별 css 설정
-	$('#review-list-count').html('(' + model.reviewCount + ' Review)');
 }
 /** 
  * <위시리스트에 저장> 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
@@ -385,7 +404,10 @@ function setReviewList(list) {
       <!--************************************
                Inner Banner Start
          *************************************-->
-         
+      <%--
+      <jsp:include page="/rent/search_include/search_banner.jsp"/>
+       --%>
+               
       <div class="tg-homebannerslider"
          class="tg-homebannerslider tg-haslayout">
          <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
@@ -482,10 +504,12 @@ function setReviewList(list) {
                <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 pull-left">
                   <div id="tg-content" class="tg-content">
                      <div class="tg-listing tg-listingvone">
+                     <%--
                         <div class="tg-sectiontitle" style="padding-bottom: 20px">
                            <h2>렌트카</h2>
                         </div>
                         <div class="clearfix"></div>
+                     --%>
                         <!--************************************
                                Model List Start
                          *************************************-->

@@ -40,7 +40,7 @@ public class QnAListController implements Controller {
 		List<QnA> list = null;
 
 		try {
-			list = qnaService.listAll();
+			list = qnaService.listByPage(1, 10);
 		} catch (Exception e) {
 			throw new ServletException("QnAService.list() 예외 발생", e);
 		}

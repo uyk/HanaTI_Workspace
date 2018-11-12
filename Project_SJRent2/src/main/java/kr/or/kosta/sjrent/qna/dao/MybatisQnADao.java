@@ -96,10 +96,6 @@ public class MybatisQnADao implements QnADao {
 		sqlSession.close();
 		return count;
 	}
-
-
-	
-	
 }
 
 

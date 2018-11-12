@@ -22,8 +22,6 @@ public class QnAServiceImpl implements QnAService {
 	@Override
 	public boolean create(QnA qna) throws Exception {
 		return qnaDao.create(qna);
-
-
 	}
 
 	@Override
@@ -34,8 +32,6 @@ public class QnAServiceImpl implements QnAService {
 	@Override
 	public boolean update(QnA qna) throws Exception {
 		return qnaDao.update(qna);
-
-
 	}
 
 	@Override
@@ -46,36 +42,22 @@ public class QnAServiceImpl implements QnAService {
 	}
 
 	@Override
-	public List<QnA> listAll() throws Exception {
-		return qnaDao.listAll();
-	}
-
-
-	
-	
-
-	@Override
-	public List<QnA> listByPage(int page, int listSize, String searchType, String searchValue) throws Exception {
-
-		return null;
+	public List<QnA> listByPage(int page, int listSize) throws Exception {
+		return qnaDao.listByPage(page, listSize);
 	}
 
 	@Override
-	public List<QnA> listByPage(Params params) throws Exception {
-
-		return null;
+	public int count() throws Exception {
+		return qnaDao.countAll();
 	}
 
 	@Override
-	public int countBySearch(String searchType, String searchValue) throws Exception {
-
-		return 0;
+	public boolean writeAnswer(int seq, String answer) throws Exception {
+		QnA qna = new QnA();
+		qna.setNumber(seq);
+		qna.setAnswer(answer);
+		return qnaDao.update(qna);
 	}
 
-	@Override
-	public int countBySearch(Params params) throws Exception {
-
-		return 0;
-	}
 
 }

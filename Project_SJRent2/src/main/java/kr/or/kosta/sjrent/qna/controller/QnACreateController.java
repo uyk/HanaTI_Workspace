@@ -57,7 +57,6 @@ public class QnACreateController implements Controller {
 		
 //		qna.setQna_seq(qna_seq);
 //		qna.setUser_seq(user_seq);
-		qna.setId(id);
 		qna.setTitle(title);
 		qna.setContent(content);
 		qna.setDate(date);

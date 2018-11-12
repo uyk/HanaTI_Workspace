@@ -55,8 +55,8 @@ public class QnAUpdateController implements Controller {
 		boolean isUpdate = false;
 		
 		
-		qna.setQna_seq(qna_seq);
-		qna.setId(id);
+		qna.setNumber(qna_seq);
+		qna.setUserId(id);;
 		qna.setTitle(title);
 		qna.setContent(content);
 		qna.setDate(date);

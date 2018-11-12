@@ -60,7 +60,7 @@
 	</select>
 	
 	<!-- 전체 QnA Count -->
-	<select id="count" resultType="Integer" resultMap="reviewResultMap">
+	<select id="count" resultType="Integer" resultMap="qnaResultMap">
 		SELECT Count(qna_seq) 
 		FROM   QnA 
 	</select>

@@ -30,10 +30,6 @@
   								model amountMoney filed
   							</h4>
   						</div>
-  						<div class="tg-description">
-  							<p>There’s only 5 spot left. Join 19 others at Travelu’s
-  								experience this Saturday.</p>
-  						</div>
                           <div class="tg-description">
                             <ul class="my-tg-likeshare" >
                             <%
@@ -51,13 +47,10 @@
   					</div>
   				</div>
   				<ul class="tg-tripinfo">
-  					<li><span class="tg-tourduration">12 Days 11 Nights</span></li>
-  					<li><span class="tg-tourduration tg-availabilty">Availability
-  							May 12</span></li>
-  					<li><span class="tg-tourduration tg-location">San
-  							Francisco</span></li>
-  					<li><span class="tg-tourduration tg-peoples">24 People
-  							in Group</span></li>
+  					<li><i class="fas fa-won-sign"></i><span id='detail-weekday-price'>weekday price field</span></li>
+  					<li><i class="fas fa-won-sign"></i><span id='detail-weekend-price'>weekend price field</span></li>
+  					<li><i class="fas fa-heart"></i><span id='detail-wish-count'>wish count field</span></li>
+  					<li><i class="fas fa-user-alt"></i><span id='detail-reserve-count'>reserved count field</span></li>
   				</ul>
   				<div class="tg-refundshare">
   					<div class="tg-refund">
