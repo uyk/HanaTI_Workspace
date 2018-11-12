@@ -2,36 +2,27 @@ package kr.or.kosta.sjrent.model.params;
 
 /**
  * 차량 검색을 위한 전달인자들을 포장하기 위한 Wrapper 클래스
- * {페이지, 조회 목록 개수, 시작일, 종료일, 타입(중형 대형 등), 연료 타입, 인승, 변속기, 네비게이션, 후방카메라, 블랙박스 등}
+ * {시작일, 종료일, 타입(중형 대형 등), 연료 타입, 인승, 변속기, 네비게이션, 후방카메라, 블랙박스 등}
  *  
  * @author 남수현
  */
 public class ModelParams {
-	private int page;
-	private int listSize;
 	private String startDate;
 	private String endDate;
 	private String fuelType;
 	private String type;
 	private int seater;
 	private String transmission;
-	private String navigation;
-	private String cameraRear;
-	private String blackBox;
-	
+	private int navigation;
+	private int cameraRear;
+	private int blackBox;
+	private int highpass;
+
 	public ModelParams() {
-		// 0으로 들어오면 전체 검색 하도록 하기
-		this(1, 15, null, null, null, 0, null, null, null, null);
+		super();
 	}
-	public ModelParams(String startDate, String endDate) {
-		this(1, 15, startDate, endDate, null, 0, null, null, null, null);
-	}
-	
-	
-	public ModelParams(int page, int listSize, String startDate, String endDate, String fuelType, int seater,
-			String transmission, String navigation, String cameraRear, String blackBox) {
-		this.page = page;
-		this.listSize = listSize;
+	public ModelParams(String startDate, String endDate, String fuelType, int seater,
+			String transmission, int navigation, int cameraRear, int blackBox) {
 		this.startDate = startDate;
 		this.endDate = endDate;
 		this.fuelType = fuelType;
@@ -40,18 +31,6 @@ public class ModelParams {
 		this.navigation = navigation;
 		this.cameraRear = cameraRear;
 		this.blackBox = blackBox;
-	}
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page;
-	}
-	public int getListSize() {
-		return listSize;
-	}
-	public void setListSize(int listSize) {
-		this.listSize = listSize;
 	}
 	public String getStartDate() {
 		return startDate;
@@ -90,24 +69,29 @@ public class ModelParams {
 	public void setTransmission(String transmission) {
 		this.transmission = transmission;
 	}
-	public String getNavigation() {
+	public int getNavigation() {
 		return navigation;
 	}
-	public void setNavigation(String navigation) {
+	public void setNavigation(int navigation) {
 		this.navigation = navigation;
 	}
-	public String getCameraRear() {
+	public int getCameraRear() {
 		return cameraRear;
 	}
-	public void setCameraRear(String cameraRear) {
+	public void setCameraRear(int cameraRear) {
 		this.cameraRear = cameraRear;
 	}
-	public String getBlackBox() {
+	public int getBlackBox() {
 		return blackBox;
 	}
-	public void setBlackBox(String blackBox) {
+	public void setBlackBox(int blackBox) {
 		this.blackBox = blackBox;
 	}
-
+	public int getHighpass() {
+		return highpass;
+	}
+	public void setHighpass(int highpass) {
+		this.highpass = highpass;
+	}
 	
 }

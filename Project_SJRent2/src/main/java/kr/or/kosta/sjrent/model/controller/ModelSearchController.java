@@ -43,9 +43,7 @@ public class ModelSearchController implements Controller {
 		String startDate = request.getParameter("rent_start_date");
 		String endDate = request.getParameter("rent_end_date");
 		String type = request.getParameter("model_type");
-		if(startDate == null) {
-			startDate="2018-11-12";
-			endDate="2018-11-12";
+		if(type == null) {
 			type="all";
 		}
 		// 인자로 받은 date와 type
@@ -58,16 +56,49 @@ public class ModelSearchController implements Controller {
 		modelParams.setStartDate(startDate);
 		modelParams.setEndDate(endDate);
 		modelParams.setType(type);
+		
+		String fuelType = request.getParameter("fuelType");
+		String seaterS = request.getParameter("seater");
+		String transmission = request.getParameter("transmission");
+		String navigationS = request.getParameter("navigation");
+		String cameraReaerS = request.getParameter("cameraRear");
+		String blackBoxS = request.getParameter("blackBox");
+		String highpassS = request.getParameter("highpass");
 
+		if(seaterS!=null) {
+			modelParams.setSeater(Integer.parseInt(seaterS));
+		}else{
+			modelParams.setSeater(-1);
+		}
+		if(navigationS!=null) {
+			modelParams.setNavigation(Integer.parseInt(navigationS));
+		}else {
+			modelParams.setNavigation(-1);
+		}
+		if(cameraReaerS!=null) {
+			modelParams.setCameraRear(Integer.parseInt(cameraReaerS));
+		}else {
+			modelParams.setCameraRear(-1);
+		}
+		if(blackBoxS!=null) {
+			modelParams.setBlackBox(Integer.parseInt(blackBoxS));
+		}else {
+			modelParams.setBlackBox(-1);
+		}
+		if(highpassS!=null) {
+			modelParams.setHighpass(Integer.parseInt(highpassS));
+		}else {
+			modelParams.setHighpass(-1);
+		}
+		modelParams.setFuelType(fuelType);
+		modelParams.setTransmission(transmission);
 		List<Model> list = null;
-
 		try {
 			// Params로 검색한 리스트를 list에 저장
 			list = modelService.listBySearch(modelParams);
 			for (Model model : list) {
 				jsonArray.add(otj.ObjectToJsonObject(model));
 			}
-
 			response.setCharacterEncoding("utf-8");
 			response.getWriter().print(jsonArray);
 			return null;

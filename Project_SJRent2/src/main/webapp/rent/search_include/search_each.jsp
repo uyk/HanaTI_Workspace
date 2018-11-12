@@ -19,7 +19,7 @@ int ammountMoney = Integer.parseInt(request.getParameter("weekday")) * Integer.p
       <div class='tg-description' style='height: 150px;'>
         <p><%=request.getParameter("options") %></p>
       </div>
-      <div class='tg-populartourfoot' style='height: 100px;'>
+      <div class='tg-populartourfoot' style='height: 70px;'>
         <div class='tg-durationrating'>
           <span class='tg-stars'> 
             <span style='width: <%=request.getParameter("starPercent")%>%'></span>

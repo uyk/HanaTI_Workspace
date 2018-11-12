@@ -165,6 +165,73 @@
 		          m.model_rental_count
 	</select>
 	
+	<!-- 옵션 활용 검색 결과 모델 리스트 -->
+	<select id="listBySearchByOption" parameterType="modelParams" resultType="Model" resultMap="modelResultMap">
+			SELECT m.model_name, 
+			       m.model_year, 
+			       m.model_fuel_type, 
+			       m.model_fuel_efficiency, 
+			       m.model_seater, 
+			       m.model_transmission, 
+			       m.model_navigation, 
+			       m.model_camera_rear, 
+			       m.model_highpass, 
+			       m.model_blackbox, 
+			       m.model_type, 
+			       m.model_weekday_price, 
+			       m.model_weenkend_price, 
+			       m.model_options, 
+			       m.model_picture, 
+			       m.model_rental_count, 
+			       Avg(r.review_evalscore) model_eval_score, 
+			       Count(r.review_seq)     model_review_count 
+			FROM   (SELECT * 
+			        FROM   model 
+			        WHERE  <if test="type != null">model_type =  #{type} AND </if>
+			        	   <if test="fuelType != null">model_fuel_type =  #{fuelType} AND </if>
+			        	   <if test="seater > -1">model_seater =  #{seater} AND </if>
+			        	   <if test="transmission != null">model__transmission =  #{transmission} AND </if>
+			        	   <if test="navigation > -1">model_navigation =  #{navigation} AND </if>
+			        	   <if test="cameraRear > -1">model_camera_rear =  #{cameraRear} AND </if>
+			        	   <if test="highpass > -1">model_highpass =  #{highpass} AND </if>
+			        	   <if test="blackBox > -1">model_blackbox =  #{blackBox} AND </if>
+			               model_name IN (SELECT DISTINCT model_name 
+			                                  FROM   car 
+			                                  WHERE  car_num NOT IN (SELECT car_num 
+			                                                         FROM   rent 
+			                                                         WHERE 
+			                                         To_date(#{startDate}) BETWEEN 
+			                                         rent_start_date AND rent_end_date 
+			                                          OR To_date(#{endDate}) BETWEEN 
+			                                             rent_start_date AND 
+			                                             rent_end_date 
+			                                          OR rent_start_date BETWEEN 
+			                                             To_date(#{startDate}) AND 
+			                                             To_date( 
+			                                             #{endDate}) 
+			                                          OR rent_end_date BETWEEN 
+			                                          	 To_date(#{startDate}) 
+			                                          AND To_date(#{endDate})))) m 
+			       left outer join review r 
+			       ON m.model_name = r.model_name 
+			GROUP  BY m.model_name, 
+			          m.model_year, 
+			          m.model_fuel_type, 
+			          m.model_fuel_efficiency, 
+			          m.model_seater, 
+			          m.model_transmission, 
+			          m.model_navigation, 
+			          m.model_camera_rear, 
+			          m.model_highpass, 
+			          m.model_blackbox, 
+			          m.model_type, 
+			          m.model_weekday_price, 
+			          m.model_weenkend_price, 
+			          m.model_options, 
+			          m.model_picture, 
+			          m.model_rental_count 
+	</select>
+	
 	<!-- 인기 모델 리스트 -->
 	<select id="popularModel" parameterType="Integer" resultType="Model" resultMap="modelResultMap">
 	SELECT model_name, 

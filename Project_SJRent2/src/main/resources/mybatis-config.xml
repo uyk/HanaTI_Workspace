@@ -18,7 +18,6 @@
 		<typeAlias type="kr.or.kosta.sjrent.model.domain.Model"             alias="Model"/>
 		<typeAlias type="kr.or.kosta.sjrent.insurance.domain.Insurance"     alias="Insurance"/>
 		<typeAlias type="kr.or.kosta.sjrent.faq.domain.FAQ"    			    alias="FAQ"/>
-		
 		<typeAlias type="kr.or.kosta.sjrent.model.params.ModelParams"		alias="ModelParams"/>
 	</typeAliases>
 	

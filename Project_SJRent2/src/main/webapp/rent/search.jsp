@@ -204,6 +204,8 @@ function setModelList(list) {
 		});
 	  	/** 리뷰 탭 클릭시 getReviewList 시작 */
 	  	/** 
+=======
+>>>>>>> Stashed changes
 	  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
 	  		//e.target // newly activated tab
 	  		//e.relatedTarget // previous active tab
@@ -212,6 +214,7 @@ function setModelList(list) {
 	  			getReviewList(modelName, 1, 10)
 	  		}
 	  	});
+<<<<<<< Updated upstream
 	  	*/
 	});
 }
@@ -442,7 +445,6 @@ function setReviewList(list) {
       <%--
       <jsp:include page="/rent/search_include/search_banner.jsp"/>
        --%>
-               
       <div class="tg-homebannerslider"
          class="tg-homebannerslider tg-haslayout">
          <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">

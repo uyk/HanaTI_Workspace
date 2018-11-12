@@ -36,7 +36,13 @@
 	<!-- 이메일 중복체크 -->
 	<bean type="controller" name="/user/checkEmail"
 		class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
-
+   <!-- 이메일 중복체크 -->
+   <bean type="controller" name="/user/checkEmail" class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
+   
+   	<!-- 마이페이지 로그인 -->
+	<bean type="controller" name="/mypage/login" class="kr.or.kosta.sjrent.user.mypage.controller.LoginController" />
+	<!-- 마이페이지 회원정보수정 -->
+	<bean type="controller" name="/mypage/update" class="kr.or.kosta.sjrent.user.mypage.controller.UpdateController" />
 
 	<!-- QnA list 컨트롤러 -->
 	<bean type="controller" name="/qna/qnaList"
@@ -79,6 +85,14 @@
 	<bean type="controller" name="/rent/rent"
 		class="kr.or.kosta.sjrent.rent.controller.RentController" />
 	<!-- 예약목록 -->
+	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
+	<!-- 예약상세-->
+	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
+	<!-- 예약취소-->
+	<bean type="controller" name="/rent/cancel" class="kr.or.kosta.sjrent.rent.controller.RentCancelController" />
+	<!-- 예약페이지로 데이터 전달-->
+	<bean type="controller" name="/rent/page" class="kr.or.kosta.sjrent.rent.controller.RentPageDataController" />
+
 
 	<bean type="controller" name="/rent/list"
 		class="kr.or.kosta.sjrent.rent.controller.RentListController" />
