@@ -37,7 +37,12 @@
 .resultImg:hover {
 background-color: #ff8080;
 }
-
+.in {
+   background: rgba(0, 0, 0, 0.8);
+}
+.modal-backdrop{
+   position: static;
+}
 </style>
 
 <script>
@@ -75,7 +80,10 @@ background-color: #ff8080;
 	       });
 		   return result;
 	   }) --%>
-	   
+
+   		/* 차 모델 이름 저장 */
+   		var car_model;
+   		
 	   /** 이미지 경로 받아오기 */
 	   function getImagePath() {
 	   var result; 
@@ -96,7 +104,7 @@ background-color: #ff8080;
 				
 				var type = data.type; 
 				var picture = data.picture; 
-
+				car_model = data.modelName;
 				//console.log(typeof modelName);//string
 				//console.log(typeof type);//string
 				
@@ -129,18 +137,14 @@ background-color: #ff8080;
    			
    			/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
    			$('#detail_show').on('show.bs.modal', function(e) {
-   				var modelName = $(e.relatedTarget).data('model-name');
+   				console.log(car_model);
    				window.e = $(e.currentTarget);
    				$.ajax({	
    					url:"<%=application.getContextPath()%>/model/detail.rent",
    					dataType:"json",
    					type:'POST', 
    					data : {
-   			             'modelName' : modelName,
-   			             'weekday' : weekday,
-   			             'weekend' : weekend,
-   			             'startDate' : rent_start_date,
-   			             'endDate' : rent_end_date
+   			             'modelName' : car_model
    			        },
    					success:function(result){
    						//$(e.currentTarget).html(result);
@@ -150,18 +154,80 @@ background-color: #ff8080;
    			        	console.log('error in openning detail show' + result);
    			        }
    				});
-   			  	/** 리뷰 탭 클릭시 getReviewList 시작 */
-   			  	/** 
-   			  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-   			  		//e.target // newly activated tab
-   			  		//e.relatedTarget // previous active tab
-   			  		console.log(e.target.getAttribute('aria-controls'));
-   			  		if(e.target.getAttribute('aria-controls') == 'review') {
-   			  			getReviewList(modelName, 1, 10)
-   			  		}
-   			  	});
-   			  	*/
    			});
+   			/**
+   			 * 모델 디테일 정보를 표시하는 모달 setDetailModal의 정보를 model객체에서 가져와 설정하는 함수.
+   			 * 위시리스트로 넘길 정보 :  model(name,picture,type,fueltype), startDate, endDate, amountMoney
+   			 * 예약화면으로 넘길 정보 :  model, startDate, endDate, amountMoney, location
+   			 */
+   			function setDetailModal(model) {
+   				var imagePath = "../images/cars/"+model.type+"/"+model.picture;
+   				$('#detail-img').attr('src',imagePath);
+   				$('#detail-name').html(model.name);
+   				$('#detail-star').css('width', model.evalScore * 10 + '%');
+   				$('#detail-review-count').html('(' + model.reviewCount + ' Review)');
+   				if('<%=request.getAttribute("loginId")%>' == 'null') {
+   					console.log('id null');
+   				}
+   				else {
+   					console.log('<%=request.getAttribute("loginId")%>');
+   					$('#wish-list-anchor').on('click', function(e) {
+   						e.stopPropagation();
+   						e.currentTarget.onclick = addToWishList(model.name, rent_start_date, rent_end_date, amountMoney, model.picture, model.type, model.fuelType);
+   					})
+   				}
+   				$('#go-reserve-anchor').on('click', function(e) {
+   					e.stopPropagation();
+   					e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, '방문수령', model.type, model.picture);
+   				})
+   				
+   				// 리뷰 목록 가져와서 설정
+   				getReviewList(model.name, 1, 10);
+   				// 리뷰탭 리뷰 개수, 별 css 설정
+   				$('#review-list-count').html('(' + model.reviewCount + ' Review)');
+   			}
+   			
+   			/** 
+   			 * 리뷰 리스트를 컨트롤러에 요청하여 가져오는 함수.
+   			 * 
+   			 */
+   			function getReviewList(modelName, page, listSize) {
+   				$.ajax({	
+   					url:"<%=application.getContextPath()%>/review/list.rent",
+   					dataType:"json",
+   					type:'POST', 
+   					data : {
+   				  		modelName : modelName,
+   				  		page : page,
+   				  		listSzie : listSize
+   			        },
+   					success:function(result){
+   						console.log("ok review list \n" + result);
+   						setReviewList(result);
+   					},
+   					error : function(result) {
+   						console.log("error.... result : " + result);
+   					}
+   				});
+   			}
+
+   			/**
+   			 * 리뷰 리스트를 화면에 출력하는 함수 
+   			 */
+   			function setReviewList(list) {
+   				$("#each_review_ul").html("");
+   				for ( var i in list) {
+   					var params = {
+   						imgPath : '/sjrent/images/review/image1.jpg',
+   						userId : list[i].userId,
+   						evalScore : list[i].evalScore,
+   						date : list[i].date,
+   						content : list[i].content
+   					};
+   					var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each.jsp", params);
+   					$("#each_review_ul").append(review);
+   				}
+   			}
 		}) 
 		
 		
@@ -200,7 +266,7 @@ background-color: #ff8080;
    	 <!--************************************
              Detail Model Modal Start
         *************************************-->
-         <jsp:include page="/rent/search_detail.jsp" />
+         <jsp:include page="search_detail.jsp" />
         <!--************************************
              Detail Model Modal End
         *************************************-->
@@ -212,9 +278,8 @@ background-color: #ff8080;
             <!--************************************
 									Content 시작
 							*************************************-->
-            
 							<img alt="여행선택지" src="../images/rec/rec_result.JPG">
-							<img alt="추천자동차" src="" id="resultCar" class="resultImg">	
+							<img alt="추천자동차" src="" id="resultCar" class="resultImg" data-toggle='modal' data-target='#detail_show' data-model-name='<%=request.getParameter("modelName") %>' >	
 							<span></span>
 			<!-- ../images/cars/ASegment/2017K3.jpg  -->	
             <!--************************************

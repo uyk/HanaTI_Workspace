@@ -78,7 +78,7 @@ $(document).ready(function(){
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 pull-left">
 								<div id="tg-content" class="tg-content">
 									<!-- 여태 렌트했던 목록들 띄우기 -->
-									<div class="tg-tourpaymentdetail">
+									<div class="tg-tourpaymentdetail" id="rentList">
 										<div class="tg-tourname">
 											<a class="tg-btnedit" href="#">결제취소</a>
 											<figure>

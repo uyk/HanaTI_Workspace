@@ -9,6 +9,22 @@
 <head>
 <jsp:include page="../common/commoncss.jsp" />
 
+<!-- 지금까지의 렌트항목을 위한 Ajax 통신 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="tg-home tg-homevone">
@@ -46,66 +62,51 @@
           <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
             <div class="container">
               <div class="tg-tabcontent tab-content"
-                style="padding: 0px 350px 0;">
+                style="padding: 0px 350px;">
                 <div role="tabpanel" class="tab-pane active fade in"
                   id="home">
-
+                  <!--************************************
+		                                    Title 시작
+		                           *************************************-->
                   <div style="text-align: center;">
-                    <h2>회원탈퇴</h2>
+                    <h2>MyPage</h2>
                   </div>
-
+                  <!--************************************
+		                                    Title 종료
+		                           *************************************-->
                 </div>
               </div>
 
-
+              <!--************************************
+                                    Content 시작 
+                              *************************************-->
+    
+    
+    
+<!-- rentLsit을 위한 부분 -->    
+    
               <div>
                 <p style="text-align: center;">
-                  <%=loginId%>님
+                  <%=loginId%>님 환영합니다.<br>
                 </p>
               </div>
+  
+              <div style="background-color: white; border: thick; width: 25%; font-size: 15pt; margin-left: 38%; margin-bottom: 20%; text-align: center; float: left;">
+                원하는 메뉴를 선택해주세요</div>
+
 
 
               <!--************************************
-                                    MenuBar 시작 
-                              *************************************-->
-              <jsp:include page="menuBar.jsp" />
+                                 Content 종료
+                           *************************************-->
+
               <!--************************************
-                                    MenuBar 종료 
+                                   menuBar 시작 
                               *************************************-->
-
-              <div style="text-align: center;">
-                <p>정말 탈퇴 하시겠습니까?</p>
-
-
-
-                <div style="text-align: center;">
-                  <div
-                    style="display: inline-block; vertical-align: middle; padding: 0px 10px; margin: 30px 0px 50px 0px;">
-                    <button type="button" class="tg-btn tg-btn-lg" onclick="location.href='/sjrent/mypage/delete.rent'">
-                      <span style="font-size: 14pt; width: 50%">예</span>
-                    </button>
-                  </div>
-                  <div
-                    style="display: inline-block; vertical-align: middle; padding: 0px 10px; margin: 30px 0px 50px 0px;">
-                    <button type="button" class="tg-btn tg-btn-lg" onclick="location.href='/sjrent/mypage/myPageLoginOK.jsp'">
-                      <span style="font-size: 14pt; width: 50%">아니오</span>
-                    </button>
-
-                  </div>
-                </div>
-                
-                
-
-
-
-
-                <!-- <button type="button" class="btn btn-secondary"
-                  onclick="location.href='/sjrent/mypage/delete.rent'">예</button>
-                <button type="button" class="btn btn-primary"
-                  onclick="location.href='/sjrent/mypage/myPageLoginOK.jsp'">아니오</button> -->
-
-              </div>
-
+              <div><jsp:include page="menuBar.jsp"></jsp:include></div>
+              <!--************************************
+                                   menuBar 시작 
+                              *************************************-->
 
             </div>
           </div>

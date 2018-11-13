@@ -40,11 +40,13 @@ public class ReviewListController implements Controller {
       reviewService = (ReviewService)factory.getBean(ReviewServiceImpl.class);
       jsonArray = new JSONArray();
       otj = new ObjectToJson();
+      
+      String userId = (String) request.getAttribute("loginId");
       String modelName = request.getParameter("modelName");
-      String userId = request.getParameter("userId");
       String pageS = request.getParameter("page");
       String listSizeS = request.getParameter("listSzie");
       List<Review> reviewList = new ArrayList<Review>();
+      
       int page = 1;
       int listSize = 10000;
       if(pageS!=null&&!pageS.equals("")) {

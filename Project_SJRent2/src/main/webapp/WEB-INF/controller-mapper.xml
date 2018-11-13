@@ -85,15 +85,6 @@
 	<bean type="controller" name="/rent/rent"
 		class="kr.or.kosta.sjrent.rent.controller.RentController" />
 	<!-- 예약목록 -->
-	<bean type="controller" name="/rent/list" class="kr.or.kosta.sjrent.rent.controller.RentListController" />
-	<!-- 예약상세-->
-	<bean type="controller" name="/rent/detail" class="kr.or.kosta.sjrent.rent.controller.RentDetailController" />
-	<!-- 예약취소-->
-	<bean type="controller" name="/rent/cancel" class="kr.or.kosta.sjrent.rent.controller.RentCancelController" />
-	<!-- 예약페이지로 데이터 전달-->
-	<bean type="controller" name="/rent/page" class="kr.or.kosta.sjrent.rent.controller.RentPageDataController" />
-
-
 	<bean type="controller" name="/rent/list"
 		class="kr.or.kosta.sjrent.rent.controller.RentListController" />
 	<!-- 예약상세 -->
@@ -125,6 +116,9 @@
 	<!-- 리뷰 목록 -->
 	<bean type="controller" name="/review/list"
 		class="kr.or.kosta.sjrent.review.controller.ReviewListController" />
+	<!-- 리뷰 목록2 -->
+	<bean type="controller" name="/review/list2"
+		class="kr.or.kosta.sjrent.review.controller.ReviewListController2" />
 	<!-- 리뷰 Count -->
 	<bean type="controller" name="/review/count"
 		class="kr.or.kosta.sjrent.review.controller.ReviewCountController" />

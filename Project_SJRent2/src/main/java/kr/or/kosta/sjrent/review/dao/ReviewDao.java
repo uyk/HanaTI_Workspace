@@ -18,6 +18,8 @@ public interface ReviewDao {
 	
 	public boolean delete(int number) throws Exception;
 
+	public List<Review> listById(String userId) throws Exception;
+
 	public List<Review> listByModel(String modelName) throws Exception;
 
 	public List<Review> listByModelByPage(int page, int listSize, String modelName) throws Exception;

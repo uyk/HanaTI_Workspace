@@ -49,16 +49,14 @@ public class ModelPeriodController implements Controller{
 		JSONObject resultObject = new JSONObject();
 		JSONObject jo = new JSONObject();
 		try {
-			Map<String, HashMap<String, ArrayList<String>>> result = modelService.periodByModelName(modelName);
+			Map<String, ArrayList<String>> result = modelService.periodByModelName(modelName);
 			jo.putAll(result);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
 		try {
 			Model model = modelService.read(modelName);
-			
 			response.setCharacterEncoding("utf-8");
-			
 			resultObject.put("period", jo);
 			resultObject.put("model", otj.ObjectToJsonObject(model));
 			response.getWriter().print(resultObject);

@@ -69,15 +69,9 @@ if(request.getAttribute("loginId") != null){ //로그인 된 경우
 		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/search.jsp"><span>실시간 예약</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/rec/rec_index.jsp"><span>추천 예약</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>커뮤니티</span></a>
-<<<<<<< HEAD
-		<a class="tg-btn" href="<%=application.getContextPath()%>/community/community.jsp"><span>위시리스트</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/wish/wish_list.jsp"><span>예약확인</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/user/login.jsp"><span>로그인</span></a>
-=======
 		<a class="tg-btn" href="<%=application.getContextPath()%>/wishitem/list.rent"><span>위시리스트</span></a>
 		<a class="tg-btn" href="<%=application.getContextPath()%>/rent/list.rent"><span>예약확인</span></a>
-		<a class="tg-btn" href="<%=application.getContextPath()%>/user/login2.jsp"><span>로그인</span></a>
->>>>>>> b4ba2e73d1e5c074ac3394d6c36cea3dba45dbb6
+		<a class="tg-btn" href="<%=application.getContextPath()%>/user/login.jsp"><span>로그인</span></a>
 	</div>
     </div>
 <%

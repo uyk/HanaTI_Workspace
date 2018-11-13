@@ -7,15 +7,16 @@ String loginId = (String)request.getAttribute("loginId");
 <head>
 <meta charset="utf-8">
 
-<title>마이페이지</title>
+
+<title>MYPAGE</title>
 </head>
 <body>
 
 	<!-- Sidebar -->
 	<div class="w3-sidebar w3-light-grey w3-bar-block" style="height:33%; ">
-	   <h3 class="w3-bar-item" style="padding-left: 30px; vertical-align: middle;">메뉴</h3>
-	  <a href="#" class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px ">예약리스트보기</a>
-	  <a href="/sjrent/review/list.rent" class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px">리뷰보기</a>
+	   <h3 class="w3-bar-item" style="padding-left: 30px; vertical-align: middle;">Menu</h3>
+	  <a href="/sjrent/rent/list.rent" class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px ">나의예약항목</a>
+	  <a href="/sjrent/review/list2.rent" class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px">나의리뷰</a>
 	  <a href="/sjrent/user/read.rent"  class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px">회원정보수정</a>
       <a href="/sjrent/mypage/deleteUser.jsp" class="w3-bar-item w3-button" style="font-size:14pt; background-color: black; color: white; padding-left: 30px">회원탈퇴</a>
 	  <!-- <a data-toggle="modal" class="w3-bar-item w3-button" data-target="#dropModal" style="font-size:14pt; background-color: black; color: white; padding-left: 30px">회원탈퇴</a> -->

@@ -42,6 +42,8 @@ public class QnACreateController implements Controller {
 		userService = (UserService) factory.getBean(UserServiceImpl.class);
 		
 		String loginId = (String) request.getAttribute("loginId");
+		//System.out.println("컨트롤럴에서 찍히는 로그인아이디: "+loginId);
+		
 		User user = new User();
 		int userSeq = 0;
 		try {
@@ -70,8 +72,11 @@ public class QnACreateController implements Controller {
 		System.out.println(qna);
 		try {
 			isCreate = qnaService.create(qna);
+			System.out.println("게시글 잘 생성됨............");
 		} catch (Exception e1) {
 			e1.printStackTrace();
+			System.out.println("에러남............");
+
 		}
 
 		// QnA 생성 실패시 응답으로 fail 보냄

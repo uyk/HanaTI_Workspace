@@ -1,5 +1,51 @@
+<%@page import="kr.or.kosta.sjrent.common.params.Params"%>
+<%@page import="kr.or.kosta.sjrent.common.params.PageBuilder"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("utf-8");
+//DaoFactory factory= (DaoFactory)application.getAttribute("factory");
+//ArticleDao dao = factory.getArticle();
+
+//페이지당 보여지는 목록수 설정
+int listSize = 5;
+//페이지당 보여지는 페이지수 설정
+int pageSize = 5;
+
+
+// 선택페이지 수신
+String requestPage = request.getParameter("page");
+if(requestPage == null || requestPage.equals("")){
+  requestPage = "1";
+}
+
+//검색 요청일 경우 파라메터 수신
+String searchType = request.getParameter("searchType");
+String searchValue = request.getParameter("searchValue");
+
+//System.out.println(searchType );
+//System.out.println(searchValue);
+if(searchType == null || searchType.equals("")){
+searchType = null;
+searchValue = null;
+}
+
+//요청파라메터 포장
+Params params = new Params(Integer.parseInt(requestPage), listSize, pageSize, searchType, searchValue);
+
+// 페이징 정렬 
+//List<Article> list = dao.listByPage(params);
+
+// 페이징 처리에 필요한 검색 개수 DB조회
+//int rowCount = dao.countBySearch(params);
+
+// PageBuilder를 이용하여 페이징 계산
+//PageBuilder pageBuilder = new PageBuilder(params, rowCount);
+//pageBuilder.build();
+
+%>
+
+
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -73,13 +119,32 @@
 								<div style="text-align: center; margin: 0px 0px; padding: 0px" >
 									<h2>커뮤니티</h2>
 									<div style="text-align: center; margin: 30px 0px 15px ">
-									<button class="tablink" onclick="openPage('QnA', this, '#446600')" id="defaultOpen">QnA</button>
-									<button class="tablink" onclick="openPage('FAQ', this, '#800060')"  >FAQ</button>
-									<button class="tablink" onclick="openPage('공지사항', this, '#006699')"  >공지사항</button>
-								</div>
+										<button class="tablink" onclick="openPage('QnA', this, '#446600')" id="defaultOpen">QnA</button>
+										<button class="tablink" onclick="openPage('FAQ', this, '#800060')"  >FAQ</button>
+										<button class="tablink" onclick="openPage('공지사항', this, '#006699')"  >공지사항</button>
+									</div>
 								<div id="QnA" class="tabcontent">
-									<h3>QnA</h3>
-									<p>QnA 내용 보여주기</p>
+									 
+									 <table class="w3-table w3-striped w3-bordered" style="text-align: center;">
+							          <thead>
+							            <tr class="w3-theme">
+							              <th>번호</th>
+							              <th>제목</th>
+							              <th>작성자</th>
+							              <th>작성일</th>
+							            </tr>
+							          </thead>
+							          <tbody>
+							          
+							              <tr>
+							                  <td>dd</td>
+							                  <td>d</td>
+							                  <td>d</td>
+							                  <td>d</td>
+							            </tr>
+							          </tbody>
+							        </table>
+							        
 								</div>
 		
 								<div id="FAQ" class="tabcontent">
@@ -92,12 +157,16 @@
 									<p>공지사항 내용 보여주기</p>
 								</div>
 							</div>
-								<form class="tg-formtheme tg-formlogin"> 
+									<%-- <div style="float: right;  	">
+								        <input class="tg-btn tg-btn-lg" style=" float: right; font-size: 14pt; width:50%;" type="button" value="홈으로" onclick="location.href='<%=application.getContextPath()%>/index.jsp'">
+								        <input class="tg-btn tg-btn-lg"  style="  text-align:center ; font-size: 12pt; width:50%" type="button" value="글쓰기" onclick="location.href='<%=application.getContextPath()%>/qna/create_qna.jsp'">
+								    </div> --%>
+									
 									<div style="display:inline-block; float: right; margin-top: 30px">
-										<button class="tg-btn tg-btn-lg" style=" padding: 0px 30px; float: right;"><span style="font-size: 14pt; width:30%">글쓰기</span></button>
+										<button class="tg-btn tg-btn-lg" style=" padding: 0px 30px; float: right;" onclick="location.href='<%=application.getContextPath()%>/qna/qnaCreate.jsp'"><span style="font-size: 14pt; width:30%">글쓰기</span></button>
 									</div>
-								</form>
 							</div>
+							
 						</div>
 					</div>
 				</div>

@@ -70,6 +70,14 @@ public class MybatisReviewDao implements ReviewDao {
 	}
 
 	@Override
+	public List<Review> listById(String userId) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		List<Review> reviewList = sqlSession.selectList(NAMESPACE + "listById", userId);
+		sqlSession.close();
+		return reviewList;
+	}
+	
+	@Override
 	public List<Review> listByModel(String modelName) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		List<Review> reviewList = sqlSession.selectList(NAMESPACE + "listByModelName", modelName);

@@ -47,6 +47,7 @@ String loginId = (String)request.getAttribute("loginId");
                               </ul></li>
                            <li><a href="<%=application.getContextPath()%>/wishitem/list.rent">위시리스트</a></li>
                            <li><a href="<%=application.getContextPath()%>/rent/list.rent">예약확인</a></li>
+                           <li><a href="<%=application.getContextPath()%>/mypage/myPage.jsp">MYPAGE</a></li>
                         </ul>
                      </div>
                   </nav>
@@ -70,7 +71,7 @@ String loginId = (String)request.getAttribute("loginId");
                      <li style="list-style: none;"><h2>로그인</h2></li>
                   </ul>
                   <div class="tg-tabcontent tab-content">
-<<<<<<< HEAD
+
                      
                      
                      
@@ -103,31 +104,7 @@ String loginId = (String)request.getAttribute("loginId");
 										회원 로그인 종료 
 								*************************************--> 
                      
-                     
-                     
-=======
-                     <div role="tabpanel" class="tab-pane active fade in" id="home">
-                        <form class="tg-formtheme tg-formlogin" action="/sjrent/user/login.rent" method="post">
-                           <fieldset>
-                              <div class="form-group">
-                                 <label>아이디 <sup>*</sup></label>
-                                 <input type="text" name="firstname" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
-                              </div>
-                              <div class="form-group">
-                                 <label>비밀번호 <sup>*</sup></label>
-                                 <input type="password" name="password" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;">
-                              </div>
-                              <div class="form-group">
-                                 <div class="tg-checkbox">
-                                    <input type="checkbox" name="remember" id="rememberpass">
-                                    <label for="rememberpass">아이디 저장</label>
-                                 </div>
-                              </div>
-                              <button class="tg-btn tg-btn-lg"><span>로그인</span></button>
-                           </fieldset>
-                        </form>
-                     </div>
->>>>>>> b4ba2e73d1e5c074ac3394d6c36cea3dba45dbb6
+                    
                      
                   </div>
                </div>

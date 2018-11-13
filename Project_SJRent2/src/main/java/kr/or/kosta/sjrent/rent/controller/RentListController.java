@@ -30,8 +30,8 @@ public class RentListController implements Controller {
 		rentService = (RentService) factory.getBean(RentServiceImpl.class);
 		mav = new ModelAndView();
 
-		String id = request.getParameter("id");
-		
+		String id = (String) request.getAttribute("loginId");
+	
 		//list 출력 타입에 따라 분기. all은 해당 유저 전체 예약, cancel은 취소 된 예약, uncancel은 취소하지 않느 예약 past는 과거 예약, upComing은 사용 가능한 예약
 		String type = request.getParameter("type");
 		System.out.println("RentListController id : " + id);

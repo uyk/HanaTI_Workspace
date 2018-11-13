@@ -43,6 +43,23 @@
 		WHERE  review_seq = #{value} 
 	</delete>
 	
+	<!-- Review 조회 by id -->
+	<select id="listById" resultType="Review" parameterType="String" resultMap="reviewResultMap">
+		SELECT review_seq, 
+		       model_name, 
+		       user_seq, 
+		       user_id, 
+		       review_title, 
+		       review_content, 
+		       review_picture, 
+		       review_date,
+		       review_evalscore 
+		FROM   review 
+		WHERE  user_id = #{value}
+	</select>
+	
+	
+	
 	<!-- 특정 모델 Review List -->
 	<select id="listByModelName" resultType="Review" parameterType="String" resultMap="reviewResultMap">
 		SELECT review_seq, 

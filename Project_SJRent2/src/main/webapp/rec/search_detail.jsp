@@ -24,12 +24,6 @@
                               </span>
                               <em id='detail-review-count'>model review count filed</em> 
   						</div>
-  						<div class="tg-pricearea">
-  							<span>총 금액</span>
-  							<h4 id='detail-amount-money'>
-  								model amountMoney filed
-  							</h4>
-  						</div>
   						<div class="tg-description">
   							<p>There’s only 5 spot left. Join 19 others at Travelu’s
   								experience this Saturday.</p>
@@ -47,6 +41,24 @@
                               <li><a href=# id="go-reserve-anchor"><i class="icon-eye"></i>Reserve</a></li>
                             <% } %>
                             </ul>
+                            <div class="row">
+                            	<div class="form-group-row col-md-8">
+                                    <div class = "col-md-4">
+                                       <!-- 총 시간 입력 -->
+                                       <input type = "text" id = "total-time" class="form-control" readonly="readonly" style="height: 50px">
+                                    </div>
+                                    <div class = "col-md-8">
+                                    <input type="text"
+                                          id = "datepicker"
+                                           data-language="en"
+                                           data-range="true"
+                                           data-multiple-dates-separator="  ~  "
+                                           placeholder="기간을 선택해 주세요"
+                                           readonly 
+                                           class="datepicker-here form-control" required style="height: 50px" />
+                                    </div>
+                            	</div>
+                            </div>
                           </div>
   					</div>
   				</div>

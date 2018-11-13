@@ -1,0 +1,242 @@
+@charset "utf-8";
+body, h1, h2, h3, h4, h5, h6{
+	font-family: "Raleway", sans-serif
+}
+
+p{
+  font-family: 맑은고딕;
+}
+
+.inline{
+	display:inline
+	
+}
+
+.idBox{
+	float: right;
+	font-size: 10pt;
+	margin: 16px;
+}
+
+.grayBox {
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: lightgray;
+	text-align: center;
+	white-space: nowrap
+}
+
+.loginB{
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 8px 16px;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap
+}
+
+.registL{
+	font-size: 12pt;
+	font-family: 맑은고딕;
+	margin: 0px 5px; 
+	font-weight: bold;
+}
+/* .registB{
+  background-color: #009688;
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  padding: 7px 13px;
+  vertical-align: middle;
+  text-align: center;
+  white-space: nowrap;
+  border: solid;
+  margin-left: 10px;
+  
+} */
+
+.registText{
+	padding: 8px;
+	display: inline;
+	border: none;
+	border-bottom: 1px solid #ccc;
+	width: 60%;
+	margin: 1px 5px;}
+	
+.registResult{
+	margin-left: 10px;
+	display: inline-block;
+}
+
+.registPhone{
+	width:15%
+	
+}
+
+.headline{
+	color: brown;
+	width: 50%;
+	text-align: center;
+	left:0;
+	right:0;
+	margin-left:auto;
+	margin-right:auto;
+	margin-botton:50px;
+
+}
+
+.registText{
+	padding: 8px;
+	display: inline-block;
+	width: 40%
+	
+}
+
+.guestBookInput{
+	line-height:100px;
+}
+
+.guestBookButton{
+	line-height: 100px;
+	line-width: 50px
+}
+
+.w3-blue{
+	padding: 5px;
+	border-radius:8px;
+	color: #fff !important;
+	background-color: brown !important
+}
+
+.brownBox {
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: brown;
+	text-align: center;
+	white-space: nowrap;
+	color: white;
+}
+
+.brownBox: hover{
+	background-color:#ccc!important;
+	color:#000!important;
+	cursor: pointer;
+}
+
+.createPostBox {
+	border: none;
+	/* display: inline-block; */
+	padding: 8px 16px;
+	/* vertical-align: middle; */
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: lightgray;
+	text-align: left;
+	/* white-space: nowrap; */
+	width:97%; 
+	/* line-height:100px;  */
+	margin:10px;	
+	vertical-align: middle;
+}
+
+.createPostButton{
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	vertical-align: middle;
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+	background-color: brown;
+	text-align: center;
+	white-space: nowrap;
+	color: white;
+	margin:10px
+	
+}
+
+.right{
+	float:right;
+	margin-right:30px;
+}
+
+.dottedOutline{
+	border-width: thin;
+	border-style: dotted
+}
+
+.outline{
+	background-color: white;
+	border-style: solid;
+	border-radius: 8px;
+	padding: 20px 100px
+}
+
+.registOutline{
+	background-color: white;
+	border-style: solid;
+	border-radius: 8px;
+	padding: 30px;
+	margin:auto;
+	width:60%;
+}
+
+.regist{
+	padding: 50px 10px 10px 10px;
+	text-align: center;
+}
+
+.caution{
+	text-size: 9pt;
+	float: right;
+	padding: 10px 30px}
+	
+.newButton{
+	border: none;
+	display: inline-block;
+	padding: 8px 16px;
+	vertical-align: middle;
+	text-decoration: none;
+	color: inherit;
+	
+	background-color:brown ;
+	text-align: center;
+	white-space: nowrap;
+	color: white
+}
+
+.newButton:hover{
+	color:#000;
+	background-color: gray;
+	cursor: pointer;
+}
+
+.green{
+	background-color: #009688 !important; 
+}
+
+.w3-hover-green:hover {
+	color: #fff !important;
+	background-color: #009688 !important
+}
+
+a { 
+	text-decoration:none 
+}
+
+.registButton{
+	line-height:100px;
+}

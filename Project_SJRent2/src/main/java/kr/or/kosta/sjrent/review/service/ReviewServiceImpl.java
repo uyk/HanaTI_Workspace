@@ -39,6 +39,11 @@ public class ReviewServiceImpl implements ReviewService {
 	}
 
 	@Override
+	public List<Review> listById(String userId) throws Exception {
+		return reviewDao.listById(userId);
+	}
+	
+	@Override
 	public List<Review> listByModel(String modelName) throws Exception {
 		return reviewDao.listByModel(modelName);
 	}
@@ -62,4 +67,5 @@ public class ReviewServiceImpl implements ReviewService {
 	public int countByUser(String userId) throws Exception {
 		return reviewDao.countByUser(userId);
 	}
+
 }

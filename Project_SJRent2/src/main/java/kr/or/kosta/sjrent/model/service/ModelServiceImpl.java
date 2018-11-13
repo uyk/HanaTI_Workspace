@@ -148,22 +148,21 @@ public class ModelServiceImpl implements ModelService {
 	}
 
 	@Override
-	public Map<String, HashMap<String, ArrayList<String>>> periodByModelName(String modelName) throws Exception {
-		Map<String, HashMap<String, ArrayList<String>>> last = new HashMap<String, HashMap<String, ArrayList<String>>>();
+	public Map<String, ArrayList<String>> periodByModelName(String modelName) throws Exception {
+		Map<String, ArrayList<String>> last = new HashMap<String, ArrayList<String>>();
 		List<Map<String, Object>> ModelList = modelDao.periodByModelName(modelName);
 		for(Map<String, Object> map : ModelList) {
 			if(!last.containsKey(map.get("CAR_NUM"))) {
-				last.put((String)map.get("CAR_NUM"), new HashMap<String, ArrayList<String>>());
+				last.put((String)map.get("CAR_NUM"), new ArrayList<String>());
 			}
 			String startDate = (String)map.get("RENT_START_DATE");
 			String endDate = (String)map.get("RENT_END_DATE");
 			String[] resultDays = getDiffDays(startDate, endDate);
 			for(int i = 0; i < resultDays.length; i++) {
-				System.out.print(resultDays[i]);
-				if(!last.get((String)map.get("CAR_NUM")).containsKey(resultDays[i].substring(0, 6))) {
-					last.get((String)map.get("CAR_NUM")).put(resultDays[i].substring(0, 6), new ArrayList<String>());
-				}
-				last.get((String)map.get("CAR_NUM")).get(resultDays[i].substring(0, 6)).add(resultDays[i].substring(6, 8));
+				String year = resultDays[i].substring(0, 4);
+				String month = resultDays[i].substring(4, 6);
+				String days = resultDays[i].substring(6, 8);
+				last.get((String)map.get("CAR_NUM")).add(year+"."+month+"."+days);
 			}
 		}
 		return last;
