@@ -56,6 +56,15 @@ $(document).ready(function(){
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
 	$('#ModelDisplayRow').hide();
 	
+	/** DatePickerEvent등록*/
+	registDatePickerEvent();
+
+	/** 검색버튼 이벤트 등록 */
+	registSearchSubmit();
+});
+
+/** datepicker 이벤트 발생 처리*/
+function registDatePickerEvent() {
 	/* DatePicker */
     $("#datepicker").datepicker({
       minDate: new Date(),
@@ -78,65 +87,7 @@ $(document).ready(function(){
    $("#datepicker").keydown(function (event) {
        event.preventDefault();
    })
-   
-   /** 검색버튼이 클릭됨 */
-   $('#showCarList').submit(function(e) {
-       e.preventDefault();
-	   if(rent_start_date == null) {
-		   alert('날짜를 선택해주세요');
-		   return;
-	   }
-      var model_type = $('.selectpicker').val();
-      var type_name;
-      switch (model_type) {
-         case '소형':
-            type_name = 'ASegment';
-            break;
-         case '중형':
-            type_name = 'DSegment';
-            break;
-         case '대형':
-            type_name = 'ESegment';
-            break;
-         case 'SUV':
-            type_name = 'JSegment';
-            break;
-         case '승합':
-            type_name = 'MSegment';
-            break;
-         case '외제차':
-            type_name = 'SSegment';
-            break;
-         default:
-            type_name = 'all';
-            break;
-      }
-      /** 모델 목록을 불러오는 search controller로 요청 전달 */
-      $.ajax({
-         type : "POST",
-         url : "<%=application.getContextPath()%>/model/search.rent",
-         data : {
-            'rent_start_date' : rent_start_date,
-            'rent_end_date' : rent_end_date,
-            'model_type' : type_name
-         },
-         dataType: "json",
-         success: function(data){
-           	setModelList(data);
-         }
-      });
-      
-      /** 랭킹 목록을 불러오는 poularController로 요청 전달. html로 받아서 표시*/
-      $.ajax({
-    	  url:"<%=application.getContextPath()%>/model/popular.rent",
-    	  type:'GET', 
-    	  success:function(result){
-    		  $("#rank-list").html(result);
-  		  }
-  	  });
-   });
-   
-});
+}
 
 /** datepicker에서 선택된 날짜를 필요한 형식으로 변환하는 함수 */
 function formatDate(date){
@@ -150,6 +101,110 @@ function formatDate(date){
  	return [year, month, day].join('-');
  }
  
+/** 검색버튼 이벤트 */
+ function registSearchSubmit() {
+	 $('#showCarList').submit(function(e) {
+	    e.preventDefault();
+	    if (rent_start_date == null) {
+	        alert('날짜를 선택해주세요');
+	        return;
+	    }
+	    var modelParams = {
+            'rent_start_date': rent_start_date,
+            'rent_end_date': rent_end_date
+	    }
+	    getModelTypeOption(modelParams);
+	    getOtherOptions(modelParams);
+	    /** 모델 목록을 불러오는 search controller로 요청 전달 */
+	    $.ajax({
+	        type: "POST",
+	        url: "<%=application.getContextPath()%>/model/search.rent",
+	        data: modelParams,
+	        dataType: "json",
+	        success: function(data) {
+	            setModelList(data);
+	        }
+	    });
+
+	    /** 랭킹 목록을 불러오는 poularController로 요청 전달. html로 받아서 표시*/
+	    $.ajax({
+	        url: "<%=application.getContextPath()%>/model/popular.rent",
+	        type: 'GET',
+	        success: function(result) {
+	            $("#rank-list").html(result);
+	        }
+	    });
+	});
+}
+
+/**
+ *  모델 타입 옵션을 검사해 modelParams에 설정하는 함수
+ */
+function getModelTypeOption(modelParams) {
+	var model_type = $('.selectpicker[title=차종]').val();
+	console.log(model_type);
+    var type_name;
+    switch (model_type) {
+        case '소형':
+            type_name = 'ASegment';
+            break;
+        case '중형':
+            type_name = 'DSegment';
+            break;
+        case '대형':
+            type_name = 'ESegment';
+            break;
+        case 'SUV':
+            type_name = 'JSegment';
+            break;
+        case '승합':
+            type_name = 'MSegment';
+            break;
+        case '외제차':
+            type_name = 'SSegment';
+            break;
+        default:
+            type_name = 'all';
+            break;
+    }
+    modelParams.type_name = type_name;
+}
+
+/**
+ *  기타 옵션의 값을 검사해 modelParams에 설정하는 함수
+ */
+function getOtherOptions(modelParams) {
+	var navigation = $('input[name=navigation]').is(":checked");
+	var cameraRear = $('input[name=cameraRear]').is(":checked");
+	var highpass = $('input[name=highpass]').is(":checked");
+	var blackBox = $('input[name=blackBox]').is(":checked");
+	var fuelType = $('.selectpicker[title=연료]').val();
+	var transmission = $('.selectpicker[title=기어]').val();
+	var seater = $('.selectpicker[title=인승]').val();
+	
+	/** 체크되어있으면 1 검색, 체크 안되어있으면 전체검색 */
+	if(navigation) {
+		modelParams.navigation = 1;
+	}
+	if(cameraRear) {
+		modelParams.cameraRear = 1;
+	}
+	if(highpass) {
+		modelParams.highpass = 1;
+	}
+	if(blackBox) {
+		modelParams.blackBox = 1;
+	}
+	if(fuelType && fuelType != '전체') {
+		modelParams.fuelType = fuelType;
+	}
+	if(transmission && transmission != '전체') {
+		modelParams.transmission = transmission;
+	}
+	if(seater && seater != '전체') {
+		modelParams.seater = seater;
+	}
+}
 
 /** list의 모델들을 html로 추가하는 함수 */
 function setModelList(list) {
@@ -503,39 +558,48 @@ function setReviewList(list) {
                       <form>
                         <div class="checkbox-inline">
                           <label class="checkbox-label"> <input
-                            type="checkbox" name="check"> <span
+                            type="checkbox" name="navigation"> <span
                             class="label-text">네비게이션</span>
                           </label>
                         </div>
                         <div class="checkbox-inline">
                           <label class="checkbox-label"> <input
-                            type="checkbox" name="check"> <span
+                            type="checkbox" name="cameraRear"> <span
                             class="label-text">후방카메라</span>
                           </label>
                         </div>
                         <div class="checkbox-inline">
                           <label class="checkbox-label"> <input
-                            type="checkbox" name="check"> <span
+                            type="checkbox" name="highpass"> <span
                             class="label-text">하이패스</span>
                           </label>
                         </div>
                         <div class="checkbox-inline">
                           <label class="checkbox-label"> <input
-                            type="checkbox" name="check"> <span
+                            type="checkbox" name="blackBox"> <span
                             class="label-text">블랙박스</span>
                           </label>
                         </div>
                         <select data-width='130px' title="연료"
                           class="selectpicker">
-                          <option>전체</option>
-                          <option>LPG</option>
-                          <option>디젤</option>
-                          <option>가솔린</option>
-                        </select> <select data-width='130px' title="기어"
+                          <option data-tokens="all">전체</option>
+                          <option data-tokens="LPG">LPG</option>
+                          <option data-tokens="디젤">디젤</option>
+                          <option data-tokens="가솔린">가솔린</option>
+                        </select>
+                        <select data-width='100px' title="기어"
                           class="selectpicker">
-                          <option>전체</option>
-                          <option>수동</option>
-                          <option>자동</option>
+                          <option data-tokens="all">전체</option>
+                          <option data-tokens="수동">수동</option>
+                          <option data-tokens="자동">자동</option>
+                        </select>
+                        <select data-width='100px' title="인승"
+                          class="selectpicker">
+                          <option data-tokens="all">전체</option>
+                          <option data-tokens="5">5</option>
+                          <option data-tokens="7">7</option>
+                          <option data-tokens="9">9</option>
+                          <option data-tokens="11">11</option>
                         </select>
                       </form>
                     </fieldset>

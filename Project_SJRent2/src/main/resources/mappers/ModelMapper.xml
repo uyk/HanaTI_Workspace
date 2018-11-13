@@ -190,7 +190,7 @@
 			        WHERE  <if test="type != null">model_type =  #{type} AND </if>
 			        	   <if test="fuelType != null">model_fuel_type =  #{fuelType} AND </if>
 			        	   <if test="seater > -1">model_seater =  #{seater} AND </if>
-			        	   <if test="transmission != null">model__transmission =  #{transmission} AND </if>
+			        	   <if test="transmission != null">model_transmission =  #{transmission} AND </if>
 			        	   <if test="navigation > -1">model_navigation =  #{navigation} AND </if>
 			        	   <if test="cameraRear > -1">model_camera_rear =  #{cameraRear} AND </if>
 			        	   <if test="highpass > -1">model_highpass =  #{highpass} AND </if>
@@ -335,6 +335,6 @@
 			                    ON c.car_num = r.car_num 
 			WHERE  m.model_name = #{value} 
 			       AND rent_end_date <![CDATA[>]]> SYSDATE 
-			       AND rent_start_date <![CDATA[<]]> Last_day(Add_months(SYSDATE, +1))
+			       AND rent_start_date <![CDATA[<]]> Last_day(Add_months(SYSDATE, +3))
 	</select>
 </mapper>
