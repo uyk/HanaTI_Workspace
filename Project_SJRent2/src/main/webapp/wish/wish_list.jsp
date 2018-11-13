@@ -29,6 +29,24 @@
 	   $("#disableall").click(function(){
 		  $('input[type="checkbox"]').prop('checked', false); 
 	   });
+	   
+	   /* sumbit */
+	   $('#rentCarButton').click(function(){
+		   /* 버튼이 한 개도 안 눌려졌을 경우 */
+		   var count = 0;
+		   $('.user_checked').each(function(){
+				if($(this).prop('checked') == true) {
+					count++;
+				}
+		   });
+		   if(count == 0){
+			   alert('원하시는 차를 선택해주세요');
+			   return false;
+		   }else{
+			   $('#form').submit();
+		   }
+	   });
+
    });
    </script>
 </head>
@@ -92,20 +110,20 @@
 	                              <c:forEach var="item" items="${list}" varStatus="status">
 		                              <tr>
 		                                 <td style="vertical-align: middle;">
-		                                    <input type="checkbox" class="user_checked" name = "checked" value="${item.modelName}">
+		                                    <input type="checkbox" class="user_checked" name = "checked" value="${item.modelName}" style="position: static;">
 		                                 </td>
-		                                 <td>
+		                                 <td style="text-align: left">
 		                                    <div class="tg-tourname" style="border-bottom: none;" > 
 		                                       <figure >
 		                                       		<!-- 사진 필요 -->
-		                                       		 <a><img src="<%=application.getContextPath() %>/images/cars/${item.type}/${item.picture}" style="width: 100px; height: 100px; margin-right: 15px" alt="${item.modelName}"></a>
+		                                       		 <a><img src="<%=application.getContextPath() %>/images/cars/${item.type}/${item.picture}" style="width: 140px; height: 100px; margin-right: 15px" alt="${item.modelName}"></a>
 		                                       </figure>
 		                                       <input type="hidden" name="type" value="${item.type}">
 		                                       <input type="hidden" name="picture" value="${item.picture}">
 		                                       <div class="tg-populartourcontent">
 		                                          <div class="tg-populartourtitle">
 		                                             <h3 style="vertical-align: middle; text-align: left; margin-bottom: 10px"><a class="modelName" href="javascript:void(0);">${item.modelName}</a></h3>
-		                                          		 <span style="text-align: left; ">연료 : ${item.fuelType }</span>
+		                                          	<span>연료 : ${item.fuelType }</span>
 		                                          </div>
 		                                       </div>
 		                                    </div>
@@ -133,7 +151,7 @@
                        </table>
                        <% if (request.getAttribute("list") != null && (!((ArrayList)request.getAttribute("list")).isEmpty())){ %> 
                       	 <fieldset style="border: none;">
-                          	<input id="rentCarButton" type="submit" style="float: right" class="tg-btn" value="렌트하기">
+                          	<input id="rentCarButton" type="button" style="float: right" class="tg-btn" value="렌트하기">
                         </fieldset>	
                        <%} %> 
                     </div>
@@ -150,5 +168,6 @@
       Wrapper 종료
    *************************************-->
    </div>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWwxN6bwNheL1s5jwQxzKlZMo_HTTNAQ"></script>
 </body>
 </html>

@@ -33,7 +33,7 @@ public class UserLoginController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
-		
+
 		obj = new JSONObject();
 		mav = new ModelAndView();
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
@@ -42,78 +42,83 @@ public class UserLoginController implements Controller {
 		String id = request.getParameter("id");
 		String pw = request.getParameter("pw");
 		String remember = request.getParameter("remember");
-		String where = request.getParameter("login"); 
-		
-		User user = null;
-		Cookie cookie = null; 
+		String where = request.getParameter("login");			// ajax로 응답 받고싶으면 login은 'ajax'
 
-		if (id != null) { //로그인 
+		User user = null;
+		Cookie cookie = null;			//	로그인아이디 쿠키
+		Cookie cookie2 = null;			// 아이디저장 쿠키
+		
+		// checkbox 아이디 저장시 쿠키에 저장
+		if (remember != null) {
+			Cookie[] cookies = request.getCookies();
+			for (Cookie cookie3 : cookies) {
+				if(cookie3.getName().equals("saveId")) {
+					cookie3.setMaxAge(0);
+				}
+			}
+			cookie2 = new Cookie("saveId", id);
+			cookie2.setPath("/");
+			response.addCookie(cookie2);
+			// request.getServletContext().setAttribute("loginId", id);
+			// request.setAttribute("loginId", id);
+			// checkbox 클릭 안할시 null
+		} /*
+			 * else {
+			 * 
+			 * cookie2 = new Cookie("saveId", null); cookie2.setMaxAge(0);
+			 * response.addCookie(cookie2); }
+			 */
+
+		// System.out.println(mav);
+		
+
+		if (id != null) { // 로그인
 			try {
-				// 회원가입여부 확인 
+				// 회원가입여부 확인
 				user = userService.certify(id, pw);
-				
-				if (user != null) {// 회원인 경우 
+
+				if (user != null) {// 회원인 경우
 					cookie = new Cookie("loginId", id);
-					cookie.setMaxAge(60*60*24*30);
+					// 로그인 쿠키 30일 저장
+					cookie.setMaxAge(60 * 60 * 24 * 30);
 					cookie.setPath("/");
 					response.addCookie(cookie);
-					
+
 					request.setAttribute("loginId", id);
-					
+
 					mav.addObject("user", user);
 					
 					// hidden 처리한 요청 페이지별 처리
-					if(where.equals("myPage")) {
+					if (where != null && where.equals("myPage")) {
 						mav.setView("/mypage/myPageLoginOK.jsp");
-						
-					//System.out.println(mav);
+						// System.out.println(mav);
+					}else if(where != null && where.equals("ajax")) {
+						response.getWriter().print("success");
+						return null;
 					}else {
 						mav.setView("/index.jsp");
 					}
-					
+
 				}
-				//회원이 아닌 경우 
+				// 회원이 아닌 경우
 				else {
-					
 					// hidden 처리한 요청 페이지별 처리
-					if(where.equals("myPage")) {
+					if (where != null && where.equals("myPage")) {
 						mav.setView("/mypage/myPage.jsp");
-						
-					//System.out.println(mav);
+						// System.out.println(mav);
+					}else if(where != null && where.equals("ajax")) {
+						response.getWriter().print("fail");
+						return null;
 					}else {
 						mav.setView("/index.jsp");
-					return null;
 					}
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
-				}	
 			}
-			
-	
-
-		Cookie cookie2 = null; 
-		// checkbox 아이디 저장시 쿠키에 저장		
-		if (remember != null) {
-			
-			cookie2 = new Cookie("saveId", id);
-			cookie2.setPath("/");	
-			response.addCookie(cookie2);
-			//request.getServletContext().setAttribute("loginId", id);
-			//request.setAttribute("loginId", id);
-		// checkbox 클릭 안할시 null
-		}/*else {
-			
-			cookie2 = new Cookie("saveId", null);
-			cookie2.setMaxAge(0);
-			response.addCookie(cookie2);
-		}*/
-		
-
-		// System.out.println(mav);
+		}
 		return mav;
 
 	}
-		
-	}
 
+}

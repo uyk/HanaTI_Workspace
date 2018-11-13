@@ -11,6 +11,8 @@ int pageSize = 5;
 // 페이징 정렬 
 Controller qnaController = new QnAListController();
 request.getAttribute("page");
+request.setCharacterEncoding("utf-8");
+response.setCharacterEncoding("utf-8");
 //List<Article> list = dao.listByPage(params);
 
 // 페이징 처리에 필요한 검색 개수 DB조회
