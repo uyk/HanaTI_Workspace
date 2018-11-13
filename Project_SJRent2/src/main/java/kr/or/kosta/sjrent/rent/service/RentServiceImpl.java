@@ -75,4 +75,9 @@ public class RentServiceImpl implements RentService {
 		return rentDao.upComingListByUserId(userId);
 	}
 
+	@Override
+	public String modelNameByCarNum(String carNumber) throws Exception {
+		return rentDao.modelNameByCarNum(carNumber);
+	}
+
 }

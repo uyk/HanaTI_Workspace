@@ -1,5 +1,6 @@
 package kr.or.kosta.sjrent.rent.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,6 +13,8 @@ import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
 import kr.or.kosta.sjrent.rent.domain.Rent;
 import kr.or.kosta.sjrent.rent.service.RentService;
 import kr.or.kosta.sjrent.rent.service.RentServiceImpl;
+import kr.or.kosta.sjrent.review.service.ReviewService;
+import kr.or.kosta.sjrent.review.service.ReviewServiceImpl;
 
 /**
  * user id를 인자로 받아서 조회 타입에 따라 예약 목록을 list 객체에 담고 rent/rent_list.jsp로 보내는 컨트롤러
@@ -28,6 +31,7 @@ public class RentListController implements Controller {
 			throws ServletException {
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		rentService = (RentService) factory.getBean(RentServiceImpl.class);
+		
 		mav = new ModelAndView();
 
 		String id = (String) request.getAttribute("loginId");
@@ -36,34 +40,50 @@ public class RentListController implements Controller {
 		String type = request.getParameter("type");
 		System.out.println("RentListController id : " + id);
 		List<Rent> list = null;
+		List<String> modelNames = new ArrayList<String>();
 		if(type != null) {
 			if(type.equals("all")) {
 				try {
 					list = rentService.listByUser(id);
+					for(int i = 0; i < list.size(); i++) {
+						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else if(type.equals("cancel")) {
 				try {
 					list = rentService.CancellistByUser(id);
+					for(int i = 0; i < list.size(); i++) {
+						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else if(type.equals("uncancel")) {
 				try {
 					list = rentService.UncancellistByUser(id);
+					for(int i = 0; i < list.size(); i++) {
+						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else if(type.equals("past")) {
 				try {
 					list = rentService.pastListByUser(id);
+					for(int i = 0; i < list.size(); i++) {
+						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}else if(type.equals("upComing")) {
 				try {
-					rentService.upComingListByUser(id);
+					list = rentService.upComingListByUser(id);
+					for(int i = 0; i < list.size(); i++) {
+						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -72,10 +92,14 @@ public class RentListController implements Controller {
 		}{
 			try {
 				list = rentService.listByUser(id);
+				for(int i = 0; i < list.size(); i++) {
+					modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
+		mav.addObject("modelNames", modelNames);
 		mav.addObject("list", list);
 		mav.setView("/rent/rent_list.jsp");
 		return mav;

@@ -109,6 +109,14 @@ public class MybatisRentDao implements RentDao {
 		sqlSession.close();
 		return rentList;
 	}
+
+	@Override
+	public String modelNameByCarNum(String carNumber) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		String modelName = sqlSession.selectOne(NAMESPACE + "modelNameByCarNumber", carNumber);
+		sqlSession.close();
+		return modelName;
+	}
 	
 }
 

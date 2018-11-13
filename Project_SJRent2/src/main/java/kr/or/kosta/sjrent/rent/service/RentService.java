@@ -26,4 +26,6 @@ public interface RentService {
 	public List<Rent> upComingListByUser(String userId) throws Exception;
 	
 	public boolean cancel(int number) throws Exception;
+	
+	public String modelNameByCarNum(String carNumber) throws Exception;
 }

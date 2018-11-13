@@ -79,7 +79,7 @@ function emailCheck() {
                         <!--************************************
                                     Title 시작
                            *************************************-->
-                         <div style="text-align: center; "><h2>MyPage</h2></div>
+                         <div style="text-align: center; "><h2>회원정보수정</h2></div>
                         <!--************************************
                                     Title 종료
                            *************************************-->   
@@ -140,7 +140,7 @@ function emailCheck() {
 							  </div>
                 
          <!-- 버튼 위치 수정해야함 -->
-         <button type="button" class="btn buttonEmail " style="height: 40px; margin-left: 10px; " onclick="emailCheck()" >중복확인 </button>
+         <button type="button" class="btn buttonEmail " style="height: 40px; margin-left: 10px; float:right" onclick="emailCheck()" >중복확인 </button>
          <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg2"></div>
      
 											

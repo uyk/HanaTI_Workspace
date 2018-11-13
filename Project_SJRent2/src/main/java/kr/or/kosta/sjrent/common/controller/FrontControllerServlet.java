@@ -18,7 +18,6 @@ import kr.or.kosta.sjrent.common.view.ViewResolver;
 
 /**
  * 모든 브라우저 요청에 대한 단일 진입점 역할의 프론트 컨트롤러 서블릿(메인 컨트롤러)
- * 
  * @author 남수현
  */
 public class FrontControllerServlet extends HttpServlet {
@@ -28,8 +27,13 @@ public class FrontControllerServlet extends HttpServlet {
 	private XMLObjectFactory controllerFactory;
 	private ViewResolver viewResolver;
 	
+	/* (non-Javadoc)
+	 * @see javax.servlet.GenericServlet#init(javax.servlet.ServletConfig)
+	 * init 시점 요청 처리
+	 */
 	@Override
 	public void init(ServletConfig config) throws ServletException {
+//		동적으로 WEBINF의 위치를 파악 후 config 파일 위치 파악.
 		String WEBINFpath = ServletContextLoadListener.class.getResource("").getPath();
 		WEBINFpath = WEBINFpath.substring(0,WEBINFpath.indexOf("/WEB-INF"))+"/WEB-INF/";
 		configLocation = WEBINFpath+config.getInitParameter("configLocation");

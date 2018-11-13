@@ -42,7 +42,14 @@ public class UserCheckEmailController implements Controller {
 
 
 		String email = request.getParameter("email");
-
+		
+		//System.out.println("email"+email+"email");
+		
+		/*if(email!=null && !email.equals("")) {
+			
+			System.out.println(email);
+		}*/
+		
 		boolean isExistEmail = false;
 		
 		try {
@@ -61,10 +68,10 @@ public class UserCheckEmailController implements Controller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-
 		}
+		
 		// 중복이메일 존재시 fail 보냄
-		else {
+		else{
 			try {
 				response.getWriter().print("fail");
 				return null;
@@ -73,6 +80,7 @@ public class UserCheckEmailController implements Controller {
 				e.printStackTrace();
 			}
 		}
+
 		return mav;
 	}
 

@@ -279,8 +279,8 @@
                                        <option> 018
                                        <option> 019
                                     </select>  -  
-                                    <input type="text" size="4" maxlength="4"  name="cellphone2" id="cellphone2" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>  -  
-                                    <input type="text" size="4" maxlength="4"  name="cellphone3" id="cellphone3" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)'>
+                                    <input type="text" size="4" maxlength="4"  name="cellphone2" id="cellphone2" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' required>  -  
+                                    <input type="text" size="4" maxlength="4"  name="cellphone3" id="cellphone3" onkeydown='return onlyNumber(event)' onkeyup='removeChar(event)' required>
                                  </div>
                               </div>
                            </fieldset>

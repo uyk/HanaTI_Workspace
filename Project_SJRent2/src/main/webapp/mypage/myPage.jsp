@@ -61,7 +61,7 @@
                         <!--************************************
                                     Title 시작
                            *************************************-->
-                        <div style="text-align: center; margin: 50px 0px"><h2>마이페이지</h2></div>
+                        <div style="text-align: center; margin: 50px 0px"><h2>MyPage</h2></div>
                         <!--************************************
                                     Title 종료
                            *************************************-->   
@@ -79,11 +79,11 @@
 										<fieldset>
 											<div class="form-group">
 												<label>아이디 <sup>*</sup></label>
-												<input type="text" name="id" class="form-control" placeholder="" maxlength="10" style="text-transform:  none;" required value="${id }" >
+												<input type="text" name="id" class="form-control" placeholder="" maxlength="16" style="text-transform:  none;" required value="${id }" >
 											</div>
 											<div class="form-group">
 												<label>비밀번호 <sup>*</sup></label>
- 								                <input type="password" name="pw" class="form-control" placeholder="" maxlength="10"  style="text-transform:  none;" required>
+ 								                <input type="password" name="pw" class="form-control" placeholder="" maxlength="20"  style="text-transform:  none;" required>
 											</div>
 											<div class="form-group">
 													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>

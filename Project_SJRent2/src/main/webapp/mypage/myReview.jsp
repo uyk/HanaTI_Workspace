@@ -1,13 +1,44 @@
+<%@page import="kr.or.kosta.sjrent.review.domain.Review"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%
+/**
+ * 리뷰리스트를 받아오기위한 페이지
+ */
+ 
 String loginId = (String)request.getAttribute("loginId");
+List<Review> reviewList = (List)request.getAttribute("reviewList");
 %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="../common/commoncss.jsp" />
+
+<script type="text/javascript">
+
+/**
+ *  체크박스 다중 선택 방지를 위한 메소드
+ */
+function oneCheckbox(a){
+
+    var obj = document.getElementsByName("reviewSeq");
+
+    for(var i=0; i<obj.length; i++){
+
+        if(obj[i] != a){
+
+            obj[i].checked = false;
+        }
+    }
+}
+
+
+
+</script>
+
 </head>
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <body class="tg-home tg-homevone">
@@ -71,50 +102,52 @@ String loginId = (String)request.getAttribute("loginId");
                                     MenuBar 종료 
                               *************************************-->
 						
-						<!--************************************
-                                    회원정보수정 시작 
-                              *************************************-->
- 
- 
- <table role="tabpanel" class="tab-pane active fade in" id="reviewList" style="width: 70%; margin-left: 250px">
-  <tr>
-    <th></th>  
-    <th>번호</th>
-    <th>모델명</th>
-    <th>ID</th>
-    <th>제목</th>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="#" value="#"></td>
-    <td>1</td>
-    <td>2018SORENTO</td>
-    <td>onchul92</td>
-    <td><a href="#">처음빌린자동차입니다.</a></td>
-  </tr>
-  <tr>
-    <td><input type="checkbox" name="#" value="#"></td>
-    <td>2</td>
-    <td>BENZ_CLS</td>
-    <td>uyk</td>
-    <td><a href="#">외제차는 빌려타야지</a></td>
-
-  </tr>
-
-
-</table>			
-            
-            
-                <div style=" text-align: center;">
-                   <div style="display:inline-block; vertical-align: middle;  padding: 0px 10px; margin: 30px 0px 50px 0px;">
-                        <button type="submit" class="tg-btn tg-btn-lg"><span style="font-size: 14pt; width:50%">삭제</span></button>
-                   </div>
-                </div>
-            
-						<!--************************************
-                                    회원정보수정 종료 
-                              *************************************-->
-												
 						
+
+
+<!--***********     리뷰 리스트 시작      ****************-->
+
+              <form action="/sjrent/review/delete.rent" method="get">
+                <table role="tabpanel" class="tab-pane active fade in"
+                  id="reviewList" style="width: 70%; margin-left: 250px">
+
+
+                  <tr>
+                    <th></th>
+                    <th>번호</th>
+                    <th>모델명</th>
+                    <th>제목</th>
+                  </tr>
+
+                  <%
+                  	for (int i = 0; i < reviewList.size(); i++) {
+                  %>
+                  <tr>
+                    <!-- checkbox에 해당된 리뷰 삭제  -->
+                    <td><input type="checkbox" name="reviewSeq" onclick="oneCheckbox(this)" value="<%=reviewList.get(i).getNumber()%>"></td>
+                    <td><%=reviewList.get(i).getNumber()%></td>
+                    <td><%=reviewList.get(i).getModelName()%></td>
+                    <td><a href="#"><%=reviewList.get(i).getTitle()%></a></td>
+                  </tr>
+                  <%
+                  	}
+                  %>
+
+
+                </table>
+
+                <div style="text-align: center;">
+                  <div
+                    style="display: inline-block; vertical-align: middle; padding: 0px 10px; margin: 30px 0px 50px 0px;">
+                    <button type="submit" class="tg-btn tg-btn-lg">
+                      <span style="font-size: 14pt; width: 50%">삭제</span>
+                    </button>
+                  </div>
+                </div>
+              </form>
+
+
+<!--***********     리뷰 리스트 종료      ****************-->
 						
 
 							<!--************************************

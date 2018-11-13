@@ -24,7 +24,7 @@ import kr.or.kosta.sjrent.user.service.UserService;
 /**
  * id로 user를 검색하는 컨트롤러
  * 
- * @author 유예겸
+ * @author 윤형철
  *
  */
 
@@ -45,13 +45,12 @@ public class ReviewListController2 implements Controller {
 		String id = (String)request.getAttribute("loginId");
 		List<Review> reviewList = new ArrayList<Review>();
 
-		System.out.println("리뷰용id들어와라");
 		try {
 			reviewList = reviewService.listById(id);
-			System.out.println("reviewList : 찍어본다 "+reviewList);
+			//System.out.println("reviewList : 찍어본다 "+reviewList);
 
-			mav.addObject("user", reviewList);
-			//mav.setView("/mypage/updateUser.jsp");
+			mav.addObject("reviewList", reviewList);
+			mav.setView("/mypage/myReview.jsp");
 
 			return mav;
 		} catch (Exception e) {
@@ -62,9 +61,6 @@ public class ReviewListController2 implements Controller {
 		//obj.put("name", user.getName());
 		//obj.put("email", user.getEmail());
 		//obj.put("phone", user.getCellphone());
-		
-		
-		
 		
 		// 응답으로 json 객체 보내고 컨트롤러 종료
 		try {

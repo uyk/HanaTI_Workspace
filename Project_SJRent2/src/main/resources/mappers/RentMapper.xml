@@ -139,4 +139,11 @@
 		AND RENT_END_DATE <![CDATA[>=]]> SYSDATE
 		AND    rent_is_canceled = 0
 	</select>
+	
+	<!-- carNumber로 해당 차의 modelName 출력 -->
+	<select id="modelNameByCarNumber" resultType="String" parameterType="String">
+		SELECT model_name
+		FROM car
+		WHERE car_num = #{value}
+	</select>
 </mapper>

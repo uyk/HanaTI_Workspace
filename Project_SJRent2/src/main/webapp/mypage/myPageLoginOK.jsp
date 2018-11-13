@@ -47,7 +47,7 @@ String loginId = (String)request.getAttribute("loginId");
 		                        <!--************************************
 		                                    Title 시작
 		                           *************************************-->
-		                        <div style="text-align: center; "><h2>마이페이지</h2></div>
+		                        <div style="text-align: center; "><h2>MyPage</h2></div>
 		                        <!--************************************
 		                                    Title 종료
 		                           *************************************-->   
@@ -57,25 +57,19 @@ String loginId = (String)request.getAttribute("loginId");
 							<!--************************************
                                     Content 시작 
                               *************************************-->
-                              <div>
-                               <p style="text-align: center; ">
-                              <%=loginId %>님 환영합니다.<br> 
-                              </p> 
-                              </div>
-                              
-                              <%-- <input type="hidden" value="<%=loginId%>"> --%>
+              <div>
+                <p style="text-align: center;">
+                  <%=loginId%>님 환영합니다.<br>
+                </p>
+              </div>
+
+              <div
+                style="background-color: white; border: thick; width: 25%; font-size: 15pt; margin-left: 38%; margin-bottom: 20%; text-align: center; float: left;">
+                첫화면입니다.<br>
+                원하는 메뉴를 선택해주세요.</div>
 
 
-								<div style="background-color: white; border: thick; width: 25%; font-size: 15pt; margin-left: 38%; margin-bottom: 20%;text-align: center; float: left;">
-								원하는 메뉴를 선택해주세요
-								</div>                        
-								
-								
-								<!-- <div>
-								<input type="text" value="먹어라ㅠㅠㅠㅠㅠㅠ" style="margin-bottom: 20%; background-color: red; margin-left:20%">
-								</div>    -->   
-
-							<!--************************************
+              <!--************************************
                                  Content 종료
                            *************************************-->
 						
@@ -87,7 +81,53 @@ String loginId = (String)request.getAttribute("loginId");
                                    menuBar 시작 
                               *************************************-->
 
-						</div> 
+<!-- 개인정보 첫화면에 뿌리는 데이터 -->
+              <div role="tabpanel" class="tab-pane active fade in"
+                id="home" style="width: 50%; margin-left: 350px">
+                <div class="form-group">
+                  <h4>
+                    아이디<sup>*</sup>
+                  </h4>
+                  <input type="text" name="id" class="form-control"
+                    placeholder="${user.id }" maxlength="10"
+                    style="text-transform: none;" disabled>
+                </div>
+
+                <div class="form-group">
+                  <h4>
+                    이름<sup>*</sup>
+                  </h4>
+                  <input type="text" name="name" class="form-control"
+                    placeholder="${user.name }" maxlength="10"
+                    style="text-transform: none;" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>이메일 <sup>*</sup></label> <input type="text"
+                    name="email" id="email" class="form-control"
+                    placeholder="${user.email }" maxlength="30"
+                    style="text-transform: lowercase;" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>포인트 <sup>*</sup></label> <input type="text"
+                    name="point" id="point" class="form-control"
+                    placeholder="${user.point }" maxlength="5"
+                    style="text-transform: lowercase;" disabled>
+                </div>
+
+                <div class="form-group">
+                  <label>핸드폰번호 <sup>*</sup></label> <input type="text"
+                    name="cellphone" class="form-control"
+                    placeholder="${user.cellphone }" maxlength="13"
+                    style="text-transform: lowercase;" disabled>
+                </div>
+              </div>
+
+
+
+
+            </div> 
                  </div>
             </div> 
       </div>

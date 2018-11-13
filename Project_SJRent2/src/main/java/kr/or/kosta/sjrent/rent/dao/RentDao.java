@@ -30,4 +30,6 @@ public interface RentDao {
 	public List<Rent> upComingListByUserId(String userId) throws Exception;
 
 	public boolean cancel(int number) throws Exception;
+	
+	public String modelNameByCarNum(String carNumber) throws Exception;
 }
