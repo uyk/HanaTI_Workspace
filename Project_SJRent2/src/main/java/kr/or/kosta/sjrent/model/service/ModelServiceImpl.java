@@ -33,8 +33,6 @@ public class ModelServiceImpl implements ModelService {
 
 	@Override
 	public void create(Model model) throws Exception {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

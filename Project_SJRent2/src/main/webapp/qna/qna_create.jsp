@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="<%=application.getContextPath()%>/css/basic.css">
-   <jsp:include page="../common/commoncss.jsp" />
+<jsp:include page="../common/commoncss.jsp" />
 
 <%
 	String id = null;
@@ -77,7 +77,7 @@
 									
 									<!-- 글작성 시작 -->
 									<div class="outline">
-								<form action="/sjrent/qna/qnaCreate.rent">
+								<form action="/sjrent/qna/qnaCreate.rent" method="post">
 								   <%
 								    if(id != null){//로그인 
 								   %>
@@ -86,7 +86,7 @@
 								           
 								        <div style="float: left;">
 								             <label class="createPostButton" style="background-color: orange; font-size:14pt">글제목</label> 
-								             <input type="text" class="grayBox" required id="title" name="title" maxlength="15" style="text-transform:none">
+								             <input type="text" class="grayBox" required id="title" name="title" maxlength="15" style="text-transform:none; text-align: left">
 								        </div>
 								          
 								        <div>
@@ -99,7 +99,7 @@
 								    </div> 
 								    
 								        <div style="text-align:right">
-								              <input type="submit" class="newButton" value='등록하기' style="margin-top:20px; display:inline-block; background-color: orange; font-size:14pt ">      
+								              <input type="submit" class="newButton" value='등록하기' style="margin-top:20px; display:inline-block; background-color: #d64161; font-size:14pt ">      
 								        </div>
 								    
 								</form>

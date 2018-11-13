@@ -36,16 +36,9 @@
 	<!-- 이메일 중복체크 -->
 	<bean type="controller" name="/user/checkEmail"
 		class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
-   <!-- 이메일 중복체크 -->
-   <bean type="controller" name="/user/checkEmail" class="kr.or.kosta.sjrent.user.controller.UserCheckEmailController" />
-   
-   	<!-- 마이페이지 로그인 -->
-	<bean type="controller" name="/mypage/login" class="kr.or.kosta.sjrent.user.mypage.controller.LoginController" />
-	<!-- 마이페이지 회원정보수정 -->
-	<bean type="controller" name="/mypage/update" class="kr.or.kosta.sjrent.user.mypage.controller.UpdateController" />
 
 	<!-- QnA list 컨트롤러 -->
-	<bean type="controller" name="/qna/qnaList"
+	<bean type="controller" name="/qna/qnaIndex"
 		class="kr.or.kosta.sjrent.qna.controller.QnAListController" />
 
 	<!-- QnA create 컨트롤러 -->

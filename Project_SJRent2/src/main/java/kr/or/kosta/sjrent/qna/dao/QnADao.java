@@ -20,7 +20,7 @@ public interface QnADao {
 	public boolean update(QnA qna) throws Exception;
 	// 게시글 삭제
 	public boolean delete(int seq) throws Exception;
-
+	
 	// 선택페이지, 조회 목록개수, 검색유형, 검색값에 따른 사용자 목록 반환 */	
 	public List<QnA> listByPage(int page, int listSize) throws Exception;
 	
