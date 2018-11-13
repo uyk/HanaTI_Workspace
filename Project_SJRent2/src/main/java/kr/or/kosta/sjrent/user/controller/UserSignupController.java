@@ -146,7 +146,6 @@ public class UserSignupController implements Controller {
 							System.out.println(3);
 							obj.put("result", "success");
 							obj.put("seq", user.getId());
-							
 							// 쿠키에 longinId 올리기
 							String loginId = user.getId();
 
@@ -180,6 +179,8 @@ public class UserSignupController implements Controller {
 
 						// 비회원이 잘 만들어진 경우, index.jsp
 						if (isCreate == true) {
+							// 업데이트 된 user정보 새로 가져오기(id가져오기위해)
+							user = userService.readByEmail(email_non);
 							String loginId = user.getId();
 
 							System.out.println("비회원 예약.." + loginId);

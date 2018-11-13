@@ -42,6 +42,7 @@ public class RentPageDataController implements Controller{
       User user = null;
       try {
 		  user = userService.read((String)request.getAttribute("loginId")); 
+		  System.out.println(user);
       }
       catch (Exception e) {
          mav.addObject("result", "fail");
