@@ -93,5 +93,11 @@ public class ModelParams {
 	public void setHighpass(int highpass) {
 		this.highpass = highpass;
 	}
+	@Override
+	public String toString() {
+		return "ModelParams [startDate=" + startDate + ", endDate=" + endDate + ", fuelType=" + fuelType + ", type="
+				+ type + ", seater=" + seater + ", transmission=" + transmission + ", navigation=" + navigation
+				+ ", cameraRear=" + cameraRear + ", blackBox=" + blackBox + ", highpass=" + highpass + "]";
+	}
 	
 }

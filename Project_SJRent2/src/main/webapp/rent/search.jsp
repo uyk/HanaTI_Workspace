@@ -167,7 +167,7 @@ function getModelTypeOption(modelParams) {
             type_name = 'all';
             break;
     }
-    modelParams.type_name = type_name;
+    modelParams.model_type = type_name;
 }
 
 /**

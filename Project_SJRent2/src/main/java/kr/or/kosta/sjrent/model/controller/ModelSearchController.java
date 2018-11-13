@@ -92,6 +92,8 @@ public class ModelSearchController implements Controller {
 		}
 		modelParams.setFuelType(fuelType);
 		modelParams.setTransmission(transmission);
+		
+		System.out.println(modelParams);
 		List<Model> list = null;
 		try {
 			// Params로 검색한 리스트를 list에 저장

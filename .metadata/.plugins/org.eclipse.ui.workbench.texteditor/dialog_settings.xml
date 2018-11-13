@@ -20,27 +20,27 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value=".tg-review .tg-author" key="selection"/>
+		<item value="cont" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value=".tg-review .tg-author"/>
-			<item value="date"/>
-			<item value="param"/>
-			<item value="eachM"/>
-			<item value="id"/>
-			<item value=".tg-tourduration "/>
-			<item value=".tg-authorinfo span"/>
-			<item value="console"/>
-			<item value="err"/>
-			<item value="car_list"/>
-			<item value="car"/>
-			<item value="header.jsp"/>
-			<item value="header"/>
-			<item value="rememberp"/>
-			<item value="detail_sh"/>
+			<item value="conta"/>
+			<item value="cont"/>
+			<item value="login"/>
+			<item value="registSearchSubmit"/>
+			<item value="setModelList"/>
+			<item value="qna"/>
+			<item value="list"/>
+			<item value="MODEL__TRANSMISSION"/>
+			<item value="select"/>
+			<item value="disc inside"/>
+			<item value="list-sty"/>
+			<item value="li"/>
+			<item value="weekday"/>
+			<item value="wee"/>
+			<item value="fa"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>
@@ -55,7 +55,7 @@
 		<item value="333" key="DIALOG_WIDTH"/>
 		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-15|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
 		<item value="454" key="DIALOG_HEIGHT"/>
-		<item value="1383" key="DIALOG_X_ORIGIN"/>
-		<item value="538" key="DIALOG_Y_ORIGIN"/>
+		<item value="9" key="DIALOG_X_ORIGIN"/>
+		<item value="585" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>

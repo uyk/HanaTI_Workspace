@@ -49,7 +49,6 @@ public class QnAListController implements Controller {
 			e.printStackTrace();
 		}
 		for (QnA qna : qnaList) {
-			System.out.println(qna.getDate());
 			jsonArray.add(otj.ObjectToJsonObject(qna));
 		}
 		response.setCharacterEncoding("utf-8");
