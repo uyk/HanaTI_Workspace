@@ -8,27 +8,37 @@
 <jsp:include page="../common/commonjs.jsp" />
 
 <!-- datePicker -->
-<link rel="stylesheet" href="<%=application.getContextPath()%>/css/datepicker.min.css" type="text/css">
+<link rel="stylesheet"
+  href="<%=application.getContextPath()%>/css/datepicker.min.css"
+  type="text/css">
 <script src="<%=application.getContextPath()%>/js/datepicker.min.js"></script>
 <script src="<%=application.getContextPath()%>/js/datepicker.en.js"></script>
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<!-- fontawesome -->
+<link rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
 <style type="text/css">
 .in {
-   background: rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.8);
 }
-.modal-backdrop{
-   position: static;
+
+.modal-backdrop {
+	position: static;
 }
-.tg-widget{
-   border: 1px solid black;
-   padding : 10px;
-   padding-top: 30px;
+
+.tg-widget {
+	border: 1px solid black;
+	padding: 10px;
+	padding-top: 30px;
 }
-.tg-widgettitle{
-   padding: 0px;
+
+.tg-widgettitle {
+	padding: 0px;
 }
-.tg-listing .tg-populartour, .tg-listing .tg-trendingtrip{
-   padding: 10px 5px 5px;
+
+.tg-listing .tg-populartour, .tg-listing .tg-trendingtrip {
+	padding: 10px 5px 5px;
 }
 </style>
 <script type="text/javascript">
@@ -202,20 +212,6 @@ function setModelList(list) {
 	        	console.log('error in openning detail show' + result);
 	        }
 		});
-	  	/** 리뷰 탭 클릭시 getReviewList 시작 */
-	  	/** 
-=======
->>>>>>> Stashed changes
-	  	$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
-	  		//e.target // newly activated tab
-	  		//e.relatedTarget // previous active tab
-	  		console.log(e.target.getAttribute('aria-controls'));
-	  		if(e.target.getAttribute('aria-controls') == 'review') {
-	  			getReviewList(modelName, 1, 10)
-	  		}
-	  	});
-<<<<<<< Updated upstream
-	  	*/
 	});
 }
 
@@ -414,170 +410,218 @@ function setReviewList(list) {
 			date : list[i].date,
 			content : list[i].content
 		};
-		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each.jsp", params);
-		$("#each_review_ul").append(review);
-	}
+		var review = $('<li></li>').load("<%=application.getContextPath()%>/rent/search_include/review_each.jsp",
+							params);
+			$("#each_review_ul").append(review);
+		}
 }
 </script>
 </head>
 <body>
-   <!--************************************
+  <!--************************************
          Mobile Menu Start
    *************************************-->
-   
-   <!--************************************
+
+  <!--************************************
          Mobile Menu End
    *************************************-->
-   <!--************************************
+  <!--************************************
          Wrapper Start
    *************************************-->
-   <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
-      <!--************************************
+  <div id="tg-wrapper" class="tg-wrapper tg-haslayout">
+    <!--************************************
                Header Start
          *************************************-->
-      <jsp:include page="/rent/search_include/search_header.jsp"/>
-      <!--************************************
+    <jsp:include page="/rent/search_include/search_header.jsp" />
+    <!--************************************
                Header End
          *************************************-->
-      <!--************************************
+    <!--************************************
                Inner Banner Start
          *************************************-->
-      <%--
+    <%--
       <jsp:include page="/rent/search_include/search_banner.jsp"/>
        --%>
-      <div class="tg-homebannerslider"
-         class="tg-homebannerslider tg-haslayout">
-         <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
-            <figure class="item"
-               data-vide-bg="poster: ../images/slider/img-02.jpg"
-               data-vide-options="position: 50% 50%">
-               <figcaption>
-                  <div class="container">
-                     <div class="row">
-                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                           <form id = "showCarList" class="tg-formtheme tg-formtrip" action="<%=application.getContextPath()%>/model/search.rent" method="get">
-                              <fieldset>
-                                 <div class="row">
-                                    <div class="form-group-row col-md-8">
-                                    <div class = "col-md-8">
-                                    <input type="text"
-                                          id = "datepicker"
-                                           data-language="en"
-                                           data-range="true"
-                                           data-multiple-dates-separator="  ~  "
-                                           placeholder="기간을 선택해 주세요"
-                                           readonly 
-                                           class="datepicker-here form-control" required style="height: 50px" />
-                                    </div>
-                                    <div class = "col-md-4">
-                                       <!-- 총 시간 입력 -->
-                                       <input type = "text" id = "total-time" class="form-control" readonly="readonly" style="height: 50px">
-                                    </div>
-                                    </div>
-                                 <div class="form-group col-md-4">
-                                    <div class="tg-select" style="padding-left: 15px">
-                                       <select class="selectpicker" data-live-search="true"
-                                          data-width="100%" title="차종">
-                                          <option data-tokens="all">전체</option>
-                                          <option data-tokens="ASegment">소형</option>
-                                          <option data-tokens="DSegment">중형</option>
-                                          <option data-tokens="ESegment">대형</option>
-                                          <option data-tokens="JSegment">승합</option>
-                                          <option data-tokens="MSegment">SUV</option>
-                                          <option data-tokens="SSegment">외제차</option>
-                                       </select>
-                                    </div>
-                                 </div>
-                                 <div class="form-group">
-                                    <button class="tg-btn" type="submit">
-                                       <span>렌트카 찾기</span>
-                                    </button>
-                                 </div>
-                                 </div>
-                              </fieldset>
-                           </form>
+    <div class="tg-homebannerslider"
+      class="tg-homebannerslider tg-haslayout">
+      <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
+        <figure class="item"
+          data-vide-bg="poster: ../images/slider/img-02.jpg"
+          data-vide-options="position: 50% 50%">
+          <figcaption>
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                  <form id="showCarList"
+                    class="tg-formtheme tg-formtrip"
+                    action="<%=application.getContextPath()%>/model/search.rent"
+                    method="get">
+                    <fieldset>
+                      <div class="row">
+                        <div class="form-group-row col-md-8">
+                          <div class="col-md-8">
+                            <input type="text" id="datepicker"
+                              data-language="en" data-range="true"
+                              data-multiple-dates-separator="  ~  "
+                              placeholder="기간을 선택해 주세요" readonly
+                              class="datepicker-here form-control"
+                              required style="height: 50px" />
+                          </div>
+                          <div class="col-md-4">
+                            <!-- 총 시간 입력 -->
+                            <input type="text" id="total-time"
+                              class="form-control" readonly="readonly"
+                              style="height: 50px">
+                          </div>
                         </div>
-                     </div>
-                  </div>
-               </figcaption>
-            </figure>
-         </div>
+                        <div class="form-group col-md-4">
+                          <div class="tg-select">
+                            <select class="selectpicker"
+                              data-live-search="true" data-width="100%"
+                              title="차종">
+                              <option data-tokens="all">전체</option>
+                              <option data-tokens="ASegment">소형</option>
+                              <option data-tokens="DSegment">중형</option>
+                              <option data-tokens="ESegment">대형</option>
+                              <option data-tokens="JSegment">승합</option>
+                              <option data-tokens="MSegment">SUV</option>
+                              <option data-tokens="SSegment">외제차</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <button class="tg-btn" type="submit">
+                            <span>렌트카 찾기</span>
+                          </button>
+                        </div>
+                      </div>
+                    </fieldset>
+
+                    <!-- 체크박스 시작 -->
+                    <fieldset class='row'
+                      style='padding-right: 0px; margin-top: 20px;'>
+                      <form>
+                        <div class="checkbox-inline">
+                          <label class="checkbox-label"> <input
+                            type="checkbox" name="check"> <span
+                            class="label-text">네비게이션</span>
+                          </label>
+                        </div>
+                        <div class="checkbox-inline">
+                          <label class="checkbox-label"> <input
+                            type="checkbox" name="check"> <span
+                            class="label-text">후방카메라</span>
+                          </label>
+                        </div>
+                        <div class="checkbox-inline">
+                          <label class="checkbox-label"> <input
+                            type="checkbox" name="check"> <span
+                            class="label-text">하이패스</span>
+                          </label>
+                        </div>
+                        <div class="checkbox-inline">
+                          <label class="checkbox-label"> <input
+                            type="checkbox" name="check"> <span
+                            class="label-text">블랙박스</span>
+                          </label>
+                        </div>
+                        <select data-width='130px' title="연료"
+                          class="selectpicker">
+                          <option>전체</option>
+                          <option>LPG</option>
+                          <option>디젤</option>
+                          <option>가솔린</option>
+                        </select> <select data-width='130px' title="기어"
+                          class="selectpicker">
+                          <option>전체</option>
+                          <option>수동</option>
+                          <option>자동</option>
+                        </select>
+                      </form>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </figcaption>
+        </figure>
       </div>
-      <!--************************************
+    </div>
+    <!--************************************
                Inner Banner End
       *************************************-->
-      
-      <!--************************************
+
+    <!--************************************
             Main Start
       *************************************-->
-      <main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
-      <div class="container" style="width: 90%">
-         <!--************************************
+    <main id="tg-main"
+      class="tg-main tg-sectionspace tg-haslayout tg-bglight">
+    <div class="container" style="width: 90%">
+      <!--************************************
               Detail Model Modal Start
          *************************************-->
-          <jsp:include page="/rent/search_detail.jsp" />
-         <!--************************************
+      <jsp:include page="/rent/search_detail.jsp" />
+      <!--************************************
               Detail Model Modal End
          *************************************-->
-         
-         <!--************************************
+
+      <!--************************************
               Wish Result Modal Start
          *************************************-->
-         <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
-         <!--************************************
+      <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
+      <!--************************************
               Wish Result Modal End
          *************************************-->
-         
-         <!--************************************
+
+      <!--************************************
               Search Login Modal Start
          *************************************-->
-         <jsp:include page="/rent/search_include/search_login_modal.jsp" />
-         <!--************************************
+      <jsp:include page="/rent/search_include/search_login_modal.jsp" />
+      <!--************************************
               Search Login Modal End
          *************************************-->
-         
-         <div class="row" id="ModelDisplayRow">
-            <div id="tg-twocolumns" class="tg-twocolumns">
-               <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 pull-left">
-                  <div id="tg-content" class="tg-content">
-                     <div class="tg-listing tg-listingvone">
-                     <%--
+
+      <div class="row" id="ModelDisplayRow">
+        <div id="tg-twocolumns" class="tg-twocolumns">
+          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 pull-left">
+            <div id="tg-content" class="tg-content">
+              <div class="tg-listing tg-listingvone">
+                <%--
                         <div class="tg-sectiontitle" style="padding-bottom: 20px">
                            <h2>렌트카</h2>
                         </div>
                         <div class="clearfix"></div>
                      --%>
-                        <!--************************************
+                <!--************************************
                                Model List Start
                          *************************************-->
-                        <div class="row" id="carListRow">
-                        </div>
-                        <!--************************************
+                <div class="row" id="carListRow"></div>
+                <!--************************************
                                Model List End
                          *************************************-->
-                     </div>
-                  </div>
-               </div>
-               <!--************************************
+              </div>
+            </div>
+          </div>
+          <!--************************************
                      Ranking Start
                *************************************-->
-               <div id="rank-list"> </div>
-               <!--************************************
+          <div id="rank-list"></div>
+          <!--************************************
                      Ranking End
                *************************************-->
-            </div>
-         </div>
+        </div>
       </div>
-      </main>
-      <!--************************************
+    </div>
+    </main>
+    <!--************************************
             Main End
       *************************************-->
-   </div>
-   <!--************************************
+  </div>
+  <!--************************************
                Login method
-   *************************************--> 
+   *************************************-->
 
-   <jsp:include page="/rent/search_include/search_login.jsp"/>
+  <jsp:include page="/rent/search_include/search_login.jsp" />
 
 
 </body>

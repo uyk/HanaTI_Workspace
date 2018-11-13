@@ -174,7 +174,6 @@ form p span i {
 option { padding: 5px 15px; }
 li {
 	line-height: 28px;
-	list-style: disc inside none;
 }
 ul ul { margin-left: 20px; }
 ol {
@@ -5329,4 +5328,68 @@ body.tg-hidescroll{overflow:hidden;}
 
 .fas {
 	color : #ff7550;
+}
+
+/*Check box*/
+.checkbox-label{
+	position: relative;
+	cursor: pointer;
+	color: #303030;
+	font-size: 15px;
+}
+
+input[type="checkbox"]{
+	position: absolute;
+	right: 9000px;
+}
+
+input[type="checkbox"] + .label-text:before{
+	content: "\f096";
+	font-family: "FontAwesome";
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+	-webkit-font-smoothing:antialiased;
+	width: 1em;
+	display: inline-block;
+	margin-right: 5px;
+}
+
+input[type="checkbox"]:checked + .label-text:before{
+	content: "\f14a";
+	color: #303030;
+	animation: effect 250ms ease-in;
+}
+
+input[type="checkbox"]:disabled + .label-text{
+	color: #aaa;
+}
+
+input[type="checkbox"]:disabled + .label-text:before{
+	content: "\f0c8";
+	color: #ccc;
+}
+
+@keyframes effect{
+	0%{transform: scale(0);}
+	25%{transform: scale(1.3);}
+	75%{transform: scale(1.4);}
+	100%{transform: scale(1);}
+}
+
+.checkbox-inline {
+    vertical-align: -webkit-baseline-middle;
+}
+
+
+/** select */
+.bootstrap-select:not([class*="col-"]):not([class*="form-control"]):not(.input-group-btn) {
+    margin-left: 20px;
+}
+select::-ms-expand {
+  /* for IE 11 */
+  display: none;
 }
