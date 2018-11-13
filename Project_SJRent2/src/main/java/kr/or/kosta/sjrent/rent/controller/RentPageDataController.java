@@ -33,6 +33,7 @@ public class RentPageDataController implements Controller{
    @Override
    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
          throws ServletException {
+	   System.out.println("RentPageDataController");
       factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
       userService = (UserService) factory.getBean(UserServiceImpl.class);
       insuranceService = (InsuranceService) factory.getBean(InsuranceServiceImpl.class);

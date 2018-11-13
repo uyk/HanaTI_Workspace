@@ -118,22 +118,22 @@
              --%>
 			<div role="tabpanel" class="tab-pane tg-locationtab" id="location">
 				<div class="tg-box tg-location">
-					<h3>The neighborhood</h3>
+					<h3>수령장소를 골라주세요</h3>
 					<div class="tg-description">
-						<p>Curabitur blandit tempus porttitor. Lorem ipsum dolor
-							sit amet, consectetur adipiscing elit. Cras mattis consectetur
-							purus sit amet fermentum. Etiam porta sem malesuada magna
-							mollis euismod. Lorem ipsum dolor sit amet, consectetur
-							adipiscing elit.</p>
+						<p id="yourPlace"></p>
 					</div>
-					<div id="tg-locationmap" class="tg-locationmap tg-map"></div>
+					<div id="floating-panel">
+				    	<input id="yourAddress" type="text" value="하나금융티아이">
+				      	<input id="findPlace" type="button" class="btn btn-primary" value="장소 찾기">
+				    </div>	
+				    <div id="map"></div>
 				</div>
 			</div>
       
             <%--
                 Review 탭 시작
              --%>
-            <jsp:include page="/rent/search_include/review_list_list.jsp"></jsp:include>
+            <jsp:include page="/rent/search_include/review_list.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

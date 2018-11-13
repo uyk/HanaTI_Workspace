@@ -63,7 +63,7 @@
 .checkbox-label{
   position: relative;
   cursor: pointer;
-  color: #303030;
+  color: #ffffff;
   font-size: 15px;
 }
 
@@ -89,7 +89,7 @@ input[type="checkbox"] + .label-text:before{
 
 input[type="checkbox"]:checked + .label-text:before{
   content: "\f14a";
-  color: #303030;
+  color: #ff7550;
   animation: effect 250ms ease-in;
 }
 
@@ -485,6 +485,7 @@ function wishResultHide() {
  * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
  */
  function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
+	alert('2');
 	// 로그인 중
 	if(isLogin == true){
 		// post로 데이터 전달
@@ -603,9 +604,41 @@ function loginAction(e) {
 
 function nonUserLoginAction(e) {
 	e.preventDefault();
+	var name = e.currentTarget.name_non.value;
+	var email = e.currentTarget.email_non.value;
+	var cellphone = e.currentTarget.cellphone_non.value;
+	var where = 'rent';
 	
-	window.nonUserE = e;
-	console.log('not a user');
+	var params = {
+		name_non : name,
+		email_non : email,
+		cellphone_non : cellphone,
+		where : where
+	};
+	
+	console.log('non login : ' + name + "," + email + "," + cellphone);
+	window.nonloginE = e;
+	
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/user/signup.rent",
+		type:'POST', 
+		data : params,
+		dataType:"json",
+		success:function(result){
+			console.log(result);
+			if(result['result'] == 'success') {
+				isLogin = true;
+				console.log('nonuser Success');
+				goToReserve(rent_start_date, rent_end_date, detailModel.amountMoney, pickupPlace, detailModel.type, detailModel.picture);
+			}
+			else {
+				alert(result['reason']);
+			}
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
 }
 
 
@@ -641,9 +674,7 @@ function nonUserLoginAction(e) {
     <div class="tg-homebannerslider"
       class="tg-homebannerslider tg-haslayout">
       <div class="tg-homeslider tg-homeslidervtwo tg-haslayout">
-        <figure class="item"
-          data-vide-bg="poster: ../images/slider/img-02.jpg"
-          data-vide-options="position: 50% 50%">
+        <figure class="item" data-vide-bg="mp4: <%=application.getContextPath()%>/video/backgroud_car" data-vide-options="none, position: 50% 50%">
           <figcaption>
             <div class="container">
               <div class="row">

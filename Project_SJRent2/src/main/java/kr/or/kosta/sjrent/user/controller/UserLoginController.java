@@ -89,10 +89,12 @@ public class UserLoginController implements Controller {
 					mav.addObject("user", user);
 					
 					// hidden 처리한 요청 페이지별 처리
+					// mypage 요청
 					if (where != null && where.equals("myPage")) {
 						mav.setView("/mypage/myPageLoginOK.jsp");
-						// System.out.println(mav);
-					}else if(where != null && where.equals("ajax")) {
+					}
+					// ajax 요청한 경우
+					else if(where != null && where.equals("ajax")) {
 						response.getWriter().print("success");
 						return null;
 					}else {
@@ -103,14 +105,16 @@ public class UserLoginController implements Controller {
 				// 회원이 아닌 경우
 				else {
 					// hidden 처리한 요청 페이지별 처리
+					// 마이페이지 요청한 경우
 					if (where != null && where.equals("myPage")) {
 						mav.setView("/mypage/myPage.jsp");
-						// System.out.println(mav);
-					}else if(where != null && where.equals("ajax")) {
+					}
+					// ajax 요청한 경우
+					else if(where != null && where.equals("ajax")) {
 						response.getWriter().print("fail");
 						return null;
 					}else {
-						mav.setView("/index.jsp");
+						mav.setView("/user/login.jsp");
 					}
 				}
 			} catch (Exception e) {

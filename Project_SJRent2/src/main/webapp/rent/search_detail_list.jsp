@@ -45,20 +45,6 @@
   					<li><span class="tg-tourduration tg-peoples">24 People
   							in Group</span></li>
   				</ul>
-  				<div class="tg-refundshare">
-  					<div class="tg-refund">
-  						<figure>
-  							<img src="../images/img-03.jpg" alt="image description">
-  						</figure>
-  						<div class="tg-refundinfo">
-  							<h3>100% Refundable</h3>
-  							<div class="tg-description"> 
-  								<p>Cancel up to 72 days before your trip and get a full
-  									refund, including service fees.</p>
-  							</div>
-  						</div>
-  					</div>
-  				</div>
   			</div>
   			<jsp:include page="car_detail_list.jsp"></jsp:include>
   		</div>

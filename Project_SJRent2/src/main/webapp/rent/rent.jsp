@@ -18,6 +18,8 @@
 var mapInsurance;
 var price = [];
 var date= [];
+var total = 0;
+var point = <%= request.getAttribute("userPoint")%>;
 $(document).ready(function(){
 	/* 동적 맵 생성  */
 	Map = function(){
@@ -103,6 +105,23 @@ $(document).ready(function(){
 		mapInsurance.put(i, temp);
 	}
 	
+	/* 포인트 처리 */
+	$('#pointValue').keyup(function(){
+		var money = $(this).val();
+		var tempTotal = total;
+		console.log(tempTotal);
+		if(tempTotal > 0){
+			tempTotal -= money;
+			document.getElementById('totalMoney').innerHTML = "<em>￦"+tempTotal+"</em>";
+		}
+		if(money > point){
+			alert('보유하신 포인트 이상은 사용하실 수 없습니다.');
+			$(this).val(money.substring(0, money.length-1)); 
+		}
+	});
+	
+	
+	
 	/* console.log(insurances[0]);
 	console.log(insurances[1]);
 	console.log(insurances[2]);
@@ -180,6 +199,13 @@ $(document).ready(function(){
                                              </div>
                                           </div>
                                           <c:forEach var="item" items="${resultMap}" varStatus="status">
+                                          	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
+	                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+	                                                <div class="form-group">
+	                                                   <label><strong>※ ${fn:split(item.picture,'.')[0]} 예약하기</strong></label>
+	                                                </div>
+	                                             </div>
+	                                          </div>
 	                                          <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 	                                             <div class="form-group">
 	                                                <label>시작날짜</label>
@@ -253,7 +279,7 @@ $(document).ready(function(){
                                              <ul>
 	                                             <li class="tg-personprice" style="padding-top: 20px; padding-bottom: 10px;">
 	                                             <c:forEach var="item" items="${resultMap}" varStatus="status">
-	                                                <div class="tg-perperson" style="padding-bottom: 10px;"><span>차량 금액(${fn:split(item.picture,'.')[0]})</span><em>${item.amountMoney}￦</em><br></div>
+	                                                <div class="tg-perperson" style="padding-bottom: 10px;"><span>차량 금액<em>(${fn:split(item.picture,'.')[0]})</em></span><em>￦${item.amountMoney}</em><br></div>
 	                                              </c:forEach>
 	                                              </li>
 	                                              <c:forEach var="item" items="${resultMap}" varStatus="status">
@@ -261,6 +287,10 @@ $(document).ready(function(){
 	                                                <li><span>총 일수</span><div id="day${status.count}"></div></li>
 	                                             	<%-- <%totalmoney += Integer.parseInt(item.type); %> --%>
 	                                             </c:forEach>
+	                                             	<li><span>사용 가능한 포인트</span><div><em>￦${userPoint}</em></div></li>
+	                                             	<li><span>사용할 포인트</span><div><em>
+														<input type="text" id="pointValue" placeholder="0" maxlength="6" style="height: 30px;" >	                                             	
+	                                             	</em></div></li>
 	                                                <li class="tg-totalprice"><div class="tg-totalpayment"><span>총 금액</span><div id="totalMoney"></div></div></li>
                                              </ul>
                                           </div>
@@ -301,7 +331,7 @@ function changeSelect(num){
 	document.getElementById('amount'+num).value = parseInt(document.getElementById('carAmount'+num).value) + parseInt(car_price*car_date);
 	
 	/* 총 금액 */
-	var total = 0;
+	total = 0;
 	var amountCar = document.getElementsByClassName('carAmount');
 	
 	for (var i = 0; i < amountCar.length; i++) {
@@ -309,7 +339,10 @@ function changeSelect(num){
 			total += parseInt(amountCar[i].value);
 			total += parseInt(price[i])*parseInt(date[i]);
 		}
+		
 	}
+	/* 포인트 사용 */
+	total -= document.getElementById('pointValue').value;
 	document.getElementById('totalMoney').innerHTML = "<em>￦"+total+"</em>";
 	/* console.log(document.getElementById('amount'+num).value); */
 }

@@ -84,10 +84,10 @@
                		<button type="button" id= "selectall" class="user_option btn btn-primary">전체 선택</button>
                		<button type="button" id= "disableall" class="user_option btn btn-secondary">전체 해제</button>
                </div>
-               <form id="form" class="tg-formtheme tg-formcart" action="<%=application.getContextPath() %>/rent/page.rent" method="get">
+               <form id="form" class="tg-formtheme tg-formcart" action="<%=application.getContextPath() %>/rent/page.rent" method="post">
                  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <div class="" >
-                       <table class="table table-responsive">
+                       <table class="table">
                           <colgroup>
                              <col width="5%"/>
                              <col width="40%"/>
@@ -168,6 +168,5 @@
       Wrapper 종료
    *************************************-->
    </div>
-   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDlWwxN6bwNheL1s5jwQxzKlZMo_HTTNAQ"></script>
 </body>
 </html>
