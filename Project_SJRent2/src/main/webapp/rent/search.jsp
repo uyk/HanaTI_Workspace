@@ -57,6 +57,51 @@
    line-height: 30px;
    padding-left: 10px;
  }
+ 
+ 
+/*Check box*/
+.checkbox-label{
+  position: relative;
+  cursor: pointer;
+  color: #303030;
+  font-size: 15px;
+}
+
+input[type="checkbox"]{
+  position: absolute;
+  right: 9000px;
+}
+
+input[type="checkbox"] + .label-text:before{
+  content: "\f096";
+  font-family: "FontAwesome";
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing:antialiased;
+  width: 1em;
+  display: inline-block;
+  margin-right: 5px;
+}
+
+input[type="checkbox"]:checked + .label-text:before{
+  content: "\f14a";
+  color: #303030;
+  animation: effect 250ms ease-in;
+}
+
+input[type="checkbox"]:disabled + .label-text{
+  color: #aaa;
+}
+
+input[type="checkbox"]:disabled + .label-text:before{
+  content: "\f0c8";
+  color: #ccc;
+}
+
 </style>
 <script type="text/javascript">
 var rent_start_date = null;
@@ -64,12 +109,15 @@ var rent_end_date = null;
 var date;
 var weekday = 0;
 var weekend = 0;
-var pickupPlace = "방문수령";
+var pickupPlace = "방문수령"; 
+var detailModel = null;
+var isLogin = false;
 /**
  * search.jsp가 로드될 때 실행되는 함수
  */
 $(document).ready(function(){
 	console.log('id : ' + '<%=request.getAttribute("loginId")%>');
+	if('<%=request.getAttribute("loginId")%>' != 'null') isLogin = true;
 	// 검색된 모델과 랭킹을 시작할 때는 표시 안하게
 	$('#ModelDisplayRow').hide();
 	
@@ -78,6 +126,14 @@ $(document).ready(function(){
 
 	/** 검색버튼 이벤트 등록 */
 	registSearchSubmit();
+	
+	$('#search-user-login-form').submit(function(e) {
+		loginAction(e);
+	});
+	
+	$('#search-nonuser-login-form').submit(function(e) {
+		nonUserLoginAction(e);
+	});
 });
 
 /** datepicker 이벤트 발생 처리*/
@@ -256,7 +312,7 @@ function setModelList(list) {
 			weekendPrice : list[i].weekendPrice,
 			starPercent : list[i].evalScore * 10,
 			reviewCount : list[i].reviewCount
-		};
+		}; 
 		var model = $('<div></div>').load("<%=application.getContextPath()%>/rent/search_include/search_each.jsp", params);
 		$("#carListRow").append(model);
 	}	//for 끝
@@ -267,9 +323,7 @@ function setModelList(list) {
     var scrollPosition = $("#tg-main").offset().top;
     $("html, body").animate({
     	scrollTop: scrollPosition
-    }, 300, function () {
-		console.log('aa');
-	});
+    }, 300);
 	
 	/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
 	$('#detail_show').on('show.bs.modal', function(e) {
@@ -287,9 +341,10 @@ function setModelList(list) {
 	             'endDate' : rent_end_date
 	        },
 			success:function(model){
+				detailModel = model;
 				//$(e.currentTarget).html(result);
-				setDetailModal(model);
-				// detail패널의 car_detail의 review 탭 설정
+				setDetailModal(detailModel);
+				// detail모달의 car_detail의 review 탭 설정
 				setReviewTab(model.name, model.reviewCount);
 			},
 	        error : function(result) {
@@ -297,6 +352,13 @@ function setModelList(list) {
 	        }
 		});
 	});
+	
+	/** 디테일 모달이 닫힐 때 */
+	
+	$('#detail_show').on('hidden.bs.modal', function (e) {
+		pickupPlace = "방문수령"; 
+		detailModel = null;
+	})
 }
 
 function setReviewTab(name, reviewCount, page) {
@@ -319,14 +381,13 @@ function setReviewTab(name, reviewCount, page) {
  * 예약화면으로 넘길 정보 :  model, startDate, endDate, amountMoney, location
  */
 function setDetailModal(model) {
-	var amountMoney = model.weekdayPrice * weekday + 
-					  model.weekendPrice * weekend;
+	model.amountMoney = model.weekdayPrice * weekday + model.weekendPrice * weekend;
 	var imagePath = "../images/cars/"+model.type+"/"+model.picture;
 	$('#detail-img').attr('src',imagePath);
 	$('#detail-name').html(model.name);
 	$('#detail-star').css('width', model.evalScore * 10 + '%');
 	$('#detail-review-count').html('(' + model.reviewCount + ' Review)');
-	$('#detail-amount-money').html('&#8361 '+ amountMoney);
+	$('#detail-amount-money').html('&#8361 '+ model.amountMoney);
 	$('#detail-weekday-price').html(' ' + model.weekdayPrice + ' on Weekday');
 	$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
 	$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
@@ -373,12 +434,12 @@ function setDetailModal(model) {
 		console.log('<%=request.getAttribute("loginId")%>');
 		$('#wish-list-anchor').on('click', function(e) {
 			e.stopPropagation();
-			e.currentTarget.onclick = addToWishList(model.name, rent_start_date, rent_end_date, amountMoney, model.picture, model.type, model.fuelType);
+			e.currentTarget.onclick = addToWishList(model.name, rent_start_date, rent_end_date, model.amountMoney, model.picture, model.type, model.fuelType);
 		})
 	}
 	$('#go-reserve-anchor').on('click', function(e) {
 		e.stopPropagation();
-		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, amountMoney, pickupPlace, model.type, model.picture);
+		e.currentTarget.onclick = goToReserve(rent_start_date, rent_end_date, model.amountMoney, pickupPlace, model.type, model.picture);
 	})
 }
 /** 
@@ -425,7 +486,7 @@ function wishResultHide() {
  */
  function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
 	// 로그인 중
-	if( '<%=request.getAttribute("loginId")%>' != 'null'){
+	if(isLogin == true){
 		// post로 데이터 전달
 	    var form = document.createElement("form");
 	    form.setAttribute("method", "post");
@@ -499,6 +560,55 @@ function setReviewList(list) {
 			$("#each_review_ul").append(review);
 		}
 }
+
+function loginAction(e) {
+	e.preventDefault();
+	var id = e.currentTarget.id.value;
+	var pw = e.currentTarget.pw.value;
+	var remember = e.currentTarget.remember.checked;			// true or false
+	var where = 'ajax';
+	
+	var params = {
+  		id : id,
+  		pw : pw,
+  		login : where
+	};
+	// 아이디 저장 체크 되어있을 때만 remember를 파라미터로 보냄
+	if(remember == true) {
+		params.remember = remember;
+	}
+	
+	console.log('login : ' + id + "," + pw + "," + remember);
+	window.loginE = e;
+	
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/user/login.rent",
+		type:'POST', 
+		data : params,
+		success:function(result){
+			if(result == 'success') {
+				isLogin = true;
+				console.log('login Success');
+				goToReserve(rent_start_date, rent_end_date, detailModel.amountMoney, pickupPlace, detailModel.type, detailModel.picture);
+			}
+			else {
+				alert('아이디와 비밀번호를 확인해주세요');
+			}
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
+}
+
+function nonUserLoginAction(e) {
+	e.preventDefault();
+	
+	window.nonUserE = e;
+	console.log('not a user');
+}
+
+
 </script>
 
 <title>SJ 렌트카 - 실시간예약</title>

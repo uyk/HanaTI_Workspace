@@ -36,8 +36,7 @@
             <div role="tabpanel" class="tab-pane active fade in"
               id="user">
 
-              <form class="tg-formtheme tg-formlogin"
-                action="/sjrent/user/login.rent" method="post">
+              <form class="tg-formtheme tg-formlogin" id='search-user-login-form'>
                 <fieldset>
                   <div class="form-group">
                     <label>아이디 <sup>*</sup></label> <input type="text"
@@ -72,7 +71,7 @@
                 *************************************-->
             <div role="tabpanel" class="tab-pane fade" id="new">
               <form class="tg-formtheme tg-formlogin"
-                action="/sjrent/user/signup.rent" method="post">
+                id='search-nonuser-login-form'>
                 <fieldset>
                   <div class="form-group">
                     <label>이름 <sup>*</sup></label> <input type="text"

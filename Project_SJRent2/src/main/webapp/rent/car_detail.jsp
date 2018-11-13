@@ -52,7 +52,7 @@
 						<p id="yourPlace"></p>
 					</div>
 					<div id="floating-panel">
-				    	<input id="yourAddress" type="text" value="하나금융티아이">
+				    	<input id="yourAddress" type="text" placeholder="가산디지털단지">
 				      	<input id="findPlace" type="button" class="btn btn-primary" value="장소 찾기">
 				    </div>	
 				    <div id="map"></div>

@@ -25,6 +25,7 @@ public class CharacterEncodingFilter implements Filter {
 		// 전처리
 		if(encoding != null){
 			request.setCharacterEncoding(encoding);
+			response.setCharacterEncoding(encoding);
 		}
 		chain.doFilter(request, response);
 		// 후처리
