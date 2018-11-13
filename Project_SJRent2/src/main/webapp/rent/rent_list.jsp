@@ -6,42 +6,47 @@
 <head>
 <jsp:include page="../common/commoncss.jsp" />
 <jsp:include page="../common/commonjs.jsp" />
+<style type="text/css">
+.in {
+   background: rgba(0, 0, 0, 0.8);
+}
+.modal-backdrop{
+   position: static;
+}
+</style>
 <script type="text/javascript">
 $(document).ready(function(){
-	 $("#info_detail").click(function() {
-			var $w = $(this).attr('href');
-			layer_popup($w);
+	
+	/* Modal 작동 */
+	$('#ModelDisplayRow').show();
+		
+		/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
+		$('#detail_show').on('show.bs.modal', function(e) {
+			var modelName = $(e.relatedTarget).data('model-name');
+			window.e = $(e.currentTarget);
+			console.log(car_model);
+			window.e = $(e.currentTarget);
+			$.ajax({	
+				url:"<%=application.getContextPath()%>/model/detail.rent",
+				dataType:"json",
+				type:'POST', 
+				data : {
+		             'modelName' : modelName,
+		             'weekday' : weekday,
+		             'weekend' : weekend,
+		             'startDate' : rent_start_date,
+		             'endDate' : rent_end_date
+		        },
+				success:function(result){
+					//$(e.currentTarget).html(result);
+					setDetailModal(result);
+				},
+		        error : function(result) {
+		        	console.log('error in openning detail show' + result);
+		        }
+			});
 		});
 });
-	function layer_popup(e){
-		var $e = $(e);
-		
-		$(".info_car").fadeIn();
-		  var $elWidth = ~~($e.outerWidth()),
-	      $elHeight = ~~($e.outerHeight()),
-	      docWidth = $(document).width(),
-	      docHeight = $(document).height();
-
-		  // 화면의 중앙에 레이어를 띄운다.
-		  if ($elHeight < docHeight || $elWidth < docWidth) {
-		      $e.css({
-		          marginTop: -$elHeight /2,
-		          marginLeft: -$elWidth/2
-		      })
-		  } else {
-		      $e.css({top: 0, left: 0});
-		  }
-		
-		  $e.find('a.btn-layerClose').click(function(){
-		      isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
-		      return false;
-		  });
-		
-		  $('.layer .dimBg').click(function(){
-		      $('.dim-layer').fadeOut();
-		      return false;
-		  });
-	}
 </script>
 </head>
 <body>
@@ -69,11 +74,21 @@ $(document).ready(function(){
 		*************************************-->
 		<main id="tg-main" class="tg-main tg-sectionspace tg-haslayout tg-bglight">
 			<div class="container">
+				<!--************************************
+		             Detail Model Modal Start
+		        *************************************-->
+		         <jsp:include page="search_detail_list.jsp" />
+		        <!--************************************
+		             Detail Model Modal End
+		        *************************************-->
 				<div class="row">
 					<div id="tg-twocolumns" class="tg-twocolumns">
 						<div class="info_car" style="display: none">
 							<jsp:include page="rent_detail.jsp"/>
 						</div>
+						
+						<!-- 예약된 차 목록 보여주기 -->
+						
 						<form class="tg-formtheme tg-formtourpayment">
 							<div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 pull-left">
 								<div id="tg-content" class="tg-content">

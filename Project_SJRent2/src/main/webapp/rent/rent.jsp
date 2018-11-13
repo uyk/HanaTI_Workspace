@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <c:set var="context" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
@@ -18,7 +19,7 @@ var mapInsurance;
 var price = [];
 var date= [];
 $(document).ready(function(){
-	/* 동적 맵 구조  */
+	/* 동적 맵 생성  */
 	Map = function(){
 		 this.map = new Object();
 		};   
@@ -250,9 +251,13 @@ $(document).ready(function(){
                                        <div class="tg-widgetpersonprice">
                                           <div class="tg-widgetcontent">
                                              <ul>
+	                                             <li class="tg-personprice" style="padding-top: 20px; padding-bottom: 10px;">
 	                                             <c:forEach var="item" items="${resultMap}" varStatus="status">
-	                                                <li class="tg-personprice"><div class="tg-perperson"><span>차량 금액(${item.type})</span><em>${item.amountMoney}￦</em></div></li>
-	                                                <li><span>보험비</span><div id="insur${status.count}"></div></li>
+	                                                <div class="tg-perperson" style="padding-bottom: 10px;"><span>차량 금액(${fn:split(item.picture,'.')[0]})</span><em>${item.amountMoney}￦</em><br></div>
+	                                              </c:forEach>
+	                                              </li>
+	                                              <c:forEach var="item" items="${resultMap}" varStatus="status">
+	                                                <li><span>보험비(${fn:split(item.picture,'.')[0]})</span><div id="insur${status.count}"></div></li>
 	                                                <li><span>총 일수</span><div id="day${status.count}"></div></li>
 	                                             	<%-- <%totalmoney += Integer.parseInt(item.type); %> --%>
 	                                             </c:forEach>
@@ -283,8 +288,9 @@ $(document).ready(function(){
 function changeSelect(num){
 	/* 차 금액 계산 */
 	var car_price = mapInsurance.get($('.ins_num'+num+' option:selected').val()).get('price');
-	document.getElementById('insur'+num).innerHTML = "<em>"+car_price+"￦</em>";
+	document.getElementById('insur'+num).innerHTML = "<em>￦"+car_price+"</em>";
 	price[num-1] = car_price;
+	
 	/* 날짜계산 */
 	var dayDiv ='.day'+num;
 	var enddate = new Date(document.getElementById('enddate'+num).value);
@@ -299,11 +305,12 @@ function changeSelect(num){
 	var amountCar = document.getElementsByClassName('carAmount');
 	
 	for (var i = 0; i < amountCar.length; i++) {
-		total += parseInt(amountCar[i].value);
-		total += parseInt(price[i])*parseInt(date[i]);		
+		if(Number.isInteger(parseInt(price[i]))){
+			total += parseInt(amountCar[i].value);
+			total += parseInt(price[i])*parseInt(date[i]);
+		}
 	}
-
-	document.getElementById('totalMoney').innerHTML = "<em>"+total+"￦</em>";
+	document.getElementById('totalMoney').innerHTML = "<em>￦"+total+"</em>";
 	/* console.log(document.getElementById('amount'+num).value); */
 }
 

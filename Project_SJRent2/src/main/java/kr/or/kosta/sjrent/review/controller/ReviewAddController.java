@@ -41,6 +41,8 @@ public class ReviewAddController implements Controller {
 		String content = request.getParameter("content");
 		String picture = request.getParameter("picture");
 		String evalScoreS = request.getParameter("evalScore");
+		
+		
 		int evalScore = 0;
 		if (evalScoreS != null && !evalScoreS.equals("")) {
 			evalScore = Integer.parseInt(evalScoreS);

@@ -134,6 +134,7 @@ function formatDate(date){
 	            $("#rank-list").html(result);
 	        }
 	    });
+	    
 	});
 }
 
@@ -225,10 +226,13 @@ function setModelList(list) {
 	}
 	
 	for ( var i in list) {
+		var desc = '<p>'+list[i].fuelType +' 타입 연료를 사용하는 차량으로 최대 '+list[i].seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
+		'<p>'+'주중 가격은 '+list[i].weekdayPrice+'원, 주말 가격은 '+list[i].weekendPrice+'원 입니다.</p>';
+		
 		var params = {
 			imgPath : '/sjrent/images/cars/'+list[i].type+'/'+list[i].picture,
 			modelName : list[i].name,
-			options : list[i].options,
+			desc : desc,
 			weekday : weekday,
 			weekend : weekend,
 			weekdayPrice : list[i].weekdayPrice,
@@ -241,6 +245,14 @@ function setModelList(list) {
 	}	//for 끝
 	
 	$('#ModelDisplayRow').show();
+	//location.href='#tg-main';
+
+    var scrollPosition = $("#tg-main").offset().top;
+    $("html, body").animate({
+    	scrollTop: scrollPosition
+    }, 300, function () {
+		console.log('aa');
+	});
 	
 	/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
 	$('#detail_show').on('show.bs.modal', function(e) {
@@ -471,6 +483,8 @@ function setReviewList(list) {
 		}
 }
 </script>
+
+<title>SJ 렌트카 - 실시간예약</title>
 </head>
 <body>
   <!--************************************
@@ -532,7 +546,7 @@ function setReviewList(list) {
                         <div class="form-group col-md-4">
                           <div class="tg-select">
                             <select class="selectpicker"
-                              data-live-search="true" data-width="100%"
+                               data-width="100%"
                               title="차종">
                               <option data-tokens="all">전체</option>
                               <option data-tokens="ASegment">소형</option>

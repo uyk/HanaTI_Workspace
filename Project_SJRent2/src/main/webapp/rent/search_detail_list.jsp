@@ -24,30 +24,16 @@
                               </span>
                               <em id='detail-review-count'>model review count filed</em> 
   						</div>
+  						<div class="tg-pricearea">
+  							<span>총 금액</span>
+  							<h4 id='detail-amount-money'>
+  								model amountMoney filed
+  							</h4>
+  						</div>
   						<div class="tg-description">
   							<p>There’s only 5 spot left. Join 19 others at Travelu’s
   								experience this Saturday.</p>
   						</div>
-                          <div class="tg-description">
-                            <ul class="my-tg-likeshare" >
-                            <%
-                            // 로그인일때의 wish, reserver 버튼
-                            if(request.getAttribute("loginId")!= null ) { %> 
-                              <li><a href="#" id="wish-list-anchor"><i class="icon-heart"></i>Wish List</a></li>
-                              <li><a href="#" id="go-reserve-anchor"><i class="icon-eye"></i>Reserve</a></li>
-                            <% }
-                            // 로그아웃일때의 reserver 버튼(wish 없음)
-                            else { %> 
-                              <li><a href=# id="go-reserve-anchor"><i class="icon-eye"></i>Reserve</a></li>
-                            <% } %>
-                            </ul>
-                          </div>
-                          <div class="tg-description">
-                            <div id="showCalendar" class="row">
-                            	<!-- 달력 띄우기, 날짜는 한 개만 보내게 해야 함 -->
-
-                            </div>
-                          </div>
   					</div>
   				</div>
   				<ul class="tg-tripinfo">
@@ -74,7 +60,7 @@
   					</div>
   				</div>
   			</div>
-  			<jsp:include page="car_detail.jsp"></jsp:include>
+  			<jsp:include page="car_detail_list.jsp"></jsp:include>
   		</div>
   		</div>
   	</div>
