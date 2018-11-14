@@ -3,6 +3,7 @@ package kr.or.kosta.sjrent.user.controller;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,6 +32,8 @@ public class UserDeleteController implements Controller {
 	@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException {
+		
+		
 		obj = new JSONObject();
 		mav = new ModelAndView();
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
@@ -46,6 +49,19 @@ public class UserDeleteController implements Controller {
 
 			if (isDelete == true) {
 //					response.getWriter().print("success");
+
+				Cookie[] cookies = request.getCookies();
+				if (cookies != null) {
+					for (Cookie cookie : cookies) {
+						if (cookie.getName().equals("loginId")) {
+							cookie.setPath("/");
+							cookie.setMaxAge(0);
+							response.addCookie(cookie);
+							request.removeAttribute("loginId");
+						}
+					}
+				}
+				
 				mav.setView("/index.jsp");
 			} else {
 				mav.setView("/sjrent/mypage/myPageLoginOK.jsp");
@@ -56,6 +72,7 @@ public class UserDeleteController implements Controller {
 			e1.printStackTrace();
 		}
 
+		
 		return mav;
 
 	}

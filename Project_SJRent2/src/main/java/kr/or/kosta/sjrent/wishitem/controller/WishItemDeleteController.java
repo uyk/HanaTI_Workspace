@@ -40,13 +40,14 @@ public class WishItemDeleteController implements Controller {
 	      userService = (UserService) factory.getBean(UserServiceImpl.class);
 	      String wishItemSeqString = request.getParameter("number");
     	  PrintWriter out = null;
+    	  mav = new ModelAndView();
 		  try {
 			out = response.getWriter();
 		  } catch (IOException e2) {
 		  }
 	      int wishItemSeq = 0;
-	      if(wishItemSeqString == null || wishItemSeqString.equals("")) {
-	    	  wishItemSeq = Integer.parseInt("wishItemSeq");
+	      if(wishItemSeqString != null && !wishItemSeqString.equals("")) {
+	    	  wishItemSeq = Integer.parseInt(wishItemSeqString);
 	      }else {
 	    	  out.println("fail:need wishItemSeq");
 	      }
@@ -60,7 +61,8 @@ public class WishItemDeleteController implements Controller {
 	      } catch (Exception e) {
 	    	out.println("fail");
 	      }
-		return null;
+	      mav.setView("/wishitem/list.rent");
+		return mav;
 	}
 
 }

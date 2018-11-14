@@ -112,7 +112,7 @@
             <%--
                 Review 탭 시작
              --%>
-            <jsp:include page="/rent/search_include/review_list_list.jsp"></jsp:include>
+            <jsp:include page="/rent/search_include/review_list_list2.jsp"></jsp:include>
 		</div>
 	</div>
 </div>

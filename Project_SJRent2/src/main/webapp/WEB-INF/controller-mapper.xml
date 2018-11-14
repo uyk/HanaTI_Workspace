@@ -16,6 +16,10 @@
 	<!-- id로 유저반환 -->
 	<bean type="controller" name="/user/read"
 		class="kr.or.kosta.sjrent.user.controller.UserReadController" />
+
+	<!-- id로 유저반환2 -->
+	<bean type="controller" name="/user/read2"
+		class="kr.or.kosta.sjrent.user.controller.UserReadController2" />
 		
 	<!-- 회원가입 -->
 	<bean type="controller" name="/user/signup"
@@ -41,10 +45,17 @@
 	<bean type="controller" name="/qna/qnaIndex"
 		class="kr.or.kosta.sjrent.qna.controller.QnAListController" />
 
+	
 	<!-- QnA create 컨트롤러 -->
 	<bean type="controller" name="/qna/qnaCreate"
 		class="kr.or.kosta.sjrent.qna.controller.QnACreateController" />
 
+
+	<!-- QnA read 컨트롤러 -->
+	<bean type="controller" name="/qna/qnaRead"
+		class="kr.or.kosta.sjrent.qna.controller.QnAReadController" />
+	
+	
 	<!-- QnA delete 컨트롤러 -->
 	<bean type="controller" name="/qna/qnaDelete"
 		class="kr.or.kosta.sjrent.qna.controller.QnADeleteController" />
@@ -71,6 +82,8 @@
 	<bean type="controller" name="/model/recommend" class="kr.or.kosta.sjrent.model.controller.ModelRecommendController" />
 	<!-- 모델명으로 안 되는 날짜 받기-->
 	<bean type="controller" name="/model/detailperiod" class="kr.or.kosta.sjrent.model.controller.ModelPeriodController" />
+	<!-- 모델명으로 위시리스트에 추가된 개수 받기-->
+	<bean type="controller" name="/model/wishcount" class="kr.or.kosta.sjrent.model.controller.ModelWishCountController" />
 
 	
 

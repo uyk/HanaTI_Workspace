@@ -52,7 +52,7 @@
               </div>
             </div>
           </div>
-          <jsp:include page="car_detail_list.jsp"></jsp:include>
+          <jsp:include page="car_detail.jsp"></jsp:include>
         </div>
       </div>
     </div>

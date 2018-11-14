@@ -45,4 +45,7 @@ public interface ModelDao {
 	public List<String> checkEnableCar(String startDate, String endDate, String modelName) throws Exception;
 	
 	public List<Map<String,Object>> periodByModelName(String modelName) throws Exception;
+	
+	public int countWishItemByModelName(String modelName) throws Exception;
+
 }

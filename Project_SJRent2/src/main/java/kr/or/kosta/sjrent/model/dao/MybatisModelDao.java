@@ -141,6 +141,14 @@ public class MybatisModelDao implements ModelDao {
 		sqlSession.close();
 		return result;
 	}
+
+	@Override
+	public int countWishItemByModelName(String modelName) throws Exception {
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		int count = sqlSession.selectOne(NAMESPACE + "countWishitemByModelName", modelName);
+		sqlSession.close();
+		return count;
+	}
 }
 
 

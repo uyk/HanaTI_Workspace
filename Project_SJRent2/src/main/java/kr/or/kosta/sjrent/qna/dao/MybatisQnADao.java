@@ -48,6 +48,7 @@ public class MybatisQnADao implements QnADao {
 	public QnA read(int seq) throws Exception {
 		SqlSession sqlSession = sqlSessionFactory.openSession();
 		QnA qna = sqlSession.selectOne(NAMESPACE + "read", seq);
+		System.out.println(qna);
 		sqlSession.close();
 		return qna;
 	}

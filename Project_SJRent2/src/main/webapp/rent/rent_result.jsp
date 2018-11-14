@@ -6,28 +6,20 @@
 <head>
    <jsp:include page="../common/commoncss.jsp" />
    <jsp:include page="../common/commonjs.jsp" />
-   <script type="text/javascript">
-   $(document).ready(function(){
-	   function initMap(clat, clng, name) {
-//	        var myLatLng = {lat: clat, lng: clng};
-	        var myLatLng = {lat: 37.5665, lng: 126.9780};
-
-	        // Create a map object and specify the DOM element
-	        // for display.
-	        var map = new google.maps.Map(document.getElementById("map0"), {
-	          center: myLatLng,
-	          zoom: 12
-	        });
-
-	        // Create a marker and set its position.
-	        var marker = new google.maps.Marker({
-	          map: map,
-	          position: myLatLng,
-	          title: 'Hello World!'
-	        });
-	      }
-   });
-   </script>
+   
+<script type="text/javascript">
+/* 새로고침 막기 */
+function noEvent() {
+	if (event.keyCode == 116) {
+		event.keyCode= 2;
+		return false;
+	}
+	else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)){
+		return false;
+	}
+}
+document.onkeydown = noEvent;
+</script>
 </head>
 <body class="tg-home tg-homevone">
 
@@ -66,24 +58,23 @@
 								<div style="text-align: center; margin: 50px 0px;">
 									<h2>결제 완료</h2>
 								</div>
-
-									<div class="form-group">
-										<div style="display: inline-block;">
-											<h4 style="width: 100px">예약자 :</h4>
-										</div>
-										<div style="display: inline-block">
-											<input type="text" name="id" style="border: none;"
-											maxlength="10">
-										</div>
+								<div class="form-group">
+									<div style="display: inline-block;">
+										<h4 style="width: 100px">예약자 :</h4>
 									</div>
-
+									<div style="display: inline-block">
+										<input type="text" class="form-control" name="id" style="border: none; width: 265px;"
+										value = "<%=request.getAttribute("loginId")%>" readonly>
+									</div>
+								</div>
+								<c:forEach var="item" items="${resultRents}" varStatus="status">
 									<div class="form-group">
 										<div style="display: inline-block;">
 											<h4 style="width: 100px">차이름 :</h4>
 										</div>
 										<div style="display: inline-block">
-											<input type="text" name="email" style="border: none;"
-											maxlength="10">
+											<input type="text" class="form-control" style="border: none; width: 265px;"
+											 value="${item.modelName}" readonly>
 										</div>
 									</div>
 									
@@ -92,34 +83,53 @@
 											<h4 style="width: 100px">날 짜 :</h4>
 										</div>
 										<div style="display: inline-block">
-											<input type="text" name="phone" style="border: none;"
-											maxlength="10">
+											<input type="text" class="form-control" name="text" style="border: none; width: 265px;"
+											value="${item.startDate} ~ ${item.endDate}" readonly>
 										</div>
 									</div>
-									<!-- 수령장소 지도 -->
-									<div id="map0" onload="initMap('11', '22', this);" style=""></div>
-								<form class="tg-formtheme tg-formlogin">
-									<div style="margin: 50px 0px; text-align: center;">
-										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
-												<span style="font-size: 14pt; width: 30%">홈으로</span>
-											</button>
+								</c:forEach>
+								<c:forEach var="item" items="${failRents}" varStatus="status">
+									<div class="form-group">
+										<div style="display: inline-block;">
+											<h4 style="width: 100px">예약 실패 :</h4>
 										</div>
-										
-										<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
-											<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;">
-												<span style="font-size: 14pt; width: 10%">결제내역</span>
-											</button>
+										<div style="display: inline-block">
+											<input type="text" class="form-control" style="border: none; width: 265px;"
+											 value="${item.modelName}" readonly>
 										</div>
 									</div>
-								</form>
+									
+									<div class="form-group">
+										<div style="display: inline-block;">
+											<h4 style="width: 100px">날 짜 :</h4>
+										</div>
+										<div style="display: inline-block">
+											<input type="text" class="form-control" name="text" style="border: none; width: 265px;"
+											value="${item.startDate} ~ ${item.endDate}" readonly>
+										</div>
+									</div>
+								</c:forEach>
+								<div style="margin: 50px 0px; text-align: center;">
+									<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
+										<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;" onclick="location.href='<%=application.getContextPath()%>/index.jsp'">
+											<span style="font-size: 14pt; width: 30%">홈으로</span>
+										</button>
+									</div>
+									<% if (request.getParameter("loginId") != null){ %>
+									<div style="display: inline-block; vertical-align: middle; padding: 0px 20px">
+										<button class="tg-btn tg-btn-lg" style="padding: 0px 30px;" onclick="location.href='<%=application.getContextPath()%>/rent/list.rent'">
+											<span style="font-size: 14pt; width: 10%">결제내역</span>
+										</button>
+									</div>
+									<%} %>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </main>
 <!--************************************
 		Main 종료

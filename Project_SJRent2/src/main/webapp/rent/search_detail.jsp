@@ -29,6 +29,9 @@
   							<h4 id='detail-amount-money'>
   								model amountMoney filed
   							</h4>
+                            <div class="tg-description" style="margin: 25px 10px 10px 0px;"> 
+                              <p>Location을 설정하지 않으면 방문수령으로 예약됩니다.</p>
+                            </div>
   						</div>
                           <div class="tg-description">
                             <ul class="my-tg-likeshare" >
@@ -49,7 +52,7 @@
   				<ul class="tg-tripinfo">
   					<li><i class="fas fa-won-sign"></i><span id='detail-weekday-price'>weekday price field</span></li>
   					<li><i class="fas fa-won-sign"></i><span id='detail-weekend-price'>weekend price field</span></li>
-  					<li><i class="fas fa-heart"></i><span id='detail-wish-count'>wish count field</span></li>
+  					<li><i class="fas fa-heart"></i><span id='detail-wish-count'> 3 Time Added on Wish List </span></li>
   					<li><i class="fas fa-user-alt"></i><span id='detail-reserve-count'>reserved count field</span></li>
   				</ul>
   				<div class="tg-refundshare">

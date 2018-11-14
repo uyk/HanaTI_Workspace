@@ -215,4 +215,9 @@ public class ModelServiceImpl implements ModelService {
 		return 0;
 		}
 		}
+
+		@Override
+		public int countWishItemByModelName(String modelName) throws Exception {
+			return modelDao.countWishItemByModelName(modelName);
+		}
 }

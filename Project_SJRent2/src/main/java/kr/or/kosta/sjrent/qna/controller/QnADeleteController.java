@@ -41,9 +41,10 @@ public class QnADeleteController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnAService) factory.getBean(QnAServiceImpl.class);
 
-
-
+		//System.out.println("큐엔에이 딜릿 컨트롤러 도착이욤....");
+		//System.out.println("나와랏: "+request.getParameter("qna_seq"));
 		int qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
+		//System.out.println("qna시퀀스 넘겨받았나? "+qna_seq);
 		boolean isDelete = false;
 		
 		try {
@@ -68,7 +69,7 @@ public class QnADeleteController implements Controller {
 		// QnA 삭제 성공시 응답으로 success 보냄
 		else {
 			//mav.addObject("qna", qna);
-			mav.setView("/qna/qnaDelete.jsp");
+			mav.setView("/qna/qnaIndex.rent");
 			obj.put("result", "success");
 		}
 		return mav;

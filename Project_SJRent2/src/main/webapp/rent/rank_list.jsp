@@ -39,7 +39,7 @@ ArrayList<Model> list = (ArrayList<Model>)request.getAttribute("list");
 							<div class="tg-pricearea">
 								<span>from</span><br/>
 								<h4><%=model.getWeekdayPrice() +"&#8361"%></h4>
-                                <span>per day</span>
+                                <p>per day</p>
 							</div>
 						</div>
 					</li>

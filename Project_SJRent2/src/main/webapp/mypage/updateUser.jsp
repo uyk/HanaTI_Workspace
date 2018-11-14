@@ -139,7 +139,6 @@ function emailCheck() {
                                     
 							  </div>
                 
-         <!-- 버튼 위치 수정해야함 -->
          <button type="button" class="btn buttonEmail " style="height: 40px; margin-left: 10px; float:right" onclick="emailCheck()" >중복확인 </button>
          <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg2"></div>
      

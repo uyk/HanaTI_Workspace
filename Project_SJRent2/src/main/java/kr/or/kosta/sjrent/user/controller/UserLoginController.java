@@ -44,8 +44,9 @@ public class UserLoginController implements Controller {
 		String remember = request.getParameter("remember");
 		String where = request.getParameter("login");			// ajax로 응답 받고싶으면 login은 'ajax'
 
+		
 		User user = null;
-		Cookie cookie = null;			//	로그인아이디 쿠키
+		Cookie cookie = null;			// 로그인아이디 쿠키
 		Cookie cookie2 = null;			// 아이디저장 쿠키
 		
 		// checkbox 아이디 저장시 쿠키에 저장
@@ -69,8 +70,6 @@ public class UserLoginController implements Controller {
 			 * response.addCookie(cookie2); }
 			 */
 
-		// System.out.println(mav);
-		
 
 		if (id != null) { // 로그인
 			try {
@@ -83,7 +82,6 @@ public class UserLoginController implements Controller {
 					cookie.setMaxAge(60 * 60 * 24 * 30);
 					cookie.setPath("/");
 					response.addCookie(cookie);
-
 					request.setAttribute("loginId", id);
 
 					mav.addObject("user", user);
@@ -104,17 +102,28 @@ public class UserLoginController implements Controller {
 				}
 				// 회원이 아닌 경우
 				else {
-					// hidden 처리한 요청 페이지별 처리
-					// 마이페이지 요청한 경우
+					
+					/**
+					 * 1. hidden으로 보낸 데이터를 각각 처리하는방법
+					 * 	  데이터전달 및 페이지 전환
+					 * 2. ajax를 통해 페이지 전환없이 비동기 처리하는 방법 
+					 */
+					
+					// myPage.jsp 에서 로그인 실패시
 					if (where != null && where.equals("myPage")) {
-						mav.setView("/mypage/myPage.jsp");
+						response.getWriter().print("loginfail");
+						return null;
 					}
 					// ajax 요청한 경우
 					else if(where != null && where.equals("ajax")) {
-						response.getWriter().print("fail");
+
+						response.getWriter().print("fail");					
 						return null;
-					}else {
-						mav.setView("/user/login.jsp");
+					}
+					// login.jsp에서 로그인 실패시
+					else if(where != null && where.equals("login")){
+						response.getWriter().print("loginfail");
+						return null;
 					}
 				}
 			} catch (Exception e) {

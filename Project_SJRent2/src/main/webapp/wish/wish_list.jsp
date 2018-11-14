@@ -28,8 +28,7 @@
 	   /* 전체해제 버튼 */
 	   $("#disableall").click(function(){
 		  $('input[type="checkbox"]').prop('checked', false); 
-	   });
-	   
+	   });	   
 	   /* sumbit */
 	   $('#rentCarButton').click(function(){
 		   /* 버튼이 한 개도 안 눌려졌을 경우 */
@@ -93,7 +92,8 @@
                              <col width="40%"/>
                              <col width="15%"/>
                              <col width="15%"/>
-                             <col width="10%"/>
+                             <col width="5%"/>
+                             <col width="5%"/>
                           </colgroup>
                           <tr>
                              <th scope="col">선택</th>
@@ -101,6 +101,7 @@
                              <th scope="col">시작일</th>
                              <th scope="col">종료일</th>
                              <th scope="col">가격</th>
+                             <th scope="col">삭제</th>
                           </tr>
                           <tbody>
                           <!--************************************
@@ -136,6 +137,9 @@
 		                                 </td>
 		                                 <td class="amountMoney" style="vertical-align: middle;"><span>${item.amountMoney}</span>
 			                                 <input type="hidden" name="amountMoney" value="${item.amountMoney}">
+		                                 </td>
+		                                 <td style="vertical-align: middle;">
+		                                 	<a href="<%=application.getContextPath()%>/wishitem/delete.rent?number=${item.number}">삭제</a>
 		                                 </td>
 		                              </tr>
 	                              </c:forEach>

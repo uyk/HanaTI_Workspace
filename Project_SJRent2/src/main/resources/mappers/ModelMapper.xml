@@ -337,4 +337,12 @@
 			       AND rent_end_date <![CDATA[>]]> SYSDATE 
 			       AND rent_start_date <![CDATA[<]]> Last_day(Add_months(SYSDATE, +3))
 	</select>
+	
+	<!-- 모델 별로 WISHITEM 숫자-->
+	<select id="countWishitemByModelName" parameterType="String" resultType="Integer" >
+		SELECT count(WISHITEM_SEQ)
+		FROM wishitem
+		WHERE MODEL_NAME=#{value}
+		GROUP BY MODEL_NAME
+	</select>
 </mapper>

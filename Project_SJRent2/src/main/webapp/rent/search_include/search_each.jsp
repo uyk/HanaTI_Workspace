@@ -16,8 +16,8 @@ int ammountMoney = Integer.parseInt(request.getParameter("weekday")) * Integer.p
           <a class='car_detail'><%=request.getParameter("modelName") %></a>
         </h3>
       </div>
-      <div class='tg-description' style='height: 150px;'>
-        <p><%=request.getParameter("desc") %></p>
+      <div class='tg-description' style='height: 250px;'>
+        <p style='text-align: center;'><%=request.getParameter("desc") %></p>
       </div>
       <div class='tg-populartourfoot' style='height: 70px;'>
         <div class='tg-durationrating'>

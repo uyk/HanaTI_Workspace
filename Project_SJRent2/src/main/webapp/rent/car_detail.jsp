@@ -6,7 +6,7 @@
 			<li role="presentation" class="active"><a href="#overview"
 				aria-controls="overview" role="tab" data-toggle="tab"> <span>Overview</span>
 			</a></li>
-			<li role="presentation"><a href="#location"
+			<li role="presentation" id='location-tab-nav'><a href="#location"
 				aria-controls="location" role="tab" data-toggle="tab"> <span>Location</span>
 			</a></li>
 			<li role="presentation"><a href="#review"

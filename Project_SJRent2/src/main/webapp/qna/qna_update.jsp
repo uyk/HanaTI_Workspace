@@ -1,3 +1,4 @@
+<%@page import="kr.or.kosta.sjrent.qna.domain.QnA"%>
 <%@page import="kr.or.kosta.sjrent.qna.controller.QnAListController"%>
 <%@page import="kr.or.kosta.sjrent.common.controller.Controller"%>
 <%@page import="kr.or.kosta.sjrent.common.params.Params"%>
@@ -115,7 +116,7 @@ tr:hover {
 <main id="tg-main" class="tg-main tg-haslayout tg-bglight">
    <div class="container">
       <div class="row">
-         <div style="text-align: center; margin: 100px 0px "><h2>커뮤니티</h2></div>
+         <div style="text-align: center; margin: 100px 0px 30px"><h2>커뮤니티</h2></div>
          <div style="text-align: center;  margin: 10px 0px 20px">
 			<button class="tablink" onclick="openPage('QnA', this, '#446600')" id="defaultOpen">QnA</button>   
 			<button class="tablink" onclick="openPage('FAQ', this, '#800060')"  >FAQ</button>
@@ -124,28 +125,33 @@ tr:hover {
 		
 		<!-- QnA -->
 		<div id="QnA" class="tabcontent" >
-		<%
-		String loginId = (String)request.getAttribute("loginId");
-		%>
+		
 										
-		<form action="/sjrent/qna/qnaCreate.rent" method="post">
+		<form action="<%=application.getContextPath() %>/article/regist_action.jsp">
 			   <div class="dottedOutline">
-			           
-			        <div style="vertical-align: middle;">
-			             <label class="createPostButton" style="background-color: #446600">글제목</label> 
-			             <input type="text" class="grayBox" required id="title" name="title" maxlength="30" style="text-align: left; text-transform: none; width: 1040px">
-			        </div>
 			        
-			        <input type="hidden" id="id" value="loginId">
+			        <%
+			        String qna_seq = request.getParameter("qna_seq");
+			        String title = request.getParameter("title");
+			        String content = request.getParameter("content");
+			        %>
+			        
+			        <div style="vertical-align: middle;">
+			             <label class="createPostButton" style="background-color: #446600;" >글제목</label> 
+			             <input type="text" class="grayBox" required id="title" name="title" maxlength="15" style="width: 1040px; text-align: left; " value="<%=title %>" >
+			             <!-- <label class="createPostButton" style="background-color: #446600; margin-left: 570px">작성자</label> 
+			             <input type="text" class="grayBox" readonly value='' id="writer" name="writer"> -->
+			        	 <%-- <input type="hidden" name="qna_seq" value="<%=qna_seq %>" > --%>
+			        </div>
 			        
 			        <%--<input type="text" class="createPostBox" placeholder="게시글을 작성해주세요 (1000자 이내)" required id="content" name="content" maxlength="1000"> --%>    
-			        <textarea class="createPostBox" name="content" placeholder="게시글을 작성해주세요 (1000자 이내)" id="content" maxlength="1000" required style="text-transform: none;" cols="200"></textarea>
+			        <textarea class="createPostBox" name="content" id="content" maxlength="1000" ><%=content %></textarea>
 			    </div> 
 			    
-			        <div style="text-align:right">
-			              <input type="button" class="newButton" value='목록' style="margin-top:20px; display:inline-block; background-color: #006699 " onclick="location.href='/sjrent/qna/qnaIndex.rent">      
-			              <input type="submit" class="newButton" value='등록' style="margin-top:20px; display:inline-block; background-color: #006699 ">      
-			        </div>
+			    <div style="text-align:right">
+		              <input type="button" class="newButton" value='목록' style="margin-top:20px; display:inline-block; background-color: #006699 " onclick="location.href='<%=application.getContextPath()%>/qna/qnaIndex.rent'">      
+		              <input type="button" class="newButton" value='확인' style="margin-top:20px; display:inline-block; background-color: #006699 " onclick="location.href='<%=application.getContextPath()%>/qna/qnaUpdate.rent?qna_seq=<%=qna_seq%>&title=<%=title%>&content=<%=content%>'">      
+		        </div>
 			    
 			</form>		    
 		    

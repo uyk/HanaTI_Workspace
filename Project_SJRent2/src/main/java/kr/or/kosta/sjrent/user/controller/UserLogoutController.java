@@ -32,8 +32,8 @@ public class UserLogoutController implements Controller {
 			throws ServletException {
 		mav = new ModelAndView();
 		
-		// 쿠키에서 로그인 id 제거
-	/*	Cookie[] cookies = request.getCookies();
+		/*// 쿠키에서 로그인 id 제거
+		Cookie[] cookies = request.getCookies();
 		for (int i = 0; i < cookies.length; i++) {
 			if (cookies[i].getName().equals("loginId")) {
 				cookies[i].setPath("/");

@@ -102,6 +102,30 @@ input[type="checkbox"]:disabled + .label-text:before{
   color: #ccc;
 }
 
+#option-icon .fas {
+    margin: 0 10px;
+    font-size: 25px;
+    color: #303030;
+}
+
+#icon-desc {
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.tg-sectionspace {
+    padding: 30px 0;
+}
+
+.no-result {
+    margin-left: 30px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.tg-bookinginfo .tg-pricearea {
+  margin: 0px;
+}
 </style>
 <script type="text/javascript">
 var rent_start_date = null;
@@ -133,6 +157,10 @@ $(document).ready(function(){
 	
 	$('#search-nonuser-login-form').submit(function(e) {
 		nonUserLoginAction(e);
+	});
+	
+	$('#search-only-user-login-form').submit(function(e) {
+		onlyUserLogin(e);
 	});
 });
 
@@ -285,7 +313,10 @@ function setModelList(list) {
 	var startDay = new Date(rent_start_date).getDay();
 	var end = new Date(rent_end_date).getDay();
 	$("#carListRow").html("");
-	
+	if(list.length == 0) {
+		$("#carListRow").html("<p class='no-result'>검색 결과가 없습니다.</p>");
+		return null;
+	}
 	// 주말, 주중 계산
 	for(var i = 0; i < date; i++) {
 		if(startDay == 0 || startDay == 6) {
@@ -299,9 +330,35 @@ function setModelList(list) {
 	}
 	
 	for ( var i in list) {
-		var desc = '<p>'+list[i].fuelType +' 타입 연료를 사용하는 차량으로 최대 '+list[i].seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
+		var desc="<table id='option-icon' style='border-width: 0;'> <tr>";
+		if(list[i].navigation == 1) {
+			desc += '<td style="border:none;"><i class="fas fa-map-marked-alt"></i></td>';
+		}
+		if(list[i].cameraRear == 1) {
+			desc += '<td style="border:none;"><i class="fas fa-camera"></i></td>';
+		}
+		if(list[i].highpass == 1) {
+			desc += '<td style="border:none;"><i class="fas fa-shipping-fast"></i></td>';
+		}
+		if(list[i].blackBox == 1) {
+			desc += '<td style="border:none;"><i class="fas fa-video"></i></td>';
+		}
+		desc += "</tr><tr id='icon-desc'>";
+		if(list[i].navigation == 1) {
+			desc += '<td style="border:none;">Navigation</td>';
+		}
+		if(list[i].cameraRear == 1) {
+			desc += '<td style="border:none;">Camera Rear</td>';
+		}
+		if(list[i].highpass == 1) {
+			desc += '<td style="border:none;">Highpass</td>';
+		}
+		if(list[i].blackBox == 1) {
+			desc += '<td style="border:none;">BlackBox</td>';
+		}
+		desc += "</tr></table>"
+		desc += '<p>'+list[i].fuelType +' 타입 연료를 사용하는 차량으로 최대 '+list[i].seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
 		'<p>'+'주중 가격은 '+list[i].weekdayPrice+'원, 주말 가격은 '+list[i].weekendPrice+'원 입니다.</p>';
-		
 		var params = {
 			imgPath : '/sjrent/images/cars/'+list[i].type+'/'+list[i].picture,
 			modelName : list[i].name,
@@ -323,11 +380,12 @@ function setModelList(list) {
     var scrollPosition = $("#tg-main").offset().top;
     $("html, body").animate({
     	scrollTop: scrollPosition
-    }, 300);
+    }, 500);
 	
 	/** 모델 클릭 시 모델 이름을 모달에 전달, 리뷰 세팅 */
 	$('#detail_show').on('show.bs.modal', function(e) {
 		var modelName = $(e.relatedTarget).data('model-name');
+		getWishcount(modelName);
 		window.e = $(e.currentTarget);
 		$.ajax({	
 			url:"<%=application.getContextPath()%>/model/detail.rent",
@@ -354,13 +412,28 @@ function setModelList(list) {
 	});
 	
 	/** 디테일 모달이 닫힐 때 */
-	
 	$('#detail_show').on('hidden.bs.modal', function (e) {
 		pickupPlace = "방문수령"; 
 		detailModel = null;
 	})
 }
-
+function getWishcount(modelName) {
+	console.log(modelName);
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/model/wishcount.rent",
+		type:'POST', 
+		data : {
+             'modelName' : modelName
+        },
+		success:function(data){
+			console.log(data);
+			$('#detail-wish-count').html(' ' + data + ' Times Added on Wish List');
+		},
+        error : function(result) {
+        	console.log('error in openning detail show' + result);
+        }
+	});
+}
 function setReviewTab(name, reviewCount, page) {
 	$('#new_review_tab').remove();
 	var params = {
@@ -390,7 +463,6 @@ function setDetailModal(model) {
 	$('#detail-amount-money').html('&#8361 '+ model.amountMoney);
 	$('#detail-weekday-price').html(' ' + model.weekdayPrice + ' on Weekday');
 	$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
-	$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
 	$('#detail-reserve-count').html(' ' + model.rentalCount + ' Times Reserved');
 	$('#about-this-model').html('<p>'+ model.name +' 모델 차량은 '+ model.fuelType +' 타입 연료를 사용하는 차량으로 최대 '+model.seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
 			'<p>'+ model.name +' 모델의 주중 가격은 '+model.weekdayPrice+' 원입니다. 주말 가격은 '+model.weekendPrice+'원 입니다.</p>');
@@ -485,7 +557,6 @@ function wishResultHide() {
  * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
  */
  function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
-	alert('2');
 	// 로그인 중
 	if(isLogin == true){
 		// post로 데이터 전달
@@ -518,7 +589,48 @@ function wishResultHide() {
 		$("#login_modal").modal('show');
 	}
 }
+function loginModalShow() {
+	$("#user_login_modal").modal('show');
+}
+function onlyUserLogin(e) {
+	e.preventDefault();
+	var id = e.currentTarget.id.value;
+	var pw = e.currentTarget.pw.value;
+	var remember = e.currentTarget.remember.checked;			// true or false
+	var where = 'ajax';
 	
+	var params = {
+  		id : id,
+  		pw : pw,
+  		login : where
+	};
+	// 아이디 저장 체크 되어있을 때만 remember를 파라미터로 보냄
+	if(remember == true) {
+		params.remember = remember;
+	}
+	
+	console.log('login : ' + id + "," + pw + "," + remember);
+	window.loginE = e;
+	
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/user/login.rent",
+		type:'POST', 
+		data : params,
+		success:function(result){
+			if(result == 'success') {
+				isLogin = true;
+				alert('로그인성공');
+				location.href='<%=application.getContextPath()%>/rent/search.jsp';
+			}
+			else {
+				alert('아이디와 비밀번호를 확인해주세요');
+			}
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
+}
 /** 
  * 리뷰 리스트를 컨트롤러에 요청하여 가져오는 함수.
  * 
@@ -548,6 +660,10 @@ function getReviewList(modelName, page, listSize) {
  */
 function setReviewList(list) {
 	$("#each_review_ul").html("");
+	if(list.length == 0 ) {
+		console.log('review length == 0');
+		$("#each_review_ul").append("<li>리뷰가 없습니다</li>");
+	}
 	for ( var i in list) {
 		var params = {
 			imgPath : '/sjrent/images/review/image1.jpg',
@@ -728,6 +844,7 @@ function nonUserLoginAction(e) {
                     <fieldset class='row'
                       style='padding-right: 0px; margin-top: 20px;'>
                       <form>
+                      <div class='col-md-6'>
                         <div class="checkbox-inline">
                           <label class="checkbox-label"> <input
                             type="checkbox" name="navigation"> <span
@@ -752,6 +869,8 @@ function nonUserLoginAction(e) {
                             class="label-text">블랙박스</span>
                           </label>
                         </div>
+                        </div>
+                        <div class="col-md-6">
                         <select data-width='130px' title="연료"
                           class="selectpicker">
                           <option data-tokens="all">전체</option>
@@ -773,6 +892,7 @@ function nonUserLoginAction(e) {
                           <option data-tokens="9">9</option>
                           <option data-tokens="11">11</option>
                         </select>
+                        </div>
                       </form>
                     </fieldset>
                   </form>
@@ -816,6 +936,15 @@ function nonUserLoginAction(e) {
       <!--************************************
               Search Login Modal End
          *************************************-->
+         
+         
+      <!--************************************
+              Search Only User Login Modal Start
+         *************************************-->
+      <jsp:include page="/rent/search_include/search_login_modal_only_user.jsp" />
+      <!--************************************
+              Search Only User Login Modal End
+         *************************************-->
 
       <div class="row" id="ModelDisplayRow">
         <div id="tg-twocolumns" class="tg-twocolumns">
@@ -857,7 +986,6 @@ function nonUserLoginAction(e) {
                Login method
    *************************************-->
 
-  <jsp:include page="/rent/search_include/search_login.jsp" />
 	<script>
   var map;
 	var markers = [];

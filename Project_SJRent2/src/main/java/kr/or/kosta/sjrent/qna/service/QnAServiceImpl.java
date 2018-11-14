@@ -37,8 +37,6 @@ public class QnAServiceImpl implements QnAService {
 	@Override
 	public boolean delete(int number) throws Exception {
 		return qnaDao.delete(number);
-
-
 	}
 
 	@Override

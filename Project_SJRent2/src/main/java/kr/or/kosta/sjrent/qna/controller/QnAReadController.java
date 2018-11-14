@@ -26,7 +26,7 @@ import kr.or.kosta.sjrent.review.domain.Review;
  * @author 윤형철, 남수현
  *
  */
-public class QnAListController implements Controller {
+public class QnAReadController implements Controller {
 	//private XMLObjectFactory factory;
 	//private JSONArray jsonArray;
 	//private ObjectToJson otj;
@@ -41,32 +41,21 @@ public class QnAListController implements Controller {
 		XMLObjectFactory factory =  (XMLObjectFactory)request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnAService) factory.getBean(QnAServiceImpl.class);
 		
-        List<QnA> list = null; 
-        //한 페이지에 보여줄 QnA수
-        int listSize = 10; 
-        
-        //페이지 번호
-        int page = 1;
-        
-        //총 QnA 갯수
-        int count = 0; 
-        
-        //System.out.println("리퀘스트에 담은 페이지 정보 : " + (String)request.getParameter("page"));
-        String pageS = (String)request.getParameter("page");
-        if (pageS != null) {
-        	page = Integer.parseInt(pageS);
+        String qnaSeqS = (String)request.getParameter("qnaSeq");
+        int qnaSeq = 0;
+        if (qnaSeqS != null) {
+        	 qnaSeq = Integer.parseInt(qnaSeqS);
+        	 //System.out.println("넘어온 qnaSeq: "+ qnaSeq);
         }
+        QnA qna = null;
 		try {
-			list = qnaService.listByPage(page, listSize);
-			count = qnaService.count(); 
+			mav.addObject("QnA",qnaService.read(qnaSeq));
 		} catch (Exception e) {
-			throw new ServletException("QnAService.list() 예외 발생", e); 
-		} 
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
-        mav.addObject("count", count); 
-        mav.addObject("list", list);
-        
-        mav.setView("/community/qna_index.jsp"); 
+        mav.setView("/qna/qna_read.jsp"); 
         return mav;
   
 	 

@@ -43,14 +43,14 @@ public class QnACreateController implements Controller {
 			user = userService.read(loginId);
 		} catch (Exception e2) {
 			mav.addObject("message", "needLogin");
-			mav.setView("/qna/qna_index.jsp");
+			mav.setView("/qna/qnaIndex.rent");
 			//System.out.println("에러??????");
 		}
 		if(user!=null) {
 			userSeq = user.getSeq();
 		}else {
 			mav.addObject("message", "needLogin");
-			mav.setView("/qna/qna_index.jsp");
+			mav.setView("/qna/qnaIndex.rent");
 		}
 		String id = request.getParameter("id");
 		String title = request.getParameter("title");
@@ -86,11 +86,10 @@ public class QnACreateController implements Controller {
 		// QnA 생성 성공시 응답으로 success 보냄
 		else {
 			mav.addObject("qna", qna);
-			mav.setView("/qna/qna_index.jsp");
+			mav.setView("/qna/qnaIndex.rent");
 			try {
 				response.getWriter().print("success");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

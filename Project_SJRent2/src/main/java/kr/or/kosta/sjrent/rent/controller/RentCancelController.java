@@ -41,7 +41,7 @@ public class RentCancelController implements Controller {
          throws ServletException {
       factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
       rentService = (RentService) factory.getBean(RentServiceImpl.class);
-      
+      mav = new ModelAndView();
       String inputRentSeq = request.getParameter("rentSeq");
       if(inputRentSeq != null && !inputRentSeq.equals("")) {
           int rentSeq = Integer.parseInt(inputRentSeq);
@@ -55,17 +55,15 @@ public class RentCancelController implements Controller {
 			result = rentService.cancel(rentSeq);
 		  } catch (Exception e1) {
 			out.println("cancelError : "+e1);
-			return null;
 		  }
     	  if(result) {
     		  out.println("success");
-    		  return null;
     	  }else {
     		  out.println("fail");
-    		  return null;
     	  }
       }
-	return null;
+      mav.setView("/rent/list.rent");
+	return mav;
    }
    
 }

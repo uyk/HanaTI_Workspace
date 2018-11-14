@@ -1,7 +1,10 @@
 package kr.or.kosta.sjrent.review.controller;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Enumeration;
 
 import javax.servlet.ServletException;
@@ -47,8 +50,20 @@ public class ReviewAddController implements Controller {
 		} catch (Exception e1) {
 			throw new RentException("is not logined page");
 		}	
-		String uploadPath = ServletContextLoadListener.class.getResource("").getPath();
-		uploadPath = uploadPath.substring(0,uploadPath.indexOf("/WEB-INF"))+"/images/review";
+		// 웹서버 컨테이너 경로
+//	    String root = request.getSession().getServletContext().getRealPath("/");
+//	    System.out.println(root);
+		String root = "C:\\KOSTA187\\";
+	    // 파일 저장 경로(ex : /home/tour/web/ROOT/upload)
+	    String savePath = root + "images\\review";
+	 
+	    // 업로드 파일명
+	    String uploadFile = "";
+	 
+	    // 실제 저장할 파일명
+	    String newFileName = "";
+
+	    
 		String modelName = null;
 		String title = null;
 		String content = null;
@@ -57,16 +72,17 @@ public class ReviewAddController implements Controller {
 		int size = 10*1024*1024;
 		ReviewFileRename rfr = new ReviewFileRename();
 		rfr.setUserSeq(user.getSeq());
+		
 		try{
-		    MultipartRequest multi=new MultipartRequest(request,uploadPath,size,"utf-8",new DefaultFileRenamePolicy());
+		    MultipartRequest multi=new MultipartRequest(request,savePath,size,"utf-8",rfr);
 			modelName = multi.getParameter("modelName");
 			title = multi.getParameter("title");
 			content = multi.getParameter("content");
-			picture = multi.getParameter("picture");
 			evalScoreS = multi.getParameter("evalScore");
 		    Enumeration files = multi.getFileNames();
 		    String file = (String)files.nextElement();
 		    picture = multi.getFilesystemName(file);
+		    System.out.println(picture);
 		}catch(Exception e){
 		    e.printStackTrace();
 		}
@@ -87,7 +103,8 @@ public class ReviewAddController implements Controller {
 		review.setModelName(modelName);
 		review.setEvalScore(evalScore);
 		review.setContent(content);
-
+		System.out.println(review);
+		mav = new ModelAndView();
 		try {
 			if (reviewService.create(review)) {
 				mav.addObject("message", "create_success");
@@ -95,9 +112,10 @@ public class ReviewAddController implements Controller {
 				mav.addObject("message", "create_fail");
 			}
 		} catch (Exception e) {
+			System.out.println(e);
 			mav.addObject("message", "create_error:"+e);
 		}
-		mav.setView("/mypage/myReviewList.jsp");
+		mav.setView("/rent/list.rent");
 		return mav;
 	}
 

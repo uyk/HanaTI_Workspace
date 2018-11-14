@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.kosta.sjrent.common.controller.Controller;
 import kr.or.kosta.sjrent.common.controller.ModelAndView;
 import kr.or.kosta.sjrent.common.factory.XMLObjectFactory;
+import kr.or.kosta.sjrent.model.domain.Model;
+import kr.or.kosta.sjrent.model.service.ModelService;
+import kr.or.kosta.sjrent.model.service.ModelServiceImpl;
 import kr.or.kosta.sjrent.rent.domain.Rent;
 import kr.or.kosta.sjrent.rent.service.RentService;
 import kr.or.kosta.sjrent.rent.service.RentServiceImpl;
@@ -24,6 +27,7 @@ import kr.or.kosta.sjrent.review.service.ReviewServiceImpl;
 public class RentListController implements Controller {
 	private XMLObjectFactory factory;
 	private RentService rentService;
+	private ModelService modelService;
 	private ModelAndView mav;
 
 	@Override
@@ -31,7 +35,7 @@ public class RentListController implements Controller {
 			throws ServletException {
 		factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		rentService = (RentService) factory.getBean(RentServiceImpl.class);
-		
+		modelService = (ModelService) factory.getBean(ModelServiceImpl.class);
 		mav = new ModelAndView();
 
 		String id = (String) request.getAttribute("loginId");
@@ -41,12 +45,16 @@ public class RentListController implements Controller {
 		System.out.println("RentListController id : " + id);
 		List<Rent> list = null;
 		List<String> modelNames = new ArrayList<String>();
+		List<String> modelTypes = new ArrayList<String>();
 		if(type != null) {
 			if(type.equals("all")) {
 				try {
 					list = rentService.listByUser(id);
 					for(int i = 0; i < list.size(); i++) {
-						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+						String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+						modelNames.add(modelName);
+						Model model = modelService.read(modelName);
+						modelTypes.add(model.getType());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -55,7 +63,10 @@ public class RentListController implements Controller {
 				try {
 					list = rentService.CancellistByUser(id);
 					for(int i = 0; i < list.size(); i++) {
-						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+						String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+						modelNames.add(modelName);
+						Model model = modelService.read(modelName);
+						modelTypes.add(model.getType());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -64,7 +75,10 @@ public class RentListController implements Controller {
 				try {
 					list = rentService.UncancellistByUser(id);
 					for(int i = 0; i < list.size(); i++) {
-						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+						String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+						modelNames.add(modelName);
+						Model model = modelService.read(modelName);
+						modelTypes.add(model.getType());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -73,7 +87,10 @@ public class RentListController implements Controller {
 				try {
 					list = rentService.pastListByUser(id);
 					for(int i = 0; i < list.size(); i++) {
-						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+						String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+						modelNames.add(modelName);
+						Model model = modelService.read(modelName);
+						modelTypes.add(model.getType());
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -82,7 +99,10 @@ public class RentListController implements Controller {
 				try {
 					list = rentService.upComingListByUser(id);
 					for(int i = 0; i < list.size(); i++) {
-						modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+						String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+						modelNames.add(modelName);
+						Model model = modelService.read(modelName);
+						modelTypes.add(model.getType());
 					}
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
@@ -91,15 +111,20 @@ public class RentListController implements Controller {
 			}
 		}{
 			try {
-				list = rentService.listByUser(id);
+				list = rentService.upComingListByUser(id);
+//				list = rentService.listByUser(id);
 				for(int i = 0; i < list.size(); i++) {
-					modelNames.add(rentService.modelNameByCarNum(list.get(i).getCarNumber()));
+					String modelName = rentService.modelNameByCarNum(list.get(i).getCarNumber());
+					modelNames.add(modelName);
+					Model model = modelService.read(modelName);
+					modelTypes.add(model.getType());
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 		mav.addObject("modelNames", modelNames);
+		mav.addObject("modelTypes", modelTypes);
 		mav.addObject("list", list);
 		mav.setView("/rent/rent_list.jsp");
 		return mav;

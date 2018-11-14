@@ -43,4 +43,6 @@ public interface ModelService {
 	public Model recommend(String result) throws Exception;
 	
 	public Map<String, ArrayList<String>> periodByModelName(String modelName) throws Exception;
+	
+	public int countWishItemByModelName(String modelName) throws Exception;
 }

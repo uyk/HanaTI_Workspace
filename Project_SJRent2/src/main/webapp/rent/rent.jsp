@@ -172,7 +172,6 @@ $(document).ready(function(){
                                           <h3>결제 정보</h3>
                                        </div>
                                        <div class="clearfix"></div>
-                                       <input type="hidden" value = "K5" name="modelName">
                                        <div class="row">
                                           <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
                                              <div class="form-group">
@@ -199,6 +198,7 @@ $(document).ready(function(){
                                              </div>
                                           </div>
                                           <c:forEach var="item" items="${resultMap}" varStatus="status">
+                                          		<input type="hidden" value = "${fn:split(item.picture,'.')[0]}" name="modelName">
                                           	  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="padding: 0">
 	                                             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
 	                                                <div class="form-group">

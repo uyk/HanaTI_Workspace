@@ -37,10 +37,12 @@ public class QnAUpdateController implements Controller {
 		XMLObjectFactory factory = (XMLObjectFactory) request.getServletContext().getAttribute("objectFactory");
 		qnaService = (QnAService) factory.getBean(QnAServiceImpl.class);
 		int qna_seq = 0;
+		System.out.println(request.getParameter("들어오는 시퀀스: "+"qna_seq"));
 		if(request.getParameter("qna_seq")!=null) {
 			qna_seq = Integer.parseInt(request.getParameter("qna_seq"));
+			//System.out.println("시퀀스 잘 들어오나? "+qna_seq);
 		}else {
-			mav.setView("/qna/qnaList.jsp");
+			mav.setView("/qna/qnaIndex.rent");
 			return mav;
 		}
 		String title = request.getParameter("title");
@@ -48,17 +50,17 @@ public class QnAUpdateController implements Controller {
 
 		QnA qna = new QnA();
 		boolean isUpdate = false;
+		System.out.println("업데이트 됐나?" + isUpdate);
 		
 		
 		qna.setNumber(qna_seq);
 		qna.setTitle(title);
 		qna.setContent(content);
-		System.out.println(qna);
+		System.out.println("qna 찍어보기 : "+qna);
 		
 		try {
 			isUpdate = qnaService.update(qna);
 		} catch (Exception e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 
@@ -74,7 +76,7 @@ public class QnAUpdateController implements Controller {
 		// QnA 수정 성공시 응답으로 success 보냄
 		else {
 			mav.addObject("qna", qna);
-			mav.setView("/qna/qnaList.jsp");
+			mav.setView("/qna/qna_update.jsp");
 			try {
 				response.getWriter().print("sucess");
 			} catch (IOException e) {

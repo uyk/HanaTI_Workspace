@@ -10,6 +10,11 @@
 <link rel="stylesheet" href="<%=application.getContextPath()%>/css/datepicker.min.css" type="text/css">
 <script src="<%=application.getContextPath()%>/js/datepicker.min.js"></script>
 <script src="<%=application.getContextPath()%>/js/datepicker.en.js"></script>
+<!-- fontawesome -->
+<link rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+  integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+  crossorigin="anonymous">
 <style type="text/css">
 
 .resultImg {
@@ -73,7 +78,22 @@ var car_model;
 /* 예약 가능한 차 개수 */
 var car_num;
 
-var pickupPlace = "방문수령";
+/* 렌트 페이지로 넘길 데이터 */
+var rent_start_date = null;		/* 차 시작 날짜 */
+var rent_end_date = null;		/* 차 종료 날짜 */
+var date;
+var weekday = 0;
+var weekend = 0;
+var pickupPlace = "방문수령"; 
+var amountMoney;				/* 차 가격 */
+var detailModel = null;
+
+var isLogin = false;
+
+var weekdayPrice;
+var weekendPrice;
+
+
   /** 이미지 경로 받아오기 */
 function getImagePath() {
   	var result; 
@@ -107,20 +127,10 @@ function getImagePath() {
   	   console.log("최종적으로 넘어가는 리절트: " + result);
   	   return result; 
 }
- 
-  	/* 차 시작 날짜 */
-	var rent_start_date;
-  	
-  	/* 차 종료 날짜 */
-  	var rent_end_date;
-  	
-  	/* 차 가격 */
-  	var amountMoney;
-  	var weekdayPrice;
-  	var weekendPrice;
   	
  /** 시작하자마자 */
 $(document).ready(function(){ 
+	if('<%=request.getAttribute("loginId")%>' != 'null') isLogin = true;
 	var imagePath = getImagePath(); 
  			//console.log('이미지경로 : '+ imagePath);
  			
@@ -131,7 +141,15 @@ $(document).ready(function(){
 	//alert(resultCar.src);
 	//console.log('어떤 값이 들어가지? ' + imagePath);
 	//var resultImg = document.getElementsByClassName('resultImg'); 
- 			
+	
+	$('#search-user-login-form').submit(function(e) {
+		loginAction(e);
+	});
+	
+	$('#search-nonuser-login-form').submit(function(e) {
+		nonUserLoginAction(e);
+	});
+	
 	/* DatePicker */
    function setDisabledate(id, disabledDates, count){
 	   /* var disabledDates = ['2018.11.18', '2018.11.14', '2018.11.20', '2018.11.24'] */
@@ -149,6 +167,7 @@ $(document).ready(function(){
 		    	    }
 		    	},
 			   onSelect: function(selectedDate){
+				   var date = 1;
 			          if(selectedDate.includes('~')){
 			             start_date = new Date(selectedDate.split('~')[0]);
 			             end_date = new Date(selectedDate.split('~')[1]);
@@ -162,8 +181,13 @@ $(document).ready(function(){
 						}
 			             rent_start_date = formatDate(start_date);
 			             rent_end_date = formatDate(end_date);
+			             date = ((end_date - start_date) / (1000*60*60*24))+1; 
+			          }else{
+						start_date = new Date(selectedDate);
+						rent_start_date = formatDate(start_date);
+						rent_end_date = rent_start_date;
+			          }
 			             var startDay = start_date.getDate();
-			             var date = ((end_date - start_date) / (1000*60*60*24))+1; 
 			             var weekend = 0;
 			             var weekday = 0;
 			             /* 주말 주중 계산 */
@@ -178,13 +202,14 @@ $(document).ready(function(){
 			         		if(startDay == 7) startDay = 0;
 			         	}
 			             amountMoney = weekdayPrice * weekday + weekendPrice * weekend;
+			     		$('#detail-amount-money').html('&#8361 '+ amountMoney);
 			             /* 다른 것들도 초기화 */
 			             for (var i = 1; i <= count; i++) {
 			            	 if(id != i){
 			            		 $("#datepicker"+i).val('');
 			            	 }
 						}
-		             }
+			          
 			  }
 	   			
 		   })
@@ -231,6 +256,7 @@ $(document).ready(function(){
 	        },
 			success:function(result){
 				var model = result.model;
+				detailModel = model;
 				car_num = result.period;
 				console.log(car_num);
 				/* console.log(Object.keys(car_num).length); */
@@ -263,6 +289,44 @@ $(document).ready(function(){
 		$('#detail-name').html(model.name);
 		$('#detail-star').css('width', model.evalScore * 10 + '%');
 		$('#detail-review-count').html('(' + model.reviewCount + ' Review)');
+		$('#detail-amount-money').html('&#8361 0');
+		$('#detail-weekday-price').html(' ' + model.weekdayPrice + ' on Weekday');
+		$('#detail-weekend-price').html(' ' + model.weekendPrice + ' on Weekend');
+		$('#detail-wish-count').html(' ' + model.rentalCount + ' Times Added on Wish List');
+		$('#detail-reserve-count').html(' ' + model.rentalCount + ' Times Reserved');
+		$('#about-this-model').html('<p>'+ model.name +' 모델 차량은 '+ model.fuelType +' 타입 연료를 사용하는 차량으로 최대 '+model.seater+' 명의 승객이 탑승할 수 있습니다.</p>'+
+				'<p>'+ model.name +' 모델의 주중 가격은 '+model.weekdayPrice+' 원입니다. 주말 가격은 '+model.weekendPrice+'원 입니다.</p>');
+		
+		var optionsHTML = '<p>주요 옵션은 아래와 같습니다.</p> <ul class="tg-liststyle">';
+		optionsHTML += '<li><span>연비 : ' + model.fuelEfficiency + '</span></li>';
+		optionsHTML += '<li><span>기어 : ' + model.transmission + '</span></li>';
+		optionsHTML += '<li><span>연식 : ' + model.year + '</span></li>';
+		if(model.navigation == 1) {
+			optionsHTML += '<li><span>네비게이션</span></li>';
+		}
+		if(model.cameraRear == 1) {
+			optionsHTML += '<li><span>후방카메라</span></li>';
+		}
+		if(model.highpass == 1) {
+			optionsHTML += '<li><span>하이패스</span></li>';
+		}
+		if(model.blackBox == 1) {
+			optionsHTML += '<li><span>블랙박스</span></li>';
+		}
+		optionsHTML += '</ul>';
+		$('#important-options').html(optionsHTML);
+		
+		var otherOptionsHTML = "";
+		if(model.options == null || model.options == "" || model.options.length == 0){
+			otherOptionsHTML += '<li><span>기타 옵션이 없습니다.</span></li>';
+		}
+		else {
+			var jbSplit = model.options.split(',');
+			for ( var i in jbSplit ) {
+				otherOptionsHTML += '<li><span>'+jbSplit[i]+'</span></li>'
+			}
+		}
+		$('#car-detail-others').html(otherOptionsHTML);
 		/* 달력 가져오기 */
 		if(Object.keys(model).length >= 1 ){
 			$('#showCalendar').html(
@@ -357,6 +421,10 @@ $(document).ready(function(){
 	 */
 	function setReviewList(list) {
 		$("#each_review_ul").html("");
+		if(list.length == 0 ) {
+			console.log('review length == 0');
+			$("#each_review_ul").append("<li>리뷰가 없습니다</li>");
+		}
 		for ( var i in list) {
 			var params = {
 				imgPath : '/sjrent/images/review/image1.jpg',
@@ -374,7 +442,11 @@ $(document).ready(function(){
 	 *	Controller로부터 받은 데이터를 검사한다.
 	 */
 	function addToWishList(modelName, startDate, endDate, amountMoney, picture, type, fuelType) {
-		$.ajax({	
+		if(amountMoney == undefined) {
+			alert('날짜를 선택해주세요');
+			return;
+		}
+		 $.ajax({	
 			url:"<%=application.getContextPath()%>/wishitem/add.rent",
 			dataType:"text",
 			type:'POST', 
@@ -399,53 +471,139 @@ $(document).ready(function(){
 			}
 		});
 	}
-
-	/** 
-	 * 위시리스트 추가 결과 모달을 숨기는 함수.
-	 * 위시리스트 추가 결과 모달에서 'not now' 버튼을 누르면 실행
-	 */
-	function wishResultHide() {
-		$("#wish_result_modal").modal('hide');
-	}
-
-	/**
-	 * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
-	 */
-	 function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
-		// 로그인 중
-		if( '<%=request.getAttribute("loginId")%>' != 'null'){
-			// post로 데이터 전달
-		    var form = document.createElement("form");
-		    form.setAttribute("method", "post");
-		    form.setAttribute("action", '<%=application.getContextPath()%>/rent/page.rent');
-		 
-		    var params = {
-			  		startDate : startDate,
-			  		endDate : endDate,
-			  		amountMoney : amountMoney,
-			  		pickupPlace : pickupPlace,
-			  		type : type,
-			  		picture : picture
-		    }
-		    
-		    //히든으로 값을 주입시킨다.
-		    for(var key in params) {
-		        var hiddenField = document.createElement("input");
-		        hiddenField.setAttribute("type", "hidden");
-		        hiddenField.setAttribute("name", key);
-		        hiddenField.setAttribute("value", params[key]);
-		        form.appendChild(hiddenField);
-		    }
-		    document.body.appendChild(form);
-		    form.submit();
-		}
-		else {
-			//alert('로그인필요');
-			$("#login_modal").modal('show');
-		}
-	}
-	 
 }) 
+
+/** 
+ * 위시리스트 추가 결과 모달을 숨기는 함수.
+ * 위시리스트 추가 결과 모달에서 'not now' 버튼을 누르면 실행
+ */
+function wishResultHide() {
+	$("#wish_result_modal").modal('hide');
+}
+
+function loginAction(e) {
+	e.preventDefault();
+	var id = e.currentTarget.id.value;
+	var pw = e.currentTarget.pw.value;
+	var remember = e.currentTarget.remember.checked;			// true or false
+	var where = 'ajax';
+	
+	var params = {
+  		id : id,
+  		pw : pw,
+  		login : where
+	};
+	// 아이디 저장 체크 되어있을 때만 remember를 파라미터로 보냄
+	if(remember == true) {
+		params.remember = remember;
+	}
+	
+	console.log('login : ' + id + "," + pw + "," + remember);
+	window.loginE = e;
+	
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/user/login.rent",
+		type:'POST', 
+		data : params,
+		success:function(result){
+			if(result == 'success') {
+				isLogin = true;
+				console.log('login Success');
+				goToReserve(rent_start_date, rent_end_date, amountMoney, pickupPlace, detailModel.type, detailModel.picture);
+			}
+			else {
+				alert('아이디와 비밀번호를 확인해주세요');
+			}
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
+}
+/**
+ * 예약 버튼이 눌렸을 때 Controller로 데이터를 보내는 함수.
+ */
+ function goToReserve(startDate, endDate, amountMoney, pickupPlace, type, picture) {
+		if(amountMoney == undefined) {
+			alert('날짜를 선택해주세요');
+			return;
+		}
+		if(pickupPlace == '방문수령') {
+			alert('위치를 선택하지 않아 방문수령으로 설정됩니다.');
+		}
+		console.log('ab');
+		
+	// 로그인 중
+	if(isLogin == true){
+		console.log('11');
+		// post로 데이터 전달
+	    var form = document.createElement("form");
+	    form.setAttribute("method", "post");
+	    form.setAttribute("action", '<%=application.getContextPath()%>/rent/page.rent');
+	 
+	    var params = {
+		  		startDate : startDate,
+		  		endDate : endDate,
+		  		amountMoney : amountMoney,
+		  		pickupPlace : pickupPlace,
+		  		type : type,
+		  		picture : picture
+	    }
+	    
+	    //히든으로 값을 주입시킨다.
+	    for(var key in params) {
+	        var hiddenField = document.createElement("input");
+	        hiddenField.setAttribute("type", "hidden");
+	        hiddenField.setAttribute("name", key);
+	        hiddenField.setAttribute("value", params[key]);
+	        form.appendChild(hiddenField);
+	    }
+	    document.body.appendChild(form);
+	    form.submit();
+	}
+	else {
+		//alert('로그인필요');
+		$("#login_modal").modal('show');
+	}
+}
+function nonUserLoginAction(e) {
+	e.preventDefault();
+	var name = e.currentTarget.name_non.value;
+	var email = e.currentTarget.email_non.value;
+	var cellphone = e.currentTarget.cellphone_non.value;
+	var where = 'rent';
+	
+	var params = {
+		name_non : name,
+		email_non : email,
+		cellphone_non : cellphone,
+		where : where
+	};
+	
+	console.log('non login : ' + name + "," + email + "," + cellphone);
+	window.nonloginE = e;
+	
+	$.ajax({	
+		url:"<%=application.getContextPath()%>/user/signup.rent",
+		type:'POST', 
+		data : params,
+		dataType:"json",
+		success:function(result){
+			console.log(result);
+			if(result['result'] == 'success') {
+				isLogin = true;
+				console.log('nonuser Success');
+				goToReserve(rent_start_date, rent_end_date, amountMoney, pickupPlace, detailModel.type, detailModel.picture);
+			}
+			else {
+				alert(result['reason']);
+			}
+		},
+		error : function(result) {
+			console.log("error.... result : " + result);
+		}
+	});
+}
 </script> 
 </head>
 <body class="tg-home tg-homevone" onload="initMap();">
@@ -484,6 +642,24 @@ $(document).ready(function(){
         <!--************************************
              Detail Model Modal End
         *************************************-->
+        
+              <!--************************************
+              Wish Result Modal Start
+         *************************************-->
+      <jsp:include page="/rent/search_include/wish_result_modal.jsp" />
+      <!--************************************
+              Wish Result Modal End
+         *************************************-->
+         
+         
+      <!--************************************
+              Search Login Modal Start
+         *************************************-->
+      <jsp:include page="search_login_modal.jsp" />
+      <!--************************************
+              Search Login Modal End
+         *************************************-->
+         
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
           style="padding: 0px 300px">

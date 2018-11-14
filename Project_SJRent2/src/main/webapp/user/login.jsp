@@ -5,6 +5,7 @@
 <html>
 <head>
    <jsp:include page="../common/commoncss.jsp" />
+   <jsp:include page="../common/commonjs.jsp" />
 
 <%
 	String id = null;
@@ -24,15 +25,48 @@
 
 <script type="text/javascript">
 
+/**  
+ * 페이지 이동처리 방지를 위하여 시작시 실행
+ */
+$(document).ready( function() {
+	$('#myform').submit(function (e) {
+		e.preventDefault();
+		loginCheck();
+	})
+});
 
-// 로그인시 아이디 존재하지 않으면 글씨띄우기 다른 3곳도 동일
+/** 
+ * 로그인 처리를 위한 Ajax 통신
+ */
+function loginCheck() {
 
+	var id = $('#id').val();
+	var pw = $('#pw').val();
 
-
+	$.ajax({
+		url : '/sjrent/user/login.rent',
+		type : 'post',
+		data : {
+			id : id,
+			pw : pw,
+			login : 'login'
+		},
+		success : function(data) {
+			if ($.trim(data) == "loginfail") {
+				$('#checkMsg').html(
+						"<p style='COLOR: red'>다시 로그인해주세요.</p>");
+			} else{
+				location.href="/sjrent/index.jsp";				
+			}
+		},
+		error : function() {
+			alert("관리자에게 문의해주세요.");
+		}
+	});
+	
+} 
 
 </script>
-
-
 </head>
 <body class="tg-home tg-homevone">
 
@@ -52,7 +86,7 @@
 <!--************************************
       Header 시작
 *************************************-->
-   <jsp:include page="../include/header.jsp"/>
+<jsp:include page="../include/header.jsp"/>
 <!--************************************
       Header 종료
 *************************************-->
@@ -71,41 +105,48 @@
                         <!--************************************
                                     Title 시작
                            *************************************-->
-                        <div style="text-align: center; margin: 50px 0px"><h2>로그인</h2></div>
+                        <div style="text-align: center; margin: 50px 0px"><h2>회원로그인</h2></div>
                         <!--************************************
                                     Title 종료
                            *************************************-->   
-                     
-    <!-- 가수정 -->                       
-    <div style="float:left; border: none; display: inline-block; margin-top: 10px; margin-bottom: 0" id="checkMsg"></div>                       
-								<!--************************************
-										회원 로그인 시작 
-								*************************************-->
+ 
+ <!-- 로그인 실패시 Ajax 통신 후 text영역 -->
+ <div style="text-align: center; margin-top: 10px; margin-bottom: 10px" id="checkMsg"></div>
+                      
+                                  
+                        <!--************************************
+							        회원 로그인 시작 
+						   *************************************-->
 								<div role="tabpanel" class="tab-pane active fade in" id="user" >
-                
-									<form class="tg-formtheme tg-formlogin" action="/sjrent/user/login.rent" method="post">
+									<form class="tg-formtheme tg-formlogin" method="post" id='myform'>
 										<fieldset>
 											<div class="form-group">
 												<label>아이디 <sup>*</sup></label>
-												<input type="text" name="id" class="form-control" placeholder="" maxlength="16" style="text-transform:  none;" required value="${id }" >
+												<input type="text" name="id" id="id" class="form-control" placeholder="" maxlength="16" style="text-transform:  none;" required value="${id }" >
 											</div>
 											<div class="form-group">
 												<label>비밀번호 <sup>*</sup></label>
- 								                <input type="password" name="pw" class="form-control" placeholder="" maxlength="20"  style="text-transform:  none;" required>
+ 								                <input type="password" name="pw" id="pw" class="form-control" placeholder="" maxlength="20"  style="text-transform:  none;" required>
 											</div>
 											<div class="form-group">
-													<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>
+												<input type="checkbox" name="remember" id="rememberpass" style="display: inline-block; "><label for="rememberpass" style="display: inline-block; ">아이디 저장</label>
 											</div>
-											<button type="submit" class="tg-btn tg-btn-lg" ><span>로그인</span></button>
-										</fieldset>
-                                        <input type="hidden" name="login" value="login"/>
+                      
+                                             <div style="margin-top: 20px;">
+                                              <a href="<%=application.getContextPath()%>/user/regist.jsp" style="color: grey; float: right; ">아직 회원이 아니신가요?</a>
+                                             </div>
+                                   
+  <!-- ajax 이용 -->
+  <button type='submit' class="tg-btn tg-btn-lg" style="display: inline-block;  vertical-align: middle; margin-top: 10px" onclick="loginCheck()" >로그인 </button>
+                  
+   
+                    
+                                          </fieldset>
 									</form>
 								</div>
 								<!--************************************
 										회원 로그인 종료 
 								*************************************--> 
-                     
-                     
                      
                      </div>
                   </div>
