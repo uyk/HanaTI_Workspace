@@ -20,27 +20,27 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="cont" key="selection"/>
+		<item value="jdbc" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="conta"/>
-			<item value="cont"/>
-			<item value="login"/>
-			<item value="registSearchSubmit"/>
-			<item value="setModelList"/>
-			<item value="qna"/>
-			<item value="list"/>
-			<item value="MODEL__TRANSMISSION"/>
-			<item value="select"/>
-			<item value="disc inside"/>
-			<item value="list-sty"/>
-			<item value="li"/>
-			<item value="weekday"/>
-			<item value="wee"/>
-			<item value="fa"/>
+			<item value="jdbc"/>
+			<item value="됩니다"/>
+			<item value="alert"/>
+			<item value="wishresult"/>
+			<item value="wish"/>
+			<item value="anim"/>
+			<item value="무ㅑㅡ"/>
+			<item value="page"/>
+			<item value="page/rent"/>
+			<item value="sign"/>
+			<item value="figure"/>
+			<item value="checkbox-la"/>
+			<item value="absol"/>
+			<item value="로그인"/>
+			<item value="&lt;%=request.getAttribute(&quot;loginId&quot;)%&gt;"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>
