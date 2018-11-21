@@ -20,12 +20,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="jdbc" key="selection"/>
+		<item value="framework" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="framework"/>
+			<item value="fil"/>
 			<item value="jdbc"/>
 			<item value="됩니다"/>
 			<item value="alert"/>
@@ -39,8 +41,6 @@
 			<item value="figure"/>
 			<item value="checkbox-la"/>
 			<item value="absol"/>
-			<item value="로그인"/>
-			<item value="&lt;%=request.getAttribute(&quot;loginId&quot;)%&gt;"/>
 		</list>
 		<list key="replacehistory">
 			<item value="&quot;"/>

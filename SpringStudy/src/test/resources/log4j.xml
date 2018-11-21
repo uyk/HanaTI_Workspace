@@ -12,7 +12,20 @@
 	
 	<!-- Application Loggers -->
 	<logger name="kr.or.kosta">
-		<level value="info" />
+		<level value="debug" />
+	</logger>
+	
+	<!-- log4jdbc Loggers -->
+	<logger name="jdbc.audit">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.resultset">
+		<level value="warn" />
+	</logger>
+	
+	<logger name="jdbc.connection">
+		<level value="warn" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->

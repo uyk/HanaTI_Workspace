@@ -22,7 +22,23 @@
 	</beans:bean>
 
 	<!-- 세브컨트롤러 등록 -->
-	<beans:bean name="/hello" class="kr.or.kosta.spring.demo.contoller.HelloController" />
+	<beans:bean name="/hello" class="kr.or.kosta.spring.demo.controller.HelloController" />
+	
+	<!-- 인터셉터 등록 -->
+	<beans:bean id="loggerInterceptor" class="kr.or.kosta.spring.common.web.interceptor.LoggerInterceptor" />
+	
+	<!-- 인터셉터 설정 -->
+	<!-- 
+	<interceptors>
+		<interceptor>
+			<mapping path="/**" />
+			<exclude-mapping path="/resources/**" />
+			<beans:ref bean="loggerInterceptor" />
+		</interceptor>
+	</interceptors>
+	 -->
+	
+	
 	
 	<context:component-scan base-package="kr.or.kosta" />
 	
