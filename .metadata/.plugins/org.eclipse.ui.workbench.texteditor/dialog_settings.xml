@@ -20,29 +20,31 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="framework" key="selection"/>
+		<item value="Logout" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="framework"/>
-			<item value="fil"/>
-			<item value="jdbc"/>
-			<item value="됩니다"/>
-			<item value="alert"/>
-			<item value="wishresult"/>
-			<item value="wish"/>
-			<item value="anim"/>
-			<item value="무ㅑㅡ"/>
-			<item value="page"/>
-			<item value="page/rent"/>
-			<item value="sign"/>
-			<item value="figure"/>
-			<item value="checkbox-la"/>
-			<item value="absol"/>
+			<item value="logout"/>
+			<item value="customUserDetailsService"/>
+			<item value="pages"/>
+			<item value="modalInputReply"/>
+			<item value="chat"/>
+			<item value="showli"/>
+			<item value="gson"/>
+			<item value="jack"/>
+			<item value="hamcrest"/>
+			<item value="click"/>
+			<item value="form"/>
+			<item value="oper"/>
+			<item value="open"/>
+			<item value="openf"/>
+			<item value="action"/>
 		</list>
 		<list key="replacehistory">
+			<item value="/spring/resources"/>
+			<item value="/resources/"/>
 			<item value="&quot;"/>
 			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>
 			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>

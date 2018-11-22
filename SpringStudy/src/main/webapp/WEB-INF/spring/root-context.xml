@@ -37,6 +37,7 @@
 	
 	<mybatis-spring:scan base-package="kr.or.kosta.spring.employee.mapper" />
 	<mybatis-spring:scan base-package="kr.or.kosta.spring.board.mapper" />
+	<mybatis-spring:scan base-package="kr.or.kosta.spring.member.mapper" />
 	<context:component-scan base-package="kr.or.kosta.spring.board.service" />
 	<context:component-scan base-package="kr.or.kosta.spring.demo.service" />
 	

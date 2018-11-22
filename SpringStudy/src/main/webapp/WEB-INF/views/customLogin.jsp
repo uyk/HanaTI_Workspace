@@ -46,10 +46,10 @@ div {
 <p style="color: red"></p>
   <form action="login" method="post">
     <label for="username">User name</label>
-    <input type="text" name="username" id="username" placeholder="username.." value="admin">
+    <input type="text" name="username" id="username" placeholder="username.." value="admin90">
 
     <label for="password">Password</label>
-    <input type="password" name="password" id="password" placeholder="password.." value="admin">
+    <input type="password" name="password" id="password" placeholder="password.." value="pw90">
     
     <input type="checkbox" name="remember-me" id="remember-me">
     <label for="remember-me">로그인 상태 유지</label>
