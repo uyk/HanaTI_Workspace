@@ -20,12 +20,14 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="Logout" key="selection"/>
+		<item value="height: 70px;" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="height: 70px;"/>
+			<item value="height: 70px;."/>
 			<item value="logout"/>
 			<item value="customUserDetailsService"/>
 			<item value="pages"/>
@@ -39,8 +41,6 @@
 			<item value="form"/>
 			<item value="oper"/>
 			<item value="open"/>
-			<item value="openf"/>
-			<item value="action"/>
 		</list>
 		<list key="replacehistory">
 			<item value="/spring/resources"/>
