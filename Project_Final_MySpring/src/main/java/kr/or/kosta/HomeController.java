@@ -36,12 +36,18 @@ public class HomeController {
 		return "home";
 	}
 	
-	
 	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String profile() {
 		logger.info("profile.");
 		
 		return "profile";
+	}
+	
+	@RequestMapping(value = "/newsfeed", method = RequestMethod.GET)
+	public String newsfeed() {
+		logger.info("newsfeed.");
+		
+		return "newsfeed";
 	}
 	
 }

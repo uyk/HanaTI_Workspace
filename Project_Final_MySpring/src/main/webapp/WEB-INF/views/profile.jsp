@@ -2,895 +2,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	<title>Profile Page</title>
-
-	<!-- Required meta tags always come first -->
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="x-ua-compatible" content="ie=edge">
-
-	<!-- Main Font -->
-    <script src="/myspring/resources/js/webfontloader.min.js"></script>
-    <script>
-        WebFont.load({
-            google: {
-                families: ['Roboto:300,400,500,700:latin']
-            }
-        });
-    </script>
-
-	<!-- Bootstrap CSS -->
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/Bootstrap/dist/css/bootstrap-reboot.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/Bootstrap/dist/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/Bootstrap/dist/css/bootstrap-grid.css">
-
-	<!-- Theme Styles CSS -->
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/theme-styles.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/blocks.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/fonts.css">
-
-	<!-- Styles for plugins -->
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/jquery.mCustomScrollbar.min.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/mediaelement-playlist-plugin.min.css">
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/mediaelementplayer.css">
-
-	<!-- Lightbox popup script-->
-	<link rel="stylesheet" type="text/css" href="/myspring/resources/css/magnific-popup.css">
-
+  <title>Profile Page</title>
+  <jsp:include page="includes/head.jsp"></jsp:include>  
 </head>
 <body>
 
 <!-- Fixed Sidebar Left -->
-
-<div class="fixed-sidebar">
-	<div class="fixed-sidebar-left sidebar--small" id="sidebar-left">
-		<a href="/myspring/profile" class="logo">
-			<img src="/myspring/resources/img/logo.png" alt="Olympus">
-		</a>
-
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
-			<ul class="left-menu">
-				<li>
-					<a href="#" class="js-sidebar-open">
-						<svg class="olymp-menu-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="OPEN MENU"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="03-Newsfeed.html">
-						<svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="16-FavPagesFeed.html">
-						<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="17-FriendGroups.html">
-						<svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="18-MusicAndPlaylists.html">
-						<svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-headphones-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="19-WeatherWidget.html">
-						<svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-weather-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="20-CalendarAndEvents-MonthlyCalendar.html">
-						<svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-calendar-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="24-CommunityBadges.html">
-						<svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-badge-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="25-FriendsBirthday.html">
-						<svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="26-Statistics.html">
-						<svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-stats-icon"></use></svg>
-					</a>
-				</li>
-				<li>
-					<a href="27-ManageWidgets.html">
-						<svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-
-	<div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1">
-		<a href="/myspring/profile" class="logo">
-			<img src="/myspring/resources/img/logo.png" alt="Olympus">
-			<h6 class="logo-title">olympus</h6>
-		</a>
-
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
-			<ul class="left-menu">
-				<li>
-					<a href="#" class="js-sidebar-open">
-						<svg class="olymp-close-icon left-menu-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
-						<span class="left-menu-title">Collapse Menu</span>
-					</a>
-				</li>
-				<li>
-					<a href="03-Newsfeed.html">
-						<svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
-						<span class="left-menu-title">Newsfeed</span>
-					</a>
-				</li>
-				<li>
-					<a href="16-FavPagesFeed.html">
-						<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
-						<span class="left-menu-title">Fav Pages Feed</span>
-					</a>
-				</li>
-				<li>
-					<a href="17-FriendGroups.html">
-						<svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
-						<span class="left-menu-title">Friend Groups</span>
-					</a>
-				</li>
-				<li>
-					<a href="18-MusicAndPlaylists.html">
-						<svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-headphones-icon"></use></svg>
-						<span class="left-menu-title">Music & Playlists</span>
-					</a>
-				</li>
-				<li>
-					<a href="19-WeatherWidget.html">
-						<svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-weather-icon"></use></svg>
-						<span class="left-menu-title">Weather App</span>
-					</a>
-				</li>
-				<li>
-					<a href="20-CalendarAndEvents-MonthlyCalendar.html">
-						<svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-calendar-icon"></use></svg>
-						<span class="left-menu-title">Calendar and Events</span>
-					</a>
-				</li>
-				<li>
-					<a href="24-CommunityBadges.html">
-						<svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-badge-icon"></use></svg>
-						<span class="left-menu-title">Community Badges</span>
-					</a>
-				</li>
-				<li>
-					<a href="25-FriendsBirthday.html">
-						<svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-						<span class="left-menu-title">Friends Birthdays</span>
-					</a>
-				</li>
-				<li>
-					<a href="26-Statistics.html">
-						<svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-stats-icon"></use></svg>
-						<span class="left-menu-title">Account Stats</span>
-					</a>
-				</li>
-				<li>
-					<a href="27-ManageWidgets.html">
-						<svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
-						<span class="left-menu-title">Manage Widgets</span>
-					</a>
-				</li>
-			</ul>
-
-			<div class="profile-completion">
-
-				<div class="skills-item">
-					<div class="skills-item-info">
-						<span class="skills-item-title">Profile Completion</span>
-						<span class="skills-item-count"><span class="count-animate" data-speed="1000" data-refresh-interval="50" data-to="76" data-from="0"></span><span class="units">76%</span></span>
-					</div>
-					<div class="skills-item-meter">
-						<span class="skills-item-meter-active bg-primary" style="width: 76%"></span>
-					</div>
-				</div>
-
-				<span>Complete <a href="#">your profile</a> so people can know more about you!</span>
-
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- ... end Fixed Sidebar Left -->
-
-<!-- Fixed Sidebar Left -->
-
-<div class="fixed-sidebar fixed-sidebar-responsive">
-
-	<div class="fixed-sidebar-left sidebar--small" id="sidebar-left-responsive">
-		<a href="#" class="logo js-sidebar-open">
-			<img src="/myspring/resources/img/logo.png" alt="Olympus">
-		</a>
-
-	</div>
-
-	<div class="fixed-sidebar-left sidebar--large" id="sidebar-left-1-responsive">
-		<a href="#" class="logo">
-			<img src="/myspring/resources/img/logo.png" alt="Olympus">
-			<h6 class="logo-title">olympus</h6>
-		</a>
-
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
-
-			<div class="control-block">
-				<div class="author-page author vcard inline-items">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/author-page.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-					<a href="02-ProfilePage.html" class="author-name fn">
-						<div class="author-title">
-							James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
-						</div>
-						<span class="author-subtitle">SPACE COWBOY</span>
-					</a>
-				</div>
-			</div>
-
-			<div class="ui-block-title ui-block-title-small">
-				<h6 class="title">MAIN SECTIONS</h6>
-			</div>
-
-			<ul class="left-menu">
-				<li>
-					<a href="#" class="js-sidebar-open">
-						<svg class="olymp-close-icon left-menu-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
-						<span class="left-menu-title">Collapse Menu</span>
-					</a>
-				</li>
-				<li>
-					<a href="mobile-index.html">
-						<svg class="olymp-newsfeed-icon left-menu-icon" data-toggle="tooltip" data-placement="right"   data-original-title="NEWSFEED"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-newsfeed-icon"></use></svg>
-						<span class="left-menu-title">Newsfeed</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-28-YourAccount-PersonalInformation.html">
-						<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
-						<span class="left-menu-title">Fav Pages Feed</span>
-					</a>
-				</li>
-				<li>
-					<a href="mobile-29-YourAccount-AccountSettings.html">
-						<svg class="olymp-happy-faces-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FRIEND GROUPS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-faces-icon"></use></svg>
-						<span class="left-menu-title">Friend Groups</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-30-YourAccount-ChangePassword.html">
-						<svg class="olymp-headphones-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="MUSIC&PLAYLISTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-headphones-icon"></use></svg>
-						<span class="left-menu-title">Music & Playlists</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-31-YourAccount-HobbiesAndInterests.html">
-						<svg class="olymp-weather-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="WEATHER APP"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-weather-icon"></use></svg>
-						<span class="left-menu-title">Weather App</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-32-YourAccount-EducationAndEmployement.html">
-						<svg class="olymp-calendar-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="CALENDAR AND EVENTS"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-calendar-icon"></use></svg>
-						<span class="left-menu-title">Calendar and Events</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-33-YourAccount-Notifications.html">
-						<svg class="olymp-badge-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Community Badges"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-badge-icon"></use></svg>
-						<span class="left-menu-title">Community Badges</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-34-YourAccount-ChatMessages.html">
-						<svg class="olymp-cupcake-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Friends Birthdays"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-cupcake-icon"></use></svg>
-						<span class="left-menu-title">Friends Birthdays</span>
-					</a>
-				</li>
-				<li>
-					<a href="Mobile-35-YourAccount-FriendsRequests.html">
-						<svg class="olymp-stats-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Account Stats"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-stats-icon"></use></svg>
-						<span class="left-menu-title">Account Stats</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<svg class="olymp-manage-widgets-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="Manage Widgets"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-manage-widgets-icon"></use></svg>
-						<span class="left-menu-title">Manage Widgets</span>
-					</a>
-				</li>
-			</ul>
-
-			<div class="ui-block-title ui-block-title-small">
-				<h6 class="title">YOUR ACCOUNT</h6>
-			</div>
-
-			<ul class="account-settings">
-				<li>
-					<a href="#">
-
-						<svg class="olymp-menu-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
-
-						<span>Profile Settings</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
-
-						<span>Create Fav Page</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<svg class="olymp-logout-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-logout-icon"></use></svg>
-
-						<span>Log Out</span>
-					</a>
-				</li>
-			</ul>
-
-			<div class="ui-block-title ui-block-title-small">
-				<h6 class="title">About Olympus</h6>
-			</div>
-
-			<ul class="about-olympus">
-				<li>
-					<a href="#">
-						<span>Terms and Conditions</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span>FAQs</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span>Careers</span>
-					</a>
-				</li>
-				<li>
-					<a href="#">
-						<span>Contact</span>
-					</a>
-				</li>
-			</ul>
-
-		</div>
-	</div>
-</div>
-
-<!-- ... end Fixed Sidebar Left -->
-
+<jsp:include page="includes/fixed-sidebar-left.jsp"></jsp:include>
+<!-- end Fixed Sidebar Left -->
 
 <!-- Fixed Sidebar Right -->
-
-<div class="fixed-sidebar right">
-	<div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
-
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
-			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar67-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar62-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar68-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar69-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-				</li>
-
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar70-sm.jpg" class="avatar">
-						<span class="icon-status disconected"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar64-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar71-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar72-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar63-sm.jpg" class="avatar">
-						<span class="icon-status status-invisible"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar72-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar71-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-		<div class="search-friend inline-items">
-			<a href="#" class="js-sidebar-open">
-				<svg class="olymp-menu-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
-			</a>
-		</div>
-
-		<a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
-			<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-		</a>
-
-	</div>
-
-	<div class="fixed-sidebar-right sidebar--large" id="sidebar-right-1">
-
-		<div class="mCustomScrollbar" data-mcs-theme="dark">
-
-			<div class="ui-block-title ui-block-title-small">
-				<a href="#" class="title">Close Friends</a>
-				<a href="#">Settings</a>
-			</div>
-
-			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar67-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Carol Summers</a>
-						<span class="status">ONLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar62-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Mathilda Brinker</a>
-						<span class="status">AT WORK!</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-				</li>
-
-				<li class="inline-items js-chat-open">
-
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar68-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Carol Summers</a>
-						<span class="status">ONLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-
-				</li>
-
-				<li class="inline-items js-chat-open">
-
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar69-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Michael Maximoff</a>
-						<span class="status">AWAY</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-
-				</li>
-
-				<li class="inline-items js-chat-open">
-
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar70-sm.jpg" class="avatar">
-						<span class="icon-status disconected"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Rachel Howlett</a>
-						<span class="status">OFFLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-
-				</li>
-			</ul>
-
-
-			<div class="ui-block-title ui-block-title-small">
-				<a href="#" class="title">MY FAMILY</a>
-				<a href="#">Settings</a>
-			</div>
-
-			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar64-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Sarah Hetfield</a>
-						<span class="status">ONLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-				</li>
-			</ul>
-
-
-			<div class="ui-block-title ui-block-title-small">
-				<a href="#" class="title">UNCATEGORIZED</a>
-				<a href="#">Settings</a>
-			</div>
-
-			<ul class="chat-users">
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar71-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Bruce Peterson</a>
-						<span class="status">ONLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar72-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Chris Greyson</a>
-						<span class="status">AWAY</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar63-sm.jpg" class="avatar">
-						<span class="icon-status status-invisible"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Nicholas Grisom</a>
-						<span class="status">INVISIBLE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar72-sm.jpg" class="avatar">
-						<span class="icon-status away"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Chris Greyson</a>
-						<span class="status">AWAY</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-				</li>
-				<li class="inline-items js-chat-open">
-
-					<div class="author-thumb">
-						<img alt="author" src="/myspring/resources/img/avatar71-sm.jpg" class="avatar">
-						<span class="icon-status online"></span>
-					</div>
-
-					<div class="author-status">
-						<a href="#" class="h6 author-name">Bruce Peterson</a>
-						<span class="status">ONLINE</span>
-					</div>
-
-					<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-
-						<ul class="more-icons">
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="START CONVERSATION" class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="ADD TO CONVERSATION" class="olymp-add-to-conversation-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-add-to-conversation-icon"></use></svg>
-							</li>
-
-							<li>
-								<svg data-toggle="tooltip" data-placement="top" data-original-title="BLOCK FROM CHAT" class="olymp-block-from-chat-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-block-from-chat-icon"></use></svg>
-							</li>
-						</ul>
-
-					</div>
-				</li>
-			</ul>
-
-		</div>
-
-		<div class="search-friend inline-items">
-			<form class="form-group">
-				<input class="form-control" placeholder="Search Friends..." value="" type="text">
-			</form>
-
-			<a href="29-YourAccount-AccountSettings.html" class="settings">
-				<svg class="olymp-settings-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-settings-icon"></use></svg>
-			</a>
-
-			<a href="#" class="js-sidebar-open">
-				<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
-			</a>
-
-
-		</div>
-
-		<a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
-
-			<h6 class="olympus-chat-title">OLYMPUS CHAT</h6>
-			<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-		</a>
-
-	</div>
-</div>
-
+<jsp:include page="includes/fixed-sidebar-right.jsp"></jsp:include>
 <!-- ... end Fixed Sidebar Right -->
-
-<!-- Fixed Sidebar Right -->
-
-<div class="fixed-sidebar right fixed-sidebar-responsive">
-
-	<div class="fixed-sidebar-right sidebar--small" id="sidebar-right-responsive">
-
-		<a href="#" class="olympus-chat inline-items js-chat-open">
-			<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
-		</a>
-
-	</div>
-
-</div>
-
-<!-- ... end Fixed Sidebar Right -->
-
 
 <!-- Header -->
 
@@ -905,7 +28,7 @@
 			<div class="form-group with-button">
 				<input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
 				<button>
-					<svg class="olymp-magnifying-glass-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+					<svg class="olymp-magnifying-glass-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
 				</button>
 			</div>
 		</form>
@@ -915,7 +38,7 @@
 		<div class="control-block">
 
 			<div class="control-icon more has-items">
-				<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+				<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 				<div class="label-avatar bg-blue">6</div>
 
 				<div class="more-dropdown more-with-triangle triangle-top-center">
@@ -929,7 +52,7 @@
 						<ul class="notification-list friend-requests">
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar55-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar55-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Tamara Romanoff</a>
@@ -938,26 +61,26 @@
 								<span class="notification-icon">
 									<a href="#" class="accept-request">
 										<span class="icon-add without-text">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 									<a href="#" class="accept-request request-del">
 										<span class="icon-minus">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 								</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar56-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar56-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Tony Stevens</a>
@@ -966,43 +89,43 @@
 								<span class="notification-icon">
 									<a href="#" class="accept-request">
 										<span class="icon-add without-text">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 									<a href="#" class="accept-request request-del">
 										<span class="icon-minus">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 								</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 
 							<li class="accepted">
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar57-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar57-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									You and <a href="#" class="h6 notification-friend">Mary Jane Stark</a> just became friends. Write on <a href="#" class="notification-link">her wall</a>.
 								</div>
 								<span class="notification-icon">
-									<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+									<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 								</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar58-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar58-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Stagg Clothing</a>
@@ -1011,20 +134,20 @@
 								<span class="notification-icon">
 									<a href="#" class="accept-request">
 										<span class="icon-add without-text">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 									<a href="#" class="accept-request request-del">
 										<span class="icon-minus">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 									</a>
 
 								</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 
@@ -1036,7 +159,7 @@
 			</div>
 
 			<div class="control-icon more has-items">
-				<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+				<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 				<div class="label-avatar bg-purple">2</div>
 
 				<div class="more-dropdown more-with-triangle triangle-top-center">
@@ -1050,7 +173,7 @@
 						<ul class="notification-list chat-message">
 							<li class="message-unread">
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar59-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar59-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Diana Jameson</a>
@@ -1058,16 +181,16 @@
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 								</div>
 								<span class="notification-icon">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+									<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 								</span>
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar60-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar60-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Jake Parker</a>
@@ -1075,16 +198,16 @@
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 								</div>
 								<span class="notification-icon">
-									<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+									<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 								</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar61-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar61-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
@@ -1092,19 +215,19 @@
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+										<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 									</span>
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 
 							<li class="chat-group">
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar11-sm.jpg" alt="author">
-									<img src="/myspring/resources/img/avatar12-sm.jpg" alt="author">
-									<img src="/myspring/resources/img/avatar13-sm.jpg" alt="author">
-									<img src="/myspring/resources/img/avatar10-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar11-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar12-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar13-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar10-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
@@ -1113,10 +236,10 @@
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+										<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 									</span>
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								</div>
 							</li>
 						</ul>
@@ -1127,7 +250,7 @@
 			</div>
 
 			<div class="control-icon more has-items">
-				<svg class="olymp-thunder-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-thunder-icon"></use></svg>
+				<svg class="olymp-thunder-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-thunder-icon"></use></svg>
 
 				<div class="label-avatar bg-primary">8</div>
 
@@ -1142,96 +265,96 @@
 						<ul class="notification-list">
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar62-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar62-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<div><a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+										<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 									</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 
 							<li class="un-read">
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar63-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar63-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<div>You and <a href="#" class="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" class="notification-link">his wall</a>.</div>
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">9 hours ago</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+										<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 									</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 
 							<li class="with-comment-photo">
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar64-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar64-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<div><a href="#" class="h6 notification-friend">Sarah Hetfield</a> commented on your <a href="#" class="notification-link">photo</a>.</div>
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 5:32am</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+										<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 									</span>
 
 								<div class="comment-photo">
-									<img src="/myspring/resources/img/comment-photo1.jpg" alt="photo">
+									<img src="<%=application.getContextPath()%>/resources/img/comment-photo1.jpg" alt="photo">
 									<span>“She looks incredible in that outfit! We should see each...”</span>
 								</div>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar65-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar65-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<div><a href="#" class="h6 notification-friend">Green Goo Rock</a> invited you to attend to his event Goo in <a href="#" class="notification-link">Gotham Bar</a>.</div>
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 5th at 6:43pm</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+										<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 									</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 
 							<li>
 								<div class="author-thumb">
-									<img src="/myspring/resources/img/avatar66-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar66-sm.jpg" alt="author">
 								</div>
 								<div class="notification-event">
 									<div><a href="#" class="h6 notification-friend">James Summers</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
 									<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 2nd at 8:29pm</time></span>
 								</div>
 									<span class="notification-icon">
-										<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+										<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 									</span>
 
 								<div class="more">
-									<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-									<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+									<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+									<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 								</div>
 							</li>
 						</ul>
@@ -1243,7 +366,7 @@
 
 			<div class="author-page author vcard inline-items more">
 				<div class="author-thumb">
-					<img alt="author" src="/myspring/resources/img/author-page.jpg" class="avatar">
+					<img alt="author" src="<%=application.getContextPath()%>/resources/img/author-page.jpg" class="avatar">
 					<span class="icon-status online"></span>
 					<div class="more-dropdown more-with-triangle">
 						<div class="mCustomScrollbar" data-mcs-theme="dark">
@@ -1255,21 +378,21 @@
 								<li>
 									<a href="29-YourAccount-AccountSettings.html">
 
-										<svg class="olymp-menu-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
+										<svg class="olymp-menu-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
 
 										<span>Profile Settings</span>
 									</a>
 								</li>
 								<li>
 									<a href="36-FavPage-SettingsAndCreatePopup.html">
-										<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+										<svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 
 										<span>Create Fav Page</span>
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<svg class="olymp-logout-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-logout-icon"></use></svg>
+										<svg class="olymp-logout-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-logout-icon"></use></svg>
 
 										<span>Log Out</span>
 									</a>
@@ -1316,7 +439,7 @@
 								<input class="form-control" placeholder="" type="text" value="Space Cowboy">
 
 								<button class="bg-purple">
-									<svg class="olymp-check-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-check-icon"></use></svg>
+									<svg class="olymp-check-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-check-icon"></use></svg>
 								</button>
 							</form>
 
@@ -1352,7 +475,7 @@
 				</div>
 				<a href="02-ProfilePage.html" class="author-name fn">
 					<div class="author-title">
-						James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+						James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
 					</div>
 					<span class="author-subtitle">SPACE COWBOY</span>
 				</a>
@@ -1375,7 +498,7 @@
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#request" role="tab">
 					<div class="control-icon has-items">
-						<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+						<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 						<div class="label-avatar bg-blue">6</div>
 					</div>
 				</a>
@@ -1384,7 +507,7 @@
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#chat" role="tab">
 					<div class="control-icon has-items">
-						<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+						<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 						<div class="label-avatar bg-purple">2</div>
 					</div>
 				</a>
@@ -1393,7 +516,7 @@
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#notification" role="tab">
 					<div class="control-icon has-items">
-						<svg class="olymp-thunder-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-thunder-icon"></use></svg>
+						<svg class="olymp-thunder-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-thunder-icon"></use></svg>
 						<div class="label-avatar bg-primary">8</div>
 					</div>
 				</a>
@@ -1401,8 +524,8 @@
 
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#search" role="tab">
-					<svg class="olymp-magnifying-glass-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-magnifying-glass-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</li>
 		</ul>
@@ -1422,7 +545,7 @@
 				<ul class="notification-list friend-requests">
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar55-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar55-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Tamara Romanoff</a>
@@ -1431,25 +554,25 @@
 									<span class="notification-icon">
 										<a href="#" class="accept-request">
 											<span class="icon-add without-text">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 										<a href="#" class="accept-request request-del">
 											<span class="icon-minus">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 									</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar56-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar56-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Tony Stevens</a>
@@ -1458,41 +581,41 @@
 									<span class="notification-icon">
 										<a href="#" class="accept-request">
 											<span class="icon-add without-text">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 										<a href="#" class="accept-request request-del">
 											<span class="icon-minus">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 									</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 					<li class="accepted">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar57-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar57-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							You and <a href="#" class="h6 notification-friend">Mary Jane Stark</a> just became friends. Write on <a href="#" class="notification-link">her wall</a>.
 						</div>
 									<span class="notification-icon">
-										<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+										<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 									</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar58-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar58-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Stagg Clothing</a>
@@ -1501,20 +624,20 @@
 									<span class="notification-icon">
 										<a href="#" class="accept-request">
 											<span class="icon-add without-text">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 										<a href="#" class="accept-request request-del">
 											<span class="icon-minus">
-												<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+												<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 											</span>
 										</a>
 
 									</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 				</ul>
@@ -1535,7 +658,7 @@
 				<ul class="notification-list chat-message">
 					<li class="message-unread">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar59-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar59-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Diana Jameson</a>
@@ -1543,16 +666,16 @@
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 						</div>
 									<span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+										<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 									</span>
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar60-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar60-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Jake Parker</a>
@@ -1560,16 +683,16 @@
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 						</div>
 									<span class="notification-icon">
-										<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+										<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 									</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar61-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar61-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Elaine Dreyfuss</a>
@@ -1577,19 +700,19 @@
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 9:56pm</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+											<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 										</span>
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 
 					<li class="chat-group">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar11-sm.jpg" alt="author">
-							<img src="/myspring/resources/img/avatar12-sm.jpg" alt="author">
-							<img src="/myspring/resources/img/avatar13-sm.jpg" alt="author">
-							<img src="/myspring/resources/img/avatar10-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar11-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar12-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar13-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar10-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">You, Faye, Ed &amp; Jet +3</a>
@@ -1598,10 +721,10 @@
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 16th at 10:23am</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+											<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 										</span>
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 						</div>
 					</li>
 				</ul>
@@ -1623,96 +746,96 @@
 				<ul class="notification-list">
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar62-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar62-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<div><a href="#" class="h6 notification-friend">Mathilda Brinker</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">4 hours ago</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+											<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 										</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 
 					<li class="un-read">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar63-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar63-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<div>You and <a href="#" class="h6 notification-friend">Nicholas Grissom</a> just became friends. Write on <a href="#" class="notification-link">his wall</a>.</div>
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">9 hours ago</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 
 					<li class="with-comment-photo">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar64-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar64-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<div><a href="#" class="h6 notification-friend">Sarah Hetfield</a> commented on your <a href="#" class="notification-link">photo</a>.</div>
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">Yesterday at 5:32am</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+											<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 										</span>
 
 						<div class="comment-photo">
-							<img src="/myspring/resources/img/comment-photo1.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/comment-photo1.jpg" alt="photo">
 							<span>“She looks incredible in that outfit! We should see each...”</span>
 						</div>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar65-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar65-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<div><a href="#" class="h6 notification-friend">Green Goo Rock</a> invited you to attend to his event Goo in <a href="#" class="notification-link">Gotham Bar</a>.</div>
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 5th at 6:43pm</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+											<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 										</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 
 					<li>
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar66-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar66-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<div><a href="#" class="h6 notification-friend">James Summers</a> commented on your new <a href="#" class="notification-link">profile status</a>.</div>
 							<span class="notification-date"><time class="entry-date updated" datetime="2004-07-24T18:18">March 2nd at 8:29pm</time></span>
 						</div>
 										<span class="notification-icon">
-											<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+											<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 										</span>
 
 						<div class="more">
-							<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-							<svg class="olymp-little-delete"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+							<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<svg class="olymp-little-delete"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 						</div>
 					</li>
 				</ul>
@@ -1752,7 +875,7 @@
 			<div class="ui-block">
 				<div class="top-header">
 					<div class="top-header-thumb">
-						<img src="/myspring/resources/img/top-header1.jpg" alt="nature">
+						<img src="<%=application.getContextPath()%>/resources/img/top-header1.jpg" alt="nature">
 					</div>
 					<div class="profile-section">
 						<div class="row">
@@ -1779,7 +902,7 @@
 									</li>
 									<li>
 										<div class="more">
-											<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+											<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 											<ul class="more-dropdown more-with-triangle">
 												<li>
 													<a href="#">Report Profile</a>
@@ -1796,15 +919,15 @@
 
 						<div class="control-block-button">
 							<a href="35-YourAccount-FriendsRequests.html" class="btn btn-control bg-blue">
-								<svg class="olymp-happy-face-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
+								<svg class="olymp-happy-face-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-face-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control bg-purple">
-								<svg class="olymp-chat---messages-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
+								<svg class="olymp-chat---messages-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-chat---messages-icon"></use></svg>
 							</a>
 
 							<div class="btn btn-control bg-primary more">
-								<svg class="olymp-settings-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-settings-icon"></use></svg>
+								<svg class="olymp-settings-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-settings-icon"></use></svg>
 
 								<ul class="more-dropdown more-with-triangle triangle-bottom-right">
 									<li>
@@ -1822,7 +945,7 @@
 					</div>
 					<div class="top-header-author">
 						<a href="02-ProfilePage.html" class="author-thumb">
-							<img src="/myspring/resources/img/author-main1.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-main1.jpg" alt="author">
 						</a>
 						<div class="author-content">
 							<a href="02-ProfilePage.html" class="h4 author-name">James Spiegel</a>
@@ -1851,7 +974,7 @@
 					<article class="hentry post">
 
 						<div class="post__author author vcard inline-items">
-							<img src="/myspring/resources/img/author-page.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author">
 
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
@@ -1862,7 +985,7 @@
 								</div>
 							</div>
 
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Edit Post</a>
@@ -1890,34 +1013,34 @@
 						<div class="post-additional-info inline-items">
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>8</span>
 							</a>
 
 							<ul class="friends-harmonic">
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic9.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic9.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic10.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic10.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic11.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic11.jpg" alt="friend">
 									</a>
 								</li>
 							</ul>
@@ -1930,12 +1053,12 @@
 
 							<div class="comments-shared">
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-speech-balloon-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
+									<svg class="olymp-speech-balloon-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
 									<span>17</span>
 								</a>
 
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+									<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 									<span>24</span>
 								</a>
 							</div>
@@ -1946,19 +1069,19 @@
 						<div class="control-block-button post-control-button">
 
 							<a href="#" class="btn btn-control featured-post">
-								<svg class="olymp-trophy-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-trophy-icon"></use></svg>
+								<svg class="olymp-trophy-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-trophy-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-like-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
+								<svg class="olymp-like-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+								<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+								<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 							</a>
 
 						</div>
@@ -1970,7 +1093,7 @@
 					<article class="hentry post video">
 
 						<div class="post__author author vcard inline-items">
-							<img src="/myspring/resources/img/author-page.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author">
 
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a> shared a <a href="#">link</a>
@@ -1981,7 +1104,7 @@
 								</div>
 							</div>
 
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Edit Post</a>
@@ -2004,9 +1127,9 @@
 
 						<div class="post-video">
 							<div class="video-thumb">
-								<img src="/myspring/resources/img/video5.jpg" alt="photo">
+								<img src="<%=application.getContextPath()%>/resources/img/video5.jpg" alt="photo">
 								<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video">
-									<svg class="olymp-play-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-play-icon"></use></svg>
+									<svg class="olymp-play-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-play-icon"></use></svg>
 								</a>
 							</div>
 
@@ -2020,34 +1143,34 @@
 						<div class="post-additional-info inline-items">
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>15</span>
 							</a>
 
 							<ul class="friends-harmonic">
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic9.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic9.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic10.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic10.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic11.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic11.jpg" alt="friend">
 									</a>
 								</li>
 							</ul>
@@ -2059,12 +1182,12 @@
 
 							<div class="comments-shared">
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-speech-balloon-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
+									<svg class="olymp-speech-balloon-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
 									<span>1</span>
 								</a>
 
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+									<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 									<span>16</span>
 								</a>
 							</div>
@@ -2075,15 +1198,15 @@
 						<div class="control-block-button post-control-button">
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-like-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
+								<svg class="olymp-like-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+								<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+								<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 							</a>
 
 						</div>
@@ -2095,7 +1218,7 @@
 					<article class="hentry post">
 
 						<div class="post__author author vcard inline-items">
-							<img src="/myspring/resources/img/author-page.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author">
 
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a>
@@ -2106,7 +1229,7 @@
 								</div>
 							</div>
 
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Edit Post</a>
@@ -2132,34 +1255,34 @@
 						<div class="post-additional-info inline-items">
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>36</span>
 							</a>
 
 							<ul class="friends-harmonic">
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic9.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic9.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic10.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic10.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic11.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic11.jpg" alt="friend">
 									</a>
 								</li>
 							</ul>
@@ -2172,12 +1295,12 @@
 
 							<div class="comments-shared">
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-speech-balloon-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
+									<svg class="olymp-speech-balloon-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
 									<span>17</span>
 								</a>
 
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+									<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 									<span>24</span>
 								</a>
 							</div>
@@ -2188,15 +1311,15 @@
 						<div class="control-block-button post-control-button">
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-like-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
+								<svg class="olymp-like-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+								<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+								<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 							</a>
 
 						</div>
@@ -2206,7 +1329,7 @@
 					<ul class="comments-list">
 						<li>
 							<div class="post__author author vcard inline-items">
-								<img src="/myspring/resources/img/avatar10-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar10-sm.jpg" alt="author">
 
 								<div class="author-date">
 									<a class="h6 post__author-name fn" href="#">Elaine Dreyfuss</a>
@@ -2217,21 +1340,21 @@
 									</div>
 								</div>
 
-								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 
 							</div>
 
 							<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium der doloremque laudantium.</p>
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>8</span>
 							</a>
 							<a href="#" class="reply">Reply</a>
 						</li>
 						<li class="has-children">
 							<div class="post__author author vcard inline-items">
-								<img src="/myspring/resources/img/avatar5-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar5-sm.jpg" alt="author">
 
 								<div class="author-date">
 									<a class="h6 post__author-name fn" href="#">Green Goo Rock</a>
@@ -2242,7 +1365,7 @@
 									</div>
 								</div>
 
-								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 
 							</div>
 
@@ -2252,7 +1375,7 @@
 							</p>
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>5</span>
 							</a>
 							<a href="#" class="reply">Reply</a>
@@ -2260,7 +1383,7 @@
 							<ul class="children">
 								<li>
 									<div class="post__author author vcard inline-items">
-										<img src="/myspring/resources/img/avatar8-sm.jpg" alt="author">
+										<img src="<%=application.getContextPath()%>/resources/img/avatar8-sm.jpg" alt="author">
 
 										<div class="author-date">
 											<a class="h6 post__author-name fn" href="#">Diana Jameson</a>
@@ -2271,21 +1394,21 @@
 											</div>
 										</div>
 
-										<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+										<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 
 									</div>
 
 									<p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 
 									<a href="#" class="post-add-icon inline-items">
-										<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+										<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 										<span>2</span>
 									</a>
 									<a href="#" class="reply">Reply</a>
 								</li>
 								<li>
 									<div class="post__author author vcard inline-items">
-										<img src="/myspring/resources/img/avatar2-sm.jpg" alt="author">
+										<img src="<%=application.getContextPath()%>/resources/img/avatar2-sm.jpg" alt="author">
 
 										<div class="author-date">
 											<a class="h6 post__author-name fn" href="#">Nicholas Grisom</a>
@@ -2296,14 +1419,14 @@
 											</div>
 										</div>
 
-										<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+										<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 
 									</div>
 
 									<p>Excepteur sint occaecat cupidatat non proident.</p>
 
 									<a href="#" class="post-add-icon inline-items">
-										<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+										<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 										<span>0</span>
 									</a>
 									<a href="#" class="reply">Reply</a>
@@ -2317,7 +1440,7 @@
 
 						<li>
 							<div class="post__author author vcard inline-items">
-								<img src="/myspring/resources/img/avatar4-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar4-sm.jpg" alt="author">
 
 								<div class="author-date">
 									<a class="h6 post__author-name fn" href="#">Chris Greyson</a>
@@ -2328,14 +1451,14 @@
 									</div>
 								</div>
 
-								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+								<a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 
 							</div>
 
 							<p>Dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.</p>
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>7</span>
 							</a>
 							<a href="#" class="reply">Reply</a>
@@ -2347,13 +1470,13 @@
 					<form class="comment-form inline-items">
 
 						<div class="post__author author vcard inline-items">
-							<img src="/myspring/resources/img/author-page.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author">
 
 							<div class="form-group with-icon-right ">
 								<textarea class="form-control" placeholder=""  ></textarea>
 								<div class="add-options-message">
 									<a href="#" class="options-message" data-toggle="modal" data-target="#update-header-photo">
-										<svg class="olymp-camera-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-camera-icon"></use></svg>
+										<svg class="olymp-camera-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-camera-icon"></use></svg>
 									</a>
 								</div>
 							</div>
@@ -2366,7 +1489,7 @@
 					<article class="hentry post has-post-thumbnail shared-photo">
 
 						<div class="post__author author vcard inline-items">
-							<img src="/myspring/resources/img/author-page.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author">
 
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="02-ProfilePage.html">James Spiegel</a> shared <a href="#">Diana Jameson</a>’s <a href="#">photo</a>
@@ -2377,7 +1500,7 @@
 								</div>
 							</div>
 
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Edit Post</a>
@@ -2399,13 +1522,13 @@
 						<p>Hi! Everyone should check out these amazing photographs that my friend shot the past week. Here’s one of them...leave a kind comment!</p>
 
 						<div class="post-thumb">
-							<img src="/myspring/resources/img/post-photo6.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/post-photo6.jpg" alt="photo">
 						</div>
 
 						<ul class="children single-children">
 							<li>
 								<div class="post__author author vcard inline-items">
-									<img src="/myspring/resources/img/avatar8-sm.jpg" alt="author">
+									<img src="<%=application.getContextPath()%>/resources/img/avatar8-sm.jpg" alt="author">
 									<div class="author-date">
 										<a class="h6 post__author-name fn" href="#">Diana Jameson</a>
 										<div class="post__date">
@@ -2423,34 +1546,34 @@
 						<div class="post-additional-info inline-items">
 
 							<a href="#" class="post-add-icon inline-items">
-								<svg class="olymp-heart-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
+								<svg class="olymp-heart-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-heart-icon"></use></svg>
 								<span>15</span>
 							</a>
 
 							<ul class="friends-harmonic">
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic5.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic5.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic10.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic10.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 									</a>
 								</li>
 								<li>
 									<a href="#">
-										<img src="/myspring/resources/img/friend-harmonic2.jpg" alt="friend">
+										<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic2.jpg" alt="friend">
 									</a>
 								</li>
 							</ul>
@@ -2462,12 +1585,12 @@
 
 							<div class="comments-shared">
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-speech-balloon-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
+									<svg class="olymp-speech-balloon-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-speech-balloon-icon"></use></svg>
 									<span>0</span>
 								</a>
 
 								<a href="#" class="post-add-icon inline-items">
-									<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+									<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 									<span>16</span>
 								</a>
 							</div>
@@ -2477,15 +1600,15 @@
 						<div class="control-block-button post-control-button">
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-like-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
+								<svg class="olymp-like-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-like-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-comments-post-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
+								<svg class="olymp-comments-post-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-comments-post-icon"></use></svg>
 							</a>
 
 							<a href="#" class="btn btn-control">
-								<svg class="olymp-share-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-share-icon"></use></svg>
+								<svg class="olymp-share-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-share-icon"></use></svg>
 							</a>
 
 						</div>
@@ -2495,7 +1618,7 @@
 
 			</div>
 
-			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
+			<a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
 		</div>
 
 		<!-- ... end Main Content -->
@@ -2551,55 +1674,55 @@
 					<ul class="widget w-badges">
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge1.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge1.png" alt="author">
 								<div class="label-avatar bg-primary">2</div>
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge4.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge4.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge3.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge3.png" alt="author">
 								<div class="label-avatar bg-blue">4</div>
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge6.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge6.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge11.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge11.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge8.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge8.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge10.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge10.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge13.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge13.png" alt="author">
 								<div class="label-avatar bg-breez">2</div>
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge7.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge7.png" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="24-CommunityBadges.html">
-								<img src="/myspring/resources/img/badge12.png" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/badge12.png" alt="author">
 							</a>
 						</li>
 					</ul>
@@ -2615,10 +1738,10 @@
 				<ol class="widget w-playlist">
 					<li class="js-open-popup" data-popup-target=".playlist-popup">
 						<div class="playlist-thumb">
-							<img src="/myspring/resources/img/playlist6.jpg" alt="thumb-composition">
+							<img src="<%=application.getContextPath()%>/resources/img/playlist6.jpg" alt="thumb-composition">
 							<div class="overlay"></div>
 							<a href="#" class="play-icon">
-								<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+								<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 							</a>
 						</div>
 
@@ -2629,7 +1752,7 @@
 
 						<div class="composition-time">
 							<time class="published" datetime="2017-03-24T18:18">3:22</time>
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Add Song to Player</a>
@@ -2645,10 +1768,10 @@
 
 					<li class="js-open-popup" data-popup-target=".playlist-popup">
 						<div class="playlist-thumb">
-							<img src="/myspring/resources/img/playlist7.jpg" alt="thumb-composition">
+							<img src="<%=application.getContextPath()%>/resources/img/playlist7.jpg" alt="thumb-composition">
 							<div class="overlay"></div>
 							<a href="#" class="play-icon">
-								<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+								<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 							</a>
 						</div>
 
@@ -2659,7 +1782,7 @@
 
 						<div class="composition-time">
 							<time class="published" datetime="2017-03-24T18:18">5:48</time>
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Add Song to Player</a>
@@ -2674,10 +1797,10 @@
 					</li>
 					<li class="js-open-popup" data-popup-target=".playlist-popup">
 						<div class="playlist-thumb">
-							<img src="/myspring/resources/img/playlist8.jpg" alt="thumb-composition">
+							<img src="<%=application.getContextPath()%>/resources/img/playlist8.jpg" alt="thumb-composition">
 							<div class="overlay"></div>
 							<a href="#" class="play-icon">
-								<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+								<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 							</a>
 						</div>
 
@@ -2688,7 +1811,7 @@
 
 						<div class="composition-time">
 							<time class="published" datetime="2017-03-24T18:18">3:06</time>
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Add Song to Player</a>
@@ -2703,10 +1826,10 @@
 					</li>
 					<li class="js-open-popup" data-popup-target=".playlist-popup">
 						<div class="playlist-thumb">
-							<img src="/myspring/resources/img/playlist9.jpg" alt="thumb-composition">
+							<img src="<%=application.getContextPath()%>/resources/img/playlist9.jpg" alt="thumb-composition">
 							<div class="overlay"></div>
 							<a href="#" class="play-icon">
-								<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+								<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 							</a>
 						</div>
 
@@ -2717,7 +1840,7 @@
 
 						<div class="composition-time">
 							<time class="published" datetime="2017-03-24T18:18">6:17</time>
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Add Song to Player</a>
@@ -2732,10 +1855,10 @@
 					</li>
 					<li class="js-open-popup" data-popup-target=".playlist-popup">
 						<div class="playlist-thumb">
-							<img src="/myspring/resources/img/playlist10.jpg" alt="thumb-composition">
+							<img src="<%=application.getContextPath()%>/resources/img/playlist10.jpg" alt="thumb-composition">
 							<div class="overlay"></div>
 							<a href="#" class="play-icon">
-								<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+								<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 							</a>
 						</div>
 
@@ -2746,7 +1869,7 @@
 
 						<div class="composition-time">
 							<time class="published" datetime="2017-03-24T18:18">5:40</time>
-							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+							<div class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
 								<ul class="more-dropdown">
 									<li>
 										<a href="#">Add Song to Player</a>
@@ -2770,7 +1893,7 @@
 				<ul class="widget w-twitter">
 					<li class="twitter-item">
 						<div class="author-folder">
-							<img src="/myspring/resources/img/twitter-avatar1.png" alt="avatar">
+							<img src="<%=application.getContextPath()%>/resources/img/twitter-avatar1.png" alt="avatar">
 							<div class="author">
 								<a href="#" class="author-name">Space Cowboy</a>
 								<a href="#" class="group">@james_spiegelOK</a>
@@ -2785,7 +1908,7 @@
 					</li>
 					<li class="twitter-item">
 						<div class="author-folder">
-							<img src="/myspring/resources/img/twitter-avatar1.png" alt="avatar">
+							<img src="<%=application.getContextPath()%>/resources/img/twitter-avatar1.png" alt="avatar">
 							<div class="author">
 								<a href="#" class="author-name">Space Cowboy</a>
 								<a href="#" class="group">@james_spiegelOK</a>
@@ -2800,7 +1923,7 @@
 					</li>
 					<li class="twitter-item">
 						<div class="author-folder">
-							<img src="/myspring/resources/img/twitter-avatar1.png" alt="avatar">
+							<img src="<%=application.getContextPath()%>/resources/img/twitter-avatar1.png" alt="avatar">
 							<div class="author">
 								<a href="#" class="author-name">Space Cowboy</a>
 								<a href="#" class="group">@james_spiegelOK</a>
@@ -2824,9 +1947,9 @@
 					<ul class="widget w-last-video">
 						<li>
 							<a href="https://vimeo.com/ondemand/viewfromabluemoon4k/147865858" class="play-video play-video--small">
-								<svg class="olymp-play-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-play-icon"></use></svg>
+								<svg class="olymp-play-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-play-icon"></use></svg>
 							</a>
-							<img src="/myspring/resources/img/video8.jpg" alt="video">
+							<img src="<%=application.getContextPath()%>/resources/img/video8.jpg" alt="video">
 							<div class="video-content">
 								<div class="title">System of a Revenge - Hypnotize...</div>
 								<time class="published" datetime="2017-03-24T18:18">3:25</time>
@@ -2835,9 +1958,9 @@
 						</li>
 						<li>
 							<a href="https://youtube.com/watch?v=excVFQ2TWig" class="play-video play-video--small">
-								<svg class="olymp-play-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-play-icon"></use></svg>
+								<svg class="olymp-play-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-play-icon"></use></svg>
 							</a>
-							<img src="/myspring/resources/img/video7.jpg" alt="video">
+							<img src="<%=application.getContextPath()%>/resources/img/video7.jpg" alt="video">
 							<div class="video-content">
 								<div class="title">Green Goo - Live at Dan’s Arena</div>
 								<time class="published" datetime="2017-03-24T18:18">5:48</time>
@@ -2862,48 +1985,48 @@
 				<div class="ui-block-content">
 					<ul class="widget w-last-photo js-zoom-gallery">
 						<li>
-							<a href="/myspring/resources/img/last-photo10-large.jpg">
-								<img src="/myspring/resources/img/last-photo10-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-photo10-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-photo10-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot11-large.jpg">
-								<img src="/myspring/resources/img/last-phot11-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot11-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot11-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot12-large.jpg">
-								<img src="/myspring/resources/img/last-phot12-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot12-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot12-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot13-large.jpg">
-								<img src="/myspring/resources/img/last-phot13-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot13-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot13-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot14-large.jpg">
-								<img src="/myspring/resources/img/last-phot14-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot14-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot14-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot15-large.jpg">
-								<img src="/myspring/resources/img/last-phot15-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot15-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot15-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot16-large.jpg">
-								<img src="/myspring/resources/img/last-phot16-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot16-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot16-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot17-large.jpg">
-								<img src="/myspring/resources/img/last-phot17-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot17-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot17-large.jpg" alt="photo">
 							</a>
 						</li>
 						<li>
-							<a href="/myspring/resources/img/last-phot18-large.jpg">
-								<img src="/myspring/resources/img/last-phot18-large.jpg" alt="photo">
+							<a href="<%=application.getContextPath()%>/resources/img/last-phot18-large.jpg">
+								<img src="<%=application.getContextPath()%>/resources/img/last-phot18-large.jpg" alt="photo">
 							</a>
 						</li>
 					</ul>
@@ -2956,72 +2079,72 @@
 					<ul class="widget w-faved-page js-zoom-gallery">
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar38-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar38-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar24-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar24-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar36-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar36-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar35-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar35-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar34-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar34-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar33-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar33-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar32-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar32-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar31-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar31-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar30-sm.jpg" alt="author">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar30-sm.jpg" alt="author">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar29-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar29-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar28-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar28-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar27-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar27-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar26-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar26-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/avatar25-sm.jpg" alt="user">
+								<img src="<%=application.getContextPath()%>/resources/img/avatar25-sm.jpg" alt="user">
 							</a>
 						</li>
 						<li class="all-users">
@@ -3039,7 +2162,7 @@
 				<ul class="widget w-friend-pages-added notification-list friend-requests">
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar41-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar41-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">The Marina Bar</a>
@@ -3047,7 +2170,7 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 
@@ -3055,7 +2178,7 @@
 
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar42-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar42-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Tapronus Rock</a>
@@ -3063,7 +2186,7 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 
@@ -3071,7 +2194,7 @@
 
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar43-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar43-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Pixel Digital Design</a>
@@ -3079,7 +2202,7 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 
@@ -3087,7 +2210,7 @@
 
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar44-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar44-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Thompson’s Custom Clothing Boutique</a>
@@ -3095,7 +2218,7 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 
@@ -3103,7 +2226,7 @@
 
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar45-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar45-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Crimson Agency</a>
@@ -3111,14 +2234,14 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 					</li>
 
 					<li class="inline-items">
 						<div class="author-thumb">
-							<img src="/myspring/resources/img/avatar46-sm.jpg" alt="author">
+							<img src="<%=application.getContextPath()%>/resources/img/avatar46-sm.jpg" alt="author">
 						</div>
 						<div class="notification-event">
 							<a href="#" class="h6 notification-friend">Mannequin Angel</a>
@@ -3126,7 +2249,7 @@
 						</div>
 						<span class="notification-icon" data-toggle="tooltip" data-placement="top"   data-original-title="ADD TO YOUR FAVS">
 							<a href="#">
-								<svg class="olymp-star-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+								<svg class="olymp-star-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
 							</a>
 						</span>
 					</li>
@@ -3168,47 +2291,47 @@
 								<ul class="friends-harmonic">
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic1.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic1.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic2.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic2.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic3.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic3.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic4.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic4.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic5.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic5.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic6.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic6.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic9.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic9.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
@@ -3241,37 +2364,37 @@
 								<ul class="friends-harmonic">
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic7.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic7.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic8.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic8.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic9.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic9.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic10.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic10.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic11.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic11.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic12.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic12.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic13.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic13.jpg" alt="friend">
 										</a>
 									</li>
 								</ul>
@@ -3300,12 +2423,12 @@
 								<ul class="friends-harmonic">
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic14.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic14.jpg" alt="friend">
 										</a>
 									</li>
 									<li>
 										<a href="#">
-											<img src="/myspring/resources/img/friend-harmonic15.jpg" alt="friend">
+											<img src="<%=application.getContextPath()%>/resources/img/friend-harmonic15.jpg" alt="friend">
 										</a>
 									</li>
 								</ul>
@@ -3328,7 +2451,7 @@
 <div class="modal fade" id="update-header-photo">
 	<div class="modal-dialog ui-block window-popup update-header-photo">
 		<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-			<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+			<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 		</a>
 
 		<div class="ui-block-title">
@@ -3336,7 +2459,7 @@
 		</div>
 
 		<a href="#" class="upload-photo-item">
-			<svg class="olymp-computer-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-computer-icon"></use></svg>
+			<svg class="olymp-computer-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-computer-icon"></use></svg>
 
 			<h6>Upload Photo</h6>
 			<span>Browse your computer.</span>
@@ -3344,7 +2467,7 @@
 
 		<a href="#" class="upload-photo-item" data-toggle="modal" data-target="#choose-from-my-photo">
 
-			<svg class="olymp-photos-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-photos-icon"></use></svg>
+			<svg class="olymp-photos-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-photos-icon"></use></svg>
 
 			<h6>Choose from My Photos</h6>
 			<span>Choose from your uploaded photos</span>
@@ -3360,7 +2483,7 @@
 <div class="modal fade" id="choose-from-my-photo">
 	<div class="modal-dialog ui-block window-popup choose-from-my-photo">
 		<a href="#" class="close icon-close" data-dismiss="modal" aria-label="Close">
-			<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+			<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 		</a>
 
 	<div class="ui-block-title">
@@ -3370,12 +2493,12 @@
 		<ul class="nav nav-tabs" role="tablist">
 			<li class="nav-item">
 				<a class="nav-link active" data-toggle="tab" href="#home" role="tab" aria-expanded="true">
-					<svg class="olymp-photos-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-photos-icon"></use></svg>
+					<svg class="olymp-photos-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-photos-icon"></use></svg>
 				</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" data-toggle="tab" href="#profile" role="tab" aria-expanded="false">
-					<svg class="olymp-albums-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-albums-icon"></use></svg>
+					<svg class="olymp-albums-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-albums-icon"></use></svg>
 				</a>
 			</li>
 		</ul>
@@ -3390,7 +2513,7 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo1.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo1.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3398,7 +2521,7 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo2.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo2.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3406,32 +2529,7 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo3.jpg" alt="photo">
-							<input type="radio" name="optionsRadios">
-						</label>
-					</div>
-				</div>
-
-				<div class="choose-photo-item" data-mh="choose-item">
-					<div class="radio">
-						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo4.jpg" alt="photo">
-							<input type="radio" name="optionsRadios">
-						</label>
-					</div>
-				</div>
-				<div class="choose-photo-item" data-mh="choose-item">
-					<div class="radio">
-						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo5.jpg" alt="photo">
-							<input type="radio" name="optionsRadios">
-						</label>
-					</div>
-				</div>
-				<div class="choose-photo-item" data-mh="choose-item">
-					<div class="radio">
-						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo6.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo3.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3440,7 +2538,7 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo7.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo4.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3448,7 +2546,7 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo8.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo5.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3456,7 +2554,32 @@
 				<div class="choose-photo-item" data-mh="choose-item">
 					<div class="radio">
 						<label class="custom-radio">
-							<img src="/myspring/resources/img/choose-photo9.jpg" alt="photo">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo6.jpg" alt="photo">
+							<input type="radio" name="optionsRadios">
+						</label>
+					</div>
+				</div>
+
+				<div class="choose-photo-item" data-mh="choose-item">
+					<div class="radio">
+						<label class="custom-radio">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo7.jpg" alt="photo">
+							<input type="radio" name="optionsRadios">
+						</label>
+					</div>
+				</div>
+				<div class="choose-photo-item" data-mh="choose-item">
+					<div class="radio">
+						<label class="custom-radio">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo8.jpg" alt="photo">
+							<input type="radio" name="optionsRadios">
+						</label>
+					</div>
+				</div>
+				<div class="choose-photo-item" data-mh="choose-item">
+					<div class="radio">
+						<label class="custom-radio">
+							<img src="<%=application.getContextPath()%>/resources/img/choose-photo9.jpg" alt="photo">
 							<input type="radio" name="optionsRadios">
 						</label>
 					</div>
@@ -3471,7 +2594,7 @@
 
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo10.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo10.jpg" alt="photo">
 						<figcaption>
 							<a href="#">South America Vacations</a>
 							<span>Last Added: 2 hours ago</span>
@@ -3480,7 +2603,7 @@
 				</div>
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo11.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo11.jpg" alt="photo">
 						<figcaption>
 							<a href="#">Photoshoot Summer 2016</a>
 							<span>Last Added: 5 weeks ago</span>
@@ -3489,7 +2612,7 @@
 				</div>
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo12.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo12.jpg" alt="photo">
 						<figcaption>
 							<a href="#">Amazing Street Food</a>
 							<span>Last Added: 6 mins ago</span>
@@ -3499,7 +2622,7 @@
 
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo13.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo13.jpg" alt="photo">
 						<figcaption>
 							<a href="#">Graffity & Street Art</a>
 							<span>Last Added: 16 hours ago</span>
@@ -3508,7 +2631,7 @@
 				</div>
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo14.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo14.jpg" alt="photo">
 						<figcaption>
 							<a href="#">Amazing Landscapes</a>
 							<span>Last Added: 13 mins ago</span>
@@ -3517,7 +2640,7 @@
 				</div>
 				<div class="choose-photo-item" data-mh="choose-item">
 					<figure>
-						<img src="/myspring/resources/img/choose-photo15.jpg" alt="photo">
+						<img src="<%=application.getContextPath()%>/resources/img/choose-photo15.jpg" alt="photo">
 						<figcaption>
 							<a href="#">The Majestic Canyon</a>
 							<span>Last Added: 57 mins ago</span>
@@ -3541,7 +2664,7 @@
 <div class="window-popup playlist-popup">
 
 	<a href="" class="icon-close js-close-popup">
-		<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+		<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 	</a>
 
 	<table class="playlist-popup-table">
@@ -3589,12 +2712,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist19.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist19.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3619,7 +2742,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3627,12 +2750,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist6.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist6.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3657,7 +2780,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3665,12 +2788,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist7.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist7.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3695,7 +2818,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3703,12 +2826,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist8.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist8.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3733,7 +2856,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3741,12 +2864,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist9.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist9.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3771,7 +2894,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3779,12 +2902,12 @@
 		<tr>
 			<td class="play">
 				<a href="#" class="play-icon">
-					<svg class="olymp-music-play-icon-big"><use xlink:href="/myspring/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
+					<svg class="olymp-music-play-icon-big"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons-music.svg#olymp-music-play-icon-big"></use></svg>
 				</a>
 			</td>
 			<td class="cover">
 				<div class="playlist-thumb">
-					<img src="/myspring/resources/img/playlist10.jpg" alt="thumb-composition">
+					<img src="<%=application.getContextPath()%>/resources/img/playlist10.jpg" alt="thumb-composition">
 				</div>
 			</td>
 			<td class="song-artist">
@@ -3809,7 +2932,7 @@
 			</td>
 			<td class="remove">
 				<a href="#" class="remove-icon">
-					<svg class="olymp-close-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-close-icon"></use></svg>
+					<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 				</a>
 			</td>
 		</tr>
@@ -3817,10 +2940,10 @@
 	</table>
 
 	<audio id="mediaplayer" data-showplaylist="true">
-		<source src="/myspring/resources/mp3/Twice.mp3" title="Track 1" data-poster="track1.png" type="audio/mpeg">
-		<source src="/myspring/resources/mp3/Twice.mp3" title="Track 2" data-poster="track2.png" type="audio/mpeg">
-		<source src="/myspring/resources/mp3/Twice.mp3" title="Track 3" data-poster="track3.png" type="audio/mpeg">
-		<source src="/myspring/resources/mp3/Twice.mp3" title="Track 4" data-poster="track4.png" type="audio/mpeg">
+		<source src="<%=application.getContextPath()%>/resources/mp3/Twice.mp3" title="Track 1" data-poster="track1.png" type="audio/mpeg">
+		<source src="<%=application.getContextPath()%>/resources/mp3/Twice.mp3" title="Track 2" data-poster="track2.png" type="audio/mpeg">
+		<source src="<%=application.getContextPath()%>/resources/mp3/Twice.mp3" title="Track 3" data-poster="track3.png" type="audio/mpeg">
+		<source src="<%=application.getContextPath()%>/resources/mp3/Twice.mp3" title="Track 4" data-poster="track4.png" type="audio/mpeg">
 	</audio>
 
 </div>
@@ -3832,15 +2955,15 @@
 		<span class="icon-status online"></span>
 		<h6 class="title" >Chat</h6>
 		<div class="more">
-			<svg class="olymp-three-dots-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
-			<svg class="olymp-little-delete js-chat-open"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-little-delete"></use></svg>
+			<svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg>
+			<svg class="olymp-little-delete js-chat-open"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-little-delete"></use></svg>
 		</div>
 	</div>
 	<div class="mCustomScrollbar">
 		<ul class="notification-list chat-message chat-message-field">
 			<li>
 				<div class="author-thumb">
-					<img src="/myspring/resources/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+					<img src="<%=application.getContextPath()%>/resources/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
 				</div>
 				<div class="notification-event">
 					<span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
@@ -3850,7 +2973,7 @@
 
 			<li>
 				<div class="author-thumb">
-					<img src="/myspring/resources/img/author-page.jpg" alt="author" class="mCS_img_loaded">
+					<img src="<%=application.getContextPath()%>/resources/img/author-page.jpg" alt="author" class="mCS_img_loaded">
 				</div>
 				<div class="notification-event">
 					<span class="chat-message-item">Don’t worry Mathilda!</span>
@@ -3861,7 +2984,7 @@
 
 			<li>
 				<div class="author-thumb">
-					<img src="/myspring/resources/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
+					<img src="<%=application.getContextPath()%>/resources/img/avatar14-sm.jpg" alt="author" class="mCS_img_loaded">
 				</div>
 				<div class="notification-event">
 					<span class="chat-message-item">Hi James! Please remember to buy the food for tomorrow! I’m gonna be handling the gifts and Jake’s gonna get the drinks</span>
@@ -3878,146 +3001,146 @@
 			<textarea class="form-control" placeholder=""></textarea>
 			<div class="add-options-message">
 				<a href="#" class="options-message">
-					<svg class="olymp-computer-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-computer-icon"></use></svg>
+					<svg class="olymp-computer-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-computer-icon"></use></svg>
 				</a>
 				<div class="options-message smile-block">
 
-					<svg class="olymp-happy-sticker-icon"><use xlink:href="/myspring/resources/icons/icons.svg#olymp-happy-sticker-icon"></use></svg>
+					<svg class="olymp-happy-sticker-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-happy-sticker-icon"></use></svg>
 
 					<ul class="more-dropdown more-with-triangle triangle-bottom-right">
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat1.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat1.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat2.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat2.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat3.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat3.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat4.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat4.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat5.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat5.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat6.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat6.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat7.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat7.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat8.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat8.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat9.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat9.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat10.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat10.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat11.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat11.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat12.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat12.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat13.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat13.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat14.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat14.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat15.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat15.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat16.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat16.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat17.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat17.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat18.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat18.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat19.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat19.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat20.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat20.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat21.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat21.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat22.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat22.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat23.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat23.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat24.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat24.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat25.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat25.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat26.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat26.png" alt="icon">
 							</a>
 						</li>
 						<li>
 							<a href="#">
-								<img src="/myspring/resources/img/icon-chat27.png" alt="icon">
+								<img src="<%=application.getContextPath()%>/resources/img/icon-chat27.png" alt="icon">
 							</a>
 						</li>
 					</ul>
@@ -4035,25 +3158,25 @@
 
 
 <!-- jQuery first, then Other JS. -->
-<script src="/myspring/resources/js/jquery-3.2.0.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/jquery-3.2.0.min.js"></script>
 <!-- Js effects for material design. + Tooltips -->
-<script src="/myspring/resources/js/material.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/material.min.js"></script>
 <!-- Helper scripts (Tabs, Equal height, Scrollbar, etc) -->
-<script src="/myspring/resources/js/theme-plugins.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/theme-plugins.js"></script>
 <!-- Init functions -->
-<script src="/myspring/resources/js/main.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/main.js"></script>
 
 <!-- Load more news AJAX script -->
-<script src="/myspring/resources/js/ajax-pagination.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/ajax-pagination.js"></script>
 
 <!-- Select / Sorting script -->
-<script src="/myspring/resources/js/selectize.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/selectize.min.js"></script>
 
 <!-- Lightbox popup script-->
-<script src="/myspring/resources/js/jquery.magnific-popup.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/jquery.magnific-popup.min.js"></script>
 
-<script src="/myspring/resources/js/mediaelement-and-player.min.js"></script>
-<script src="/myspring/resources/js/mediaelement-playlist-plugin.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/mediaelement-and-player.min.js"></script>
+<script src="<%=application.getContextPath()%>/resources/js/mediaelement-playlist-plugin.min.js"></script>
 
 
 </body>
