@@ -3,7 +3,6 @@
 <!-- Fixed Sidebar Right -->
 <div class="fixed-sidebar right">
 	<div class="fixed-sidebar-right sidebar--small" id="sidebar-right">
-
 		<div class="mCustomScrollbar" data-mcs-theme="dark">
 			<ul class="chat-users">
 				<li class="inline-items js-chat-open">
@@ -70,7 +69,6 @@
 					</div>
 				</li>
 				<li class="inline-items js-chat-open">
-
 					<div class="author-thumb">
 						<img alt="author" src="<%=application.getContextPath()%>/resources/img/avatar71-sm.jpg" class="avatar">
 						<span class="icon-status online"></span>
@@ -482,8 +480,6 @@
 			<a href="#" class="js-sidebar-open">
 				<svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
 			</a>
-
-
 		</div>
 
 		<a href="34-YourAccount-ChatMessages.html" class="olympus-chat inline-items">
