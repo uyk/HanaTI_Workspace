@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c"   uri="http://java.sun.com/jsp/jstl/core" %>
 <%-- HEAD JSP FILE
      모든 페이지의 head 태그 안에 인클루드되어야 하는 head.jsp 파일
  --%>

@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!-- Header -->
 <header class="header" id="site-header">
   <div class="page-title">
@@ -346,122 +348,139 @@
         </div>
       </div>
 
-      <div class="author-page author vcard inline-items more">
-        <div class="author-thumb">
-          <img alt="author" src="<%=application.getContextPath()%>/resources/img/author-page.jpg" class="avatar">
-          <span class="icon-status online"></span>
-          <div class="more-dropdown more-with-triangle">
-            <div class="mCustomScrollbar" data-mcs-theme="dark">
-              <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">Your Account</h6>
+
+      <!-- 로그인중인지 판별 -->
+      <c:choose>
+        <%--로그인 아님 --%>
+        <c:when test="${param.loginId eq null}">
+          <h1>없음</h1>
+          <h1>el : ${param.loginId}</h1>
+        </c:when>
+        <%--로그인 중 --%>
+        <c:otherwise>
+          <!-- 개인정보 시작  -->
+          <div class="author-page author vcard inline-items more">
+            <div class="author-thumb">
+              <img alt="author" src="<%=application.getContextPath()%>/resources/img/author-page.jpg" class="avatar">
+              <span class="icon-status online"></span>
+              <!-- 마우스 오버 -->
+              <div class="more-dropdown more-with-triangle">
+                <div class="mCustomScrollbar" data-mcs-theme="dark">
+                  <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Your Account</h6>
+                  </div>
+    
+                  <ul class="account-settings">
+                    <li>
+                      <a href="29-YourAccount-AccountSettings.html">
+    
+                        <svg class="olymp-menu-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
+    
+                        <span>Profile Settings</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="36-FavPage-SettingsAndCreatePopup.html">
+                        <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
+    
+                        <span>Create Fav Page</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <svg class="olymp-logout-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-logout-icon"></use></svg>
+    
+                        <span>Log Out</span>
+                      </a>
+                    </li>
+                  </ul>
+    
+                  <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Chat Settings</h6>
+                  </div>
+    
+                  <ul class="chat-settings">
+                    <li>
+                      <a href="#">
+                        <span class="icon-status online"></span>
+                        <span>Online</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class="icon-status away"></span>
+                        <span>Away</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span class="icon-status disconected"></span>
+                        <span>Disconnected</span>
+                      </a>
+                    </li>
+    
+                    <li>
+                      <a href="#">
+                        <span class="icon-status status-invisible"></span>
+                        <span>Invisible</span>
+                      </a>
+                    </li>
+                  </ul>
+    
+                  <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">Custom Status</h6>
+                  </div>
+    
+                  <form class="form-group with-button custom-status">
+                    <input class="form-control" placeholder="" type="text" value="Space Cowboy">
+    
+                    <button class="bg-purple">
+                      <svg class="olymp-check-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-check-icon"></use></svg>
+                    </button>
+                  </form>
+    
+                  <div class="ui-block-title ui-block-title-small">
+                    <h6 class="title">About Olympus</h6>
+                  </div>
+    
+                  <ul>
+                    <li>
+                      <a href="#">
+                        <span>Terms and Conditions</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span>FAQs</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span>Careers</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <span>Contact</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+    
               </div>
-
-              <ul class="account-settings">
-                <li>
-                  <a href="29-YourAccount-AccountSettings.html">
-
-                    <svg class="olymp-menu-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
-
-                    <span>Profile Settings</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="36-FavPage-SettingsAndCreatePopup.html">
-                    <svg class="olymp-star-icon left-menu-icon"  data-toggle="tooltip" data-placement="right"   data-original-title="FAV PAGE"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-star-icon"></use></svg>
-
-                    <span>Create Fav Page</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <svg class="olymp-logout-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-logout-icon"></use></svg>
-
-                    <span>Log Out</span>
-                  </a>
-                </li>
-              </ul>
-
-              <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">Chat Settings</h6>
-              </div>
-
-              <ul class="chat-settings">
-                <li>
-                  <a href="#">
-                    <span class="icon-status online"></span>
-                    <span>Online</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="icon-status away"></span>
-                    <span>Away</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span class="icon-status disconected"></span>
-                    <span>Disconnected</span>
-                  </a>
-                </li>
-
-                <li>
-                  <a href="#">
-                    <span class="icon-status status-invisible"></span>
-                    <span>Invisible</span>
-                  </a>
-                </li>
-              </ul>
-
-              <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">Custom Status</h6>
-              </div>
-
-              <form class="form-group with-button custom-status">
-                <input class="form-control" placeholder="" type="text" value="Space Cowboy">
-
-                <button class="bg-purple">
-                  <svg class="olymp-check-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-check-icon"></use></svg>
-                </button>
-              </form>
-
-              <div class="ui-block-title ui-block-title-small">
-                <h6 class="title">About Olympus</h6>
-              </div>
-
-              <ul>
-                <li>
-                  <a href="#">
-                    <span>Terms and Conditions</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>FAQs</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>Careers</span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#">
-                    <span>Contact</span>
-                  </a>
-                </li>
-              </ul>
+              <!-- 마우스 오버 끝-->
             </div>
+            <a href="02-ProfilePage.html" class="author-name fn">
+              <div class="author-title">
+                James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
+              </div>
+              <span class="author-subtitle">SPACE COWBOY</span>
+            </a>
+          </div>
+          <!-- 개인정보 끝  -->
+        </c:otherwise>
+      </c:choose>
 
-          </div>
-        </div>
-        <a href="02-ProfilePage.html" class="author-name fn">
-          <div class="author-title">
-            James Spiegel <svg class="olymp-dropdown-arrow-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-dropdown-arrow-icon"></use></svg>
-          </div>
-          <span class="author-subtitle">SPACE COWBOY</span>
-        </a>
-      </div>
 
     </div>
   </div>
@@ -826,18 +845,15 @@
 
     </div>
 
+    <!-- Search start -->
     <div class="tab-pane " id="search" role="tabpanel">
-
-
         <form class="search-bar w-search notification-list friend-requests">
           <div class="form-group with-button">
             <input class="form-control js-user-search" placeholder="Search here people or pages..." type="text">
           </div>
         </form>
-
-
     </div>
-
+    <!-- ... end search -->
   </div>
   <!-- ... end  Tab panes -->
 

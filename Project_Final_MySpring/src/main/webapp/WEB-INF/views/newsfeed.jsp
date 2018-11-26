@@ -8,21 +8,21 @@
 <body>
 
 <!-- Fixed Sidebar Left -->
-<jsp:include page="includes/fixed-sidebar-left.jsp"></jsp:include>
+<%-- <jsp:include page="includes/fixed-sidebar-left.jsp"></jsp:include> --%>
 <!-- end Fixed Sidebar Left -->
 
 <!-- Fixed Sidebar Right -->
-<jsp:include page="includes/fixed-sidebar-right.jsp"></jsp:include>
+<%-- <jsp:include page="includes/fixed-sidebar-right.jsp"></jsp:include> --%>
 <!-- ... end Fixed Sidebar Right -->
 
 <!-- Header -->
 <jsp:include page="includes/header.jsp">
   <jsp:param value="Newsfeed" name="PageName"/>
+  <jsp:param value="Yegyeom Yu" name="loginId"/>
 </jsp:include>
 <!-- ... end Header -->
 
 <div class="header-spacer"></div>
-
 
 <div class="container">
   <div class="row">
