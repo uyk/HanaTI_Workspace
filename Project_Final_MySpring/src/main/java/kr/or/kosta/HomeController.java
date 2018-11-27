@@ -70,5 +70,11 @@ public class HomeController {
 		
 		return "temp/mobile-index";
 	}
+	@RequestMapping(value = "/stock", method = RequestMethod.GET)
+	public String stock() {
+		logger.info("stock.");
+		
+		return "stock";
+	}
 	
 }
