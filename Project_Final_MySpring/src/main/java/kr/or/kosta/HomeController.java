@@ -64,11 +64,11 @@ public class HomeController {
 		return "widgets/widgets";
 	}
 	
-	@RequestMapping(value = "/tempnews", method = RequestMethod.GET)
-	public String tempnews() {
-		logger.info("tempnews.");
+	@RequestMapping(value = "/mobile", method = RequestMethod.GET)
+	public String mobile() {
+		logger.info("mobile.");
 		
-		return "temp/origin-newsfeed";
+		return "temp/mobile-index";
 	}
 	
 }

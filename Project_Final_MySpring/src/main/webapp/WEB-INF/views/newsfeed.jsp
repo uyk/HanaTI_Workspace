@@ -32,50 +32,19 @@
     <!-- Main Content -->
 
     <main class="col-xl-6 order-xl-2 col-lg-12 order-lg-1 col-md-12 col-sm-12 col-xs-12">
+      <%-- 검색 시작 --%>
       <div class="ui-block">
-        <div class="news-feed-form">
-          <!-- Nav tabs -->
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-              <a class="nav-link active inline-items" data-toggle="tab" href="#home-1" role="tab" aria-expanded="true">
-
-                <svg class="olymp-status-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-status-icon"></use></svg>
-
-                <span>Status</span>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link inline-items" data-toggle="tab" href="#profile-1" role="tab" aria-expanded="false">
-
-                <svg class="olymp-multimedia-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-multimedia-icon"></use></svg>
-
-                <span>Trading Lists</span>
-              </a>
-            </li>
-
-            <li class="nav-item">
-              <a class="nav-link inline-items" data-toggle="tab" href="#blog" role="tab" aria-expanded="false">
-                <svg class="olymp-blog-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-blog-icon"></use></svg>
-
-                <span>Holding Lists</span>
-              </a>
-            </li>
-          </ul>
-<!--     <form class="search-bar w-search notification-list friend-requests">
-      <div class="form-group with-button is-empty">
-        <input class="form-control js-user-search selectized" placeholder="Search here people or pages..." type="text" tabindex="-1" value="" style="display: none;"><div class="selectize-control form-control js-user-search multi"><div class="selectize-input items not-full has-options"><input type="text" autocomplete="off" tabindex="" placeholder="Search here people or pages..." style="width: 229.863px;"></div><div class="selectize-dropdown multi form-control js-user-search" style="display: none; width: 500px; top: 70px; left: 0px;"><div class="selectize-dropdown-content"></div></div></div>
-        <button>
-          <svg class="olymp-magnifying-glass-icon"><use xlink:href="#olymp-magnifying-glass-icon"></use></svg>
-        </button>
-      <span class="material-input"></span></div>
-    </form>
-    <a href="#" class="link-find-friend">Find Friends</a> -->
-          <!-- Tab panes -->
-          <div class="tab-content">
-
-          </div>
-        </div>
+        <form class="w-search" style="width: 100%;">
+        	<div class="form-group with-button is-empty">
+        		<input class="form-control" type="text" placeholder="Search Blog Posts...">
+        		<button style="background-color: #3f4257;">
+        			<svg class="olymp-magnifying-glass-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-magnifying-glass-icon"></use></svg>
+        		</button>
+        	<span class="material-input"></span></div>
+        </form>
       </div>
+      <%-- 검색 끝 --%>
+      <%-- 글 작성 시작 --%>
       <div class="ui-block">
         <div class="news-feed-form">
           <!-- Nav tabs -->
@@ -197,7 +166,8 @@
           </div>
         </div>
       </div>
-
+      <%-- 글 작성 끝 --%>
+      <%-- 피드 목록 시작--%>
       <div id="newsfeed-items-grid">
 
         <div class="ui-block">
@@ -830,11 +800,9 @@
         </div>
 
       </div>
-
-
+      <%-- 피드 목록 끝 --%>
+      <%-- 더보기 버튼 --%>
       <a id="load-more-button" href="#" class="btn btn-control btn-more" data-load-link="items-to-load.html" data-container="newsfeed-items-grid"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
-
-
     </main>
 
     <!-- ... end Main Content -->

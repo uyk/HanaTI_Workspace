@@ -8,12 +8,12 @@
   <div class="header-content-wrapper" >
   
     <a href="#" class="logo" style="float: left; padding:10px; min-width: 160px;">
-      <img src="<%=application.getContextPath()%>/resources/img/logo-colored.png" alt="Olympus" style="width: 40px; height: auto;">
+      <img src="<%=application.getContextPath()%>/resources/img/_sos.png" alt="Olympus" style="width: 40px; height: auto;">
       <h6 class="logo-title" style="margin-top: 0px">olympus</h6>
       SOCIAL NETWORK
     </a>
     <a href="#" class="open-responsive-menu js-open-responsive-menu">
-    	<svg class="olymp-menu-icon"><use xlink:href="icons/icons.svg#olymp-menu-icon"></use></svg>
+    	<svg class="olymp-menu-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-menu-icon"></use></svg>
     </a>
     
     <div class="nav nav-pills nav1 header-menu" style=" margin-left: 18%">
@@ -35,7 +35,7 @@
           </li>
 
           <li class="close-responsive-menu js-close-responsive-menu">
-            <svg class="olymp-close-icon"><use xlink:href="icons/icons.svg#olymp-close-icon"></use></svg>
+            <svg class="olymp-close-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-close-icon"></use></svg>
           </li>
         </ul>
         
