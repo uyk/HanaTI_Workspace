@@ -2,7 +2,7 @@
 <div class="ui-block">
 
   <div class="ui-block-title">
-    <h6 class="title">Activity Feed</h6>
+    <h6 class="title">My Interests</h6>
     <a href="#" class="more"><svg class="olymp-three-dots-icon"><use xlink:href="<%=application.getContextPath()%>/resources/icons/icons.svg#olymp-three-dots-icon"></use></svg></a>
   </div>
 

@@ -50,4 +50,25 @@ public class HomeController {
 		return "newsfeed";
 	}
 	
+	@RequestMapping(value = "/newsfeed2", method = RequestMethod.GET)
+	public String newsfeed2() {
+		logger.info("newsfeed2.");
+		
+		return "newsfeed2";
+	}
+	
+	@RequestMapping(value = "/widgets", method = RequestMethod.GET)
+	public String widgets() {
+		logger.info("widgets.");
+		
+		return "widgets/widgets";
+	}
+	
+	@RequestMapping(value = "/tempnews", method = RequestMethod.GET)
+	public String tempnews() {
+		logger.info("tempnews.");
+		
+		return "temp/origin-newsfeed";
+	}
+	
 }
