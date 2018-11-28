@@ -10,7 +10,6 @@ INDEX VERSION 1.131+C:\KOSTA187\workspace\.metadata\.plugins\org.eclipse.jdt.cor
 372050812.index
 875447432.index
 3631324038.index
-2120955317.index
 2447282000.index
 381415448.index
 285909406.index
@@ -28,7 +27,6 @@ INDEX VERSION 1.131+C:\KOSTA187\workspace\.metadata\.plugins\org.eclipse.jdt.cor
 2038311899.index
 672909588.index
 2823027886.index
-80751251.index
 4140234.index
 346937428.index
 260601790.index
