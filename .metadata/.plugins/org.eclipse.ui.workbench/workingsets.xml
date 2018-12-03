@@ -4,9 +4,7 @@
 <item elementID="=OOPStudy/src" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1534829140177_1" label="Java Test Sources" name="test"/>
-<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543298297545_4" label="sos" name="sos">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/sos" type="4"/>
-</workingSet>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1543298297545_4" label="sos" name="sos"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1534829153157_2" label="Window Working Set" name="Aggregate for window 1534829153157"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1534895907725_3" label="Window Working Set" name="Aggregate for window 1534895907725"/>
 </workingSetManager>

@@ -20,37 +20,44 @@
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="height: 70px;" key="selection"/>
+		<item value="holding" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="height: 70px;"/>
-			<item value="height: 70px;."/>
-			<item value="logout"/>
-			<item value="customUserDetailsService"/>
-			<item value="pages"/>
-			<item value="modalInputReply"/>
-			<item value="chat"/>
-			<item value="showli"/>
-			<item value="gson"/>
-			<item value="jack"/>
-			<item value="hamcrest"/>
-			<item value="click"/>
-			<item value="form"/>
-			<item value="oper"/>
-			<item value="open"/>
+			<item value="asset"/>
+			<item value="interests"/>
+			<item value="interest"/>
+			<item value="famil"/>
+			<item value="margin-top : 20px"/>
+			<item value="margin-top : 20px;"/>
+			<item value="margin-t"/>
+			<item value="index"/>
+			<item value="include"/>
+			<item value="news"/>
+			<item value="&quot;img"/>
+			<item value="&quot;icons"/>
+			<item value="Number with Slider"/>
+			<item value="load"/>
+			<item value="Colors Pie Char"/>
 		</list>
 		<list key="replacehistory">
-			<item value="/spring/resources"/>
-			<item value="/resources/"/>
+			<item value="holding"/>
+			<item value="interest"/>
+			<item value="&quot;&lt;%=application.getContextPath()%&gt;/resources/img"/>
+			<item value="&quot;&lt;%=application.getContextPath()%&gt;/resources/icons"/>
+			<item value="#019591"/>
+			<item value="class=&quot;olymp-three-dots-icon&quot; style=&quot;height: 26px; width: 26px; display: inline-block;&quot;"/>
+			<item value="class=&quot;olymp-three-dots-icon&quot; "/>
+			<item value="&lt;%=application.getContextPath()%&gt;/resources/img"/>
+			<item value="&lt;%=application.getContextPath()%&gt;/resources/icons"/>
+			<item value="&quot;&lt;%=application.getContextPath()%&gt;/resources/css"/>
+			<item value="&quot;&lt;%=application.getContextPath()%&gt;/resources/js"/>
 			<item value="&quot;"/>
-			<item value="&apos;Do Hyeon&apos;, sans-serif;"/>
-			<item value="&apos;Nanum Pen Script&apos;, cursive;"/>
-			<item value="&apos;Nanum Brush Script&apos;, cursive;"/>
-			<item value="font-family: &apos;Nanum Brush Script&apos;, cursive;"/>
-			<item value="&apos;Nanum Myeongjo&apos;, serif;"/>
+			<item value="/icons"/>
+			<item value="&quot;&lt;%=application.getContextPath()%&gt;/img"/>
+			<item value="&lt;%=application.getContextPath()%&gt;/img"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
